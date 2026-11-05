@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Von Helden und Monstern — Holz-Standees Fertigungs- &amp; Mengencheckliste</title>
+<style>
+  @page {
+    size: A4 portrait;
+    margin: 8mm 10mm 8mm 10mm;
+  }
+  * {
+    box-sizing: border-box;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a;
+    background: #ffffff;
+    margin: 0;
+    padding: 0;
+    font-size: 8.5pt;
+    line-height: 1.25;
+  }
+  header {
+    border-bottom: 2px solid #222;
+    padding-bottom: 4px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  h1 {
+    font-size: 13.5pt;
+    margin: 0 0 2px 0;
+    letter-spacing: 0.4px;
+    color: #111;
+  }
+  .subtitle {
+    font-size: 7.5pt;
+    color: #555;
+    margin: 0;
+  }
+  .stats-badges {
+    display: flex;
+    gap: 6px;
+  }
+  .meta-tag {
+    font-size: 7pt;
+    padding: 2px 6px;
+    background: #f0f0f0;
+    border-radius: 3px;
+    font-weight: bold;
+    border: 1px solid #ccc;
+    white-space: nowrap;
+  }
+  .meta-tag.highlight {
+    background: #eef4ff;
+    border-color: #8daed9;
+    color: #1a447a;
+  }
+  .meta-tag.wood {
+    background: #fcf6ed;
+    border-color: #d7ba8d;
+    color: #7a4b1a;
+  }
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .full-width {
+    grid-column: 1 / -1;
+  }
+
+  .section {
+    margin-bottom: 8px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    background: #fff;
+    overflow: hidden;
+    page-break-inside: avoid;
+  }
+
+  .section-header {
+    background: #f5f5f7;
+    padding: 4px 8px;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .section-title {
+    font-size: 8.5pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #222;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .section-count {
+    font-size: 7pt;
+    font-weight: 600;
+    background: #e8e8e8;
+    padding: 1px 5px;
+    border-radius: 10px;
+    color: #555;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 7.8pt;
+  }
+
+  th {
+    background: #fafafa;
+    text-align: left;
+    padding: 3px 6px;
+    font-size: 7pt;
+    font-weight: 600;
+    color: #666;
+    border-bottom: 1px solid #eee;
+    text-transform: uppercase;
+  }
+
+  td {
+    padding: 2.5px 6px;
+    border-bottom: 1px solid #f0f0f0;
+    vertical-align: middle;
+  }
+
+  tr:last-child td {
+    border-bottom: none;
+  }
+
+  tr:nth-child(even) td {
+    background: #fafafa;
+  }
+
+  .col-id { width: 24px; font-weight: 600; color: #777; text-align: center; }
+  .col-name { font-weight: 600; color: #111; }
+  .col-sub { font-size: 7pt; color: #666; font-weight: normal; }
+  .col-dim { width: 75px; font-size: 7pt; color: #555; }
+  .col-qty { width: 45px; text-align: center; font-weight: 700; color: #8a3b00; font-size: 8.5pt; background: #fffcf8; }
+  .col-step { width: 32px; text-align: center; }
+  .col-calc { font-size: 7pt; color: #666; }
+
+  .box-wrap {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .box {
+    width: 12px;
+    height: 12px;
+    border: 1.2px solid #555;
+    border-radius: 2px;
+    display: inline-block;
+    background: #fff;
+    vertical-align: middle;
+  }
+
+  .box.done {
+    background: #2e7d32;
+    border-color: #2e7d32;
+    position: relative;
+  }
+  .box.done::after {
+    content: "✓";
+    color: #fff;
+    font-size: 8pt;
+    position: absolute;
+    top: -2px;
+    left: 1px;
+    line-height: 1;
+  }
+
+  .pill {
+    display: inline-block;
+    font-size: 6.5pt;
+    font-weight: 700;
+    padding: 1px 4px;
+    border-radius: 3px;
+    text-transform: uppercase;
+  }
+  .pill-std { background: #e3f2fd; color: #1565c0; border: 1px solid #bbdefb; }
+  .pill-elite { background: #f3e5f5; color: #6a1b9a; border: 1px solid #e1bee7; }
+  .pill-boss { background: #ffebee; color: #c62828; border: 1px solid #ffcdd2; }
+  .pill-hero { background: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
+
+  .callout-box {
+    background: #faf7f2;
+    border: 1px solid #e2d3be;
+    border-radius: 4px;
+    padding: 6px 8px;
+    font-size: 7.3pt;
+    color: #5c4428;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .callout-box strong {
+    color: #3b2811;
+  }
+
+  .footer-note {
+    font-size: 7pt;
+    color: #777;
+    margin-top: 6px;
+    border-top: 1px solid #eee;
+    padding-top: 4px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  @media screen {
+    body {
+      background: #eef0f3;
+      padding: 20px;
+    }
+    .page-sheet {
+      background: #fff;
+      max-width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto;
+      padding: 10mm 12mm;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      border-radius: 4px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-sheet">
+  <header>
+    <div>
+      <h1>Von Helden und Monstern — Holz-Standees Fertigungs- &amp; Stückliste</h1>
+      <p class="subtitle">Material: 3 mm Birkensperrholz &bull; Lasergravur &amp; -schnitt &bull; Exakte Bedarfsberechnung nach Kampagnen-Szenarien 1–5 &amp; Begegnungsdeck</p>
+    </div>
+    <div class="stats-badges">
+      <span class="meta-tag wood">Gesamt: 30 Standees</span>
+      <span class="meta-tag highlight">Helden: 4 Stk.</span>
+      <span class="meta-tag highlight">Monster: 26 Stk.</span>
+      <span class="meta-tag">Sockel: 30 Stk.</span>
+    </div>
+  </header>
+
+  <div class="callout-box">
+    <div>
+      <strong>🪵 Fertigungsstandard:</strong> 3 mm Birke Sperrholz &bull; Doppelseitige B&amp;W-Lasergravur (oder Gravur Vorderseite + Blanko/Silhouetten-Rückseite) &bull; Steckzapfen 10 × 3 mm passend für 20 mm Rundsockel &bull; Zustand <em>Betäubt</em> wird durch physisches Umlegen des Standees angezeigt.
+    </div>
+    <div style="font-weight: 700; font-size: 8pt; white-space: nowrap; margin-left: 10px;">
+      100% Kampagnen-Abdeckung
+    </div>
+  </div>
+
+  <div class="grid-container">
+
+    <!-- SEKTION 1: DIE 4 HELDEN -->
+    <div class="section full-width">
+      <div class="section-header">
+        <span class="section-title">🛡️ Spieler-Helden (4 Figuren &bull; Standard-Format)</span>
+        <span class="section-count">4 Standees gesamt</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th class="col-id">#</th>
+            <th>Held / Klasse</th>
+            <th>Typ</th>
+            <th class="col-dim">Maße (B × H)</th>
+            <th>Sockel &amp; Zapfen</th>
+            <th class="col-calc">Szenarien-Einsatz</th>
+            <th class="col-qty">Menge</th>
+            <th class="col-step">Art</th>
+            <th class="col-step">Laser</th>
+            <th class="col-step">Fit</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="col-id">H1</td>
+            <td class="col-name">Nordland-Berserker</td>
+            <td><span class="pill pill-hero">Held</span></td>
+            <td class="col-dim">30 × 40 mm</td>
+            <td>Ø 20 mm Rundsockel (1 Zapfen 10×3 mm)</td>
+            <td class="col-calc">Szenario 1–5 durchgehend aktiv</td>
+            <td class="col-qty">1×</td>
+            <td class="col-step"><span class="box"></span></td>
+            <td class="col-step"><span class="box"></span></td>
+            <td class="col-step"><span class="box"></span></td>
+          </tr>
+          <tr>
+            <td class="col-id">H2</td>
+            <td class="col-name">Goblin-Halsabschneider</td>
+            <td><span class="pill pill-hero">Held</span></td>
+            <td class="col-dim">30 × 40 mm</td>
+            <td>Ø 20 mm Rundsockel (1 Zapfen 10×3 mm)</td>
+            <td class="col-calc">Szenario 1–5 durchgehend aktiv</td>
+            <td class="col-qty">1×</td>
+            <td class="col-step"><span class="box"></span></td>
+            <td class="col-step"><span class="box"></span></td>
+            <td class="col-step"><span class="box"></span></td>
+          </tr>
+          <tr>
+            <td class="col-id">H3</td>
+            <td class="col-name">Elfische Kriegstänzerin</td>
+            <td><span class="pill pill-hero">Held</span></td>
+            <td class="col-dim">30 × 40 mm</td>
+            <td>Ø 20 mm Rundsockel (1 Zapfen 10×3 mm)</td>
+            <td class="col-calc">Szenario 1–5 durchgehend aktiv</td>
+            <td class="col-qty">1×</td>
+            <td class="col-step"><span class="box"></span></td>
+            <td class="col-step"><span class="box"></span></td>
+            <td class="col-step"><span class="box"></span></td>
+          </tr>
+          <tr>
+            <td class="col-id">H4</td>
+            <td class="col-name">Kaiserliche Magiegelehrte</td>
+            <td><span class="pill pill-hero">Held</span></td>
+            <td class="col-dim">30 × 40 mm</td>
+            <td>Ø 20 mm Rundsockel (1 Zapfen 10×3 mm)</td>
+            <td class="col-calc">Szenario 1–5 durchgehend aktiv</td>
+            <td class="col-qty">1×</td>
+            <td class="col-step"><span class="box"></span></td>
+            <td class="col-step"><span class="box"></span></td>
+            <td class="col-step"><span class="box"></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SEKTION 2: KAMPAGNEN-MONSTER (26 STÜCK) -->
+    <div class="section full-width">
+      <div class="section-header">
+        <span class="section-title">👹 Kampagnen- &amp; Zufalls-Monster (12 Arten &bull; Max. simultane Bedarfsdeckung)</span>
+        <span class="section-count">26 Standees gesamt</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th class="col-id">#</th>
+            <th>Monster-Typ</th>
+            <th>Kategorie</th>
+            <th class="col-dim">Maße (B × H)</th>
+            <th>Sockel-Spezifikation</th>
+            <th class="col-calc">Bedarfs-Begründung (Max. Gleichzeitig)</th>
+            <th class="col-qty">Menge</th>
+            <th class="col-step">Art</th>
+            <th class="col-step">Laser</th>
+            <th class="col-step">Fit</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="col-id">01</td>
+            <td class="col-name">Goblin-Späher</td>
+            <td><span class="pill pill-std">Standard</span></td>
+            <td class="col-dim">30 × 40 mm</td>
+            <td>Ø 20 mm Rundsockel (1 Zapfen)</td>
+            <td class="col-calc">Karte B03 (3× Plünderer) + B01/B02 (je 2×)</td>
+            <td class="col-qty">3×</td>
+            <td class="col-step"><span class="box done"></span></td>
+            <td class="col-step"><span class="box done"></span></td>
+            <td class="col-step"><span class="box"></span></td>
+          </tr>
+          <tr>
+            <td class="col-id">02</td>
+            <td class="col-name">Goblin-Bogenschütze</td>
+            <td><span class="pill pill-std">Standard</span></td>
+            <td class="col-dim">30 × 40 mm</td>
+            <td>Ø 20 mm Rundsockel (1 Zapfen)</td>
+            <td class="col-calc">Karte B07 (Gruft der Bogenschützen: 2×)</td>
+            <td class="col-qty">2×</td>
+            <td class="col-step"><span class="box"></span></td>
+            <td class="col-step"><span class="box"></span></td>
+            <td class="col-step"><span class="box"></span></td>
+          </tr>
+          <tr>
+            <td class="col-id">03</td>
+            <td class="col-name">Skelettkrieger</td>
+            <td><span class="pill pill-std">Standard</span></td>
+            <td class="col-dim">30 × 40 mm</td>
+            <td>Ø 20 mm Rundsockel (1 Zapfen)</td>
+            <td class="col-calc">Karte B06 (3× Ahnen) + Malakor-Endkampf (2× Spawn)</td>
+            <td class="col-qty">4×</td>
+            <td class="col-step"><span class="box done"></span></td>
+            <td class="col-step"><span class="box done"></span></td>
+            <td class="col-step"><span class="box"></span></td>
+          </tr>
+          <tr>
+            <td class="col-id">04</td>
+            <td class="col-name">Skelett-Scharfschütze</td>
+            <td><span class="pill pill-std">Standard</span></td>
+            <td class="col-dim">30 × 40 mm</td>
+            <td>Ø 20 mm Rundsockel (1 Zapfen)</td>
+            <td class="col-calc">Szenario 3 Boss-Erhöhung (1×) + Reserve (1×)</td>
+            <td class="col-qty">2×</td>
+            <td class="col-step"><span class="box done"></span></td>
+            <td class="col-step"><span class="box done"></span></td>
+            <td class="col-step"><span class="box"></span></td>
+          </tr>
+          <tr>
+            <td class="col-id">05</td>
+            <td class="col-name">Riesenspinne</td>
+            <td><span class="pill pill-std">Standard</span></td>
+            <td class="col-dim">30 × 40 mm</td>
+            <td>Ø 20 mm Rundsockel (1 Zapfen)</td>
+            <td class="col-calc">Karte B10 (Spinnennest: 2×) &amp; Ereigniskarte 09</td>
+            <td class="col-qty">2×</td>
+            <td class="col-step"><span class="box"></span></td>
+            <td class="col-step"><span class="box"></span></td>
+            <td class="col-step"><span class="box"></span></td>
+          </tr>
+          <tr>
+            <td class="col-id">06</td>
+            <td class="col-name">Ödland-Worg</td>
+            <td><span class="pill pill-elite">Elite</span></td>
+            <td class="col-dim">30 × 40 mm</td>
+            <td>Ø 20 mm Rundsockel (1 Zapfen)</td>
+            <td class="col-calc">Karte B12 (Worg-Bau: 2×) &amp; Sz 2 Bosskampf</td>
+            <td class="col-qty">2×</td>
+            <td class="col-step"><span class="box done"></span></td>
+            <td class="col-step"><span class="box"></span></td>
+            <td class="col-step"><span class="box"></span></td>
+          </tr>
+          <tr>
+            <td class="col-id">07</td>
+            <td class="col-name">Moor-Ghul</td>
+            <td><span class="pill pill-std">Standard</span></td>
+            <td class="col-dim">30 × 40 mm</td>
+            <td>Ø 20 mm Rundsockel (1 Zapfen)</td>
+            <td class="col-calc">Szenario 2 Steg-Showdown (2× Aasfresser)</td>
+            <td class="col-qty">2×</td>
+            <td class="col-step"><span class="box"></span></td>
+            <td class="col-step"><span class="box"></span></td>
+            <td class="col-step"><span class="box"></span></td>
+          </tr>
+          <tr>
+            <td class="col-id">08</td>
+            <td class="col-name">Kultist des Schattens</td>
+            <td><span class="pill pill-std">Standard</span></td>
+            <td class="col-dim">30 × 40 mm</td>
+            <td>Ø 20 mm Rundsockel (1 Zapfen)</td>
+            <td class="col-calc">Szenario 3 &amp; 4 Belagerer / Adepten (2×)</td>
+            <td class="col-qty">2×</td>
+            <td class="col-step"><span class="box"></span></td>
+            <td class="col-step"><span class="box"></span></td>
+            <td class="col-step"><span class="box"></span></td>
+          </tr>
+          <tr>
+            <td class="col-id">09</td>
+            <td class="col-name">Todesritter / Hügelfürst</td>
+            <td><span class="pill pill-elite">Elite / Boss</span></td>
+            <td class="col-dim">30 × 40 mm</td>
+            <td>Ø 20 mm Rundsockel (1 Zapfen)</td>
+            <td class="col-calc">Szenario 4 Bergfried-Endboss (1×) + Elite-Deck</td>
+            <td class="col-qty">1×</td>
+            <td class="col-step"><span class="box"></span></td>
+            <td class="col-step"><span class="box"></span></td>
+            <td class="col-step"><span class="box"></span></td>
+          </tr>
+          <tr>
+            <td class="col-id">10</td>
+            <td class="col-name">Grabunhold / Gruftwächter</td>
+            <td><span class="pill pill-boss">Mini-Boss</span></td>
+            <td class="col-dim"><strong>60 × 45 mm (Groß)</strong></td>
+            <td><strong>1×2 Oval-/Rechtecksockel (2 Zapfen)</strong></td>
+            <td class="col-calc">Szenario 1 Finale Grabkammer (1× Boss)</td>
+            <td class="col-qty">1×</td>
+            <td class="col-step"><span class="box"></span></td>
+            <td class="col-step"><span class="box"></span></td>
+            <td class="col-step"><span class="box"></span></td>
+          </tr>
+          <tr>
+            <td class="col-id">11</td>
+            <td class="col-name">Der Blutgolem</td>
+            <td><span class="pill pill-boss">Große Elite</span></td>
+            <td class="col-dim"><strong>60 × 45 mm (Groß)</strong></td>
+            <td><strong>1×2 Oval-/Rechtecksockel (2 Zapfen)</strong></td>
+            <td class="col-calc">Szenario 4 Vorburg-Belagerung (1× Monster)</td>
+            <td class="col-qty">1×</td>
+            <td class="col-step"><span class="box"></span></td>
+            <td class="col-step"><span class="box"></span></td>
+            <td class="col-step"><span class="box"></span></td>
+          </tr>
+          <tr>
+            <td class="col-id">12</td>
+            <td class="col-name">Lich-König Malakor</td>
+            <td><span class="pill pill-boss">KAMPAGNEN-BOSS</span></td>
+            <td class="col-dim"><strong>30 × 80 mm (Hoch)</strong></td>
+            <td>Ø 25 mm Schwerlast-Rundsockel (1 breiter Zapfen)</td>
+            <td class="col-calc">Szenario 5 Großes Kampagnen-Finale (1×)</td>
+            <td class="col-qty">1×</td>
+            <td class="col-step"><span class="box"></span></td>
+            <td class="col-step"><span class="box"></span></td>
+            <td class="col-step"><span class="box"></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SEKTION 3: SOCKEL & ZUBEHÖR -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-title">🔘 Lasercut-Sockel (Birkensperrholz 3 mm)</span>
+        <span class="section-count">33 Sockel gesamt</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Sockel-Typ</th>
+            <th>Format &amp; Nut</th>
+            <th>Zweck / Figuren</th>
+            <th class="col-qty">Menge</th>
+            <th class="col-step">Schnitt</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="col-name">Standard-Rundsockel</td>
+            <td>Ø 20 mm &bull; Nut 10 × 2.9 mm</td>
+            <td>4 Helden + 23 Standard/Elite-Monster</td>
+            <td class="col-qty">28×</td>
+            <td class="col-step"><span class="box"></span></td>
+          </tr>
+          <tr>
+            <td class="col-name">Schwerlast-Rundsockel</td>
+            <td>Ø 25 mm &bull; Nut 12 × 2.9 mm</td>
+            <td>Malakor (Überhoch 80 mm, Kippsicherheit)</td>
+            <td class="col-qty">2×</td>
+            <td class="col-step"><span class="box"></span></td>
+          </tr>
+          <tr>
+            <td class="col-name">Groß-Monster-Sockel (1×2)</td>
+            <td>24 × 54 mm Oval &bull; 2 Nuten à 10 mm</td>
+            <td>Grabunhold &amp; Blutgolem (belegen 2 Felder)</td>
+            <td class="col-qty">3×</td>
+            <td class="col-step"><span class="box"></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SEKTION 4: HOLZ-MARKER & TOKENS -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-title">🪵 Holz-Marker &amp; Dungeon-Tokens</span>
+        <span class="section-count">35 Tokens gesamt</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Token-Typ</th>
+            <th>Material &amp; Maße</th>
+            <th>Spielfunktion</th>
+            <th class="col-qty">Menge</th>
+            <th class="col-step">Laser</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="col-name">Schadensmarker (LP)</td>
+            <td>Holzscheibe Ø 10 mm &bull; Gravur Blutstropfen</td>
+            <td>Tracking erlittener Treffer auf Standee-Feld</td>
+            <td class="col-qty">25×</td>
+            <td class="col-step"><span class="box"></span></td>
+          </tr>
+          <tr>
+            <td class="col-name">Tür-Tokens</td>
+            <td>20 × 20 mm Quadrat &bull; Tür geschlossen / offen</td>
+            <td>Dynamische Raum-Verbindungen &amp; Portale</td>
+            <td class="col-qty">6×</td>
+            <td class="col-step"><span class="box"></span></td>
+          </tr>
+          <tr>
+            <td class="col-name">Kadaver-/Beute-Marker</td>
+            <td>Ø 15 mm Scheibe &bull; Gravur Knochen/Beutel</td>
+            <td>Ghul-Fressmechanik (Sz 2) &amp; Beutefelder</td>
+            <td class="col-qty">4×</td>
+            <td class="col-step"><span class="box"></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <div class="footer-note">
+    <span>Spalten-Legende: <strong>Art</strong> = Vektor-Silhouette / Graustufen-Artwork bereit &bull; <strong>Laser</strong> = LightBurn / Laser-Schnitt ausgeführt &bull; <strong>Fit</strong> = Steckprobe in Sockel &amp; Kanten geschliffen</span>
+    <span>Optimal gepackt auf 1–2 Birke-Sperrholzplatten (A4 210 × 297 mm)</span>
+  </div>
+</div>
+
+</body>
+</html>

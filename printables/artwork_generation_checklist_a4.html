@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Von Helden und Monstern — Gesamte Generierungs-Checkliste (Art & Midjourney)</title>
+<style>
+  @page {
+    size: A4 portrait;
+    margin: 8mm 10mm 8mm 10mm;
+  }
+  * {
+    box-sizing: border-box;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a;
+    background: #ffffff;
+    margin: 0;
+    padding: 0;
+    font-size: 8.5pt;
+    line-height: 1.25;
+  }
+  header {
+    border-bottom: 2px solid #222;
+    padding-bottom: 4px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  h1 {
+    font-size: 13.5pt;
+    margin: 0 0 2px 0;
+    letter-spacing: 0.4px;
+    color: #111;
+  }
+  .subtitle {
+    font-size: 7.5pt;
+    color: #555;
+    margin: 0;
+  }
+  .stats-badges {
+    display: flex;
+    gap: 6px;
+  }
+  .meta-tag {
+    font-size: 7pt;
+    padding: 2px 6px;
+    background: #f0f0f0;
+    border-radius: 3px;
+    font-weight: bold;
+    border: 1px solid #ccc;
+    white-space: nowrap;
+  }
+  .meta-tag.highlight {
+    background: #eef4ff;
+    border-color: #8daed9;
+    color: #1a447a;
+  }
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .full-width {
+    grid-column: 1 / -1;
+  }
+
+  .section {
+    margin-bottom: 8px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    background: #fff;
+    overflow: hidden;
+    page-break-inside: avoid;
+  }
+
+  .section-header {
+    background: #f5f5f7;
+    padding: 4px 8px;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .section-title {
+    font-size: 8.5pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #222;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .section-count {
+    font-size: 7pt;
+    font-weight: 600;
+    background: #e8e8e8;
+    padding: 1px 5px;
+    border-radius: 10px;
+    color: #555;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 7.8pt;
+  }
+
+  th {
+    background: #fafafa;
+    text-align: left;
+    padding: 3px 6px;
+    font-size: 7pt;
+    font-weight: 600;
+    color: #666;
+    border-bottom: 1px solid #eee;
+    text-transform: uppercase;
+  }
+
+  td {
+    padding: 2.5px 6px;
+    border-bottom: 1px solid #f0f0f0;
+    vertical-align: middle;
+  }
+
+  tr:last-child td {
+    border-bottom: none;
+  }
+
+  tr:nth-child(even) td {
+    background: #fafafa;
+  }
+
+  .col-id { width: 24px; font-weight: 600; color: #777; text-align: center; }
+  .col-name { font-weight: 600; color: #111; }
+  .col-sub { font-size: 7pt; color: #666; font-weight: normal; }
+  .col-check { width: 34px; text-align: center; }
+  .col-note { font-size: 7pt; color: #777; }
+
+  .box-wrap {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .box {
+    width: 12px;
+    height: 12px;
+    border: 1.2px solid #555;
+    border-radius: 2px;
+    display: inline-block;
+    background: #fff;
+    vertical-align: middle;
+  }
+
+  .box.done {
+    background: #2e7d32;
+    border-color: #2e7d32;
+    position: relative;
+  }
+  .box.done::after {
+    content: "✓";
+    color: #fff;
+    font-size: 8pt;
+    position: absolute;
+    top: -2px;
+    left: 1px;
+    line-height: 1;
+  }
+
+  .status-pill {
+    display: inline-block;
+    font-size: 6.5pt;
+    font-weight: 700;
+    padding: 1px 4px;
+    border-radius: 3px;
+    text-transform: uppercase;
+  }
+  .pill-ready { background: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
+  .pill-planned { background: #fff8e1; color: #f57f17; border: 1px solid #ffe082; }
+  .pill-done { background: #e8f5e9; color: #1b5e20; border: 1px solid #a5d6a7; }
+
+  .page-break {
+    page-break-after: always;
+  }
+
+  .footer-note {
+    font-size: 7pt;
+    color: #777;
+    margin-top: 6px;
+    border-top: 1px solid #eee;
+    padding-top: 4px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  @media screen {
+    body {
+      background: #eef0f3;
+      padding: 20px;
+    }
+    .page-sheet {
+      background: #fff;
+      max-width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto 20px auto;
+      padding: 10mm 12mm;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      border-radius: 4px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= PAGE 1 ================= -->
+<div class="page-sheet">
+  <header>
+    <div>
+      <h1>Von Helden und Monstern — Artwork & Midjourney Master-Checkliste</h1>
+      <p class="subtitle">Format: Druckfertige A4-Übersicht &bull; Standees, Karten-Artworks, Helden & Kartenrücken &bull; Stand: November 2026</p>
+    </div>
+    <div class="stats-badges">
+      <span class="meta-tag highlight">Gesamt: 86 Motive</span>
+      <span class="meta-tag">Monster: 12</span>
+      <span class="meta-tag">Helden: 4</span>
+      <span class="meta-tag">Loot: 54</span>
+      <span class="meta-tag">Backs: 4</span>
+    </div>
+  </header>
+
+  <div class="grid-container">
+
+    <!-- SEKTION 1: MONSTER (12 MOTIVE) -->
+    <div class="section full-width">
+      <div class="section-header">
+        <span class="section-title">👹 Kampagnen-Monster (12 Motive &bull; B&amp;W Laser-Standees &amp; Farbige Karten-Artworks)</span>
+        <span class="section-count">Prompts bereit in MONSTER_PROMPTS_BW &amp; COLOR</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th class="col-id">#</th>
+            <th>Monster-Name</th>
+            <th>Rolle / Standee-Format</th>
+            <th>Farb- / Ausstattungsfokus</th>
+            <th class="col-check">B&amp;W</th>
+            <th class="col-check">Color</th>
+            <th class="col-check">Cut</th>
+            <th>Status / Notiz</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="col-id">01</td>
+            <td class="col-name">Goblin-Späher <span class="col-sub">(Scout)</span></td>
+            <td>Standard &bull; 30×40 mm</td>
+            <td>Olivgrüne Haut, Leder, Dolchstoß &amp; Rundschild</td>
+            <td class="col-check"><span class="box done"></span></td>
+            <td class="col-check"><span class="box done"></span></td>
+            <td class="col-check"><span class="box"></span></td>
+            <td><span class="status-pill pill-done">Fertig generiert</span></td>
+          </tr>
+          <tr>
+            <td class="col-id">02</td>
+            <td class="col-name">Goblin-Bogenschütze <span class="col-sub">(Archer)</span></td>
+            <td>Standard &bull; 30×40 mm</td>
+            <td>Kurzbogen maximal gespannt, Knochenpfeile</td>
+            <td class="col-check"><span class="box"></span></td>
+            <td class="col-check"><span class="box"></span></td>
+            <td class="col-check"><span class="box"></span></td>
+            <td><span class="status-pill pill-ready">Prompt bereit</span></td>
+          </tr>
+          <tr>
+            <td class="col-id">03</td>
+            <td class="col-name">Skelettkrieger <span class="col-sub">(Warrior)</span></td>
+            <td>Standard &bull; 30×40 mm</td>
+            <td>Verwitterter roter Wappenrock, Eisenschwert-Hieb</td>
+            <td class="col-check"><span class="box done"></span></td>
+            <td class="col-check"><span class="box done"></span></td>
+            <td class="col-check"><span class="box"></span></td>
+            <td><span class="status-pill pill-done">Fertig generiert</span></td>
+          </tr>
+          <tr>
+            <td class="col-id">04</td>
+            <td class="col-name">Skelett-Scharfschütze <span class="col-sub">(Marksman)</span></td>
+            <td>Standard &bull; 30×40 mm</td>
+            <td>Dunkelgrüne Kapuze, Knochen-Langbogen bis Kiefer</td>
+            <td class="col-check"><span class="box done"></span></td>
+            <td class="col-check"><span class="box done"></span></td>
+            <td class="col-check"><span class="box"></span></td>
+            <td><span class="status-pill pill-done">Fertig generiert</span></td>
+          </tr>
+          <tr>
+            <td class="col-id">05</td>
+            <td class="col-name">Riesenspinne <span class="col-sub">(Giant Spider)</span></td>
+            <td>Standard &bull; 30×40 mm</td>
+            <td>Schwarz/Burgunder Chitin, aufgebäumt, Gifttröpfchen</td>
+            <td class="col-check"><span class="box"></span></td>
+            <td class="col-check"><span class="box"></span></td>
+            <td class="col-check"><span class="box"></span></td>
+            <td><span class="status-pill pill-ready">Prompt bereit</span></td>
+          </tr>
+          <tr>
+            <td class="col-id">06</td>
+            <td class="col-name">Ödland-Worg <span class="col-sub">(Wasteland Worg)</span></td>
+            <td>Elite &bull; 30×40 mm</td>
+            <td>Aschgrau/sandig, explosives Zustoßen, Lefzen gefletscht</td>
+            <td class="col-check"><span class="box done"></span></td>
+            <td class="col-check"><span class="box"></span></td>
+            <td class="col-check"><span class="box"></span></td>
+            <td><span class="status-pill pill-ready">Farbe offen</span></td>
+          </tr>
+          <tr>
+            <td class="col-id">07</td>
+            <td class="col-name">Moor-Ghul <span class="col-sub">(Carrion Ghoul)</span></td>
+            <td>Standard &bull; 30×40 mm</td>
+            <td>Fahlgrün/violett, tiefer Sprung, Klauenhieb</td>
+            <td class="col-check"><span class="box"></span></td>
+            <td class="col-check"><span class="box"></span></td>
+            <td class="col-check"><span class="box"></span></td>
+            <td><span class="status-pill pill-ready">Prompt bereit</span></td>
+          </tr>
+          <tr>
+            <td class="col-id">08</td>
+            <td class="col-name">Kultist des Schattens <span class="col-sub">(Void Cultist)</span></td>
+            <td>Standard &bull; 30×40 mm</td>
+            <td>Nachtviolette Robe, Goldrunen, Ritualdolch &amp; Magiefeuer</td>
+            <td class="col-check"><span class="box"></span></td>
+            <td class="col-check"><span class="box"></span></td>
+            <td class="col-check"><span class="box"></span></td>
+            <td><span class="status-pill pill-ready">Prompt bereit</span></td>
+          </tr>
+          <tr>
+            <td class="col-id">09</td>
+            <td class="col-name">Todesritter / Hügelfürst <span class="col-sub">(Wight)</span></td>
+            <td>Elite &bull; 30×40 mm</td>
+            <td>Gothic Plattenpanzer, cyan glimmende Runenklinge</td>
+            <td class="col-check"><span class="box"></span></td>
+            <td class="col-check"><span class="box"></span></td>
+            <td class="col-check"><span class="box"></span></td>
+            <td><span class="status-pill pill-ready">Prompt bereit</span></td>
+          </tr>
+          <tr>
+            <td class="col-id">10</td>
+            <td class="col-name">Grabunhold / Gruftwächter <span class="col-sub">(Revenant)</span></td>
+            <td>Mini-Boss &bull; 60×45 mm</td>
+            <td>Hüne mit Zauselbart, Grabtücher, Mammutkeule mit Schädel</td>
+            <td class="col-check"><span class="box"></span></td>
+            <td class="col-check"><span class="box"></span></td>
+            <td class="col-check"><span class="box"></span></td>
+            <td><span class="status-pill pill-ready">Prompt angepasst</span></td>
+          </tr>
+          <tr>
+            <td class="col-id">11</td>
+            <td class="col-name">Der Blutgolem <span class="col-sub">(Blood Golem)</span></td>
+            <td>Elite &bull; 60×45 mm</td>
+            <td>Geronnenes Karmesinblut, Knochenspitzen, Rammfaust</td>
+            <td class="col-check"><span class="box"></span></td>
+            <td class="col-check"><span class="box"></span></td>
+            <td class="col-check"><span class="box"></span></td>
+            <td><span class="status-pill pill-ready">Prompt bereit</span></td>
+          </tr>
+          <tr>
+            <td class="col-id">12</td>
+            <td class="col-name">Lich-König Malakor <span class="col-sub">(Lich King)</span></td>
+            <td>Endboss &bull; 30×80 mm</td>
+            <td>Nachtblau/Goldenes Ornat, Seelensense &amp; Froststrahl</td>
+            <td class="col-check"><span class="box"></span></td>
+            <td class="col-check"><span class="box"></span></td>
+            <td class="col-check"><span class="box"></span></td>
+            <td><span class="status-pill pill-ready">Prompt bereit</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SEKTION 2: DIE 4 HELDEN -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-title">🛡️ Die 4 Helden (Figuren &amp; Dashboards)</span>
+        <span class="section-count">4 Klassen &bull; B&amp;W + Farbe</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th class="col-id">#</th>
+            <th>Held / Klasse</th>
+            <th>Fotovorlage / Konzept</th>
+            <th class="col-check">B&amp;W</th>
+            <th class="col-check">Color</th>
+            <th class="col-check">Cut</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="col-id">H1</td>
+            <td class="col-name">Nordland-Berserker</td>
+            <td>Foto Christoph &bull; Schwere Axt, Fellmantel, Wut</td>
+            <td class="col-check"><span class="box"></span></td>
+            <td class="col-check"><span class="box"></span></td>
+            <td class="col-check"><span class="box"></span></td>
+          </tr>
+          <tr>
+            <td class="col-id">H2</td>
+            <td class="col-name">Goblin-Halsabschneider</td>
+            <td>Foto Christoph (Persiflage) &bull; Dolche, Cape, Grinsen</td>
+            <td class="col-check"><span class="box"></span></td>
+            <td class="col-check"><span class="box"></span></td>
+            <td class="col-check"><span class="box"></span></td>
+          </tr>
+          <tr>
+            <td class="col-id">H3</td>
+            <td class="col-name">Elfische Kriegstänzerin</td>
+            <td>Foto Ehefrau &bull; Zwillingsklingen, geschmeidig</td>
+            <td class="col-check"><span class="box"></span></td>
+            <td class="col-check"><span class="box"></span></td>
+            <td class="col-check"><span class="box"></span></td>
+          </tr>
+          <tr>
+            <td class="col-id">H4</td>
+            <td class="col-name">Kaiserliche Magiegelehrte</td>
+            <td>Foto Ehefrau &bull; Gelehrtenrobe, Fokusstab, Runen</td>
+            <td class="col-check"><span class="box"></span></td>
+            <td class="col-check"><span class="box"></span></td>
+            <td class="col-check"><span class="box"></span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="padding: 4px 8px; font-size: 6.8pt; color: #666; background: #fafafa; border-top: 1px solid #eee;">
+        <em>Hinweis:</em> Benötigt Fotos für Face-Reference / Persona-Prompting. Standee-Format: 30 × 40 mm.
+      </div>
+    </div>
+
+    <!-- SEKTION 3: KARTENRÜCKSEITEN -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-title">🎴 Kartenrücken (Card Backs)</span>
+        <span class="section-count">4 Decks &bull; 63 × 88 mm</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th class="col-id">#</th>
+            <th>Deck / Kartentyp</th>
+            <th>Design-Element / Ornamentik</th>
+            <th class="col-check">B&amp;W</th>
+            <th class="col-check">Color</th>
+            <th class="col-check">SVG</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="col-id">R1</td>
+            <td class="col-name">Ausrüstungsdeck <span class="col-sub">(Loot/Markt)</span></td>
+            <td>Gekreuztes Schwert &amp; Axt, Schild, Eichenlaub-Rahmen</td>
+            <td class="col-check"><span class="box"></span></td>
+            <td class="col-check"><span class="box"></span></td>
+            <td class="col-check"><span class="box done"></span></td>
+          </tr>
+          <tr>
+            <td class="col-id">R2</td>
+            <td class="col-name">Ereignisdeck <span class="col-sub">(Hazards/Boons)</span></td>
+            <td>Sanduhr mit Fledermausflügeln, Riss-Muster, Omen-Auge</td>
+            <td class="col-check"><span class="box"></span></td>
+            <td class="col-check"><span class="box"></span></td>
+            <td class="col-check"><span class="box"></span></td>
+          </tr>
+          <tr>
+            <td class="col-id">R3</td>
+            <td class="col-name">Begegnungsdeck <span class="col-sub">(Rauminhalt)</span></td>
+            <td>Verfallene Bogentür, Vorhängeschloss, Fackeln</td>
+            <td class="col-check"><span class="box"></span></td>
+            <td class="col-check"><span class="box"></span></td>
+            <td class="col-check"><span class="box"></span></td>
+          </tr>
+          <tr>
+            <td class="col-id">R4</td>
+            <td class="col-name">Monsterkarten <span class="col-sub">(Tarot / Groß)</span></td>
+            <td>Dämonischer Schädel mit Stacheldornen &amp; Runenkreis</td>
+            <td class="col-check"><span class="box"></span></td>
+            <td class="col-check"><span class="box"></span></td>
+            <td class="col-check"><span class="box"></span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="padding: 4px 8px; font-size: 6.8pt; color: #666; background: #fafafa; border-top: 1px solid #eee;">
+        <em>Hinweis:</em> Symmetrisches Muster (kein Kopf-/Fuß-Unterschied), Randabfall für Doppelseitendruck.
+      </div>
+    </div>
+
+    <!-- SEKTION 4: NAHKAMPFWAFFEN (16 KARTEN) -->
+    <div class="section full-width">
+      <div class="section-header">
+        <span class="section-title">⚔️ Ausrüstungsdeck: Nahkampfwaffen (16 Karten)</span>
+        <span class="section-count">Prompts in EQUIPMENT_PROMPTS_MELEE.md</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0 10px;">
+        <table>
+          <thead>
+            <tr>
+              <th class="col-id">#</th>
+              <th>Waffe</th>
+              <th>Typ / Besonderheit</th>
+              <th class="col-check">Gen</th>
+              <th class="col-check">Done</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="col-id">01</td><td class="col-name">Breitschwert</td><td>1H &bull; Verlässlich (Reroll 1)</td><td class="col-check"><span class="box"></span></td><td class="col-check"><span class="box"></span></td></tr>
+            <tr><td class="col-id">02</td><td class="col-name">Schwere Kriegsaxt</td><td>2H &bull; Zerstört Holzbarrikaden</td><td class="col-check"><span class="box"></span></td><td class="col-check"><span class="box"></span></td></tr>
+            <tr><td class="col-id">03</td><td class="col-name">Morgenstern</td><td>1H &bull; Träge Spitze (Fehlwurf-Nachteil)</td><td class="col-check"><span class="box"></span></td><td class="col-check"><span class="box"></span></td></tr>
+            <tr><td class="col-id">04</td><td class="col-name">Elfen-Klingenfechter</td><td>1H &bull; Graziler Stahl (+1 Ini)</td><td class="col-check"><span class="box"></span></td><td class="col-check"><span class="box"></span></td></tr>
+            <tr><td class="col-id">05</td><td class="col-name">Zweihänder der Garde</td><td>2H &bull; Rundumschlag auf 6</td><td class="col-check"><span class="box"></span></td><td class="col-check"><span class="box"></span></td></tr>
+            <tr><td class="col-id">06</td><td class="col-name">Meuchlerdolch</td><td>1H &bull; Hinterhalt: +2 Schaden</td><td class="col-check"><span class="box"></span></td><td class="col-check"><span class="box"></span></td></tr>
+            <tr><td class="col-id">07</td><td class="col-name">Gezahnter Säbel</td><td>1H &bull; Fleischreißer (Blutung/Brennend)</td><td class="col-check"><span class="box"></span></td><td class="col-check"><span class="box"></span></td></tr>
+            <tr><td class="col-id">08</td><td class="col-name">Runenhammer</td><td>1H &bull; Erschütterung (1 Feld Rückstoß)</td><td class="col-check"><span class="box"></span></td><td class="col-check"><span class="box"></span></td></tr>
+          </tbody>
+        </table>
+        <table>
+          <thead>
+            <tr>
+              <th class="col-id">#</th>
+              <th>Waffe</th>
+              <th>Typ / Besonderheit</th>
+              <th class="col-check">Gen</th>
+              <th class="col-check">Done</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="col-id">09</td><td class="col-name">Hellebarde der Palastgarde</td><td>2H &bull; Stangenwaffe (2 Felder RW)</td><td class="col-check"><span class="box"></span></td><td class="col-check"><span class="box"></span></td></tr>
+            <tr><td class="col-id">10</td><td class="col-name">Kriegshammer der Zwerge</td><td>1H &bull; Panzerbrecher (ignoriert 1 RS)</td><td class="col-check"><span class="box"></span></td><td class="col-check"><span class="box"></span></td></tr>
+            <tr><td class="col-id">11</td><td class="col-name">Streitflegel d. Inquisitors</td><td>1H &bull; Umgeht Schildblöcke &amp; Deckung</td><td class="col-check"><span class="box"></span></td><td class="col-check"><span class="box"></span></td></tr>
+            <tr><td class="col-id">12</td><td class="col-name">Duell-Rapier</td><td>1H &bull; Finesse (GES-Führung, +1 VT)</td><td class="col-check"><span class="box"></span></td><td class="col-check"><span class="box"></span></td></tr>
+            <tr><td class="col-id">13</td><td class="col-name">Parierdolch (Linke Hand)</td><td>1H &bull; Defensive Nebenhand (+1 VT)</td><td class="col-check"><span class="box"></span></td><td class="col-check"><span class="box"></span></td></tr>
+            <tr><td class="col-id">14</td><td class="col-name">Nordisches Henkersbeil</td><td>2H &bull; 4 Schaden brutale Wucht</td><td class="col-check"><span class="box"></span></td><td class="col-check"><span class="box"></span></td></tr>
+            <tr><td class="col-id">15</td><td class="col-name">Miliz-Pike</td><td>2H &bull; Abfangen anstürmender Gegner</td><td class="col-check"><span class="box"></span></td><td class="col-check"><span class="box"></span></td></tr>
+            <tr><td class="col-id">16</td><td class="col-name">Schattenklinge der Gilde</td><td>1H &bull; Versteckt: ignoriert RS voll</td><td class="col-check"><span class="box"></span></td><td class="col-check"><span class="box"></span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-note">
+    <span>Legende: <strong>B&amp;W</strong> = 3:4 Freigestellter Holzschnitt für Standees &bull; <strong>Color</strong> = 1:1 Farb-Holzschnitt für Karten &bull; <strong>Cut</strong> = Freisteller/Transparenz geprüft</span>
+    <span>Seite 1 von 2</span>
+  </div>
+</div>
+
+<div class="page-break"></div>
+
+<!-- ================= PAGE 2 ================= -->
+<div class="page-sheet">
+  <header>
+    <div>
+      <h1>Von Helden und Monstern — Ausrüstungsdeck (Fortsetzung)</h1>
+      <p class="subtitle">Fernkampfwaffen, Rüstungen, Schilde, Tränke, Zubehör &amp; Relikte &bull; Alle 54 Gegenstände komplett</p>
+    </div>
+    <div class="stats-badges">
+      <span class="meta-tag">Fernkampf: 8</span>
+      <span class="meta-tag">Schutz: 12</span>
+      <span class="meta-tag">Tränke: 10</span>
+      <span class="meta-tag">Relikte: 8</span>
+    </div>
+  </header>
+
+  <div class="grid-container">
+
+    <!-- SEKTION 5: FERNKAMPF (8 KARTEN) -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-title">🏹 Fernkampf- &amp; Wurfwaffen (8 Karten)</span>
+        <span class="section-count">EQUIPMENT_PROMPTS_RANGED.md</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th class="col-id">#</th>
+            <th>Waffe</th>
+            <th>Typ / Taktischer Effekt</th>
+            <th class="col-check">Gen</th>
+            <th class="col-check">Done</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="col-id">17</td><td class="col-name">Jagdbogen</td><td>2H &bull; Reichweite 4 &bull; Sichtlinie</td><td class="col-check"><span class="box"></span></td><td class="col-check"><span class="box"></span></td></tr>
+          <tr><td class="col-id">18</td><td class="col-name">Schwere Armbrust</td><td>2H &bull; Durchdringt 1 Rüstung</td><td class="col-check"><span class="box"></span></td><td class="col-check"><span class="box"></span></td></tr>
+          <tr><td class="col-id">19</td><td class="col-name">Elfen-Langbogen</td><td>2H &bull; Reichweite 5 ohne Nachteil</td><td class="col-check"><span class="box"></span></td><td class="col-check"><span class="box"></span></td></tr>
+          <tr><td class="col-id">20</td><td class="col-name">Wurfmesser-Set (3x)</td><td>1H &bull; 3 Verwendungen (Tracker)</td><td class="col-check"><span class="box"></span></td><td class="col-check"><span class="box"></span></td></tr>
+          <tr><td class="col-id">21</td><td class="col-name">Wurfspeer</td><td>1H &bull; Nah-/Fernkampf (aufhebbar)</td><td class="col-check"><span class="box"></span></td><td class="col-check"><span class="box"></span></td></tr>
+          <tr><td class="col-id">22</td><td class="col-name">Repetier-Armbrust</td><td>2H &bull; Schnellfeuer (2 Schüsse/Aktion)</td><td class="col-check"><span class="box"></span></td><td class="col-check"><span class="box"></span></td></tr>
+          <tr><td class="col-id">23</td><td class="col-name">Nordische Wurfäxte (2x)</td><td>1H &bull; Rückstoß gegen leichte Feinde</td><td class="col-check"><span class="box"></span></td><td class="col-check"><span class="box"></span></td></tr>
+          <tr><td class="col-id">24</td><td class="col-name">Giftschlauch-Blasrohr</td><td>1H &bull; Lautlos &bull; Sofort Vergiftet</td><td class="col-check"><span class="box"></span></td><td class="col-check"><span class="box"></span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SEKTION 6: RÜSTUNGEN & SCHILDE (12 KARTEN) -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-title">🛡️ Rüstungen, Schilde &amp; Helme (12 Karten)</span>
+        <span class="section-count">EQUIPMENT_PROMPTS_ARMOR.md</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th class="col-id">#</th>
+            <th>Rüstung / Schild</th>
+            <th>Schutzwert / Taktischer Effekt</th>
+            <th class="col-check">Gen</th>
+            <th class="col-check">Done</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="col-id">25</td><td class="col-name">Verstärktes Lederwams</td><td>RS 1 &bull; Keine Einbuße &bull; +1 Entkommen</td><td class="col-check"><span class="box"></span></td><td class="col-check"><span class="box"></span></td></tr>
+          <tr><td class="col-id">26</td><td class="col-name">Kettenhemd</td><td>RS 2 &bull; Solide (-1 BW außer bei ZÄH 2+)</td><td class="col-check"><span class="box"></span></td><td class="col-check"><span class="box"></span></td></tr>
+          <tr><td class="col-id">27</td><td class="col-name">Kaiserlicher Plattenpanzer</td><td>RS 3 &bull; Kein Sprint &bull; ZÄH 2+</td><td class="col-check"><span class="box"></span></td><td class="col-check"><span class="box"></span></td></tr>
+          <tr><td class="col-id">28</td><td class="col-name">Rundschild</td><td>Schild &bull; +1 Reduktion (ohne BW-Abzug)</td><td class="col-check"><span class="box"></span></td><td class="col-check"><span class="box"></span></td></tr>
+          <tr><td class="col-id">29</td><td class="col-name">Turmschild</td><td>Schild &bull; +2 Reduktion &bull; Teildeckung Fern</td><td class="col-check"><span class="box"></span></td><td class="col-check"><span class="box"></span></td></tr>
+          <tr><td class="col-id">30</td><td class="col-name">Elfen-Schattenmantel</td><td>RS 1 &bull; Vorteil auf LIS-Schleichen</td><td class="col-check"><span class="box"></span></td><td class="col-check"><span class="box"></span></td></tr>
+          <tr><td class="col-id">31</td><td class="col-name">Faustschild (Buckler)</td><td>Schild &bull; +1 Reduktion &bull; Für Magier/Goblin</td><td class="col-check"><span class="box"></span></td><td class="col-check"><span class="box"></span></td></tr>
+          <tr><td class="col-id">32</td><td class="col-name">Stachelschild des Nordens</td><td>Schild &bull; +1 Reduktion &bull; 1 Dornenkonter</td><td class="col-check"><span class="box"></span></td><td class="col-check"><span class="box"></span></td></tr>
+          <tr><td class="col-id">33</td><td class="col-name">Eisenhelm der Stadtgarde</td><td>Helm &bull; Immun gegen Betäubt &amp; Decke</td><td class="col-check"><span class="box"></span></td><td class="col-check"><span class="box"></span></td></tr>
+          <tr><td class="col-id">34</td><td class="col-name">Hörnerhelm des Ödlands</td><td>Helm &bull; Sturmangriff: +1 Bonusschaden</td><td class="col-check"><span class="box"></span></td><td class="col-check"><span class="box"></span></td></tr>
+          <tr><td class="col-id">35</td><td class="col-name">Zwergen-Schuppenpanzer</td><td>RS 2 &bull; Meisterwerk OHNE Bewegungsabzug</td><td class="col-check"><span class="box"></span></td><td class="col-check"><span class="box"></span></td></tr>
+          <tr><td class="col-id">36</td><td class="col-name">Runengravierte Prunkrüstung</td><td>RS 3 &bull; Reduziert zusätzlich Element/Frost</td><td class="col-check"><span class="box"></span></td><td class="col-check"><span class="box"></span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SEKTION 7: VERBRAUCHSGEGENSTÄNDE (10 KARTEN) -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-title">🧪 Tränke &amp; Verbrauchsgegenstände (10 Karten)</span>
+        <span class="section-count">EQUIPMENT_PROMPTS_CONSUMABLES.md</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th class="col-id">#</th>
+            <th>Gegenstand</th>
+            <th>Effekt &amp; Spielmechanik</th>
+            <th class="col-check">Gen</th>
+            <th class="col-check">Done</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="col-id">37</td><td class="col-name">Heiltrank (Groß)</td><td>Sofort +4 LP Regeneration &bull; Einweg</td><td class="col-check"><span class="box"></span></td><td class="col-check"><span class="box"></span></td></tr>
+          <tr><td class="col-id">38</td><td class="col-name">Heiltrank (Standard)</td><td>Sofort +2 LP Regeneration &bull; Einweg</td><td class="col-check"><span class="box"></span></td><td class="col-check"><span class="box"></span></td></tr>
+          <tr><td class="col-id">39</td><td class="col-name">Elixier der Zähigkeit</td><td>+1 Schaden-Reduktion bis Rundenende</td><td class="col-check"><span class="box"></span></td><td class="col-check"><span class="box"></span></td></tr>
+          <tr><td class="col-id">40</td><td class="col-name">Trank der Schnelligkeit</td><td>+2 Bewegung &amp; 1 freie Interaktion</td><td class="col-check"><span class="box"></span></td><td class="col-check"><span class="box"></span></td></tr>
+          <tr><td class="col-id">41</td><td class="col-name">Fläschchen Kriechgift</td><td>Nächste 2 Treffer machen Vergiftet</td><td class="col-check"><span class="box"></span></td><td class="col-check"><span class="box"></span></td></tr>
+          <tr><td class="col-id">42</td><td class="col-name">Zwergen-Brandbombe</td><td>2 Schaden &amp; Brennend in 1-Feld-Radius</td><td class="col-check"><span class="box"></span></td><td class="col-check"><span class="box"></span></td></tr>
+          <tr><td class="col-id">43</td><td class="col-name">Fokus-Räucherwerk</td><td>Löscht 2 Erschöpfungs-Boxen (Fatigue)</td><td class="col-check"><span class="box"></span></td><td class="col-check"><span class="box"></span></td></tr>
+          <tr><td class="col-id">44</td><td class="col-name">Gegengift-Ampulle</td><td>Heilt sofort Vergiftet &amp; Betäubt</td><td class="col-check"><span class="box"></span></td><td class="col-check"><span class="box"></span></td></tr>
+          <tr><td class="col-id">45</td><td class="col-name">Wegrationen-Paket</td><td>Nach Kampf: Alle Helden heilen 1 LP</td><td class="col-check"><span class="box"></span></td><td class="col-check"><span class="box"></span></td></tr>
+          <tr><td class="col-id">46</td><td class="col-name">Alchemistenfeuer</td><td>Zündet Feld an (2 Runden Flammen)</td><td class="col-check"><span class="box"></span></td><td class="col-check"><span class="box"></span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SEKTION 8: RELIKTE & ZUBEHÖR (8 KARTEN) -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-title">💍 Zubehör &amp; Magische Relikte (8 Karten)</span>
+        <span class="section-count">EQUIPMENT_PROMPTS_TRINKETS.md</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th class="col-id">#</th>
+            <th>Relikt / Zubehör</th>
+            <th>Effekt &amp; Spielmechanik</th>
+            <th class="col-check">Gen</th>
+            <th class="col-check">Done</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="col-id">47</td><td class="col-name">Glücks-Amulett</td><td>1× pro Szenario: Beliebigen Wurf neu</td><td class="col-check"><span class="box"></span></td><td class="col-check"><span class="box"></span></td></tr>
+          <tr><td class="col-id">48</td><td class="col-name">Ring des Waldläufers</td><td>Ignoriert schweres Gelände (Schutt/Schleim)</td><td class="col-check"><span class="box"></span></td><td class="col-check"><span class="box"></span></td></tr>
+          <tr><td class="col-id">49</td><td class="col-name">Meister-Dietrich</td><td>+2 auf LIS beim Knacken; bricht nie bei 1</td><td class="col-check"><span class="box"></span></td><td class="col-check"><span class="box"></span></td></tr>
+          <tr><td class="col-id">50</td><td class="col-name">Stirnreif des Arkanen Wissens</td><td>+1 auf VER; 1 Zauber ohne Erschöpfung</td><td class="col-check"><span class="box"></span></td><td class="col-check"><span class="box"></span></td></tr>
+          <tr><td class="col-id">51</td><td class="col-name">Stiefel des Schleichers</td><td>Keine Gelegenheitsangriffe beim Lösen</td><td class="col-check"><span class="box"></span></td><td class="col-check"><span class="box"></span></td></tr>
+          <tr><td class="col-id">52</td><td class="col-name">Schutzamulett der Ahnen</td><td>Verhindert 0 LP &bull; Bleibt bei 1 LP stehen</td><td class="col-check"><span class="box"></span></td><td class="col-check"><span class="box"></span></td></tr>
+          <tr><td class="col-id">53</td><td class="col-name">Fackel der Erleuchtung</td><td>Hebt Dunkelheitsnachteil im Raum auf</td><td class="col-check"><span class="box"></span></td><td class="col-check"><span class="box"></span></td></tr>
+          <tr><td class="col-id">54</td><td class="col-name">Goblin-Glückswürfel</td><td>Gerade/Ungerade tippen (+1 / -1 Schaden)</td><td class="col-check"><span class="box"></span></td><td class="col-check"><span class="box"></span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <div class="footer-note">
+    <span>Midjourney Prompt-Stil: <em>hand-colored woodcut illustration, Albrecht Dürer vintage medieval engraving, pure solid white background --ar 1:1</em></span>
+    <span>Seite 2 von 2</span>
+  </div>
+</div>
+
+</body>
+</html>

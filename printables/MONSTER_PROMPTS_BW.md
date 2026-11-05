@@ -114,11 +114,11 @@ full body shot of an ancient undead wight champion knight in an aggressive two-h
 
 ---
 
-### 10. Grabunhold / Gruftwächter (Crypt Guardian) — *Erdbeben-Schmetterschlag*
+### 10. Grabunhold / Gruftwächter (Crypt Ghoul Revenant) — *Erdbeben-Schmetterschlag*
 *Standee: 60 × 45 mm (Groß — 1×2 Felder) | Szenario-01 Mini-Boss*
 
 ```text
-full body shot of a colossal crypt guardian revenant in a devastating overhead smash combat stance, towering broad muscular armored giant, raising a massive spiked flanged iron war mace high above head with both hands preparing to crush the ground, ancient iron plate armor with wrapped chains, cracked horned helmet, tattered fur mantle, heavy iron armored boots planted wide on cracked flagstones, dynamic earth-shattering battle posture, bold thick black outlines only, minimal lines, large open white areas, simple flat shapes, no cross-hatching, no shading, pure solid white background, high contrast pure black on pure white, clean heavy silhouette, woodblock stamp style, borderless, no frame, no border lines, no cut-off boots, generous white space around figure --ar 3:4 --sref https://i.imgur.com/7GHh0Ju.png --sw 120 --c 25
+full body shot of a colossal undead giant zombie brute in an aggressive overhead melee smashing stance, towering muscular decaying corpse, wild matted beard and tangled long hair, hollow sunken eye sockets, snarling rotting mouth exposing jagged teeth, wearing tattered burial rags and frayed burlap grave shrouds bound with coarse rope, raising a brutal massive war club high overhead with both hands preparing to crush down, the club is crafted from a colossal mammoth leg bone topped with a grim human skull impaled by long rusted spikes protruding in all directions, bare massive zombie feet with cracked toenails firmly planted wide on the ground, menacing barbarian revenant, bold thick black outlines only, minimal lines, large open white areas, simple flat shapes, no cross-hatching, no shading, pure solid white background, high contrast pure black on pure white, clean heavy silhouette, woodblock stamp style, borderless, no frame, no border lines, no cut-off feet, generous white space around figure --ar 3:4 --sref https://i.imgur.com/7GHh0Ju.png --sw 120 --c 25
 ```
 
 ---
