@@ -1,0 +1,301 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 793.7 1122.5" width="210mm" height="297mm">
+  <defs>
+    <!-- Dark fantasy parchment gradient -->
+    <radialGradient id="stdBgGlow" cx="50%" cy="40%" r="65%">
+      <stop offset="0%" stop-color="#2d241c"/>
+      <stop offset="60%" stop-color="#16110d"/>
+      <stop offset="100%" stop-color="#0a0806"/>
+    </radialGradient>
+    
+    <!-- Metallic Gold Gradient -->
+    <linearGradient id="stdGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f8dc88"/>
+      <stop offset="45%" stop-color="#d6b13e"/>
+      <stop offset="75%" stop-color="#9a7b24"/>
+      <stop offset="100%" stop-color="#644e12"/>
+    </linearGradient>
+
+    <!-- Metallic Gold Gradient (Poker Back) -->
+    <linearGradient id="pokerGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f3d078"/>
+      <stop offset="40%" stop-color="#c99738"/>
+      <stop offset="70%" stop-color="#8d6820"/>
+      <stop offset="100%" stop-color="#553e10"/>
+    </linearGradient>
+
+    <!-- Steel Blade Gradient -->
+    <linearGradient id="stdSteel" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#dce6e0"/>
+      <stop offset="45%" stop-color="#ffffff"/>
+      <stop offset="52%" stop-color="#91a2a3"/>
+      <stop offset="100%" stop-color="#4d5a5b"/>
+    </linearGradient>
+
+    <!-- Shadow -->
+    <filter id="stdShadow" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000" flood-opacity="0.7"/>
+    </filter>
+
+    <radialGradient id="pokerBackGlow" cx="50%" cy="50%" r="65%">
+      <stop offset="0%" stop-color="#2a1f18"/>
+      <stop offset="60%" stop-color="#140f0c"/>
+      <stop offset="100%" stop-color="#090705"/>
+    </radialGradient>
+
+    <linearGradient id="pokerIron" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8a9899"/>
+      <stop offset="50%" stop-color="#4e5859"/>
+      <stop offset="100%" stop-color="#282f30"/>
+    </linearGradient>
+
+    <pattern id="pokerPattern" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M 0,12 L 12,0 L 24,12 L 12,24 Z" fill="none" stroke="#221812" stroke-width="0.9"/>
+    </pattern>
+
+    <!-- Light Parchment Card Face Gradient -->
+    <radialGradient id="parchmentFace" cx="50%" cy="45%" r="70%">
+      <stop offset="0%" stop-color="#fdfbf7"/>
+      <stop offset="65%" stop-color="#f5ede0"/>
+      <stop offset="100%" stop-color="#e8dbcb"/>
+    </radialGradient>
+
+    <!-- Warm Off-White Textbox Fill -->
+    <linearGradient id="parchmentBox" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#fbf7ef"/>
+    </linearGradient>
+
+    <!-- Reusable Poker Card Front (500 x 700 px = 63.5 x 88.9 mm Poker) -->
+    <g id="pokerFront">
+      <!-- Outer Card Base (Warm Antique Parchment) -->
+      <rect x="6" y="6" width="488" height="688" rx="20" fill="url(#parchmentFace)" stroke="#2b2015" stroke-width="3"/>
+      <!-- Inner Gold / Bronze Accent Borders -->
+      <rect x="16" y="16" width="468" height="668" rx="15" fill="none" stroke="#8a6727" stroke-width="2"/>
+      <rect x="22" y="22" width="456" height="656" rx="12" fill="none" stroke="#3d2d1e" stroke-width="1.2"/>
+
+      <!-- Corner Ornaments -->
+      <g fill="#8a6727">
+        <polygon points="22,38 38,22 33,22 22,33"/>
+        <polygon points="478,38 462,22 467,22 478,33"/>
+        <polygon points="22,662 38,678 33,678 22,667"/>
+        <polygon points="478,662 462,678 467,678 478,667"/>
+      </g>
+
+      <!-- Card Title (Deep Brown/Black, Bold Serif, High Legibility) -->
+      <text x="250" y="56" font-family="'Cinzel', 'Palatino Linotype', 'Georgia', serif" font-size="23" font-weight="bold" fill="#181109" text-anchor="middle" letter-spacing="1.2">
+        NORDISCHE BARBARENAXT
+      </text>
+      <!-- Subtitle / Classification -->
+      <text x="250" y="82" font-family="'Georgia', serif" font-size="16" font-weight="bold" fill="#6d4825" text-anchor="middle">
+        ◈ Startwaffe · 2 Hände (Nahkampf)
+      </text>
+
+      <!-- Illustration Frame (Clean contrast backdrop) -->
+      <rect x="42" y="98" width="416" height="236" rx="8" fill="#eae1d2" stroke="#5a422d" stroke-width="2"/>
+      <circle cx="250" cy="216" r="100" fill="#f4ece1" stroke="#8c6a3a" stroke-width="1.5"/>
+
+      <!-- Weapon Illustration -->
+      <g filter="url(#stdShadow)" transform="translate(250, 216) rotate(-28)">
+        <path d="M -9, -115 L 9, -115 L 7, 130 C 7, 138 -7, 138 -7, 130 Z" fill="#5a381e" stroke="#28160a" stroke-width="2"/>
+        <path d="M -8, 20 L 8, 34 M -8, 44 L 8, 58 M -8, 68 L 8, 82 M -8, 92 L 8, 106" stroke="#331c0a" stroke-width="3" stroke-linecap="round"/>
+        <path d="M 8, 20 L -8, 34 M 8, 44 L -8, 58 M 8, 68 L -8, 82 M 8, 92 L -8, 106" stroke="#201105" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M -8, 126 L 8, 126 L 6, 138 C 4, 142 -4, 142 -6, 138 Z" fill="#4d5a5b" stroke="#252b2c" stroke-width="1.2"/>
+        <polygon points="0,-130 -5,-115 5,-115" fill="#718284" stroke="#252b2c" stroke-width="1.2"/>
+        <rect x="-11" y="-98" width="22" height="32" rx="3" fill="#3f4a4b" stroke="#1f2526" stroke-width="1.5"/>
+        <circle cx="0" cy="-82" r="3" fill="#a6b4b5"/>
+        <path d="M -10, -96 C -42, -96 -88, -86 -112, -62 C -106, -16 -100, 24 -46, 6 C -24, -3 -12, -64 -10, -68 Z" fill="url(#stdSteel)" stroke="#1a2021" stroke-width="2.2"/>
+        <path d="M -15, -89 C -42, -89 -76, -78 -96, -56 C -92, -12 -82, 12 -50, 0" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.9"/>
+        <path d="M -36,-72 L -54,-64 L -42,-48 L -60,-40 M -48,-68 L -45,-44" stroke="#1e2526" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <path d="M 10, -92 L 42, -87 L 46, -74 L 10, -70 Z" fill="#586668" stroke="#1a2021" stroke-width="1.5"/>
+      </g>
+
+      <!-- Combat Badge: SCHADEN 3 -->
+      <g transform="translate(250, 362)">
+        <path d="M -125,-22 L 125,-22 L 110,22 L 0,33 L -110,22 Z" fill="#991b1b" stroke="#450a0a" stroke-width="2"/>
+        <path d="M -120,-18 L 120,-18 L 106,18 L 0,28 L -106,18 Z" fill="none" stroke="#fbd38d" stroke-width="1.5"/>
+        <text x="0" y="8" font-family="'Cinzel', 'Palatino', 'Georgia', serif" font-size="22" font-weight="bold" fill="#ffffff" text-anchor="middle" letter-spacing="2">
+          SCHADEN: 3
+        </text>
+      </g>
+
+      <!-- Rules & Effect Text Box (Crisp white box with dark, ultra-readable typography) -->
+      <rect x="36" y="410" width="428" height="225" rx="10" fill="url(#parchmentBox)" stroke="#4a3622" stroke-width="2"/>
+      
+      <!-- Ability Header -->
+      <text x="250" y="445" font-family="'Cinzel', 'Palatino Linotype', 'Georgia', serif" font-size="20" font-weight="bold" fill="#7a1c1c" text-anchor="middle" letter-spacing="1.5">
+        WUCHTIGER SCHWUNG
+      </text>
+      <line x1="90" y1="458" x2="410" y2="458" stroke="#8a6727" stroke-width="1.2" stroke-dasharray="35,8,8,8,35"/>
+
+      <!-- Requirement -->
+      <text x="250" y="488" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="17" font-weight="bold" fill="#1f1810" text-anchor="middle">
+        Voraussetzung: mindestens <tspan fill="#a63d00" font-size="18">KRAFT 2</tspan>
+      </text>
+
+      <!-- Effect description -->
+      <text x="250" y="525" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="17" fill="#1f1810" text-anchor="middle">
+        Trifft der Nahkampfangriff mit einer
+      </text>
+      <text x="250" y="555" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="19" font-weight="bold" fill="#991b1b" text-anchor="middle">
+        gewürfelten »6« (Volltreffer),
+      </text>
+      <text x="250" y="590" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="17" fill="#1f1810" text-anchor="middle">
+        wird das Ziel <tspan font-weight="bold" fill="#000000">1 Feld weit zurückgestoßen</tspan>.
+      </text>
+
+      <!-- Card Metadata Footer -->
+      <text x="44" y="662" font-family="'Segoe UI', Arial, sans-serif" font-size="14" font-weight="bold" fill="#4d3b2c">
+        ◈ STARTGEGENSTAND
+      </text>
+      <text x="456" y="662" font-family="'Segoe UI', Arial, sans-serif" font-size="14" font-weight="bold" fill="#4d3b2c" text-anchor="end">
+        #01 / BERSERKER
+      </text>
+    </g>
+
+    <!-- ======================================================== -->
+    <!-- REUSABLE POKER BACK (500 x 700 px = 63.5 x 88.9 mm)      -->
+    <!-- ======================================================== -->
+    <g id="pokerBack">
+      <rect x="0" y="0" width="500" height="700" rx="20" fill="url(#pokerBackGlow)"/>
+      <rect x="14" y="14" width="472" height="672" rx="14" fill="url(#pokerPattern)" opacity="0.65"/>
+      <rect x="22" y="22" width="456" height="656" rx="12" fill="none" stroke="url(#pokerGold)" stroke-width="2.5" opacity="0.9"/>
+      <rect x="30" y="30" width="440" height="640" rx="9" fill="none" stroke="#3d2c1e" stroke-width="1.2"/>
+
+      <g fill="url(#pokerGold)" opacity="0.95">
+        <polygon points="30,52 52,30 46,30 30,46"/>
+        <circle cx="58" cy="58" r="4"/>
+        <path d="M 30,62 L 62,30" stroke="url(#pokerGold)" stroke-width="2"/>
+        <polygon points="470,52 448,30 454,30 470,46"/>
+        <circle cx="442" cy="58" r="4"/>
+        <path d="M 470,62 L 438,30" stroke="url(#pokerGold)" stroke-width="2"/>
+        <polygon points="30,648 52,670 46,670 30,654"/>
+        <circle cx="58" cy="642" r="4"/>
+        <path d="M 30,638 L 62,670" stroke="url(#pokerGold)" stroke-width="2"/>
+        <polygon points="470,648 448,670 454,670 470,654"/>
+        <circle cx="442" cy="642" r="4"/>
+        <path d="M 470,638 L 438,670" stroke="url(#pokerGold)" stroke-width="2"/>
+      </g>
+
+      <g filter="url(#stdShadow)">
+        <circle cx="250" cy="350" r="150" fill="#18110c" stroke="url(#pokerGold)" stroke-width="3.5"/>
+        <circle cx="250" cy="350" r="138" fill="#201711" stroke="#3d2c1e" stroke-width="2"/>
+        <circle cx="250" cy="350" r="126" fill="none" stroke="url(#pokerGold)" stroke-width="1" stroke-dasharray="8,5"/>
+
+        <g transform="translate(250, 350) rotate(45)">
+          <polygon points="-6,-125 6,-125 5,100 -5,100" fill="url(#pokerIron)" stroke="#1a2021" stroke-width="1.2"/>
+          <line x1="0" y1="-110" x2="0" y2="80" stroke="#121617" stroke-width="2"/>
+          <rect x="-30" y="94" width="60" height="10" rx="3" fill="url(#pokerGold)" stroke="#3a280c" stroke-width="1.2"/>
+          <rect x="-4" y="104" width="8" height="32" fill="#382110"/>
+          <circle cx="0" cy="142" r="8" fill="url(#pokerGold)" stroke="#3a280c" stroke-width="1.2"/>
+        </g>
+        <g transform="translate(250, 350) rotate(-45)">
+          <polygon points="-6,-125 6,-125 5,100 -5,100" fill="url(#pokerIron)" stroke="#1a2021" stroke-width="1.2"/>
+          <line x1="0" y1="-110" x2="0" y2="80" stroke="#121617" stroke-width="2"/>
+          <rect x="-30" y="94" width="60" height="10" rx="3" fill="url(#pokerGold)" stroke="#3a280c" stroke-width="1.2"/>
+          <rect x="-4" y="104" width="8" height="32" fill="#382110"/>
+          <circle cx="0" cy="142" r="8" fill="url(#pokerGold)" stroke="#3a280c" stroke-width="1.2"/>
+        </g>
+
+        <g transform="translate(250, 350)">
+          <polygon points="0,-64 50,-24 38,42 0,70 -38,42 -50,-24" fill="#681515" stroke="url(#pokerGold)" stroke-width="3"/>
+          <polygon points="0,-54 40,-20 30,34 0,58 -30,34 -40,-20" fill="none" stroke="#a33232" stroke-width="1.5"/>
+          <path d="M -16,-24 C -7,-38 14,-38 22,-18 C 26,-2 14,16 0,30 C -14,16 -26,-2 -22,-18 Z" fill="url(#pokerGold)" stroke="#422f0c" stroke-width="1.2"/>
+          <circle cx="0" cy="-4" r="4" fill="#140f0c"/>
+        </g>
+      </g>
+
+      <text x="250" y="132" font-family="'Cinzel', 'Palatino', 'Georgia', serif" font-size="20" font-weight="bold" fill="url(#pokerGold)" text-anchor="middle" letter-spacing="5">
+        AUSRÜSTUNG
+      </text>
+      <line x1="120" y1="146" x2="380" y2="146" stroke="url(#pokerGold)" stroke-width="1.5" stroke-dasharray="35,6,6,6,35"/>
+      <line x1="120" y1="556" x2="380" y2="556" stroke="url(#pokerGold)" stroke-width="1.5" stroke-dasharray="35,6,6,6,35"/>
+      <text x="250" y="582" font-family="'Cinzel', 'Palatino', 'Georgia', serif" font-size="20" font-weight="bold" fill="url(#pokerGold)" text-anchor="middle" letter-spacing="5">
+        AUSRÜSTUNG
+      </text>
+      <text x="250" y="638" font-family="'Georgia', serif" font-size="13" font-weight="bold" fill="#8d7763" text-anchor="middle" letter-spacing="2">
+        DIE ALTE WELT
+      </text>
+    </g>
+  </defs>
+
+  <!-- ============================================================ -->
+  <!-- A4 PRINT SHEET (210 x 297 mm, viewBox 793.7 x 1122.5 px)     -->
+  <!-- ============================================================ -->
+  <rect x="0" y="0" width="793.7" height="1122.5" fill="#fcfcfb"/>
+
+  <!-- HEADER -->
+  <g transform="translate(396.85, 55)" text-anchor="middle">
+    <text font-family="'Cinzel', 'Palatino', 'Georgia', serif" font-size="20" font-weight="bold" fill="#221912" letter-spacing="1.5">
+      VON HELDEN UND MONSTERN — SPIELKARTEN
+    </text>
+    <text y="24" font-family="'Georgia', serif" font-size="13" font-weight="bold" fill="#7d1d1d">
+      Standard-Poker-Format (63,5 × 88,9 mm / 2,5 × 3,5 Zoll)
+    </text>
+    <text y="44" font-family="'Georgia', serif" font-size="10.5" fill="#6a5b4c">
+      ✂ Entlang der roten gestrichelten Mittellinie rillen &amp; falzen, beidseitig verkleben, dann ausschneiden.
+    </text>
+  </g>
+
+  <!-- FOLD AXIS (CENTER) -->
+  <line x1="396.85" y1="125" x2="396.85" y2="1035" stroke="#b23b3b" stroke-width="1.4" stroke-dasharray="7,5"/>
+  <text x="396.85" y="118" font-family="'Georgia', serif" font-size="9" font-weight="bold" fill="#b23b3b" text-anchor="middle" letter-spacing="1">
+    ▼ FALZ- &amp; KLAPPLINIE (GUTTER FOLD) ▼
+  </text>
+  <text x="396.85" y="1052" font-family="'Georgia', serif" font-size="9" font-weight="bold" fill="#b23b3b" text-anchor="middle" letter-spacing="1">
+    ▲ FALZ- &amp; KLAPPLINIE (GUTTER FOLD) ▲
+  </text>
+
+  <!-- ============================================================ -->
+  <!-- POKER CARDS AT 100% SCALE (Scale factor 0.48):               -->
+  <!-- Width = 240.0 px (63.5 mm), Height = 336.0 px (88.9 mm)       -->
+  <!-- Left card: x = 396.85 - 20 - 240 = 136.85                    -->
+  <!-- Right card: x = 396.85 + 20 = 416.85                          -->
+  <!-- ============================================================ -->
+
+  <!-- ROW 1 (Y: 140) -->
+  <g transform="translate(136.85, 140) scale(0.48)">
+    <use href="#pokerFront"/>
+  </g>
+  <g transform="translate(416.85, 140) scale(0.48)">
+    <use href="#pokerBack"/>
+  </g>
+
+  <!-- ROW 2 (Y: 530) -->
+  <g transform="translate(136.85, 530) scale(0.48)">
+    <use href="#pokerFront"/>
+  </g>
+  <g transform="translate(416.85, 530) scale(0.48)">
+    <use href="#pokerBack"/>
+  </g>
+
+  <!-- CROP MARKS (Schnittmarken) -->
+  <!-- Row 1 Horizontal -->
+  <line x1="105" y1="140" x2="125" y2="140" stroke="#000" stroke-width="0.8"/>
+  <line x1="668" y1="140" x2="688" y2="140" stroke="#000" stroke-width="0.8"/>
+  <line x1="105" y1="476" x2="125" y2="476" stroke="#000" stroke-width="0.8"/>
+  <line x1="668" y1="476" x2="688" y2="476" stroke="#000" stroke-width="0.8"/>
+
+  <!-- Row 2 Horizontal -->
+  <line x1="105" y1="530" x2="125" y2="530" stroke="#000" stroke-width="0.8"/>
+  <line x1="668" y1="530" x2="688" y2="530" stroke="#000" stroke-width="0.8"/>
+  <line x1="105" y1="866" x2="125" y2="866" stroke="#000" stroke-width="0.8"/>
+  <line x1="668" y1="866" x2="688" y2="866" stroke="#000" stroke-width="0.8"/>
+
+  <!-- Vertical marks -->
+  <line x1="136.85" y1="110" x2="136.85" y2="130" stroke="#000" stroke-width="0.8"/>
+  <line x1="136.85" y1="876" x2="136.85" y2="896" stroke="#000" stroke-width="0.8"/>
+  <line x1="376.85" y1="110" x2="376.85" y2="130" stroke="#000" stroke-width="0.8"/>
+  <line x1="376.85" y1="876" x2="376.85" y2="896" stroke="#000" stroke-width="0.8"/>
+
+  <line x1="416.85" y1="110" x2="416.85" y2="130" stroke="#000" stroke-width="0.8"/>
+  <line x1="416.85" y1="876" x2="416.85" y2="896" stroke="#000" stroke-width="0.8"/>
+  <line x1="656.85" y1="110" x2="656.85" y2="130" stroke="#000" stroke-width="0.8"/>
+  <line x1="656.85" y1="876" x2="656.85" y2="896" stroke="#000" stroke-width="0.8"/>
+
+  <!-- FOOTER -->
+  <g transform="translate(396.85, 1085)" text-anchor="middle" font-family="'Georgia', serif" font-size="10.5" fill="#6b5b4a">
+    <text>
+      Exakte Kartengröße nach Schnitt: 63,5 × 88,9 mm (Standard Poker / Magic / Boardgame Sleeve Größe) · Druck auf 100% "Tatsächliche Größe"
+    </text>
+  </g>
+</svg>

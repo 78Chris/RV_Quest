@@ -1,0 +1,172 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480" width="480" height="480">
+  <defs>
+    <!-- Background stone base -->
+    <radialGradient id="dungeonGlow" cx="50%" cy="50%" r="65%">
+      <stop offset="0%" stop-color="#34322e"/>
+      <stop offset="70%" stop-color="#23201d"/>
+      <stop offset="100%" stop-color="#141210"/>
+    </radialGradient>
+
+    <!-- Flagstone Slab Shading Gradient -->
+    <linearGradient id="slabGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4a4640"/>
+      <stop offset="50%" stop-color="#3c3833"/>
+      <stop offset="100%" stop-color="#2c2824"/>
+    </linearGradient>
+
+    <linearGradient id="slabGrad2" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#44403a"/>
+      <stop offset="60%" stop-color="#36322d"/>
+      <stop offset="100%" stop-color="#26231f"/>
+    </linearGradient>
+
+    <!-- Aged Rune Glow -->
+    <radialGradient id="runeGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#d4af37" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#d4af37" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Bevel filter for 3D stone look -->
+    <filter id="stoneShadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-color="#000000" flood-opacity="0.8"/>
+    </filter>
+  </defs>
+
+  <!-- 4x4 TILE BASE (120mm x 120mm -> 480 x 480 px, each square = exactly 120px / 30mm) -->
+  <rect x="0" y="0" width="480" height="480" fill="url(#dungeonGlow)"/>
+
+  <!-- ======================================================== -->
+  <!-- MODULAR 30mm GRID (4x4 SQUARES = 16 TILES)               -->
+  <!-- ======================================================== -->
+
+  <!-- ROW 1 (y: 0 to 120) -->
+  <!-- Square A1 (0,0) -->
+  <g filter="url(#stoneShadow)">
+    <rect x="4" y="4" width="54" height="112" rx="3" fill="url(#slabGrad1)" stroke="#1a1816" stroke-width="1.5"/>
+    <rect x="62" y="4" width="54" height="52" rx="3" fill="url(#slabGrad2)" stroke="#1a1816" stroke-width="1.5"/>
+    <rect x="62" y="60" width="54" height="56" rx="3" fill="url(#slabGrad1)" stroke="#1a1816" stroke-width="1.5"/>
+    <!-- Crack detail -->
+    <path d="M 25,20 L 32,45 L 20,68" stroke="#12100e" stroke-width="1.2" fill="none" opacity="0.8"/>
+  </g>
+
+  <!-- Square B1 (120,0) -->
+  <g filter="url(#stoneShadow)">
+    <rect x="124" y="4" width="112" height="68" rx="3" fill="url(#slabGrad2)" stroke="#1a1816" stroke-width="1.5"/>
+    <rect x="124" y="76" width="52" height="40" rx="3" fill="url(#slabGrad1)" stroke="#1a1816" stroke-width="1.5"/>
+    <rect x="180" y="76" width="56" height="40" rx="3" fill="url(#slabGrad2)" stroke="#1a1816" stroke-width="1.5"/>
+  </g>
+
+  <!-- Square C1 (240,0) -->
+  <g filter="url(#stoneShadow)">
+    <rect x="244" y="4" width="56" height="112" rx="3" fill="url(#slabGrad1)" stroke="#1a1816" stroke-width="1.5"/>
+    <rect x="304" y="4" width="52" height="112" rx="3" fill="url(#slabGrad2)" stroke="#1a1816" stroke-width="1.5"/>
+    <path d="M 330,30 L 340,55 L 325,80" stroke="#12100e" stroke-width="1.2" fill="none" opacity="0.8"/>
+  </g>
+
+  <!-- Square D1 (360,0) -->
+  <g filter="url(#stoneShadow)">
+    <rect x="364" y="4" width="112" height="54" rx="3" fill="url(#slabGrad2)" stroke="#1a1816" stroke-width="1.5"/>
+    <rect x="364" y="62" width="112" height="54" rx="3" fill="url(#slabGrad1)" stroke="#1a1816" stroke-width="1.5"/>
+  </g>
+
+  <!-- ROW 2 & 3: CENTRAL VAULT DIAL (Runic Inlay across B2, C2, B3, C3) -->
+  <!-- Base slabs for Rows 2 & 3 -->
+  <g filter="url(#stoneShadow)">
+    <!-- A2 (0,120) -->
+    <rect x="4" y="124" width="112" height="112" rx="3" fill="url(#slabGrad2)" stroke="#1a1816" stroke-width="1.5"/>
+    <!-- D2 (360,120) -->
+    <rect x="364" y="124" width="112" height="112" rx="3" fill="url(#slabGrad1)" stroke="#1a1816" stroke-width="1.5"/>
+    <!-- A3 (0,240) -->
+    <rect x="4" y="244" width="112" height="112" rx="3" fill="url(#slabGrad1)" stroke="#1a1816" stroke-width="1.5"/>
+    <!-- D3 (360,240) -->
+    <rect x="364" y="244" width="112" height="112" rx="3" fill="url(#slabGrad2)" stroke="#1a1816" stroke-width="1.5"/>
+    <!-- Center Slabs (120 to 360) -->
+    <rect x="124" y="124" width="112" height="112" rx="3" fill="url(#slabGrad1)" stroke="#1a1816" stroke-width="1.5"/>
+    <rect x="244" y="124" width="112" height="112" rx="3" fill="url(#slabGrad2)" stroke="#1a1816" stroke-width="1.5"/>
+    <rect x="124" y="244" width="112" height="112" rx="3" fill="url(#slabGrad2)" stroke="#1a1816" stroke-width="1.5"/>
+    <rect x="244" y="244" width="112" height="112" rx="3" fill="url(#slabGrad1)" stroke="#1a1816" stroke-width="1.5"/>
+  </g>
+
+  <!-- CENTRAL ENGRAVED RUNIC SANCTUM CIRCLE -->
+  <circle cx="240" cy="240" r="105" fill="url(#runeGlow)"/>
+  <circle cx="240" cy="240" r="95" fill="none" stroke="#685535" stroke-width="3" stroke-dasharray="14,6"/>
+  <circle cx="240" cy="240" r="82" fill="none" stroke="#2a2218" stroke-width="1.5"/>
+  <circle cx="240" cy="240" r="35" fill="#181512" stroke="#685535" stroke-width="2"/>
+  <!-- Ancient Nordic Sun-Wheel / Cross in Center -->
+  <path d="M 240,165 L 240,315 M 165,240 L 315,240" stroke="#685535" stroke-width="2" stroke-linecap="round"/>
+  <polygon points="240,215 265,240 240,265 215,240" fill="none" stroke="#8c7348" stroke-width="2"/>
+
+  <!-- ROW 4 (y: 360 to 480) -->
+  <g filter="url(#stoneShadow)">
+    <!-- A4 (0,360) -->
+    <rect x="4" y="364" width="112" height="54" rx="3" fill="url(#slabGrad2)" stroke="#1a1816" stroke-width="1.5"/>
+    <rect x="4" y="422" width="112" height="54" rx="3" fill="url(#slabGrad1)" stroke="#1a1816" stroke-width="1.5"/>
+    <!-- B4 (120,360) -->
+    <rect x="124" y="364" width="54" height="112" rx="3" fill="url(#slabGrad1)" stroke="#1a1816" stroke-width="1.5"/>
+    <rect x="182" y="364" width="54" height="112" rx="3" fill="url(#slabGrad2)" stroke="#1a1816" stroke-width="1.5"/>
+    <!-- C4 (240,360) -->
+    <rect x="244" y="364" width="112" height="68" rx="3" fill="url(#slabGrad2)" stroke="#1a1816" stroke-width="1.5"/>
+    <rect x="244" y="436" width="112" height="40" rx="3" fill="url(#slabGrad1)" stroke="#1a1816" stroke-width="1.5"/>
+    <!-- D4 (360,360) -->
+    <rect x="364" y="364" width="54" height="112" rx="3" fill="url(#slabGrad1)" stroke="#1a1816" stroke-width="1.5"/>
+    <rect x="422" y="364" width="54" height="112" rx="3" fill="url(#slabGrad2)" stroke="#1a1816" stroke-width="1.5"/>
+  </g>
+
+  <!-- ======================================================== -->
+  <!-- 30mm GRID INTERSECTION MARKERS (Tactile & Unobtrusive)  -->
+  <!-- ======================================================== -->
+  <!-- Grid Lines (Subtle Mortar Grooves every 120px) -->
+  <g stroke="#0f0d0b" stroke-width="2.5" opacity="0.9">
+    <line x1="120" y1="0" x2="120" y2="480"/>
+    <line x1="240" y1="0" x2="240" y2="480"/>
+    <line x1="360" y1="0" x2="360" y2="480"/>
+    <line x1="0" y1="120" x2="480" y2="120"/>
+    <line x1="0" y1="240" x2="480" y2="240"/>
+    <line x1="0" y1="360" x2="480" y2="360"/>
+  </g>
+
+  <!-- Corner Crosshair Corner Marks at 30mm Grid Vertices -->
+  <g stroke="#917c5d" stroke-width="1.2" opacity="0.75">
+    <!-- Row 1 Intersections -->
+    <path d="M 114,120 L 126,120 M 120,114 L 120,126"/>
+    <path d="M 234,120 L 246,120 M 240,114 L 240,126"/>
+    <path d="M 354,120 L 366,120 M 360,114 L 360,126"/>
+    <!-- Row 2 Intersections -->
+    <path d="M 114,240 L 126,240 M 120,234 L 120,246"/>
+    <path d="M 234,240 L 246,240 M 240,234 L 240,246"/>
+    <path d="M 354,240 L 366,240 M 360,234 L 360,246"/>
+    <!-- Row 3 Intersections -->
+    <path d="M 114,360 L 126,360 M 120,354 L 120,366"/>
+    <path d="M 234,360 L 246,360 M 240,354 L 240,366"/>
+    <path d="M 354,360 L 366,360 M 360,354 L 360,366"/>
+  </g>
+
+  <!-- Outer Dungeon Wall Rim (1.5mm Laser Cut Margin) -->
+  <rect x="1" y="1" width="478" height="478" fill="none" stroke="#100e0c" stroke-width="3"/>
+
+  <!-- ======================================================== -->
+  <!-- ALPHANUMERIC GRID COORDINATES (Dezent am Kachelrand)     -->
+  <!-- ======================================================== -->
+  <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" 
+     font-size="11" font-weight="bold" fill="#8c785b" opacity="0.65" text-anchor="middle" dominant-baseline="middle">
+    <!-- Spalten A bis D oben und unten (jeweils zentriert bei 60, 180, 300, 420 px) -->
+    <text x="60" y="9">A</text>
+    <text x="180" y="9">B</text>
+    <text x="300" y="9">C</text>
+    <text x="420" y="9">D</text>
+    <text x="60" y="471">A</text>
+    <text x="180" y="471">B</text>
+    <text x="300" y="471">C</text>
+    <text x="420" y="471">D</text>
+
+    <!-- Zeilen 1 bis 4 links und rechts -->
+    <text x="9" y="60">1</text>
+    <text x="9" y="180">2</text>
+    <text x="9" y="300">3</text>
+    <text x="9" y="420">4</text>
+    <text x="471" y="60">1</text>
+    <text x="471" y="180">2</text>
+    <text x="471" y="300">3</text>
+    <text x="471" y="420">4</text>
+  </g>
+</svg>

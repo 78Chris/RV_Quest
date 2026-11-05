@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 700" width="63.5mm" height="88.9mm">
+  <defs>
+    <!-- Background Radial Glow -->
+    <radialGradient id="stdBgGlow" cx="50%" cy="40%" r="65%">
+      <stop offset="0%" stop-color="#2d241c"/>
+      <stop offset="60%" stop-color="#16110d"/>
+      <stop offset="100%" stop-color="#0a0806"/>
+    </radialGradient>
+    
+    <!-- Metallic Gold Gradient -->
+    <linearGradient id="stdGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f8dc88"/>
+      <stop offset="45%" stop-color="#d6b13e"/>
+      <stop offset="75%" stop-color="#9a7b24"/>
+      <stop offset="100%" stop-color="#644e12"/>
+    </linearGradient>
+
+    <!-- Steel Blade Gradient -->
+    <linearGradient id="stdSteel" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#dce6e0"/>
+      <stop offset="45%" stop-color="#ffffff"/>
+      <stop offset="52%" stop-color="#91a2a3"/>
+      <stop offset="100%" stop-color="#4d5a5b"/>
+    </linearGradient>
+
+    <!-- Shadow -->
+    <filter id="stdShadow" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000" flood-opacity="0.7"/>
+    </filter>
+  </defs>
+
+  <!-- ======================================================== -->
+  <!-- CARD BASE (Standard Poker size: 63.5 x 88.9 mm -> 500 x 700 px) -->
+  <!-- ======================================================== -->
+  <!-- Outer Dark Border with generous corner radius -->
+  <rect x="6" y="6" width="488" height="688" rx="20" fill="url(#stdBgGlow)" stroke="#3e3125" stroke-width="3.5"/>
+  <rect x="18" y="18" width="464" height="664" rx="14" fill="none" stroke="url(#stdGold)" stroke-width="2" opacity="0.85"/>
+  <rect x="24" y="24" width="452" height="652" rx="11" fill="none" stroke="#5a4531" stroke-width="1"/>
+
+  <!-- CORNER ORNAMENTS -->
+  <g fill="url(#stdGold)">
+    <polygon points="24,40 40,24 34,24 24,34"/>
+    <polygon points="476,40 460,24 466,24 476,34"/>
+    <polygon points="24,660 40,676 34,676 24,666"/>
+    <polygon points="476,660 460,676 466,676 476,666"/>
+  </g>
+
+  <!-- ======================================================== -->
+  <!-- HEADER: TITLE & TYPE (Crisp, High-Readability Fonts)    -->
+  <!-- ======================================================== -->
+  <text x="250" y="58" font-family="'Cinzel', 'Palatino', 'Georgia', serif" font-size="22" font-weight="bold" fill="url(#stdGold)" text-anchor="middle" letter-spacing="1.5">
+    NORDISCHE BARBARENAXT
+  </text>
+  <text x="250" y="85" font-family="'Georgia', serif" font-size="15" font-style="italic" fill="#c4b5a2" text-anchor="middle">
+    ◈ Startwaffe · 2 Hände (Nahkampf)
+  </text>
+
+  <!-- ======================================================== -->
+  <!-- ARTWORK FRAME & ILLUSTRATION                             -->
+  <!-- ======================================================== -->
+  <rect x="44" y="102" width="412" height="240" rx="8" fill="#15100c" stroke="#483827" stroke-width="2"/>
+  <circle cx="250" cy="222" r="105" fill="#1e1711" stroke="#38291c" stroke-width="1.2"/>
+
+  <!-- VECTOR ART: BATTLE AXE (Scaled & Centered) -->
+  <g filter="url(#stdShadow)" transform="translate(250, 222) rotate(-28)">
+    <!-- Wooden Haft -->
+    <path d="M -9, -115 L 9, -115 L 7, 130 C 7, 138 -7, 138 -7, 130 Z" fill="#6a4427" stroke="#382110" stroke-width="2"/>
+    <!-- Grip wraps -->
+    <path d="M -8, 20 L 8, 34 M -8, 44 L 8, 58 M -8, 68 L 8, 82 M -8, 92 L 8, 106" stroke="#3e2410" stroke-width="3" stroke-linecap="round"/>
+    <path d="M 8, 20 L -8, 34 M 8, 44 L -8, 58 M 8, 68 L -8, 82 M 8, 92 L -8, 106" stroke="#261608" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- Pommel -->
+    <path d="M -8, 126 L 8, 126 L 6, 138 C 4, 142 -4, 142 -6, 138 Z" fill="#4d5a5b" stroke="#252b2c" stroke-width="1.2"/>
+    <polygon points="0,-130 -5,-115 5,-115" fill="#718284" stroke="#252b2c" stroke-width="1.2"/>
+    <!-- Axe Collar -->
+    <rect x="-11" y="-98" width="22" height="32" rx="3" fill="#3f4a4b" stroke="#1f2526" stroke-width="1.5"/>
+    <circle cx="0" cy="-82" r="3" fill="#a6b4b5"/>
+    <!-- Axe Blade -->
+    <path d="M -10, -96 
+             C -42, -96 -88, -86 -112, -62 
+             C -106, -16 -100, 24 -46, 6 
+             C -24, -3 -12, -64 -10, -68 Z" 
+          fill="url(#stdSteel)" stroke="#1a2021" stroke-width="2"/>
+    <!-- Blade Bevel Highlight -->
+    <path d="M -15, -89 C -42, -89 -76, -78 -96, -56 C -92, -12 -82, 12 -50, 0" fill="none" stroke="#ffffff" stroke-width="1.8" opacity="0.8"/>
+    <!-- Nordic Runic Carving -->
+    <path d="M -36,-72 L -54,-64 L -42,-48 L -60,-40 M -48,-68 L -45,-44" stroke="#1e2526" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <!-- Rear Spike -->
+    <path d="M 10, -92 L 42, -87 L 46, -74 L 10, -70 Z" fill="#586668" stroke="#1a2021" stroke-width="1.5"/>
+  </g>
+
+  <!-- ======================================================== -->
+  <!-- STATS RIBBON / BADGE (Large & Instantly Readable)        -->
+  <!-- ======================================================== -->
+  <g transform="translate(250, 375)">
+    <!-- Shield Badge -->
+    <path d="M -110,-24 L 110,-24 L 95,24 L 0,36 L -95,24 Z" fill="#881a1a" stroke="url(#stdGold)" stroke-width="2.5"/>
+    <text x="0" y="10" font-family="'Cinzel', 'Palatino', serif" font-size="20" font-weight="bold" fill="#ffffff" text-anchor="middle" letter-spacing="2">
+      SCHADEN: 3
+    </text>
+  </g>
+
+  <!-- ======================================================== -->
+  <!-- RULES TEXT BOX (Clear 15-18pt typography with high contrast) -->
+  <!-- ======================================================== -->
+  <rect x="36" y="425" width="428" height="205" rx="10" fill="#15110d" stroke="#483827" stroke-width="1.5"/>
+  
+  <!-- Ability Title -->
+  <text x="250" y="465" font-family="'Cinzel', 'Palatino', 'Georgia', serif" font-size="18" font-weight="bold" fill="#f8e5c2" text-anchor="middle" letter-spacing="1">
+    WUCHTIGER SCHWUNG
+  </text>
+  <line x1="100" y1="478" x2="400" y2="478" stroke="url(#stdGold)" stroke-width="1" stroke-dasharray="30,8,8,8,30"/>
+
+  <!-- Requirement line -->
+  <text x="250" y="510" font-family="'Georgia', serif" font-size="16" fill="#ded2bf" text-anchor="middle">
+    Voraussetzung: mindestens <tspan font-weight="bold" fill="#f5b842" font-size="17">KRAFT 2</tspan>
+  </text>
+
+  <!-- Body description with bold emphasis -->
+  <text x="250" y="546" font-family="'Georgia', serif" font-size="16" fill="#c4b5a2" text-anchor="middle">
+    Trifft der Angriff mit einer gewürfelten
+  </text>
+  
+  <text x="250" y="574" font-family="'Georgia', serif" font-size="18" font-weight="bold" fill="#ffffff" text-anchor="middle">
+    »6« (Volltreffer),
+  </text>
+
+  <text x="250" y="604" font-family="'Georgia', serif" font-size="16" fill="#ded2bf" text-anchor="middle">
+    wird das Ziel <tspan font-weight="bold" fill="#f8e5c2">1 Feld weit zurückgestoßen</tspan>.
+  </text>
+
+  <!-- ======================================================== -->
+  <!-- FOOTER: IDENTIFIER / DECK NUMBER                         -->
+  <!-- ======================================================== -->
+  <text x="44" y="658" font-family="'Georgia', serif" font-size="13" font-weight="bold" fill="#8d7a64">
+    ◈ STARTGEGENSTAND
+  </text>
+  <text x="456" y="658" font-family="'Georgia', serif" font-size="13" font-weight="bold" fill="#8d7a64" text-anchor="end">
+    #01 / BERSERKER
+  </text>
+</svg>

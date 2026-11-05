@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 700" width="63.5mm" height="88.9mm">
+  <defs>
+    <!-- Background Radial Glow -->
+    <radialGradient id="pokerBackGlow" cx="50%" cy="50%" r="65%">
+      <stop offset="0%" stop-color="#2a1f18"/>
+      <stop offset="60%" stop-color="#140f0c"/>
+      <stop offset="100%" stop-color="#090705"/>
+    </radialGradient>
+
+    <!-- Metallic Gold Gradient -->
+    <linearGradient id="pokerGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f3d078"/>
+      <stop offset="40%" stop-color="#c99738"/>
+      <stop offset="70%" stop-color="#8d6820"/>
+      <stop offset="100%" stop-color="#553e10"/>
+    </linearGradient>
+
+    <!-- Steel Blade Gradient -->
+    <linearGradient id="pokerIron" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8a9899"/>
+      <stop offset="50%" stop-color="#4e5859"/>
+      <stop offset="100%" stop-color="#282f30"/>
+    </linearGradient>
+
+    <filter id="pokerShadow" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000" flood-opacity="0.8"/>
+    </filter>
+
+    <pattern id="pokerPattern" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M 0,12 L 12,0 L 24,12 L 12,24 Z" fill="none" stroke="#221812" stroke-width="0.9"/>
+    </pattern>
+  </defs>
+
+  <!-- BASE -->
+  <rect x="0" y="0" width="500" height="700" rx="20" fill="url(#pokerBackGlow)"/>
+  <rect x="14" y="14" width="472" height="672" rx="14" fill="url(#pokerPattern)" opacity="0.65"/>
+  <rect x="22" y="22" width="456" height="656" rx="12" fill="none" stroke="url(#pokerGold)" stroke-width="2.5" opacity="0.9"/>
+  <rect x="30" y="30" width="440" height="640" rx="9" fill="none" stroke="#3d2c1e" stroke-width="1.2"/>
+
+  <!-- CORNER RUNIC KNOT EMBLEMS -->
+  <g fill="url(#pokerGold)" opacity="0.95">
+    <polygon points="30,52 52,30 46,30 30,46"/>
+    <circle cx="58" cy="58" r="4"/>
+    <path d="M 30,62 L 62,30" stroke="url(#pokerGold)" stroke-width="2"/>
+    <polygon points="470,52 448,30 454,30 470,46"/>
+    <circle cx="442" cy="58" r="4"/>
+    <path d="M 470,62 L 438,30" stroke="url(#pokerGold)" stroke-width="2"/>
+    <polygon points="30,648 52,670 46,670 30,654"/>
+    <circle cx="58" cy="642" r="4"/>
+    <path d="M 30,638 L 62,670" stroke="url(#pokerGold)" stroke-width="2"/>
+    <polygon points="470,648 448,670 454,670 470,654"/>
+    <circle cx="442" cy="642" r="4"/>
+    <path d="M 470,638 L 438,670" stroke="url(#pokerGold)" stroke-width="2"/>
+  </g>
+
+  <!-- CENTRAL MEDALLION -->
+  <g filter="url(#pokerShadow)">
+    <circle cx="250" cy="350" r="150" fill="#18110c" stroke="url(#pokerGold)" stroke-width="3.5"/>
+    <circle cx="250" cy="350" r="138" fill="#201711" stroke="#3d2c1e" stroke-width="2"/>
+    <circle cx="250" cy="350" r="126" fill="none" stroke="url(#pokerGold)" stroke-width="1" stroke-dasharray="8,5"/>
+
+    <!-- Crossed Swords (Scaled to Poker card size) -->
+    <g transform="translate(250, 350) rotate(45)">
+      <polygon points="-6,-125 6,-125 5,100 -5,100" fill="url(#pokerIron)" stroke="#1a2021" stroke-width="1.2"/>
+      <line x1="0" y1="-110" x2="0" y2="80" stroke="#121617" stroke-width="2"/>
+      <rect x="-30" y="94" width="60" height="10" rx="3" fill="url(#pokerGold)" stroke="#3a280c" stroke-width="1.2"/>
+      <rect x="-4" y="104" width="8" height="32" fill="#382110"/>
+      <circle cx="0" cy="142" r="8" fill="url(#pokerGold)" stroke="#3a280c" stroke-width="1.2"/>
+    </g>
+    <g transform="translate(250, 350) rotate(-45)">
+      <polygon points="-6,-125 6,-125 5,100 -5,100" fill="url(#pokerIron)" stroke="#1a2021" stroke-width="1.2"/>
+      <line x1="0" y1="-110" x2="0" y2="80" stroke="#121617" stroke-width="2"/>
+      <rect x="-30" y="94" width="60" height="10" rx="3" fill="url(#pokerGold)" stroke="#3a280c" stroke-width="1.2"/>
+      <rect x="-4" y="104" width="8" height="32" fill="#382110"/>
+      <circle cx="0" cy="142" r="8" fill="url(#pokerGold)" stroke="#3a280c" stroke-width="1.2"/>
+    </g>
+
+    <!-- Crest -->
+    <g transform="translate(250, 350)">
+      <polygon points="0,-64 50,-24 38,42 0,70 -38,42 -50,-24" fill="#681515" stroke="url(#pokerGold)" stroke-width="3"/>
+      <polygon points="0,-54 40,-20 30,34 0,58 -30,34 -40,-20" fill="none" stroke="#a33232" stroke-width="1.5"/>
+      <path d="M -16,-24 C -7,-38 14,-38 22,-18 C 26,-2 14,16 0,30 C -14,16 -26,-2 -22,-18 Z" fill="url(#pokerGold)" stroke="#422f0c" stroke-width="1.2"/>
+      <circle cx="0" cy="-4" r="4" fill="#140f0c"/>
+    </g>
+  </g>
+
+  <!-- TEXT BANNERS (Big, Clean, Symmetrical) -->
+  <text x="250" y="132" font-family="'Cinzel', 'Palatino', 'Georgia', serif" font-size="20" font-weight="bold" fill="url(#pokerGold)" text-anchor="middle" letter-spacing="5">
+    AUSRÜSTUNG
+  </text>
+  <line x1="120" y1="146" x2="380" y2="146" stroke="url(#pokerGold)" stroke-width="1.5" stroke-dasharray="35,6,6,6,35"/>
+
+  <line x1="120" y1="556" x2="380" y2="556" stroke="url(#pokerGold)" stroke-width="1.5" stroke-dasharray="35,6,6,6,35"/>
+  <text x="250" y="582" font-family="'Cinzel', 'Palatino', 'Georgia', serif" font-size="20" font-weight="bold" fill="url(#pokerGold)" text-anchor="middle" letter-spacing="5">
+    AUSRÜSTUNG
+  </text>
+
+  <text x="250" y="638" font-family="'Georgia', serif" font-size="13" font-weight="bold" fill="#8d7763" text-anchor="middle" letter-spacing="2">
+    DIE ALTE WELT
+  </text>
+</svg>
