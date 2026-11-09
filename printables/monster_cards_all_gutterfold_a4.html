@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Bestiarium Imperialis - Alle 12 Monsterkarten (Tarot Gutter-Fold 2 pro A4-Bogen)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=UnifrakturMaguntia&family=Alegreya:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+
+<style>
+  /* ========================================================= */
+  /* A4 PRINT SETUP (Pure White, Zero Ink-Waste Outside Cards) */
+  /* ========================================================= */
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #ffffff;
+    font-family: 'Alegreya Sans', sans-serif;
+    color: #1a140e;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Screen Display / Navigation Controls */
+  @media screen {
+    body {
+      background: #201c18;
+      padding: 30px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .toolbar {
+      position: fixed;
+      top: 15px;
+      right: 20px;
+      background: #140f0c;
+      border: 1px solid #5c4736;
+      color: #dfcaa7;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 13px;
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+      z-index: 1000;
+    }
+
+    .print-btn {
+      background: #9e782f;
+      color: #fff;
+      border: none;
+      padding: 7px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 13px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+    .print-btn:hover { background: #b88e38; }
+
+    .page {
+      background: #ffffff;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.45);
+    }
+  }
+
+  @media print {
+    .no-print {
+      display: none !important;
+    }
+    body {
+      background: #ffffff !important;
+      padding: 0;
+    }
+    .page {
+      box-shadow: none !important;
+      page-break-after: always;
+      break-after: page;
+    }
+  }
+
+  /* ========================================================= */
+  /* A4 PAGE CONTAINER (210 x 297 mm)                          */
+  /* ========================================================= */
+  .page {
+    width: 210mm;
+    height: 297mm;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* ========================================================= */
+  /* GUTTER-FOLD CARD PAIR (140 x 120 mm)                      */
+  /* Centered: left = (210 - 140)/2 = 35mm                     */
+  /* Card 1: top = 18mm                                        */
+  /* Card 2: top = 153mm                                       */
+  /* ========================================================= */
+  .card-pair {
+    position: absolute;
+    left: 35mm;
+    width: 140mm;
+    height: 120mm;
+    display: flex;
+  }
+
+  .card-pair.pos-1 { top: 18mm; }
+  .card-pair.pos-2 { top: 153mm; }
+
+  .tarot-face {
+    width: 70mm;
+    height: 120mm;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* ========================================================= */
+  /* FRONT FACE (70 x 120 mm)                                  */
+  /* ========================================================= */
+  .front-face {
+    background: radial-gradient(circle at 50% 30%, #fdf9f0 0%, #f1e5cf 70%, #dfccaa 100%);
+    padding: 2mm 2.8mm 1.8mm 2.8mm;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Double Borders */
+  .card-border-frame {
+    position: absolute;
+    top: 1.1mm;
+    bottom: 1.1mm;
+    left: 1.1mm;
+    right: 1.1mm;
+    border: 0.45mm solid #2c2016;
+    border-radius: 1.5mm;
+    pointer-events: none;
+  }
+
+  .card-border-inner {
+    position: absolute;
+    top: 1.7mm;
+    bottom: 1.7mm;
+    left: 1.7mm;
+    right: 1.7mm;
+    border: 0.25mm solid #9e782f;
+    border-radius: 1.2mm;
+    pointer-events: none;
+    opacity: 0.85;
+  }
+
+  /* Header */
+  .card-header {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    padding: 0 0.5mm 0.6mm 0.5mm;
+  }
+
+  .header-top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0.5mm;
+    margin-bottom: 0.2mm;
+  }
+
+  .stars {
+    color: #b33927;
+    letter-spacing: 0.4mm;
+    font-size: 8pt;
+  }
+
+  .init-pill {
+    font-family: 'Cinzel', serif;
+    font-size: 7.2pt;
+    font-weight: 700;
+    color: #3b2816;
+    background: linear-gradient(180deg, #fcefd6 0%, #ecd3a3 100%);
+    padding: 0.2mm 1.4mm;
+    border-radius: 0.8mm;
+    border: 0.2mm solid #9e782f;
+  }
+
+  .card-title {
+    font-family: 'Cinzel', serif;
+    font-size: 13pt;
+    font-weight: 900;
+    color: #1a140e;
+    letter-spacing: 0.25mm;
+    margin: 0.2mm 0 0 0;
+    text-transform: uppercase;
+    line-height: 1.05;
+  }
+
+  .card-subtitle {
+    font-family: 'Alegreya', serif;
+    font-size: 7.5pt;
+    font-style: italic;
+    color: #5c4736;
+    margin: 0;
+    line-height: 1.1;
+  }
+
+  /* Artwork Window (32mm) */
+  .art-container {
+    width: 100%;
+    height: 32mm;
+    position: relative;
+    border-radius: 1.2mm;
+    overflow: hidden;
+    border: 0.45mm solid #3b2c1d;
+    background: #17110b;
+    margin-bottom: 1.1mm;
+    z-index: 2;
+  }
+
+  .monster-art {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 15%;
+    display: block;
+    filter: contrast(1.04) saturate(1.02);
+  }
+
+  .art-vignette {
+    position: absolute;
+    inset: 0;
+    box-shadow: inset 0 0 5mm rgba(0,0,0,0.65);
+    pointer-events: none;
+    border: 0.2mm solid rgba(229, 193, 125, 0.4);
+  }
+
+  /* 3-Zeilen Lore-Kasten */
+  .lore-box {
+    background: rgba(240, 227, 204, 0.65);
+    border-left: 0.6mm solid #8c6a3a;
+    border-right: 0.6mm solid #8c6a3a;
+    padding: 0.5mm 1.2mm;
+    margin-bottom: 1.1mm;
+    text-align: center;
+    border-radius: 0.5mm;
+    z-index: 2;
+  }
+
+  .lore-text {
+    font-family: 'Alegreya', serif;
+    font-size: 6.9pt;
+    font-style: italic;
+    line-height: 1.22;
+    color: #3b2817;
+    margin: 0;
+  }
+
+  /* Stat Ribbon (4 Chips) */
+  .stat-ribbon {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.8mm;
+    margin-bottom: 1.1mm;
+    z-index: 2;
+  }
+
+  .stat-chip {
+    background: linear-gradient(180deg, #ffffff 0%, #f4ece1 100%);
+    border: 0.3mm solid #4a3828;
+    border-radius: 0.9mm;
+    padding: 0.35mm 0.2mm;
+    text-align: center;
+  }
+
+  .stat-chip.highlight-red {
+    border-color: #8c1d18;
+    background: linear-gradient(180deg, #fff7f7 0%, #f7dede 100%);
+  }
+
+  .stat-label {
+    display: block;
+    font-size: 5.6pt;
+    font-weight: 700;
+    color: #5c4736;
+    text-transform: uppercase;
+    letter-spacing: 0.1mm;
+    margin-bottom: 0.2mm;
+  }
+
+  .stat-chip.highlight-red .stat-label {
+    color: #8c1d18;
+  }
+
+  .stat-value {
+    font-family: 'Cinzel', serif;
+    font-size: 10.2pt;
+    font-weight: 900;
+    color: #1a140e;
+    line-height: 1;
+  }
+
+  .stat-chip.highlight-red .stat-value {
+    color: #8c1d18;
+  }
+
+  /* Rules & Verhalten Box */
+  .rules-box {
+    flex: 1;
+    background: #fffdfa;
+    border: 0.35mm solid #4a3828;
+    border-radius: 1.2mm;
+    padding: 1.1mm 1.5mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 2;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 1mm;
+    font-family: 'Cinzel', serif;
+    font-size: 6.8pt;
+    font-weight: 700;
+    color: #8c1d18;
+    letter-spacing: 0.2mm;
+    text-transform: uppercase;
+    margin-bottom: 0.3mm;
+    border-bottom: 0.2mm solid rgba(140, 29, 24, 0.25);
+    padding-bottom: 0.2mm;
+  }
+
+  .rule-item {
+    font-size: 6.7pt;
+    line-height: 1.25;
+    color: #1a140e;
+    margin-bottom: 0.6mm;
+  }
+
+  .rule-tag {
+    font-weight: 700;
+    color: #701612;
+  }
+
+  .ai-step-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .ai-step {
+    font-size: 6.7pt;
+    line-height: 1.25;
+    color: #1a140e;
+    margin-bottom: 0.5mm;
+    display: flex;
+    align-items: baseline;
+    gap: 1mm;
+  }
+
+  .step-num {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 6.7pt;
+    color: #9e782f;
+    min-width: 2.6mm;
+  }
+
+  .step-title {
+    font-weight: 700;
+    color: #2b1f15;
+  }
+
+  /* Footer */
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6mm 0.8mm 0 0.8mm;
+    font-size: 5.6pt;
+    font-weight: 700;
+    color: #5c4736;
+    letter-spacing: 0.1mm;
+    z-index: 2;
+    text-transform: uppercase;
+  }
+
+  .bounty-pill {
+    color: #735414;
+    background: rgba(184, 142, 53, 0.15);
+    padding: 0.2mm 1mm;
+    border-radius: 0.5mm;
+    border: 0.2mm solid rgba(184, 142, 53, 0.35);
+  }
+
+  /* ========================================================= */
+  /* BACK FACE (70 x 120 mm)                                   */
+  /* ========================================================= */
+  .back-face {
+    background: #140f0c;
+  }
+
+  .card-back-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .back-title-overlay {
+    position: absolute;
+    top: 85.7%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 44mm;
+    text-align: center;
+    pointer-events: none;
+    line-height: 1;
+  }
+
+  .fraktur-title {
+    font-family: 'UnifrakturMaguntia', serif;
+    font-size: 15pt;
+    color: #120e0a;
+    letter-spacing: 0.2mm;
+    display: inline-block;
+  }
+
+  /* ========================================================= */
+  /* CROP & FOLD MARKINGS (SCHNITT- & FALZLINIEN)              */
+  /* Perfectly aligned across Card 1 and Card 2               */
+  /* ========================================================= */
+  .crop-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 210mm;
+    height: 297mm;
+    pointer-events: none;
+  }
+
+  .mark-cut { stroke: #111111; stroke-width: 0.2; stroke-linecap: square; }
+  .mark-fold { stroke: #992222; stroke-width: 0.25; stroke-dasharray: 1.5, 1; }
+  .mark-txt { font-family: 'Cinzel', serif; font-size: 2.2px; fill: #992222; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<!-- Floating Toolbar on Screen -->
+<div class="toolbar no-print">
+  <span>🎴 Bestiarium Imperialis: 12 Monsterkarten (6 Seiten à 2 Karten)</span>
+  <button class="print-btn" onclick="window.print()">🖨️ Alle drucken / Als PDF speichern</button>
+</div>
+
+
+<!-- ========================================================================= -->
+<!-- BOGEN 1 (SEITE 1 / 6): #01 Goblin-Späher & #02 Goblin-Bogenschütze        -->
+<!-- ========================================================================= -->
+<div class="page" id="page1">
+  <svg class="crop-svg" viewBox="0 0 210 297" width="210mm" height="297mm">
+    <!-- CROP MARKS CARD 1 (Top: 18mm, Bottom: 138mm | Left: 35mm, Center: 105mm, Right: 175mm) -->
+    <line x1="25" y1="18" x2="33" y2="18" class="mark-cut"/>
+    <line x1="35" y1="8" x2="35" y2="16" class="mark-cut"/>
+    <line x1="105" y1="7" x2="105" y2="16" class="mark-fold"/>
+    <text x="105" y="5.5" text-anchor="middle" class="mark-txt">▼ FALZLINIE (GUTTER-FOLD) ▼</text>
+    <line x1="177" y1="18" x2="185" y2="18" class="mark-cut"/>
+    <line x1="175" y1="8" x2="175" y2="16" class="mark-cut"/>
+
+    <line x1="25" y1="138" x2="33" y2="138" class="mark-cut"/>
+    <line x1="35" y1="140" x2="35" y2="148" class="mark-cut"/>
+    <line x1="105" y1="139" x2="105" y2="148" class="mark-fold"/>
+    <line x1="177" y1="138" x2="185" y2="138" class="mark-cut"/>
+    <line x1="175" y1="140" x2="175" y2="148" class="mark-cut"/>
+    <line x1="105" y1="18" x2="105" y2="138" stroke="#777777" stroke-width="0.15" stroke-dasharray="2, 2" opacity="0.6"/>
+
+    <!-- CROP MARKS CARD 2 (Top: 153mm, Bottom: 273mm | Left: 35mm, Center: 105mm, Right: 175mm) -->
+    <line x1="25" y1="153" x2="33" y2="153" class="mark-cut"/>
+    <line x1="35" y1="145" x2="35" y2="151" class="mark-cut"/>
+    <line x1="105" y1="144" x2="105" y2="151" class="mark-fold"/>
+    <line x1="177" y1="153" x2="185" y2="153" class="mark-cut"/>
+    <line x1="175" y1="145" x2="175" y2="151" class="mark-cut"/>
+
+    <line x1="25" y1="273" x2="33" y2="273" class="mark-cut"/>
+    <line x1="35" y1="275" x2="35" y2="283" class="mark-cut"/>
+    <line x1="105" y1="275" x2="105" y2="284" class="mark-fold"/>
+    <text x="105" y="287" text-anchor="middle" class="mark-txt">▲ FALZLINIE (GUTTER-FOLD) ▲</text>
+    <line x1="177" y1="273" x2="185" y2="273" class="mark-cut"/>
+    <line x1="175" y1="275" x2="175" y2="283" class="mark-cut"/>
+    <line x1="105" y1="153" x2="105" y2="273" stroke="#777777" stroke-width="0.15" stroke-dasharray="2, 2" opacity="0.6"/>
+  </svg>
+
+  <!-- KARTE 1: GOBLIN-SPÄHER (#01) -->
+  <div class="card-pair pos-1">
+    <div class="tarot-face front-face">
+      <div class="card-border-frame"></div>
+      <div class="card-border-inner"></div>
+      <div class="card-header">
+        <div class="header-top-row">
+          <span class="stars">★☆☆</span>
+          <span class="init-pill">INIT: 6</span>
+        </div>
+        <h2 class="card-title">Goblin-Späher</h2>
+        <p class="card-subtitle">◈ Standard · Schwarm / Nahkampf</p>
+      </div>
+      <div class="art-container">
+        <img class="monster-art" src="art_assets/MasterArtwork/Monsters/Color/full_body_shot_of_a_goblin_scout_in_an_aggressive_dynamic_fig_dbe70a45-966a-43de-ac92-d3a42b764c3e_0.png" alt="Goblin-Späher">
+        <div class="art-vignette"></div>
+      </div>
+      <div class="lore-box">
+        <p class="lore-text">»Fliehende, feige Halsabschneider der Banden. Sie lauern in dunklen Felsspalten und greifen bevorzugt im Rudel aus dem Hinterhalt an.«</p>
+      </div>
+      <div class="stat-ribbon">
+        <div class="stat-chip highlight-red"><span class="stat-label">❤️ Leben</span><span class="stat-value">3</span></div>
+        <div class="stat-chip"><span class="stat-label">🛡️ Abwehr</span><span class="stat-value">5</span></div>
+        <div class="stat-chip"><span class="stat-label">👟 Bew.</span><span class="stat-value">4</span></div>
+        <div class="stat-chip"><span class="stat-label">⚔️ Angriff</span><span class="stat-value">+1 <span style="font-size:6.8pt; font-weight:bold;">(1D)</span></span></div>
+      </div>
+      <div class="rules-box">
+        <div>
+          <div class="section-header"><span>📜 Sonderregel</span></div>
+          <div class="rule-item"><span class="rule-tag">Feigheit:</span> Fällt der Goblin auf 1 LP, bricht seine Moral und er flieht mit voller Bewegung (4 Felder) vom nächsten Helden weg.</div>
+        </div>
+        <div>
+          <div class="section-header"><span>⚔️ Verhalten</span></div>
+          <ul class="ai-step-list">
+            <li class="ai-step"><span class="step-num">1.</span><span><strong class="step-title">Rudel-Taktik:</strong> Grenzt ein Verbündeter an einen Helden, rückt er auf <em>diesen</em> Helden vor (erhält Vorteil).</span></li>
+            <li class="ai-step"><span class="step-num">2.</span><span><strong class="step-title">Angriff:</strong> Rostdolch &bull; Würfle <strong>1d6 + 1</strong> gegen VT (erzielt <strong>1 Schaden</strong>).</span></li>
+            <li class="ai-step"><span class="step-num">3.</span><span><strong class="step-title">Rückzug:</strong> Bei 1 Rest-LP flieht er außer Reichweite.</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span>💀 Bestiarium Imperialis</span>
+        <span>#01 / 12</span>
+        <span class="bounty-pill">💰 1 Gold</span>
+      </div>
+    </div>
+    <div class="tarot-face back-face">
+      <img class="card-back-img" src="art_assets/MasterArtwork/Cards/Card Backs/vintage_medieval_woodcut_etching_of_a_monstrous_grimoire_cove_3d567044-557c-4aad-aa98-7cdc5a5ff889_2.png" alt="Rückseite">
+      <div class="back-title-overlay"><div class="fraktur-title">Bestiarium Imperialis</div></div>
+    </div>
+  </div>
+
+  <!-- KARTE 2: GOBLIN-BOGENSCHÜTZE (#02) -->
+  <div class="card-pair pos-2">
+    <div class="tarot-face front-face">
+      <div class="card-border-frame"></div>
+      <div class="card-border-inner"></div>
+      <div class="card-header">
+        <div class="header-top-row">
+          <span class="stars">★☆☆</span>
+          <span class="init-pill">INIT: 4</span>
+        </div>
+        <h2 class="card-title">Goblin-Schütze</h2>
+        <p class="card-subtitle">◈ Standard · Fernkämpfer</p>
+      </div>
+      <div class="art-container">
+        <img class="monster-art" src="art_assets/MasterArtwork/Monsters/Color/full_body_shot_of_a_feral_goblin_archer_in_a_dynamic_combat_s_1f6da65d-fe3a-4a4b-80be-a029cebe2f57_0.png" alt="Goblin-Bogenschütze">
+        <div class="art-vignette"></div>
+      </div>
+      <div class="lore-box">
+        <p class="lore-text">»Schießt mit gezackten Knochenpfeilen aus dem Schatten. Feige im direkten Nahkampf, doch heimtückisch und tödlich auf Distanz.«</p>
+      </div>
+      <div class="stat-ribbon">
+        <div class="stat-chip highlight-red"><span class="stat-label">❤️ Leben</span><span class="stat-value">2</span></div>
+        <div class="stat-chip"><span class="stat-label">🛡️ Abwehr</span><span class="stat-value">4</span></div>
+        <div class="stat-chip"><span class="stat-label">👟 Bew.</span><span class="stat-value">3</span></div>
+        <div class="stat-chip"><span class="stat-label">⚔️ Fernk.</span><span class="stat-value">+2 <span style="font-size:6.8pt; font-weight:bold;">(1D)</span></span></div>
+      </div>
+      <div class="rules-box">
+        <div>
+          <div class="section-header"><span>📜 Sonderregel</span></div>
+          <div class="rule-item"><span class="rule-tag">Abstand halten:</span> Steht ein Held angrenzend, weicht er 2 Felder zurück (provoziert keinen Gelegenheitsangriff) und schießt.</div>
+        </div>
+        <div>
+          <div class="section-header"><span>⚔️ Verhalten</span></div>
+          <ul class="ai-step-list">
+            <li class="ai-step"><span class="step-num">1.</span><span><strong class="step-title">Zielwahl:</strong> Visiert den Helden mit den wenigsten LP in Sichtlinie an (Reichweite 4).</span></li>
+            <li class="ai-step"><span class="step-num">2.</span><span><strong class="step-title">Schuss:</strong> Knochenbogen &bull; <strong>1d6 + 2</strong> gegen VT (erzielt <strong>1 Schaden</strong>).</span></li>
+            <li class="ai-step"><span class="step-num">3.</span><span><strong class="step-title">Ausweichen:</strong> Zieht sich bei Bedrängnis in hintere Deckung zurück.</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span>💀 Bestiarium Imperialis</span>
+        <span>#02 / 12</span>
+        <span class="bounty-pill">💰 1 Gold</span>
+      </div>
+    </div>
+    <div class="tarot-face back-face">
+      <img class="card-back-img" src="art_assets/MasterArtwork/Cards/Card Backs/vintage_medieval_woodcut_etching_of_a_monstrous_grimoire_cove_3d567044-557c-4aad-aa98-7cdc5a5ff889_2.png" alt="Rückseite">
+      <div class="back-title-overlay"><div class="fraktur-title">Bestiarium Imperialis</div></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ========================================================================= -->
+<!-- BOGEN 2 (SEITE 2 / 6): #03 Skelettkrieger & #04 Riesenspinne              -->
+<!-- ========================================================================= -->
+<div class="page" id="page2">
+  <svg class="crop-svg" viewBox="0 0 210 297" width="210mm" height="297mm">
+    <line x1="25" y1="18" x2="33" y2="18" class="mark-cut"/><line x1="35" y1="8" x2="35" y2="16" class="mark-cut"/><line x1="105" y1="7" x2="105" y2="16" class="mark-fold"/><text x="105" y="5.5" text-anchor="middle" class="mark-txt">▼ FALZLINIE (GUTTER-FOLD) ▼</text><line x1="177" y1="18" x2="185" y2="18" class="mark-cut"/><line x1="175" y1="8" x2="175" y2="16" class="mark-cut"/>
+    <line x1="25" y1="138" x2="33" y2="138" class="mark-cut"/><line x1="35" y1="140" x2="35" y2="148" class="mark-cut"/><line x1="105" y1="139" x2="105" y2="148" class="mark-fold"/><line x1="177" y1="138" x2="185" y2="138" class="mark-cut"/><line x1="175" y1="140" x2="175" y2="148" class="mark-cut"/><line x1="105" y1="18" x2="105" y2="138" stroke="#777777" stroke-width="0.15" stroke-dasharray="2, 2" opacity="0.6"/>
+    <line x1="25" y1="153" x2="33" y2="153" class="mark-cut"/><line x1="35" y1="145" x2="35" y2="151" class="mark-cut"/><line x1="105" y1="144" x2="105" y2="151" class="mark-fold"/><line x1="177" y1="153" x2="185" y2="153" class="mark-cut"/><line x1="175" y1="145" x2="175" y2="151" class="mark-cut"/>
+    <line x1="25" y1="273" x2="33" y2="273" class="mark-cut"/><line x1="35" y1="275" x2="35" y2="283" class="mark-cut"/><line x1="105" y1="275" x2="105" y2="284" class="mark-fold"/><text x="105" y="287" text-anchor="middle" class="mark-txt">▲ FALZLINIE (GUTTER-FOLD) ▲</text><line x1="177" y1="273" x2="185" y2="273" class="mark-cut"/><line x1="175" y1="275" x2="175" y2="283" class="mark-cut"/><line x1="105" y1="153" x2="105" y2="273" stroke="#777777" stroke-width="0.15" stroke-dasharray="2, 2" opacity="0.6"/>
+  </svg>
+
+  <!-- KARTE 3: SKELETTKRIEGER (#03) -->
+  <div class="card-pair pos-1">
+    <div class="tarot-face front-face">
+      <div class="card-border-frame"></div>
+      <div class="card-border-inner"></div>
+      <div class="card-header">
+        <div class="header-top-row"><span class="stars">★★☆</span><span class="init-pill">INIT: 3</span></div>
+        <h2 class="card-title">Skelettkrieger</h2>
+        <p class="card-subtitle">◈ Standard · Untoter Nahkämpfer</p>
+      </div>
+      <div class="art-container">
+        <img class="monster-art" src="art_assets/MasterArtwork/Monsters/Color/full_body_shot_of_an_ancient_skeleton_warrior_in_a_dynamic_ag_aad26a7a-5551-4cee-9a94-24e811354d8b_0.png" alt="Skelettkrieger">
+        <div class="art-vignette"></div>
+      </div>
+      <div class="lore-box">
+        <p class="lore-text">»Klappernde Gebeine in rostzerfressenem Eisen, gebunden an den ewigen Willen ihres Meisters. Sie kennen weder Furcht noch Gnade.«</p>
+      </div>
+      <div class="stat-ribbon">
+        <div class="stat-chip highlight-red"><span class="stat-label">❤️ Leben</span><span class="stat-value">4</span></div>
+        <div class="stat-chip"><span class="stat-label">🛡️ Abwehr</span><span class="stat-value">6</span></div>
+        <div class="stat-chip"><span class="stat-label">👟 Bew.</span><span class="stat-value">3</span></div>
+        <div class="stat-chip"><span class="stat-label">⚔️ Angriff</span><span class="stat-value">+2 <span style="font-size:6.8pt; font-weight:bold;">(2D)</span></span></div>
+      </div>
+      <div class="rules-box">
+        <div>
+          <div class="section-header"><span>📜 Sonderregel</span></div>
+          <div class="rule-item"><span class="rule-tag">Untot:</span> Immun gegen die Zustände <span style="font-weight:600;">Vergiftet</span> &amp; <span style="font-weight:600;">Brennend</span> (kein periodischer Rundenschaden).</div>
+        </div>
+        <div>
+          <div class="section-header"><span>⚔️ Verhalten</span></div>
+          <ul class="ai-step-list">
+            <li class="ai-step"><span class="step-num">1.</span><span><strong class="step-title">Ziel &amp; Marsch:</strong> Zieht auf kürzestem Weg auf Helden mit der <span style="font-weight:600;">höchsten Rüstung</span> zu.</span></li>
+            <li class="ai-step"><span class="step-num">2.</span><span><strong class="step-title">Angriff:</strong> Rostschwert &bull; Würfle <strong>1d6 + 2</strong> gegen VT (erzielt <strong style="color:#8c1d18;">2 Schaden</strong>).</span></li>
+            <li class="ai-step"><span class="step-num">3.</span><span><strong class="step-title">Schildwall:</strong> Steht zweites Skelett angrenzend: beide erhalten <strong>+1 VT</strong>.</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span>💀 Bestiarium Imperialis</span>
+        <span>#03 / 12</span>
+        <span class="bounty-pill">💰 1 Gold</span>
+      </div>
+    </div>
+    <div class="tarot-face back-face">
+      <img class="card-back-img" src="art_assets/MasterArtwork/Cards/Card Backs/vintage_medieval_woodcut_etching_of_a_monstrous_grimoire_cove_3d567044-557c-4aad-aa98-7cdc5a5ff889_2.png" alt="Rückseite">
+      <div class="back-title-overlay"><div class="fraktur-title">Bestiarium Imperialis</div></div>
+    </div>
+  </div>
+
+  <!-- KARTE 4: RIESENSPINNE (#04) -->
+  <div class="card-pair pos-2">
+    <div class="tarot-face front-face">
+      <div class="card-border-frame"></div>
+      <div class="card-border-inner"></div>
+      <div class="card-header">
+        <div class="header-top-row"><span class="stars">★★☆</span><span class="init-pill">INIT: 5</span></div>
+        <h2 class="card-title">Riesenspinne</h2>
+        <p class="card-subtitle">◈ Standard · Lauerjäger &amp; Gift</p>
+      </div>
+      <div class="art-container">
+        <img class="monster-art" src="art_assets/MasterArtwork/Monsters/Color/full_body_shot_of_a_giant_monstrous_spider_in_an_aggressive_c_9f1e4520-2d86-4799-abbd-f0dc2a8ff7dc_1.png" alt="Riesenspinne">
+        <div class="art-vignette"></div>
+      </div>
+      <div class="lore-box">
+        <p class="lore-text">»Lautlose Raubtiere in den staubigen Deckengewölben. Sie lauern reglos, bis Beute in ihr klebriges Gespinst stolpert.«</p>
+      </div>
+      <div class="stat-ribbon">
+        <div class="stat-chip highlight-red"><span class="stat-label">❤️ Leben</span><span class="stat-value">5</span></div>
+        <div class="stat-chip"><span class="stat-label">🛡️ Abwehr</span><span class="stat-value">5</span></div>
+        <div class="stat-chip"><span class="stat-label">👟 Bew.</span><span class="stat-value">4</span></div>
+        <div class="stat-chip"><span class="stat-label">⚔️ Angriff</span><span class="stat-value">+2 <span style="font-size:6.8pt; font-weight:bold;">(1D)</span></span></div>
+      </div>
+      <div class="rules-box">
+        <div>
+          <div class="section-header"><span>📜 Sonderregel</span></div>
+          <div class="rule-item"><span class="rule-tag">Giftbiss:</span> Bei Treffer muss Ziel <strong>ZÄH vs SG 6</strong> bestehen oder wird <span style="font-weight:600;">Vergiftet</span> (-1 auf alle Würfe). Klettert über Hindernisse.</div>
+        </div>
+        <div>
+          <div class="section-header"><span>⚔️ Verhalten</span></div>
+          <ul class="ai-step-list">
+            <li class="ai-step"><span class="step-num">1.</span><span><strong class="step-title">Netzwurf (1×):</strong> Schleudert Netz (R3) &bull; Ziel muss GES vs SG 6 oder wird <span style="font-weight:600;">Verlangsamt</span>.</span></li>
+            <li class="ai-step"><span class="step-num">2.</span><span><strong class="step-title">Anspringen:</strong> Zieht auf den Helden mit dem niedrigsten ZÄH-Wert zu.</span></li>
+            <li class="ai-step"><span class="step-num">3.</span><span><strong class="step-title">Biss:</strong> <strong>1d6 + 2</strong> gegen VT (<strong>1 Schaden + Gift</strong>).</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span>💀 Bestiarium Imperialis</span>
+        <span>#04 / 12</span>
+        <span class="bounty-pill">💰 2 Gold</span>
+      </div>
+    </div>
+    <div class="tarot-face back-face">
+      <img class="card-back-img" src="art_assets/MasterArtwork/Cards/Card Backs/vintage_medieval_woodcut_etching_of_a_monstrous_grimoire_cove_3d567044-557c-4aad-aa98-7cdc5a5ff889_2.png" alt="Rückseite">
+      <div class="back-title-overlay"><div class="fraktur-title">Bestiarium Imperialis</div></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ========================================================================= -->
+<!-- BOGEN 3 (SEITE 3 / 6): #05 Ödland-Worg & #06 Grabunhold                     -->
+<!-- ========================================================================= -->
+<div class="page" id="page3">
+  <svg class="crop-svg" viewBox="0 0 210 297" width="210mm" height="297mm">
+    <line x1="25" y1="18" x2="33" y2="18" class="mark-cut"/><line x1="35" y1="8" x2="35" y2="16" class="mark-cut"/><line x1="105" y1="7" x2="105" y2="16" class="mark-fold"/><text x="105" y="5.5" text-anchor="middle" class="mark-txt">▼ FALZLINIE (GUTTER-FOLD) ▼</text><line x1="177" y1="18" x2="185" y2="18" class="mark-cut"/><line x1="175" y1="8" x2="175" y2="16" class="mark-cut"/>
+    <line x1="25" y1="138" x2="33" y2="138" class="mark-cut"/><line x1="35" y1="140" x2="35" y2="148" class="mark-cut"/><line x1="105" y1="139" x2="105" y2="148" class="mark-fold"/><line x1="177" y1="138" x2="185" y2="138" class="mark-cut"/><line x1="175" y1="140" x2="175" y2="148" class="mark-cut"/><line x1="105" y1="18" x2="105" y2="138" stroke="#777777" stroke-width="0.15" stroke-dasharray="2, 2" opacity="0.6"/>
+    <line x1="25" y1="153" x2="33" y2="153" class="mark-cut"/><line x1="35" y1="145" x2="35" y2="151" class="mark-cut"/><line x1="105" y1="144" x2="105" y2="151" class="mark-fold"/><line x1="177" y1="153" x2="185" y2="153" class="mark-cut"/><line x1="175" y1="145" x2="175" y2="151" class="mark-cut"/>
+    <line x1="25" y1="273" x2="33" y2="273" class="mark-cut"/><line x1="35" y1="275" x2="35" y2="283" class="mark-cut"/><line x1="105" y1="275" x2="105" y2="284" class="mark-fold"/><text x="105" y="287" text-anchor="middle" class="mark-txt">▲ FALZLINIE (GUTTER-FOLD) ▲</text><line x1="177" y1="273" x2="185" y2="273" class="mark-cut"/><line x1="175" y1="275" x2="175" y2="283" class="mark-cut"/><line x1="105" y1="153" x2="105" y2="273" stroke="#777777" stroke-width="0.15" stroke-dasharray="2, 2" opacity="0.6"/>
+  </svg>
+
+  <!-- KARTE 5: ÖDLAND-WORG (#05) -->
+  <div class="card-pair pos-1">
+    <div class="tarot-face front-face">
+      <div class="card-border-frame"></div>
+      <div class="card-border-inner"></div>
+      <div class="card-header">
+        <div class="header-top-row"><span class="stars">★★☆</span><span class="init-pill">INIT: 6</span></div>
+        <h2 class="card-title">Ödland-Worg</h2>
+        <p class="card-subtitle">◈ Elite · Schneller Flankierer</p>
+      </div>
+      <div class="art-container">
+        <img class="monster-art" src="art_assets/MasterArtwork/Monsters/Color/full_body_shot_of_a_ferocious_wasteland_worg_in_an_aggressive_c3f44896-0e11-4b75-998e-e5fecf3c6958_3.png" alt="Ödland-Worg">
+        <div class="art-vignette"></div>
+      </div>
+      <div class="lore-box">
+        <p class="lore-text">»Verwilderte Bestien aus den Tundren des Nordens. Vom Geruch frischen Blutes getrieben, jagen sie stets im reißenden Rudel.«</p>
+      </div>
+      <div class="stat-ribbon">
+        <div class="stat-chip highlight-red"><span class="stat-label">❤️ Leben</span><span class="stat-value">6</span></div>
+        <div class="stat-chip"><span class="stat-label">🛡️ Abwehr</span><span class="stat-value">5</span></div>
+        <div class="stat-chip"><span class="stat-label">👟 Bew.</span><span class="stat-value">5</span></div>
+        <div class="stat-chip"><span class="stat-label">⚔️ Angriff</span><span class="stat-value">+3 <span style="font-size:6.8pt; font-weight:bold;">(2D)</span></span></div>
+      </div>
+      <div class="rules-box">
+        <div>
+          <div class="section-header"><span>📜 Sonderregel</span></div>
+          <div class="rule-item"><span class="rule-tag">Niederschlagen:</span> Bei einer gewürfelten <strong>6</strong> auf den Angriff wird das Ziel zu Boden gerissen (<span style="font-weight:600;">Betäubt</span> / verliert nächsten Zug).</div>
+        </div>
+        <div>
+          <div class="section-header"><span>⚔️ Verhalten</span></div>
+          <ul class="ai-step-list">
+            <li class="ai-step"><span class="step-num">1.</span><span><strong class="step-title">Flankieren:</strong> Umgeht den Front-Krieger und stürmt auf den <em>hintersten</em> Helden.</span></li>
+            <li class="ai-step"><span class="step-num">2.</span><span><strong class="step-title">Reißbiss:</strong> <strong>1d6 + 3</strong> gegen VT (<strong style="color:#8c1d18;">2 Schaden</strong>).</span></li>
+            <li class="ai-step"><span class="step-num">3.</span><span><strong class="step-title">Rudeltrieb:</strong> Steht ein Verbündeter am selben Ziel: <strong>+1 Schaden</strong>.</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span>💀 Bestiarium Imperialis</span>
+        <span>#05 / 12</span>
+        <span class="bounty-pill">💰 2 Gold</span>
+      </div>
+    </div>
+    <div class="tarot-face back-face">
+      <img class="card-back-img" src="art_assets/MasterArtwork/Cards/Card Backs/vintage_medieval_woodcut_etching_of_a_monstrous_grimoire_cove_3d567044-557c-4aad-aa98-7cdc5a5ff889_2.png" alt="Rückseite">
+      <div class="back-title-overlay"><div class="fraktur-title">Bestiarium Imperialis</div></div>
+    </div>
+  </div>
+
+  <!-- KARTE 6: GRABUNHOLD (#06) -->
+  <div class="card-pair pos-2">
+    <div class="tarot-face front-face">
+      <div class="card-border-frame"></div>
+      <div class="card-border-inner"></div>
+      <div class="card-header">
+        <div class="header-top-row"><span class="stars">★★★</span><span class="init-pill">INIT: 2</span></div>
+        <h2 class="card-title">Grabunhold</h2>
+        <p class="card-subtitle">◈ Mini-Boss · Groß (1×2 Felder)</p>
+      </div>
+      <div class="art-container">
+        <img class="monster-art" src="art_assets/MasterArtwork/Monsters/Color/Full_body_shot_of_a_colossal_undead_zombie_giant_brute_in_an__01306d8c-e182-4de3-90f1-bc9926b19357_1.png" alt="Grabunhold">
+        <div class="art-vignette"></div>
+      </div>
+      <div class="lore-box">
+        <p class="lore-text">»Ein uralter Koloss aus verfluchtem Erz und Moder. Er blockiert schmale Gänge und zerschmettert Knochen mit dumpfer Wucht.«</p>
+      </div>
+      <div class="stat-ribbon">
+        <div class="stat-chip highlight-red"><span class="stat-label">❤️ Leben</span><span class="stat-value">14</span></div>
+        <div class="stat-chip"><span class="stat-label">🛡️ VT / RÜST</span><span class="stat-value">7 <span style="font-size:6.5pt; font-weight:bold;">(-1)</span></span></div>
+        <div class="stat-chip"><span class="stat-label">👟 Bew.</span><span class="stat-value">2</span></div>
+        <div class="stat-chip"><span class="stat-label">⚔️ Keule</span><span class="stat-value">+3 <span style="font-size:6.8pt; font-weight:bold;">(3D)</span></span></div>
+      </div>
+      <div class="rules-box">
+        <div>
+          <div class="section-header"><span>📜 Sonderregel</span></div>
+          <div class="rule-item"><span class="rule-tag">Zäh wie Granit:</span> Immun gegen Betäubt &amp; Wegstoßen. Rüstung 1 (-1 erlittener Schaden). Belegt 1×2 Felder.</div>
+        </div>
+        <div>
+          <div class="section-header"><span>⚔️ Verhalten</span></div>
+          <ul class="ai-step-list">
+            <li class="ai-step"><span class="step-num">1.</span><span><strong class="step-title">Machtpräsenz:</strong> Zieht auf den Helden zu, der ihm zuletzt am meisten schadete.</span></li>
+            <li class="ai-step"><span class="step-num">2.</span><span><strong class="step-title">Rundumschlag:</strong> Grenzt ≥ 2 Helden an: <strong>2 Schaden</strong> gegen <em>alle</em> Angrenzenden!</span></li>
+            <li class="ai-step"><span class="step-num">3.</span><span><strong class="step-title">Zertrümmern:</strong> Sonst Keulenhieb: <strong>1d6 + 3</strong> (<strong>3 Schaden</strong>).</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span>💀 Bestiarium Imperialis</span>
+        <span>#06 / 12</span>
+        <span class="bounty-pill">💰 5G + 1 Loot</span>
+      </div>
+    </div>
+    <div class="tarot-face back-face">
+      <img class="card-back-img" src="art_assets/MasterArtwork/Cards/Card Backs/vintage_medieval_woodcut_etching_of_a_monstrous_grimoire_cove_3d567044-557c-4aad-aa98-7cdc5a5ff889_2.png" alt="Rückseite">
+      <div class="back-title-overlay"><div class="fraktur-title">Bestiarium Imperialis</div></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ========================================================================= -->
+<!-- BOGEN 4 (SEITE 4 / 6): #07 Kultist des Schattens & #08 Moor-Ghul          -->
+<!-- ========================================================================= -->
+<div class="page" id="page4">
+  <svg class="crop-svg" viewBox="0 0 210 297" width="210mm" height="297mm">
+    <line x1="25" y1="18" x2="33" y2="18" class="mark-cut"/><line x1="35" y1="8" x2="35" y2="16" class="mark-cut"/><line x1="105" y1="7" x2="105" y2="16" class="mark-fold"/><text x="105" y="5.5" text-anchor="middle" class="mark-txt">▼ FALZLINIE (GUTTER-FOLD) ▼</text><line x1="177" y1="18" x2="185" y2="18" class="mark-cut"/><line x1="175" y1="8" x2="175" y2="16" class="mark-cut"/>
+    <line x1="25" y1="138" x2="33" y2="138" class="mark-cut"/><line x1="35" y1="140" x2="35" y2="148" class="mark-cut"/><line x1="105" y1="139" x2="105" y2="148" class="mark-fold"/><line x1="177" y1="138" x2="185" y2="138" class="mark-cut"/><line x1="175" y1="140" x2="175" y2="148" class="mark-cut"/><line x1="105" y1="18" x2="105" y2="138" stroke="#777777" stroke-width="0.15" stroke-dasharray="2, 2" opacity="0.6"/>
+    <line x1="25" y1="153" x2="33" y2="153" class="mark-cut"/><line x1="35" y1="145" x2="35" y2="151" class="mark-cut"/><line x1="105" y1="144" x2="105" y2="151" class="mark-fold"/><line x1="177" y1="153" x2="185" y2="153" class="mark-cut"/><line x1="175" y1="145" x2="175" y2="151" class="mark-cut"/>
+    <line x1="25" y1="273" x2="33" y2="273" class="mark-cut"/><line x1="35" y1="275" x2="35" y2="283" class="mark-cut"/><line x1="105" y1="275" x2="105" y2="284" class="mark-fold"/><text x="105" y="287" text-anchor="middle" class="mark-txt">▲ FALZLINIE (GUTTER-FOLD) ▲</text><line x1="177" y1="273" x2="185" y2="273" class="mark-cut"/><line x1="175" y1="275" x2="175" y2="283" class="mark-cut"/><line x1="105" y1="153" x2="105" y2="273" stroke="#777777" stroke-width="0.15" stroke-dasharray="2, 2" opacity="0.6"/>
+  </svg>
+
+  <!-- KARTE 7: KULTIST DES SCHATTENS (#07) -->
+  <div class="card-pair pos-1">
+    <div class="tarot-face front-face">
+      <div class="card-border-frame"></div>
+      <div class="card-border-inner"></div>
+      <div class="card-header">
+        <div class="header-top-row"><span class="stars">★☆☆</span><span class="init-pill">INIT: 4</span></div>
+        <h2 class="card-title">Schattenkultist</h2>
+        <p class="card-subtitle">◈ Standard · Magie-Unterstützer</p>
+      </div>
+      <div class="art-container">
+        <img class="monster-art" src="art_assets/MasterArtwork/Monsters/Color/full_body_shot_of_a_void_cultist_sorcerer_in_an_active_combat_d5380ce8-06f9-4916-adf2-57707c899cf9_3.png" alt="Kultist des Schattens">
+        <div class="art-vignette"></div>
+      </div>
+      <div class="lore-box">
+        <p class="lore-text">»Verblendete Fanatiker des Kaisertums, die dem Flüstern des Lich-Königs erlegen sind und dunkle Rituale vollziehen.«</p>
+      </div>
+      <div class="stat-ribbon">
+        <div class="stat-chip highlight-red"><span class="stat-label">❤️ Leben</span><span class="stat-value">3</span></div>
+        <div class="stat-chip"><span class="stat-label">🛡️ Abwehr</span><span class="stat-value">4</span></div>
+        <div class="stat-chip"><span class="stat-label">👟 Bew.</span><span class="stat-value">3</span></div>
+        <div class="stat-chip"><span class="stat-label">⚔️ Magie</span><span class="stat-value">+2 <span style="font-size:6.8pt; font-weight:bold;">(1D)</span></span></div>
+      </div>
+      <div class="rules-box">
+        <div>
+          <div class="section-header"><span>📜 Sonderregel</span></div>
+          <div class="rule-item"><span class="rule-tag">Dunkles Ritual:</span> Angrenzende Untote erhalten <strong>+1 Schaden</strong> auf all ihre Angriffe.</div>
+        </div>
+        <div>
+          <div class="section-header"><span>⚔️ Verhalten</span></div>
+          <ul class="ai-step-list">
+            <li class="ai-step"><span class="step-num">1.</span><span><strong class="step-title">Opferblut:</strong> Fällt ein Untoter &lt; 2 LP, heilt er ihn um 2 LP (verliert selbst 1 LP).</span></li>
+            <li class="ai-step"><span class="step-num">2.</span><span><strong class="step-title">Abstand:</strong> Weicht vor Nahkämpfern zurück und schießt aus Distanz.</span></li>
+            <li class="ai-step"><span class="step-num">3.</span><span><strong class="step-title">Seelenschuss:</strong> <strong>1d6 + 2</strong> gegen VT (<strong>1 nekrotischer Schaden</strong>; bei 6 Verlangsamt).</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span>💀 Bestiarium Imperialis</span>
+        <span>#07 / 12</span>
+        <span class="bounty-pill">💰 1 Gold</span>
+      </div>
+    </div>
+    <div class="tarot-face back-face">
+      <img class="card-back-img" src="art_assets/MasterArtwork/Cards/Card Backs/vintage_medieval_woodcut_etching_of_a_monstrous_grimoire_cove_3d567044-557c-4aad-aa98-7cdc5a5ff889_2.png" alt="Rückseite">
+      <div class="back-title-overlay"><div class="fraktur-title">Bestiarium Imperialis</div></div>
+    </div>
+  </div>
+
+  <!-- KARTE 8: MOOR-GHUL (#08) -->
+  <div class="card-pair pos-2">
+    <div class="tarot-face front-face">
+      <div class="card-border-frame"></div>
+      <div class="card-border-inner"></div>
+      <div class="card-header">
+        <div class="header-top-row"><span class="stars">★★☆</span><span class="init-pill">INIT: 5</span></div>
+        <h2 class="card-title">Moor-Ghul</h2>
+        <p class="card-subtitle">◈ Standard · Aasfresser &amp; Seuche</p>
+      </div>
+      <div class="art-container">
+        <img class="monster-art" src="art_assets/MasterArtwork/Monsters/Color/full_body_shot_of_a_savage_carrion_ghoul_in_a_feral_lunging_c_d3df9518-4830-476f-987b-41af56d7af24_3.png" alt="Moor-Ghul">
+        <div class="art-vignette"></div>
+      </div>
+      <div class="lore-box">
+        <p class="lore-text">»Verrottete, fiebrige Kreaturen aus den fauligen Gräbern des Moors. Sie nähren sich gierig am Fleisch gefallener Kämpfer.«</p>
+      </div>
+      <div class="stat-ribbon">
+        <div class="stat-chip highlight-red"><span class="stat-label">❤️ Leben</span><span class="stat-value">4</span></div>
+        <div class="stat-chip"><span class="stat-label">🛡️ Abwehr</span><span class="stat-value">5</span></div>
+        <div class="stat-chip"><span class="stat-label">👟 Bew.</span><span class="stat-value">5</span></div>
+        <div class="stat-chip"><span class="stat-label">⚔️ Krallen</span><span class="stat-value">+2 <span style="font-size:6.8pt; font-weight:bold;">(1D)</span></span></div>
+      </div>
+      <div class="rules-box">
+        <div>
+          <div class="section-header"><span>📜 Sonderregel</span></div>
+          <div class="rule-item"><span class="rule-tag">Leichenfraß:</span> Steht der Ghul auf dem Feld einer besiegten Figur, regeneriert er am Rundenende <strong>2 LP</strong>.</div>
+        </div>
+        <div>
+          <div class="section-header"><span>⚔️ Verhalten</span></div>
+          <ul class="ai-step-list">
+            <li class="ai-step"><span class="step-num">1.</span><span><strong class="step-title">Blutgeruch:</strong> Stürmt mit 5 Feldern auf den Helden mit den wenigsten LP zu.</span></li>
+            <li class="ai-step"><span class="step-num">2.</span><span><strong class="step-title">Zerfleischen:</strong> <strong>1d6 + 2</strong> gegen VT (<strong>1 Schaden</strong>).</span></li>
+            <li class="ai-step"><span class="step-num">3.</span><span><strong class="step-title">Seuchenbiss:</strong> Bei Treffer muss Held ZÄH vs SG 6 bestehen oder wird <span style="font-weight:600;">Vergiftet</span>.</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span>💀 Bestiarium Imperialis</span>
+        <span>#08 / 12</span>
+        <span class="bounty-pill">💰 1 Gold</span>
+      </div>
+    </div>
+    <div class="tarot-face back-face">
+      <img class="card-back-img" src="art_assets/MasterArtwork/Cards/Card Backs/vintage_medieval_woodcut_etching_of_a_monstrous_grimoire_cove_3d567044-557c-4aad-aa98-7cdc5a5ff889_2.png" alt="Rückseite">
+      <div class="back-title-overlay"><div class="fraktur-title">Bestiarium Imperialis</div></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ========================================================================= -->
+<!-- BOGEN 5 (SEITE 5 / 6): #09 Skelett-Scharfschütze & #10 Todesritter        -->
+<!-- ========================================================================= -->
+<div class="page" id="page5">
+  <svg class="crop-svg" viewBox="0 0 210 297" width="210mm" height="297mm">
+    <line x1="25" y1="18" x2="33" y2="18" class="mark-cut"/><line x1="35" y1="8" x2="35" y2="16" class="mark-cut"/><line x1="105" y1="7" x2="105" y2="16" class="mark-fold"/><text x="105" y="5.5" text-anchor="middle" class="mark-txt">▼ FALZLINIE (GUTTER-FOLD) ▼</text><line x1="177" y1="18" x2="185" y2="18" class="mark-cut"/><line x1="175" y1="8" x2="175" y2="16" class="mark-cut"/>
+    <line x1="25" y1="138" x2="33" y2="138" class="mark-cut"/><line x1="35" y1="140" x2="35" y2="148" class="mark-cut"/><line x1="105" y1="139" x2="105" y2="148" class="mark-fold"/><line x1="177" y1="138" x2="185" y2="138" class="mark-cut"/><line x1="175" y1="140" x2="175" y2="148" class="mark-cut"/><line x1="105" y1="18" x2="105" y2="138" stroke="#777777" stroke-width="0.15" stroke-dasharray="2, 2" opacity="0.6"/>
+    <line x1="25" y1="153" x2="33" y2="153" class="mark-cut"/><line x1="35" y1="145" x2="35" y2="151" class="mark-cut"/><line x1="105" y1="144" x2="105" y2="151" class="mark-fold"/><line x1="177" y1="153" x2="185" y2="153" class="mark-cut"/><line x1="175" y1="145" x2="175" y2="151" class="mark-cut"/>
+    <line x1="25" y1="273" x2="33" y2="273" class="mark-cut"/><line x1="35" y1="275" x2="35" y2="283" class="mark-cut"/><line x1="105" y1="275" x2="105" y2="284" class="mark-fold"/><text x="105" y="287" text-anchor="middle" class="mark-txt">▲ FALZLINIE (GUTTER-FOLD) ▲</text><line x1="177" y1="273" x2="185" y2="273" class="mark-cut"/><line x1="175" y1="275" x2="175" y2="283" class="mark-cut"/><line x1="105" y1="153" x2="105" y2="273" stroke="#777777" stroke-width="0.15" stroke-dasharray="2, 2" opacity="0.6"/>
+  </svg>
+
+  <!-- KARTE 9: SKELETT-SCHARFSCHÜTZE (#09) -->
+  <div class="card-pair pos-1">
+    <div class="tarot-face front-face">
+      <div class="card-border-frame"></div>
+      <div class="card-border-inner"></div>
+      <div class="card-header">
+        <div class="header-top-row"><span class="stars">★★☆</span><span class="init-pill">INIT: 4</span></div>
+        <h2 class="card-title">Skelett-Schütze</h2>
+        <p class="card-subtitle">◈ Standard · Tödlicher Fernkämpfer</p>
+      </div>
+      <div class="art-container">
+        <img class="monster-art" src="art_assets/MasterArtwork/Monsters/Color/full_body_shot_of_an_ancient_skeletal_bone_marksman_in_an_agg_2d582fd7-95f4-48c9-ba70-cdb171562e34_0.png" alt="Skelett-Scharfschütze">
+        <div class="art-vignette"></div>
+      </div>
+      <div class="lore-box">
+        <p class="lore-text">»Alte imperiale Meisterschützen, deren knöcherne Finger selbst im Tod niemals zittern und Kälte spüren.«</p>
+      </div>
+      <div class="stat-ribbon">
+        <div class="stat-chip highlight-red"><span class="stat-label">❤️ Leben</span><span class="stat-value">3</span></div>
+        <div class="stat-chip"><span class="stat-label">🛡️ Abwehr</span><span class="stat-value">5</span></div>
+        <div class="stat-chip"><span class="stat-label">👟 Bew.</span><span class="stat-value">3</span></div>
+        <div class="stat-chip"><span class="stat-label">⚔️ Langb.</span><span class="stat-value">+3 <span style="font-size:6.8pt; font-weight:bold;">(2D)</span></span></div>
+      </div>
+      <div class="rules-box">
+        <div>
+          <div class="section-header"><span>📜 Sonderregel</span></div>
+          <div class="rule-item"><span class="rule-tag">Geisterpfeil:</span> Ignoriert Deckung durch Säulen oder befreundete Figuren. Immun gegen Gift &amp; Brennen.</div>
+        </div>
+        <div>
+          <div class="section-header"><span>⚔️ Verhalten</span></div>
+          <ul class="ai-step-list">
+            <li class="ai-step"><span class="step-num">1.</span><span><strong class="step-title">Lauerstellung:</strong> Hält nach Möglichkeit maximale Distanz (Reichweite 5).</span></li>
+            <li class="ai-step"><span class="step-num">2.</span><span><strong class="step-title">Zielsucher:</strong> Visiert ungeschützte Zauberer oder Waldläufer an (geringste VT).</span></li>
+            <li class="ai-step"><span class="step-num">3.</span><span><strong class="step-title">Präzisionsschuss:</strong> <strong>1d6 + 3</strong> gegen VT (<strong style="color:#8c1d18;">2 Schaden</strong>).</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span>💀 Bestiarium Imperialis</span>
+        <span>#09 / 12</span>
+        <span class="bounty-pill">💰 2 Gold</span>
+      </div>
+    </div>
+    <div class="tarot-face back-face">
+      <img class="card-back-img" src="art_assets/MasterArtwork/Cards/Card Backs/vintage_medieval_woodcut_etching_of_a_monstrous_grimoire_cove_3d567044-557c-4aad-aa98-7cdc5a5ff889_2.png" alt="Rückseite">
+      <div class="back-title-overlay"><div class="fraktur-title">Bestiarium Imperialis</div></div>
+    </div>
+  </div>
+
+  <!-- KARTE 10: TODESRITTER / WIGHT (#10) -->
+  <div class="card-pair pos-2">
+    <div class="tarot-face front-face">
+      <div class="card-border-frame"></div>
+      <div class="card-border-inner"></div>
+      <div class="card-header">
+        <div class="header-top-row"><span class="stars">★★★</span><span class="init-pill">INIT: 3</span></div>
+        <h2 class="card-title">Todesritter</h2>
+        <p class="card-subtitle">◈ Elite · Gepanzerter Hügelfürst</p>
+      </div>
+      <div class="art-container">
+        <img class="monster-art" src="art_assets/MasterArtwork/Monsters/Color/full_body_shot_of_an_ancient_undead_wight_champion_knight_in__130085ff-01fa-43bb-bd9a-02c87ee00339_3.png" alt="Todesritter">
+        <div class="art-vignette"></div>
+      </div>
+      <div class="lore-box">
+        <p class="lore-text">»Uralte Kriegsherren des Nordens, erweckt zu ewigem, hasserfülltem Dienst unter verfluchten Runenbannern.«</p>
+      </div>
+      <div class="stat-ribbon">
+        <div class="stat-chip highlight-red"><span class="stat-label">❤️ Leben</span><span class="stat-value">8</span></div>
+        <div class="stat-chip"><span class="stat-label">🛡️ VT / RÜST</span><span class="stat-value">7 <span style="font-size:6.5pt; font-weight:bold;">(-1)</span></span></div>
+        <div class="stat-chip"><span class="stat-label">👟 Bew.</span><span class="stat-value">3</span></div>
+        <div class="stat-chip"><span class="stat-label">⚔️ Klinge</span><span class="stat-value">+3 <span style="font-size:6.8pt; font-weight:bold;">(2D)</span></span></div>
+      </div>
+      <div class="rules-box">
+        <div>
+          <div class="section-header"><span>📜 Sonderregel</span></div>
+          <div class="rule-item"><span class="rule-tag">Grabeskälte:</span> Angrenzende Helden verlieren 1 Bewegung. <em>Schildblock:</em> Pariert 1×/Runde den ersten Treffer (-1 Schaden).</div>
+        </div>
+        <div>
+          <div class="section-header"><span>⚔️ Verhalten</span></div>
+          <ul class="ai-step-list">
+            <li class="ai-step"><span class="step-num">1.</span><span><strong class="step-title">Herausforderung:</strong> Sucht gezielt den Nahkampf mit dem stärksten Helden.</span></li>
+            <li class="ai-step"><span class="step-num">2.</span><span><strong class="step-title">Runenschlag:</strong> <strong>1d6 + 3</strong> gegen VT (<strong>2 Schaden</strong>; bei Volltreffer 6 zusätzlich 1 Erschöpfung).</span></li>
+            <li class="ai-step"><span class="step-num">3.</span><span><strong class="step-title">Panzerung:</strong> Erleidet stets 1 Schaden weniger (Rüstung 1).</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span>💀 Bestiarium Imperialis</span>
+        <span>#10 / 12</span>
+        <span class="bounty-pill">💰 3 Gold</span>
+      </div>
+    </div>
+    <div class="tarot-face back-face">
+      <img class="card-back-img" src="art_assets/MasterArtwork/Cards/Card Backs/vintage_medieval_woodcut_etching_of_a_monstrous_grimoire_cove_3d567044-557c-4aad-aa98-7cdc5a5ff889_2.png" alt="Rückseite">
+      <div class="back-title-overlay"><div class="fraktur-title">Bestiarium Imperialis</div></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ========================================================================= -->
+<!-- BOGEN 6 (SEITE 6 / 6): #11 Blutgolem & #12 Lich-König Malakor               -->
+<!-- ========================================================================= -->
+<div class="page" id="page6">
+  <svg class="crop-svg" viewBox="0 0 210 297" width="210mm" height="297mm">
+    <line x1="25" y1="18" x2="33" y2="18" class="mark-cut"/><line x1="35" y1="8" x2="35" y2="16" class="mark-cut"/><line x1="105" y1="7" x2="105" y2="16" class="mark-fold"/><text x="105" y="5.5" text-anchor="middle" class="mark-txt">▼ FALZLINIE (GUTTER-FOLD) ▼</text><line x1="177" y1="18" x2="185" y2="18" class="mark-cut"/><line x1="175" y1="8" x2="175" y2="16" class="mark-cut"/>
+    <line x1="25" y1="138" x2="33" y2="138" class="mark-cut"/><line x1="35" y1="140" x2="35" y2="148" class="mark-cut"/><line x1="105" y1="139" x2="105" y2="148" class="mark-fold"/><line x1="177" y1="138" x2="185" y2="138" class="mark-cut"/><line x1="175" y1="140" x2="175" y2="148" class="mark-cut"/><line x1="105" y1="18" x2="105" y2="138" stroke="#777777" stroke-width="0.15" stroke-dasharray="2, 2" opacity="0.6"/>
+    <line x1="25" y1="153" x2="33" y2="153" class="mark-cut"/><line x1="35" y1="145" x2="35" y2="151" class="mark-cut"/><line x1="105" y1="144" x2="105" y2="151" class="mark-fold"/><line x1="177" y1="153" x2="185" y2="153" class="mark-cut"/><line x1="175" y1="145" x2="175" y2="151" class="mark-cut"/>
+    <line x1="25" y1="273" x2="33" y2="273" class="mark-cut"/><line x1="35" y1="275" x2="35" y2="283" class="mark-cut"/><line x1="105" y1="275" x2="105" y2="284" class="mark-fold"/><text x="105" y="287" text-anchor="middle" class="mark-txt">▲ FALZLINIE (GUTTER-FOLD) ▲</text><line x1="177" y1="273" x2="185" y2="273" class="mark-cut"/><line x1="175" y1="275" x2="175" y2="283" class="mark-cut"/><line x1="105" y1="153" x2="105" y2="273" stroke="#777777" stroke-width="0.15" stroke-dasharray="2, 2" opacity="0.6"/>
+  </svg>
+
+  <!-- KARTE 11: BLUTGOLEM (#11) -->
+  <div class="card-pair pos-1">
+    <div class="tarot-face front-face">
+      <div class="card-border-frame"></div>
+      <div class="card-border-inner"></div>
+      <div class="card-header">
+        <div class="header-top-row"><span class="stars">★★★</span><span class="init-pill">INIT: 2</span></div>
+        <h2 class="card-title">Der Blutgolem</h2>
+        <p class="card-subtitle">◈ Wächter-Elite · Groß (1×2 Felder)</p>
+      </div>
+      <div class="art-container">
+        <img class="monster-art" src="art_assets/MasterArtwork/Monsters/Color/full_body_shot_of_a_colossal_brute_blood_golem_in_a_savage_lu_e231e4cc-e869-4bfc-a2fa-7a6d9c4294b4_3.png" alt="Blutgolem">
+        <div class="art-vignette"></div>
+      </div>
+      <div class="lore-box">
+        <p class="lore-text">»Eine gewaltige, pulsierende Masse aus geronnenem Opferblut und geborstenen Knochen. Er saugt das Leben seiner Opfer auf.«</p>
+      </div>
+      <div class="stat-ribbon">
+        <div class="stat-chip highlight-red"><span class="stat-label">❤️ Leben</span><span class="stat-value">10</span></div>
+        <div class="stat-chip"><span class="stat-label">🛡️ Abwehr</span><span class="stat-value">6</span></div>
+        <div class="stat-chip"><span class="stat-label">👟 Bew.</span><span class="stat-value">3</span></div>
+        <div class="stat-chip"><span class="stat-label">⚔️ Fäuste</span><span class="stat-value">+3 <span style="font-size:6.8pt; font-weight:bold;">(2D)</span></span></div>
+      </div>
+      <div class="rules-box">
+        <div>
+          <div class="section-header"><span>📜 Sonderregel</span></div>
+          <div class="rule-item"><span class="rule-tag">Blutsauger:</span> Jeder Schaden, den er verursacht, <strong>heilt ihn zeitgleich</strong> um denselben Betrag! Kann nicht betäubt/verlangsamt werden.</div>
+        </div>
+        <div>
+          <div class="section-header"><span>⚔️ Verhalten</span></div>
+          <ul class="ai-step-list">
+            <li class="ai-step"><span class="step-num">1.</span><span><strong class="step-title">Blutdrang:</strong> Zieht auf den Helden mit den <em>meisten</em> LP zu (maximale Ernte).</span></li>
+            <li class="ai-step"><span class="step-num">2.</span><span><strong class="step-title">Zerschmettern:</strong> <strong>1d6 + 3</strong> gegen VT (<strong>2 Schaden &amp; Selbstheilung</strong>).</span></li>
+            <li class="ai-step"><span class="step-num">3.</span><span><strong class="step-title">Berstende Adern:</strong> Bei 0 LP explodiert er: <strong>2 Schaden</strong> auf alle angrenzenden Figuren (GES vs SG 6 halbiert).</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span>💀 Bestiarium Imperialis</span>
+        <span>#11 / 12</span>
+        <span class="bounty-pill">💰 4 Gold</span>
+      </div>
+    </div>
+    <div class="tarot-face back-face">
+      <img class="card-back-img" src="art_assets/MasterArtwork/Cards/Card Backs/vintage_medieval_woodcut_etching_of_a_monstrous_grimoire_cove_3d567044-557c-4aad-aa98-7cdc5a5ff889_2.png" alt="Rückseite">
+      <div class="back-title-overlay"><div class="fraktur-title">Bestiarium Imperialis</div></div>
+    </div>
+  </div>
+
+  <!-- KARTE 12: LICH-KÖNIG MALAKOR (#12) -->
+  <div class="card-pair pos-2">
+    <div class="tarot-face front-face">
+      <div class="card-border-frame"></div>
+      <div class="card-border-inner"></div>
+      <div class="card-header">
+        <div class="header-top-row"><span class="stars">★★★★</span><span class="init-pill">INIT: 5 (2×)</span></div>
+        <h2 class="card-title">Lich-König Malakor</h2>
+        <p class="card-subtitle">◈ Kampagnen-Endgegner · 2 Aktionen/Runde</p>
+      </div>
+      <div class="art-container">
+        <img class="monster-art" src="art_assets/MasterArtwork/Monsters/Color/full_body_shot_of_the_ancient_lich_king_Malakor_in_a_dynamic__99f2d997-5a1c-42a6-8643-43a46921ef88_3.png" alt="Lich-König Malakor">
+        <div class="art-vignette"></div>
+      </div>
+      <div class="lore-box">
+        <p class="lore-text">»Der uralte Herrscher des Nördlichen Ödlands, Beherrscher des Frosts und der Seelen. Sein Anblick lässt das Blut gefrieren.«</p>
+      </div>
+      <div class="stat-ribbon">
+        <div class="stat-chip highlight-red"><span class="stat-label">❤️ Leben</span><span class="stat-value">18</span></div>
+        <div class="stat-chip"><span class="stat-label">🛡️ VT / RÜST</span><span class="stat-value">8 <span style="font-size:6.5pt; font-weight:bold;">(-1)</span></span></div>
+        <div class="stat-chip"><span class="stat-label">👟 Bew.</span><span class="stat-value">3</span></div>
+        <div class="stat-chip"><span class="stat-label">⚔️ Frost/Sense</span><span class="stat-value">+4 <span style="font-size:6.8pt; font-weight:bold;">(3D)</span></span></div>
+      </div>
+      <div class="rules-box">
+        <div>
+          <div class="section-header"><span>📜 Sonderregel</span></div>
+          <div class="rule-item"><span class="rule-tag">Frosthauch:</span> Zu Rundenbeginn erleidet jeder Held 1 Frostschaden (außer an Feuerschalen). <em>Seelenkäfig:</em> Immun gegen Nahkampf solange Skelette angrenzen.</div>
+        </div>
+        <div>
+          <div class="section-header"><span>⚔️ Verhalten (2 Aktionen pro Runde)</span></div>
+          <ul class="ai-step-list">
+            <li class="ai-step"><span class="step-num">1.</span><span><strong class="step-title">Aktion 1:</strong> Wenn &lt; 2 Skelette im Raum $\rightarrow$ <em>Beschwörung (2 Skelette)</em>. Sonst <strong>Froststrahl</strong> (R4, 3 Schaden) auf weitesten Helden.</span></li>
+            <li class="ai-step"><span class="step-num">2.</span><span><strong class="step-title">Aktion 2:</strong> <strong>Seelenernter-Sense</strong> (Nahkampf) &bull; <strong>1d6 + 3</strong> gegen VT (<strong>3 Schaden + 1 Erschöpfung</strong>) auf Ziel mit wenigsten LP.</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span>💀 Bestiarium Imperialis</span>
+        <span>#12 / 12</span>
+        <span class="bounty-pill">👑 KAMPAGNENSIEG!</span>
+      </div>
+    </div>
+    <div class="tarot-face back-face">
+      <img class="card-back-img" src="art_assets/MasterArtwork/Cards/Card Backs/vintage_medieval_woodcut_etching_of_a_monstrous_grimoire_cove_3d567044-557c-4aad-aa98-7cdc5a5ff889_2.png" alt="Rückseite">
+      <div class="back-title-overlay"><div class="fraktur-title">Bestiarium Imperialis</div></div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
