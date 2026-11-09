@@ -1,19 +1,19 @@
 # Monster-Roster & KI-Verhalten (Bestiarium v0.1)
 
 > **Design-Prinzip:** Schnelle Runden im 2-Spieler-Koop ohne Spielleiter.  
-> Jeder Gegnertyp hat eine **feste Initiative**, **statische Verteidigung (VT)** und ein einfaches **3-Schritte-Prioritäts-KI-Verhalten** (Targeting / Action).  
-> **Kartenformat:** Mini-Euro (44 × 68 mm) oder Tarot/A6-Referenzkarte.
+> Jeder Gegnertyp hat eine **feste Initiative (INIT: X)**, **statische Verteidigung (VT)** und ein einfaches, verständliches **3-Schritte-Verhalten** (Targeting / Action).  
+> **Kartenformat:** **Tarot (70 × 120 mm)** mit Gutter-Fold Klapp-Druckbogen und zentriertem Deckrücken *»Bestiarium Imperialis«*.
 
 ---
 
 ## 🎲 Grundregeln für Monster-Aktivierung
 
-1. **Aktivierungs-Reihenfolge:** Monster agieren in **Phase 3** jeder Runde in fester Reihenfolge (erst Bosse/Elite, dann Nahkämpfer, dann Fernkämpfer).
-2. **Kein Initiative-Wurf für Monster:** Jede Monsterkarte hat einen festen Initiative-Rang (oder aktiviert nach den Helden).
+1. **Aktivierungs-Reihenfolge (Initiative-Leiste):** Monster nutzen ihren festen Initiative-Wert (**`INIT: X`**) auf ihrer Monsterkarte. Ihr runder Holz-Marker (Ø 20 mm) wird beim Betreten eines Raumes direkt in die gelaserte **Initiative-Leiste** gesteckt (Helden würfeln `1d6 + GES`). Die Figuren aktivieren streng von links nach rechts entlang der Leiste.
+2. **Kein Initiative-Wurf für Monster:** Der `INIT`-Wert ist statisch und unveränderlich.
 3. **Monster-Angriff:** Wenn ein Monster angreift, würfelt ein Spieler **1d6 + Monster-Angriffsbonus** gegen den **VT-Wert des Helden** (Basis 4 + Rüstung/Schild). Bei Erfolg erleidet der Held den angegebenen Schaden abzüglich Rüstungsreduktion.
-4. **Ziel-Priorität (KI):**
-   - **Nächster Held:** Monster bewegen sich immer auf den nächstgelegenen Helden zu.
-   - **Gleichstand:** Ziel mit den wenigsten aktuellen LP wird gewählt.
+4. **Ziel-Priorität (Verhalten):**
+   - **Primärziel:** Gemäß Kartentext (z. B. Skelette greifen Helden mit höchster Rüstung an; Worge flankieren auf den hintersten Helden; Ghouls stürmen auf den Helden mit den wenigsten LP).
+   - **Gleichstand:** Nächstgelegenes Ziel wird gewählt.
 
 ---
 

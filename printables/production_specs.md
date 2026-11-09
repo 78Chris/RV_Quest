@@ -111,11 +111,13 @@ Da Möbel und Wände im Buch vorgedruckt sind, werden nur noch wenige physische 
   - 54× Ausrüstungsdeck (Loot & Markt, `components/card_list.md` — erweitert um Stangenwaffen, Hämmer, Flegel, Helme & Rüstungsstufen)
   - 18× Ereigniskarten (Event Deck, `components/card_list.md`)
   - 16× Begegnungskarten (Encounter Deck, `components/encounter_cards.md`)
-  - *Gesamt:* 107 Tarot-Karten.
+  - 12× Monsterkarten (Bestiarium Imperialis, `monsters/monster_roster.md` — Tarot 70 × 120 mm mit 3-Zeilen Lore, Stat-Ribbon, 'Verhalten' & Fraktur-Deckrücken)
+  - *Gesamt:* 119 Tarot-Karten.
 - **Grafik- & Illustrationskonzept:**
   - **Karten-Artwork & Rückseiten:** Werden über KI-Bildgeneratoren mit strukturierten Style-Prompts generiert (historischer Holzschnitt / Dark Fantasy Linocut auf Altpergament).
-  - Dank der Vorlaufzeit bis Weihnachten können Bild-Tokens schrittweise und gezielt eingesetzt werden.
-  - Kartenvorderseiten kombinieren den generierten Holzschnitt-Illustrationskasten mit gestochen scharfen SVG/HTML-Rahmen, Typografie und Icons.
+  - **Deck-Rückseiten mit Fraktur-Overlay:** Banderolen liegen bei $Y = 85{,}7\,\%$ Kartenhöhe und werden mit `UnifrakturMaguntia` exakt zentriert.
+  - **Druckbogen-Standard (Tintentyp-sparend):** Reines Weiß (`#ffffff`) außerhalb der Kartenfläche, präzise 0.2 mm Eck-Schnittmarken und rot gestrichelte Falzachsen (`▼ FALZLINIE (GUTTER-FOLD) ▼`) für 100% deckungsgleiches Klappen ohne Duplex-Versatz.
+  - Kartenvorderseiten kombinieren den generierten Holzschnitt-Illustrationskasten (32 mm Höhe) mit gestochen scharfen SVG/HTML-Rahmen, Typografie, 3-Zeilen-Lore-Kasten und strukturierter `Verhalten`-Sektion.
 
 ---
 

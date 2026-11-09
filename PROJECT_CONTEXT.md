@@ -507,3 +507,36 @@ RV_Quest/
 ---
 
 
+
+### Session 9 — 2026-11-09 (Monster Cards Specification, Tarot Gutter-Fold & Asset Correlation)
+- **Asset Inventory & Correlation Formalized:**
+  - Correlated all 5 generated card backs (`art_assets/MasterArtwork/Cards/Card Backs`) 1-to-1 with their respective decks:
+    1. Grimoire with Horned Beast Skull $\rightarrow$ **Bestiarium Imperialis** (Monsterdeck)
+    2. Wheel of Fortune $\rightarrow$ **Rad des Schicksals** (Ereignisdeck)
+    3. Wizard Grimoire & Astrolabe $\rightarrow$ **Codex Arcanum** (Magiedeck)
+    4. Dark Dungeon Doorway $\rightarrow$ **Die Tiefen Gewölbe** (Begegnungsdeck)
+    5. Night Bazaar with Lanterns $\rightarrow$ **Der Schattenbazar** (Ausrüstungsdeck)
+  - Correlated all 12 color monster illustrations (`art_assets/MasterArtwork/Monsters/Color`) 1-to-1 with the complete bestiary roster in `monsters/monster_roster.md`.
+- **Monster Card Standards & Design Rules:**
+  - **Standard Card Format:** **Tarot ($70 \times 120\text{ mm}$ / Aspect Ratio $7:12$)** unified across all decks.
+  - **Initiative Clarification & Phase Cleanup:** Removed obsolete "Phase 3" reference from card headers. Monsters activate strictly along the physical wooden **Initiative-Leiste (Tracker-Schiene)** using their fixed **`INIT: X`** stat; higher initiative acts first.
+  - **Header Structure:** Threat stars (`★★☆`), fixed `INIT: X` pill, monster name (13.5 pt Cinzel Bold), and role/subtype subtitle.
+  - **Illustration Frame:** Height tuned to $32\text{ mm}$ (approx. 27% of card height) with gothic darkwood border and subtle vignette, keeping full silhouette (torso, skull, weapon, shield) in sharp view.
+  - **3-Zeilen Lore-Kasten:** Established a dedicated italic flavor lore block (approx. 3 lines) directly under the illustration to deepen world immersion without compromising legibility.
+  - **Combat Stat Ribbon:** 4 large, high-contrast chips (❤️ Leben, 🛡️ Abwehr/VT, 👟 Bewegung, ⚔️ Angriff/Schaden) using bold 10.5 pt Cinzel numbers and distinct red highlight for damage/life.
+  - **Rules & Behavior Box:**
+    - Header standardized strictly to **`⚔️ VERHALTEN`** (simplified from "autonomes KI-Verhalten").
+    - Descriptions formatted with full, player-friendly mechanical clarity:
+      - *Ziel & Marsch:* Prioritized target selection (e.g. highest armor, nearest hero on tie).
+      - *Angriff:* Exact formula (e.g. $1\text{d}6 + 2$ vs VT) and net damage.
+      - *Synergien / Taktik:* Clear conditions (e.g. Schildwall $+1\text{ VT}$ when adjacent to another skeleton).
+      - *Sonderregeln:* Explicit condition immunities (e.g. `Untot` immune to Poisoned & Burning damage).
+    - Footer: Deck name (`Bestiarium Imperialis`), Card ID (`#03 / 12`), and bounty (`💰 1 Gold`).
+- **Card Back & Typography Overlay:**
+  - Card back ivory banner position mathematically calibrated at $Y = 85.7\%$ of total card height.
+  - Authentic Fraktur font `UnifrakturMaguntia` (*»Bestiarium Imperialis«*) centered directly on the Midjourney banner overlay.
+- **Production Template (Printable Gutter-Fold):**
+  - Created [`printables/monster_card_draft_skeleton.html`](file:///c:/Users/christoph.willimzik/Agent_Bunny/RV_Quest/printables/monster_card_draft_skeleton.html).
+  - Configured as an ink-saving A4 sheet: pure white background outside cards ($0\%$ ink waste on margins).
+  - Exact $70 \times 120\text{ mm}$ Front Face connected to $70 \times 120\text{ mm}$ Back Face along a central dashed fold line (`▼ FALZLINIE (GUTTER-FOLD) ▼`).
+  - Hairline $0.2\text{ mm}$ cut marks (Schnittmarken) for clean guillotine/cutter trimming with zero duplex misregistration.
