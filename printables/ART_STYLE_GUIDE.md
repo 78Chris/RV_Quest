@@ -125,6 +125,7 @@ Für *Von Helden und Monstern* nutzen wir eine klare **Zwei-Stufen-Strategie (Tw
 
 | Motiv / Benchmark | Midjourney CDN URL (`--sref`) | Empfohlenes `--sw` | Verwendung & Stil-Charakter |
 |---|---|---|---|
+| **Kartenrücken Master Style Reference (Der Schattenbazar)** | `https://i.imgur.com/YYHCCVL.png` | `150` | Verbindliche Style-Reference für alle Kartenrücken (Bestiarium Imperialis, Rad des Schicksals, Codex Arcanum, Die Tiefen Gewölbe). |
 | **Goblin Woodcut (Aktueller Favorit — Imgur Permanent)** | `https://i.imgur.com/7GHh0Ju.png` | `150–200` | Permanente Imgur-URL. Reduzierte Linienführung, große offene Weißflächen, ideal für Lasergravur ohne Rußbildung. Master-Referenz für alle 12 Monster. |
 | **Ausrüstungskarten Master Style Reference (3 Bildquellen)** | `https://i.imgur.com/VzU1WIk.png https://i.imgur.com/m6GMSd5.png https://i.imgur.com/juHvFJo.png` | `200` | Verbindliche Style-References für alle 54 Ausrüstungskarten (Nahkampf, Fernkampf, Rüstungen, Verbrauchsgegenstände, Zubehör). |
 | Goblin Woodcut (Midjourney CDN Backup) | `https://cdn.midjourney.com/9f1b9564-cf67-4c9f-9837-8be863d93c9a/0_3.png` | `150–200` | CDN-Original. |

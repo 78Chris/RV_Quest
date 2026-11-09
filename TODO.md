@@ -5,27 +5,25 @@
 
 ## 🔴 Priorität 1: Unmittelbare nächste Schritte (Kernsysteme & Buch)
 
-- [ ] **Game Book Word/LibreOffice Vorlage (`.docx`)**
-  - [ ] A4-Doppelseiten-Template anlegen (Links: Text & Monster-Werte / Rechts: 30 mm Kampffeld-Gitter)
-  *Erledigt am:* ___________________
-- [ ] **Szenario 01 an Game Book anpassen**
-  - [ ] Krypta von Dun-Karr auf 2 Doppelseiten verteilen (Teil 1: Vorraum / Teil 2: Grabkammer Bosskampf)
-  *Erledigt am:* ___________________
-- [x] **Regelergänzung: Zustände & Effekte (`rules/conditions.md`)**
-  - [x] Vollständige Tabelle: Brennend, Vergiftet, Betäubt (Standee hinlegen), Verlangsamt, Verborgen
+- [x] **Game Book Master-Vorlage & Szenario 01 (HTML/Browser-Print)**
+  - [x] A4-Duplex-Druckbogen (`printables/gamebook_scenario_01_a4.html`) mit Großdruck (11–12 pt), Schnittkanten bei 210 mm und 30 mm Vektorgittern
+  - [x] Dynamisches Setup mit Begegnungsdeck (`[V]` / `[H]` Zonen) integriert
+  - [x] Master-Spezifikation dokumentiert: `printables/GAMEBOOK_PRINT_SPECIFICATION.md`
   *Erledigt am:* 05.11.2026
-- [x] **Szenario 04: *Die belagerte Felsen-Zitadelle* (`adventures/scenario_04.md`)**
-  - [x] Kultisten-Belagerung, Fallgitter-Winde, Blutgolem (1×2) & Todesritter-Bosskampf
-  *Erledigt am:* 04.11.2026
-- [x] **Szenario 05: *Das Totenreich des Lich-Königs* (`adventures/scenario_05.md`)**
-  - [x] Großes Kampagnen-Finale: Malakor (LP 18, 2 Aktionen), Frosthauch, 3 Feuerschalen, Seelenkäfig & Epilog
-  *Erledigt am:* 04.11.2026
+- [ ] **Testdruck von Szenario 01 (Doppelseiten A4 Duplex)**
+  - [ ] Morgen Probeausdruck via Browser (Edge/Chrome, 100% Skalierung, beidseitig) durchführen und 30 mm Passung prüfen
+  *Erledigt am:* ___________________
+- [ ] **Gesamt-Szenarioband (Comprehensive Scenario Book)**
+  - [ ] Vorbereitung des Gesamtbandes für alle 5 Kampagnen-Szenarien in einem durchgehenden A4-Duplex-Dokument
+  *Erledigt am:* ___________________
 
 ---
 
-## 🟡 Priorität 2: Bildgenerierung & Midjourney (Monster, Helden & Ausrüstung)
+## 🟡 Priorität 2: Bildgenerierung & Midjourney (Monster, Kacheln & Ausrüstung)
 *Master `--sref` URL:* `https://cdn.midjourney.com/9f1b9564-cf67-4c9f-9837-8be863d93c9a/0_3.png`  
-*👉 Alle 12 fertigen B&W Laser-Prompts liegen in: `printables/MONSTER_PROMPTS_BW.md`*
+*👉 Alle 12 B&W Laser-Prompts: `printables/MONSTER_PROMPTS_BW.md`*  
+*👉 Farbige Monster-Prompts: `printables/MONSTER_PROMPTS_COLOR.md`*  
+*👉 Neu: Dungeon-Objekt- & Bodentextur-Prompts: `printables/DUNGEON_TILE_ASSETS_PROMPTS.md`*
 
 ### A. Monster (8 offen / 4 fertig)
 - [x] **Goblin-Späher** *(Fertig: B&W + Farbe)*

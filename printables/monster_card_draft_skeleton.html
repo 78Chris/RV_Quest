@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Skelettkrieger - Tarot Gutterfold Druckbogen (70 × 120 mm)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=UnifrakturMaguntia&family=Alegreya:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+
+<style>
+  /* ========================================================= */
+  /* A4 PRINT PAGE SETUP (Tintentyp-sparend: Reinweiß)          */
+  /* ========================================================= */
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 210mm;
+    min-height: 297mm;
+    background: #ffffff;
+    font-family: 'Alegreya Sans', sans-serif;
+    color: #1a140e;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Screen Workbench Display */
+  @media screen {
+    body {
+      background: #e5e5e5;
+      padding: 20px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .sheet-page {
+      background: #ffffff;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.18);
+    }
+    .print-controls {
+      position: fixed;
+      top: 15px;
+      right: 20px;
+      background: #1a140e;
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 13px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      z-index: 1000;
+    }
+    .print-btn {
+      background: #9e782f;
+      color: #fff;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 13px;
+    }
+    .print-btn:hover {
+      background: #b88e38;
+    }
+  }
+
+  @media print {
+    .no-print {
+      display: none !important;
+    }
+    body {
+      background: #ffffff !important;
+      padding: 0;
+    }
+    .sheet-page {
+      box-shadow: none;
+    }
+  }
+
+  /* ========================================================= */
+  /* A4 SHEET CONTAINER (210 x 297 mm)                         */
+  /* ========================================================= */
+  .sheet-page {
+    width: 210mm;
+    height: 297mm;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* ========================================================= */
+  /* GUTTERFOLD CARD PAIR (140 x 120 mm)                       */
+  /* Centered horizontally: (210 - 140)/2 = 35mm               */
+  /* Positioned vertically: Top = 80mm                         */
+  /* ========================================================= */
+  .card-pair-wrapper {
+    position: absolute;
+    left: 35mm;
+    top: 80mm;
+    width: 140mm;
+    height: 120mm;
+    display: flex;
+  }
+
+  .tarot-face {
+    width: 70mm;
+    height: 120mm;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* ========================================================= */
+  /* 1. FRONT FACE (70 x 120 mm)                               */
+  /* ========================================================= */
+  .front-face {
+    background: radial-gradient(circle at 50% 30%, #fdf9f0 0%, #f1e5cf 70%, #dfccaa 100%);
+    padding: 2.2mm 2.8mm 2mm 2.8mm;
+    display: flex;
+    flex-direction: column;
+    border-right: none;
+  }
+
+  /* Double Borders */
+  .card-border-frame {
+    position: absolute;
+    top: 1.2mm;
+    bottom: 1.2mm;
+    left: 1.2mm;
+    right: 1.2mm;
+    border: 0.45mm solid #2c2016;
+    border-radius: 1.5mm;
+    pointer-events: none;
+  }
+
+  .card-border-inner {
+    position: absolute;
+    top: 1.8mm;
+    bottom: 1.8mm;
+    left: 1.8mm;
+    right: 1.8mm;
+    border: 0.25mm solid #9e782f;
+    border-radius: 1.2mm;
+    pointer-events: none;
+    opacity: 0.85;
+  }
+
+  /* Header */
+  .card-header {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    padding: 0 0.5mm 0.8mm 0.5mm;
+  }
+
+  .header-top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0.5mm;
+    margin-bottom: 0.2mm;
+  }
+
+  .stars {
+    color: #b33927;
+    letter-spacing: 0.4mm;
+    font-size: 8.5pt;
+  }
+
+  .init-pill {
+    font-family: 'Cinzel', serif;
+    font-size: 7.5pt;
+    font-weight: 700;
+    color: #3b2816;
+    background: linear-gradient(180deg, #fcefd6 0%, #ecd3a3 100%);
+    padding: 0.2mm 1.5mm;
+    border-radius: 0.8mm;
+    border: 0.2mm solid #9e782f;
+  }
+
+  .card-title {
+    font-family: 'Cinzel', serif;
+    font-size: 13.5pt;
+    font-weight: 900;
+    color: #1a140e;
+    letter-spacing: 0.3mm;
+    margin: 0.2mm 0 0 0;
+    text-transform: uppercase;
+    line-height: 1.05;
+  }
+
+  .card-subtitle {
+    font-family: 'Alegreya', serif;
+    font-size: 7.8pt;
+    font-style: italic;
+    color: #5c4736;
+    margin: 0;
+    line-height: 1.1;
+  }
+
+  /* Artwork Window (32mm) */
+  .art-container {
+    width: 100%;
+    height: 32mm;
+    position: relative;
+    border-radius: 1.2mm;
+    overflow: hidden;
+    border: 0.45mm solid #3b2c1d;
+    background: #17110b;
+    margin-bottom: 1.2mm;
+    z-index: 2;
+  }
+
+  .monster-art {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 16%;
+    display: block;
+    filter: contrast(1.04) saturate(1.02);
+  }
+
+  .art-vignette {
+    position: absolute;
+    inset: 0;
+    box-shadow: inset 0 0 5mm rgba(0,0,0,0.65);
+    pointer-events: none;
+    border: 0.2mm solid rgba(229, 193, 125, 0.4);
+  }
+
+  /* 3-Zeilen Lore */
+  .lore-box {
+    background: rgba(240, 227, 204, 0.65);
+    border-left: 0.6mm solid #8c6a3a;
+    border-right: 0.6mm solid #8c6a3a;
+    padding: 0.6mm 1.2mm;
+    margin-bottom: 1.2mm;
+    text-align: center;
+    border-radius: 0.5mm;
+    z-index: 2;
+  }
+
+  .lore-text {
+    font-family: 'Alegreya', serif;
+    font-size: 7pt;
+    font-style: italic;
+    line-height: 1.22;
+    color: #3b2817;
+    margin: 0;
+  }
+
+  /* Stat Ribbon (4 Chips) */
+  .stat-ribbon {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.8mm;
+    margin-bottom: 1.2mm;
+    z-index: 2;
+  }
+
+  .stat-chip {
+    background: linear-gradient(180deg, #ffffff 0%, #f4ece1 100%);
+    border: 0.3mm solid #4a3828;
+    border-radius: 1mm;
+    padding: 0.4mm 0.2mm;
+    text-align: center;
+  }
+
+  .stat-chip.highlight-red {
+    border-color: #8c1d18;
+    background: linear-gradient(180deg, #fff7f7 0%, #f7dede 100%);
+  }
+
+  .stat-label {
+    display: block;
+    font-size: 5.8pt;
+    font-weight: 700;
+    color: #5c4736;
+    text-transform: uppercase;
+    letter-spacing: 0.1mm;
+    margin-bottom: 0.2mm;
+  }
+
+  .stat-chip.highlight-red .stat-label {
+    color: #8c1d18;
+  }
+
+  .stat-value {
+    font-family: 'Cinzel', serif;
+    font-size: 10.5pt;
+    font-weight: 900;
+    color: #1a140e;
+    line-height: 1;
+  }
+
+  .stat-chip.highlight-red .stat-value {
+    color: #8c1d18;
+  }
+
+  /* Rules & Verhalten Box */
+  .rules-box {
+    flex: 1;
+    background: #fffdfa;
+    border: 0.35mm solid #4a3828;
+    border-radius: 1.2mm;
+    padding: 1.2mm 1.6mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 2;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 1mm;
+    font-family: 'Cinzel', serif;
+    font-size: 7pt;
+    font-weight: 700;
+    color: #8c1d18;
+    letter-spacing: 0.2mm;
+    text-transform: uppercase;
+    margin-bottom: 0.4mm;
+    border-bottom: 0.2mm solid rgba(140, 29, 24, 0.25);
+    padding-bottom: 0.2mm;
+  }
+
+  .rule-item {
+    font-size: 6.8pt;
+    line-height: 1.26;
+    color: #1a140e;
+    margin-bottom: 0.8mm;
+  }
+
+  .rule-tag {
+    font-weight: 700;
+    color: #701612;
+  }
+
+  .ai-step-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .ai-step {
+    font-size: 6.8pt;
+    line-height: 1.26;
+    color: #1a140e;
+    margin-bottom: 0.6mm;
+    display: flex;
+    align-items: baseline;
+    gap: 1mm;
+  }
+
+  .step-num {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 6.8pt;
+    color: #9e782f;
+    min-width: 2.8mm;
+  }
+
+  .step-title {
+    font-weight: 700;
+    color: #2b1f15;
+  }
+
+  /* Footer */
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8mm 1mm 0 1mm;
+    font-size: 5.8pt;
+    font-weight: 700;
+    color: #5c4736;
+    letter-spacing: 0.1mm;
+    z-index: 2;
+    text-transform: uppercase;
+  }
+
+  .bounty-pill {
+    color: #735414;
+    background: rgba(184, 142, 53, 0.15);
+    padding: 0.2mm 1.2mm;
+    border-radius: 0.6mm;
+    border: 0.2mm solid rgba(184, 142, 53, 0.35);
+  }
+
+  /* ========================================================= */
+  /* 2. BACK FACE (70 x 120 mm)                                */
+  /* ========================================================= */
+  .back-face {
+    background: #140f0c;
+  }
+
+  .card-back-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .back-title-overlay {
+    position: absolute;
+    top: 85.7%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 44mm;
+    text-align: center;
+    pointer-events: none;
+    line-height: 1;
+  }
+
+  .fraktur-title {
+    font-family: 'UnifrakturMaguntia', serif;
+    font-size: 15pt;
+    color: #120e0a;
+    letter-spacing: 0.2mm;
+    display: inline-block;
+  }
+
+  /* ========================================================= */
+  /* CUT & FOLD MARKINGS (SCHNITT- & FALZMARKEN)                */
+  /* Hairline precision (0.2mm / ~0.75px) for zero ink waste   */
+  /* ========================================================= */
+  .crop-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 210mm;
+    height: 297mm;
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+
+<!-- Minimaler Bildschirm-Druckbutton (Wird beim Drucken nicht gedruckt) -->
+<div class="print-controls no-print">
+  <span>📄 Tarot Gutter-Fold (100% Skalierung)</span>
+  <button class="print-btn" onclick="window.print()">🖨️ Drucken / PDF</button>
+</div>
+
+<div class="sheet-page">
+
+  <!-- ================= CROP & FOLD MARKS LAYER ================= -->
+  <!-- Kartenkanten: X_left=35mm, X_center=105mm, X_right=175mm | Y_top=80mm, Y_bottom=200mm -->
+  <svg class="crop-svg" viewBox="0 0 210 297" width="210mm" height="297mm">
+    <defs>
+      <style>
+        .mark-cut { stroke: #111111; stroke-width: 0.2; stroke-linecap: square; }
+        .mark-fold { stroke: #992222; stroke-width: 0.25; stroke-dasharray: 1.5, 1; }
+        .mark-txt { font-family: 'Cinzel', serif; font-size: 2.2px; fill: #992222; font-weight: bold; }
+      </style>
+    </defs>
+
+    <!-- OBEN: Eckmarken & Falzmarke -->
+    <!-- Top-Left Corner -->
+    <line x1="25" y1="80" x2="33" y2="80" class="mark-cut"/>
+    <line x1="35" y1="70" x2="35" y2="78" class="mark-cut"/>
+
+    <!-- Top-Center (Fold Axis) -->
+    <line x1="105" y1="68" x2="105" y2="78" class="mark-fold"/>
+    <text x="105" y="66" text-anchor="middle" class="mark-txt">▼ FALZLINIE (GUTTER-FOLD) ▼</text>
+
+    <!-- Top-Right Corner -->
+    <line x1="177" y1="80" x2="185" y2="80" class="mark-cut"/>
+    <line x1="175" y1="70" x2="175" y2="78" class="mark-cut"/>
+
+    <!-- UNTEN: Eckmarken & Falzmarke -->
+    <!-- Bottom-Left Corner -->
+    <line x1="25" y1="200" x2="33" y2="200" class="mark-cut"/>
+    <line x1="35" y1="202" x2="35" y2="210" class="mark-cut"/>
+
+    <!-- Bottom-Center (Fold Axis) -->
+    <line x1="105" y1="202" x2="105" y2="212" class="mark-fold"/>
+    <text x="105" y="215" text-anchor="middle" class="mark-txt">▲ FALZLINIE (GUTTER-FOLD) ▲</text>
+
+    <!-- Bottom-Right Corner -->
+    <line x1="177" y1="200" x2="185" y2="200" class="mark-cut"/>
+    <line x1="175" y1="202" x2="175" y2="210" class="mark-cut"/>
+
+    <!-- ZENTRALE FALZKANTE ZWISCHEN DEN KARTEN (Extrem feine Haarlinie zum Ansetzen des Falzbeins) -->
+    <line x1="105" y1="80" x2="105" y2="200" stroke="#777777" stroke-width="0.15" stroke-dasharray="2, 2" opacity="0.65"/>
+  </svg>
+
+
+  <!-- ================= KARTENPAAR (FALZ-VERBUND) ================= -->
+  <div class="card-pair-wrapper">
+
+    <!-- 1. VORDERSEITE (70 × 120 mm) -->
+    <div class="tarot-face front-face">
+      <div class="card-border-frame"></div>
+      <div class="card-border-inner"></div>
+
+      <!-- Header -->
+      <div class="card-header">
+        <div class="header-top-row">
+          <span class="stars">★★☆</span>
+          <span class="init-pill">INIT: 3</span>
+        </div>
+        <h2 class="card-title">Skelettkrieger</h2>
+        <p class="card-subtitle">◈ Standard-Gegner · Untoter Nahkämpfer</p>
+      </div>
+
+      <!-- Artwork -->
+      <div class="art-container">
+        <img class="monster-art" 
+             src="art_assets/MasterArtwork/Monsters/Color/full_body_shot_of_an_ancient_skeleton_warrior_in_a_dynamic_ag_aad26a7a-5551-4cee-9a94-24e811354d8b_0.png" 
+             alt="Skelettkrieger Artwork">
+        <div class="art-vignette"></div>
+      </div>
+
+      <!-- 3-Zeilen Lore -->
+      <div class="lore-box">
+        <p class="lore-text">
+          »Klappernde Gebeine in rostzerfressenem Eisen, gebunden an den ewigen Willen ihres Meisters. Sie kennen weder Furcht noch Gnade und marschieren stumm in den Tod.«
+        </p>
+      </div>
+
+      <!-- Stat Ribbon -->
+      <div class="stat-ribbon">
+        <div class="stat-chip highlight-red">
+          <span class="stat-label">❤️ Leben</span>
+          <span class="stat-value">4</span>
+        </div>
+        <div class="stat-chip">
+          <span class="stat-label">🛡️ Abwehr</span>
+          <span class="stat-value">6</span>
+        </div>
+        <div class="stat-chip">
+          <span class="stat-label">👟 Bew.</span>
+          <span class="stat-value">3</span>
+        </div>
+        <div class="stat-chip">
+          <span class="stat-label">⚔️ Angriff</span>
+          <span class="stat-value">+2 <span style="font-size:7pt; font-weight:bold;">(2D)</span></span>
+        </div>
+      </div>
+
+      <!-- Rules & Verhalten Box -->
+      <div class="rules-box">
+        <div>
+          <div class="section-header">
+            <span>📜 Sonderregel</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-tag">Untot:</span> Immun gegen <span style="font-weight:600;">Vergiftet</span> &amp; <span style="font-weight:600;">Brennend</span> (erleidet zu Rundenbeginn keinen periodischen Schaden).
+          </div>
+        </div>
+
+        <div>
+          <div class="section-header">
+            <span>⚔️ Verhalten</span>
+          </div>
+          <ul class="ai-step-list">
+            <li class="ai-step">
+              <span class="step-num">1.</span>
+              <span><strong class="step-title">Ziel &amp; Marsch:</strong> Zieht auf kürzestem Weg auf den Helden mit der <span style="font-weight:600;">höchsten Rüstung</span> zu (sucht den stärksten Widerstand). Bei Gleichstand wählt es das nähere Ziel.</span>
+            </li>
+            <li class="ai-step">
+              <span class="step-num">2.</span>
+              <span><strong class="step-title">Angriff (Nahkampf):</strong> Rostschwert &bull; Würfle <span style="font-weight:700; color:#8c1d18;">1d6 + 2</span> gegen den <span style="font-weight:600;">VT-Wert</span> des Helden. Bei Treffer erleidet das Ziel <strong style="color:#8c1d18;">2 Schaden</strong> (abzüglich Rüstung).</span>
+            </li>
+            <li class="ai-step">
+              <span class="step-num">3.</span>
+              <span><strong class="step-title">Schildwall:</strong> Steht ein zweites befreundetes Skelett auf einem angrenzenden Feld, erhalten beide <strong style="color:#735414;">+1 VT</strong> bis zu ihrer nächsten Runde.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="card-footer">
+        <span>💀 Bestiarium Imperialis</span>
+        <span>#03 / 12</span>
+        <span class="bounty-pill">💰 1 Gold</span>
+      </div>
+    </div>
+
+
+    <!-- 2. RÜCKSEITE (70 × 120 mm) -->
+    <div class="tarot-face back-face">
+      <img class="card-back-img" 
+           src="art_assets/MasterArtwork/Cards/Card Backs/vintage_medieval_woodcut_etching_of_a_monstrous_grimoire_cove_3d567044-557c-4aad-aa98-7cdc5a5ff889_2.png" 
+           alt="Bestiarium Imperialis Rückseite">
+      
+      <!-- Fraktur-Titel exakt auf der Midjourney-Banderole zentriert -->
+      <div class="back-title-overlay">
+        <div class="fraktur-title">Bestiarium Imperialis</div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>

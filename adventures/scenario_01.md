@@ -17,9 +17,16 @@
 
 ---
 
-## 🗺️ Dungeon-Aufbau & Raumplan
+## 🗺️ Dungeon-Aufbau & Game Book Struktur
 
-Der Dungeon besteht aus **4 zusammenhängenden Räumen**, die nacheinander aufgedeckt werden, sobald eine Tür geöffnet wird.
+> **Hinweis zur Buchfassung:**  
+> Für das physische Game Book (Wire-O Quadrat-Format 210 × 210 mm) liegen die druckfertigen Dokumente vor:  
+> - 📄 Markdown-Buchvorlage: [`scenario_01_gamebook.md`](file:///c:/Users/christoph.willimzik/Agent_Bunny/RV_Quest/adventures/scenario_01_gamebook.md)  
+> - 📄 LibreOffice Writer: [`printables/gamebook_scenario_01.odt`](file:///c:/Users/christoph.willimzik/Agent_Bunny/RV_Quest/printables/gamebook_scenario_01.odt)  
+> - 📄 Word Document: [`printables/gamebook_scenario_01.docx`](file:///c:/Users/christoph.willimzik/Agent_Bunny/RV_Quest/printables/gamebook_scenario_01.docx)  
+> Die Vorkammern werden dynamisch über das **16-Karten-Begegnungsdeck** mit Zonen `[V]` und `[H]` bestückt; Teil 2 ist die illustrierte Boss-Arena des Gruftwächters.
+
+Der Dungeon besteht aus **4 zusammenhängenden Abschnitten**, die in der Buchform auf 2 übersichtliche Doppelseiten (Vorkammern & Grabkammer) verteilt sind.
 
 ```
                   ┌───────────────────────┐

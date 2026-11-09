@@ -1,0 +1,209 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720" width="180mm" height="180mm">
+  <defs>
+    <!-- Background stone base -->
+    <radialGradient id="dungeonGlow" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#3a3731"/>
+      <stop offset="70%" stop-color="#24211e"/>
+      <stop offset="100%" stop-color="#12100e"/>
+    </radialGradient>
+
+    <!-- Slab Gradients -->
+    <linearGradient id="slabGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4e4942"/>
+      <stop offset="50%" stop-color="#3d3933"/>
+      <stop offset="100%" stop-color="#2a2723"/>
+    </linearGradient>
+
+    <linearGradient id="slabGrad2" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#46423b"/>
+      <stop offset="60%" stop-color="#38342f"/>
+      <stop offset="100%" stop-color="#26231f"/>
+    </linearGradient>
+
+    <!-- Pillar 3D shading -->
+    <radialGradient id="pillarGrad" cx="40%" cy="35%" r="60%">
+      <stop offset="0%" stop-color="#8c857b"/>
+      <stop offset="60%" stop-color="#544d44"/>
+      <stop offset="100%" stop-color="#26221c"/>
+    </radialGradient>
+
+    <!-- Wood Chest Gradient -->
+    <linearGradient id="woodGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#8a532d"/>
+      <stop offset="50%" stop-color="#5c3418"/>
+      <stop offset="100%" stop-color="#361c0a"/>
+    </linearGradient>
+
+    <!-- Gold Inlay / Rune Glow -->
+    <radialGradient id="runeGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#d4af37" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#d4af37" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Drop shadow for relief -->
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="2" dy="4" stdDeviation="3" flood-color="#000000" flood-opacity="0.75"/>
+    </filter>
+  </defs>
+  <rect x="0" y="0" width="720" height="720" fill="url(#dungeonGlow)"/>
+  <!-- Floor Flagstones -->
+  <g filter="url(#shadow)">
+    <rect x="4" y="4" width="60.0" height="112" rx="2" fill="url(#slabGrad1)" stroke="#161412" stroke-width="1.5"/>
+    <rect x="68.0" y="4" width="48.0" height="112" rx="2" fill="url(#slabGrad2)" stroke="#161412" stroke-width="1.5"/>
+    <rect x="124" y="4" width="112" height="51.599999999999994" rx="2" fill="url(#slabGrad2)" stroke="#161412" stroke-width="1.5"/>
+    <rect x="124" y="59.599999999999994" width="112" height="56.400000000000006" rx="2" fill="url(#slabGrad1)" stroke="#161412" stroke-width="1.5"/>
+    <rect x="244" y="4" width="112" height="112" rx="3" fill="url(#slabGrad1)" stroke="#161412" stroke-width="1.5"/>
+    <rect x="364" y="4" width="60.0" height="112" rx="2" fill="url(#slabGrad2)" stroke="#161412" stroke-width="1.5"/>
+    <rect x="428.0" y="4" width="48.0" height="112" rx="2" fill="url(#slabGrad2)" stroke="#161412" stroke-width="1.5"/>
+    <rect x="484" y="4" width="112" height="51.599999999999994" rx="2" fill="url(#slabGrad1)" stroke="#161412" stroke-width="1.5"/>
+    <rect x="484" y="59.599999999999994" width="112" height="56.400000000000006" rx="2" fill="url(#slabGrad1)" stroke="#161412" stroke-width="1.5"/>
+    <rect x="604" y="4" width="112" height="112" rx="3" fill="url(#slabGrad2)" stroke="#161412" stroke-width="1.5"/>
+    <rect x="4" y="124" width="60.0" height="112" rx="2" fill="url(#slabGrad2)" stroke="#161412" stroke-width="1.5"/>
+    <rect x="68.0" y="124" width="48.0" height="112" rx="2" fill="url(#slabGrad2)" stroke="#161412" stroke-width="1.5"/>
+    <rect x="124" y="124" width="112" height="51.599999999999994" rx="2" fill="url(#slabGrad1)" stroke="#161412" stroke-width="1.5"/>
+    <rect x="124" y="179.6" width="112" height="56.400000000000006" rx="2" fill="url(#slabGrad1)" stroke="#161412" stroke-width="1.5"/>
+    <rect x="244" y="124" width="112" height="112" rx="3" fill="url(#slabGrad2)" stroke="#161412" stroke-width="1.5"/>
+    <rect x="364" y="124" width="60.0" height="112" rx="2" fill="url(#slabGrad1)" stroke="#161412" stroke-width="1.5"/>
+    <rect x="428.0" y="124" width="48.0" height="112" rx="2" fill="url(#slabGrad2)" stroke="#161412" stroke-width="1.5"/>
+    <rect x="484" y="124" width="112" height="51.599999999999994" rx="2" fill="url(#slabGrad2)" stroke="#161412" stroke-width="1.5"/>
+    <rect x="484" y="179.6" width="112" height="56.400000000000006" rx="2" fill="url(#slabGrad1)" stroke="#161412" stroke-width="1.5"/>
+    <rect x="604" y="124" width="112" height="112" rx="3" fill="url(#slabGrad1)" stroke="#161412" stroke-width="1.5"/>
+    <rect x="4" y="244" width="60.0" height="112" rx="2" fill="url(#slabGrad1)" stroke="#161412" stroke-width="1.5"/>
+    <rect x="68.0" y="244" width="48.0" height="112" rx="2" fill="url(#slabGrad2)" stroke="#161412" stroke-width="1.5"/>
+    <rect x="124" y="244" width="112" height="51.599999999999994" rx="2" fill="url(#slabGrad2)" stroke="#161412" stroke-width="1.5"/>
+    <rect x="124" y="299.6" width="112" height="56.400000000000006" rx="2" fill="url(#slabGrad1)" stroke="#161412" stroke-width="1.5"/>
+    <rect x="244" y="244" width="112" height="112" rx="3" fill="url(#slabGrad1)" stroke="#161412" stroke-width="1.5"/>
+    <rect x="364" y="244" width="60.0" height="112" rx="2" fill="url(#slabGrad2)" stroke="#161412" stroke-width="1.5"/>
+    <rect x="428.0" y="244" width="48.0" height="112" rx="2" fill="url(#slabGrad2)" stroke="#161412" stroke-width="1.5"/>
+    <rect x="484" y="244" width="112" height="51.599999999999994" rx="2" fill="url(#slabGrad1)" stroke="#161412" stroke-width="1.5"/>
+    <rect x="484" y="299.6" width="112" height="56.400000000000006" rx="2" fill="url(#slabGrad1)" stroke="#161412" stroke-width="1.5"/>
+    <rect x="604" y="244" width="112" height="112" rx="3" fill="url(#slabGrad2)" stroke="#161412" stroke-width="1.5"/>
+    <rect x="4" y="364" width="60.0" height="112" rx="2" fill="url(#slabGrad2)" stroke="#161412" stroke-width="1.5"/>
+    <rect x="68.0" y="364" width="48.0" height="112" rx="2" fill="url(#slabGrad2)" stroke="#161412" stroke-width="1.5"/>
+    <rect x="124" y="364" width="112" height="51.599999999999994" rx="2" fill="url(#slabGrad1)" stroke="#161412" stroke-width="1.5"/>
+    <rect x="124" y="419.6" width="112" height="56.400000000000006" rx="2" fill="url(#slabGrad1)" stroke="#161412" stroke-width="1.5"/>
+    <rect x="244" y="364" width="112" height="112" rx="3" fill="url(#slabGrad2)" stroke="#161412" stroke-width="1.5"/>
+    <rect x="364" y="364" width="60.0" height="112" rx="2" fill="url(#slabGrad1)" stroke="#161412" stroke-width="1.5"/>
+    <rect x="428.0" y="364" width="48.0" height="112" rx="2" fill="url(#slabGrad2)" stroke="#161412" stroke-width="1.5"/>
+    <rect x="484" y="364" width="112" height="51.599999999999994" rx="2" fill="url(#slabGrad2)" stroke="#161412" stroke-width="1.5"/>
+    <rect x="484" y="419.6" width="112" height="56.400000000000006" rx="2" fill="url(#slabGrad1)" stroke="#161412" stroke-width="1.5"/>
+    <rect x="604" y="364" width="112" height="112" rx="3" fill="url(#slabGrad1)" stroke="#161412" stroke-width="1.5"/>
+    <rect x="4" y="484" width="60.0" height="112" rx="2" fill="url(#slabGrad1)" stroke="#161412" stroke-width="1.5"/>
+    <rect x="68.0" y="484" width="48.0" height="112" rx="2" fill="url(#slabGrad2)" stroke="#161412" stroke-width="1.5"/>
+    <rect x="124" y="484" width="112" height="51.599999999999994" rx="2" fill="url(#slabGrad2)" stroke="#161412" stroke-width="1.5"/>
+    <rect x="124" y="539.6" width="112" height="56.400000000000006" rx="2" fill="url(#slabGrad1)" stroke="#161412" stroke-width="1.5"/>
+    <rect x="244" y="484" width="112" height="112" rx="3" fill="url(#slabGrad1)" stroke="#161412" stroke-width="1.5"/>
+    <rect x="364" y="484" width="60.0" height="112" rx="2" fill="url(#slabGrad2)" stroke="#161412" stroke-width="1.5"/>
+    <rect x="428.0" y="484" width="48.0" height="112" rx="2" fill="url(#slabGrad2)" stroke="#161412" stroke-width="1.5"/>
+    <rect x="484" y="484" width="112" height="51.599999999999994" rx="2" fill="url(#slabGrad1)" stroke="#161412" stroke-width="1.5"/>
+    <rect x="484" y="539.6" width="112" height="56.400000000000006" rx="2" fill="url(#slabGrad1)" stroke="#161412" stroke-width="1.5"/>
+    <rect x="604" y="484" width="112" height="112" rx="3" fill="url(#slabGrad2)" stroke="#161412" stroke-width="1.5"/>
+    <rect x="4" y="604" width="60.0" height="112" rx="2" fill="url(#slabGrad2)" stroke="#161412" stroke-width="1.5"/>
+    <rect x="68.0" y="604" width="48.0" height="112" rx="2" fill="url(#slabGrad2)" stroke="#161412" stroke-width="1.5"/>
+    <rect x="124" y="604" width="112" height="51.599999999999994" rx="2" fill="url(#slabGrad1)" stroke="#161412" stroke-width="1.5"/>
+    <rect x="124" y="659.6" width="112" height="56.400000000000006" rx="2" fill="url(#slabGrad1)" stroke="#161412" stroke-width="1.5"/>
+    <rect x="244" y="604" width="112" height="112" rx="3" fill="url(#slabGrad2)" stroke="#161412" stroke-width="1.5"/>
+    <rect x="364" y="604" width="60.0" height="112" rx="2" fill="url(#slabGrad1)" stroke="#161412" stroke-width="1.5"/>
+    <rect x="428.0" y="604" width="48.0" height="112" rx="2" fill="url(#slabGrad2)" stroke="#161412" stroke-width="1.5"/>
+    <rect x="484" y="604" width="112" height="51.599999999999994" rx="2" fill="url(#slabGrad2)" stroke="#161412" stroke-width="1.5"/>
+    <rect x="484" y="659.6" width="112" height="56.400000000000006" rx="2" fill="url(#slabGrad1)" stroke="#161412" stroke-width="1.5"/>
+    <rect x="604" y="604" width="112" height="112" rx="3" fill="url(#slabGrad1)" stroke="#161412" stroke-width="1.5"/>
+  </g>
+  <!-- 30mm Grid Overlay -->
+  <line x1="120" y1="0" x2="120" y2="720" stroke="#d4af37" stroke-width="0.8" stroke-dasharray="4,8" opacity="0.4"/>
+  <line x1="0" y1="120" x2="720" y2="120" stroke="#d4af37" stroke-width="0.8" stroke-dasharray="4,8" opacity="0.4"/>
+  <line x1="240" y1="0" x2="240" y2="720" stroke="#d4af37" stroke-width="0.8" stroke-dasharray="4,8" opacity="0.4"/>
+  <line x1="0" y1="240" x2="720" y2="240" stroke="#d4af37" stroke-width="0.8" stroke-dasharray="4,8" opacity="0.4"/>
+  <line x1="360" y1="0" x2="360" y2="720" stroke="#d4af37" stroke-width="0.8" stroke-dasharray="4,8" opacity="0.4"/>
+  <line x1="0" y1="360" x2="720" y2="360" stroke="#d4af37" stroke-width="0.8" stroke-dasharray="4,8" opacity="0.4"/>
+  <line x1="480" y1="0" x2="480" y2="720" stroke="#d4af37" stroke-width="0.8" stroke-dasharray="4,8" opacity="0.4"/>
+  <line x1="0" y1="480" x2="720" y2="480" stroke="#d4af37" stroke-width="0.8" stroke-dasharray="4,8" opacity="0.4"/>
+  <line x1="600" y1="0" x2="600" y2="720" stroke="#d4af37" stroke-width="0.8" stroke-dasharray="4,8" opacity="0.4"/>
+  <line x1="0" y1="600" x2="720" y2="600" stroke="#d4af37" stroke-width="0.8" stroke-dasharray="4,8" opacity="0.4"/>
+  <rect x="0" y="0" width="720" height="720" fill="none" stroke="#5a4934" stroke-width="6"/>
+  <rect x="3" y="3" width="714" height="714" fill="none" stroke="#12100e" stroke-width="2"/>
+  <text x="8" y="18" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#8c7a62" opacity="0.65">A6</text>
+  <text x="128" y="18" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#8c7a62" opacity="0.65">B6</text>
+  <text x="248" y="18" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#8c7a62" opacity="0.65">C6</text>
+  <text x="368" y="18" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#8c7a62" opacity="0.65">D6</text>
+  <text x="488" y="18" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#8c7a62" opacity="0.65">E6</text>
+  <text x="608" y="18" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#8c7a62" opacity="0.65">F6</text>
+  <text x="8" y="138" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#8c7a62" opacity="0.65">A5</text>
+  <text x="128" y="138" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#8c7a62" opacity="0.65">B5</text>
+  <text x="248" y="138" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#8c7a62" opacity="0.65">C5</text>
+  <text x="368" y="138" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#8c7a62" opacity="0.65">D5</text>
+  <text x="488" y="138" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#8c7a62" opacity="0.65">E5</text>
+  <text x="608" y="138" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#8c7a62" opacity="0.65">F5</text>
+  <text x="8" y="258" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#8c7a62" opacity="0.65">A4</text>
+  <text x="128" y="258" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#8c7a62" opacity="0.65">B4</text>
+  <text x="248" y="258" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#8c7a62" opacity="0.65">C4</text>
+  <text x="368" y="258" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#8c7a62" opacity="0.65">D4</text>
+  <text x="488" y="258" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#8c7a62" opacity="0.65">E4</text>
+  <text x="608" y="258" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#8c7a62" opacity="0.65">F4</text>
+  <text x="8" y="378" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#8c7a62" opacity="0.65">A3</text>
+  <text x="128" y="378" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#8c7a62" opacity="0.65">B3</text>
+  <text x="248" y="378" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#8c7a62" opacity="0.65">C3</text>
+  <text x="368" y="378" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#8c7a62" opacity="0.65">D3</text>
+  <text x="488" y="378" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#8c7a62" opacity="0.65">E3</text>
+  <text x="608" y="378" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#8c7a62" opacity="0.65">F3</text>
+  <text x="8" y="498" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#8c7a62" opacity="0.65">A2</text>
+  <text x="128" y="498" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#8c7a62" opacity="0.65">B2</text>
+  <text x="248" y="498" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#8c7a62" opacity="0.65">C2</text>
+  <text x="368" y="498" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#8c7a62" opacity="0.65">D2</text>
+  <text x="488" y="498" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#8c7a62" opacity="0.65">E2</text>
+  <text x="608" y="498" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#8c7a62" opacity="0.65">F2</text>
+  <text x="8" y="618" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#8c7a62" opacity="0.65">A1</text>
+  <text x="128" y="618" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#8c7a62" opacity="0.65">B1</text>
+  <text x="248" y="618" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#8c7a62" opacity="0.65">C1</text>
+  <text x="368" y="618" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#8c7a62" opacity="0.65">D1</text>
+  <text x="488" y="618" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#8c7a62" opacity="0.65">E1</text>
+  <text x="608" y="618" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#8c7a62" opacity="0.65">F1</text>
+  <!-- Sarcophagus -->
+  <g filter="url(#shadow)">
+    <rect x="260" y="15" width="200" height="90" rx="6" fill="#595247" stroke="#1d1914" stroke-width="3"/>
+    <rect x="270" y="23" width="180" height="74" rx="4" fill="#3b352d" stroke="#d4af37" stroke-width="1.5"/>
+    <!-- Carved Knight Relief -->
+    <ellipse cx="360" cy="60" rx="70" ry="24" fill="#29241e" stroke="#6b5e4f" stroke-width="1.5"/>
+    <!-- Sword relief -->
+    <line x1="310" y1="60" x2="410" y2="60" stroke="#d4af37" stroke-width="2"/>
+    <line x1="330" y1="50" x2="330" y2="70" stroke="#d4af37" stroke-width="2"/>
+    <text x="360" y="95" font-family="Georgia, serif" font-size="11" font-weight="bold" fill="#f8e7b9" text-anchor="middle">PRUNK-SARKOPHAG</text>
+  </g>
+  <!-- Boss GW (1x2 fields) -->
+  <g filter="url(#shadow)">
+    <rect x="265" y="140" width="190" height="80" rx="8" fill="#5c1d11" fill-opacity="0.35" stroke="#8c2d19" stroke-width="3"/>
+    <text x="360" y="178" font-family="Georgia, serif" font-size="16" font-weight="bold" fill="#d9534f" text-anchor="middle">👑 GRUFTWÄCHTER</text>
+    <text x="360" y="198" font-family="Arial, sans-serif" font-size="11" fill="#f2b2ad" text-anchor="middle">Boss-Standee (60 × 30 mm)</text>
+  </g>
+  <rect x="135" y="135" width="90" height="90" rx="8" fill="#8c2d19" fill-opacity="0.25" stroke="#8c2d19" stroke-width="2" stroke-dasharray="6,4"/>
+  <text x="180" y="185" font-family="Georgia, serif" font-size="13" font-weight="bold" fill="#e07567" text-anchor="middle">SK3 (Leibwache)</text>
+  <rect x="495" y="135" width="90" height="90" rx="8" fill="#8c2d19" fill-opacity="0.25" stroke="#8c2d19" stroke-width="2" stroke-dasharray="6,4"/>
+  <text x="540" y="185" font-family="Georgia, serif" font-size="13" font-weight="bold" fill="#e07567" text-anchor="middle">SK4 (Leibwache)</text>
+  <!-- Pillar -->
+  <g filter="url(#shadow)">
+    <circle cx="60" cy="420" r="46" fill="#181512" stroke="#0a0908" stroke-width="2"/>
+    <circle cx="60" cy="420" r="40" fill="url(#pillarGrad)" stroke="#3a342c" stroke-width="3"/>
+    <circle cx="60" cy="420" r="26" fill="none" stroke="#26221c" stroke-width="2" stroke-dasharray="6,4"/>
+    <text x="60" y="425" font-family="Georgia, serif" font-size="12" font-weight="bold" fill="#d5c8b5" text-anchor="middle">SÄULE</text>
+  </g>
+  <!-- Pillar -->
+  <g filter="url(#shadow)">
+    <circle cx="660" cy="420" r="46" fill="#181512" stroke="#0a0908" stroke-width="2"/>
+    <circle cx="660" cy="420" r="40" fill="url(#pillarGrad)" stroke="#3a342c" stroke-width="3"/>
+    <circle cx="660" cy="420" r="26" fill="none" stroke="#26221c" stroke-width="2" stroke-dasharray="6,4"/>
+    <text x="660" y="425" font-family="Georgia, serif" font-size="12" font-weight="bold" fill="#d5c8b5" text-anchor="middle">SÄULE</text>
+  </g>
+  <!-- Trap at C3 -->
+  <g filter="url(#shadow)">
+    <rect x="255" y="375" width="90" height="90" rx="4" fill="#14110e" stroke="#8c2d19" stroke-width="2"/>
+    <!-- Spikes inside pit -->
+    <polygon points="270,450 280,400 290,450" fill="#6b6459" stroke="#111"/>
+    <polygon points="290,450 300,395 310,450" fill="#8a8275" stroke="#111"/>
+    <polygon points="310,450 320,400 330,450" fill="#6b6459" stroke="#111"/>
+    <text x="300" y="459" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#e07567" text-anchor="middle">⚠️ STACHELGRUBE</text>
+  </g>
+  <rect x="252" y="612" width="96" height="96" rx="6" fill="#1b4d3e" fill-opacity="0.25" stroke="#2e7559" stroke-width="2" stroke-dasharray="5,4"/>
+  <text x="300" y="666" font-family="Georgia, serif" font-size="13" font-weight="bold" fill="#58b38f" text-anchor="middle">Eingang E1</text>
+  <rect x="372" y="612" width="96" height="96" rx="6" fill="#1b4d3e" fill-opacity="0.25" stroke="#2e7559" stroke-width="2" stroke-dasharray="5,4"/>
+  <text x="420" y="666" font-family="Georgia, serif" font-size="13" font-weight="bold" fill="#58b38f" text-anchor="middle">Eingang E2</text>
+</svg>

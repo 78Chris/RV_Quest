@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Kartenrücken - Fraktur Typografie Overlay</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Authentische deutsche Holzschnitt-Fraktur (1:1 wie Schattenbazar) -->
+<link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+<style>
+  body {
+    background: #1e1e24;
+    color: #eee;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  h1 { margin-bottom: 5px; font-size: 22px; color: #f5d78e; }
+  p.sub { margin-top: 0; color: #aaa; font-size: 14px; margin-bottom: 25px; }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    width: 100%;
+  }
+
+  /* 70 x 120 mm Tarot Aspect Ratio */
+  .card-container {
+    background: #14100d;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card-frame {
+    width: 250px;
+    height: 428px; /* 7:12 ratio */
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #2a221a;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+  }
+
+  .card-art-placeholder {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Der mathematisch zentrierte Fraktur-Text über der Banderole */
+  .banner-overlay {
+    position: absolute;
+    bottom: 25px; /* Höhe der Banderole im Holzschnitt-Rahmen */
+    left: 0;
+    right: 0;
+    text-align: center;
+    pointer-events: none;
+  }
+
+  .fraktur-text {
+    font-family: 'UnifrakturMaguntia', 'UnifrakturCook', 'Old English Text MT', serif;
+    font-size: 26px;
+    color: #120e0a; /* Tiefschwarze Holzschnitt-Tinte */
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 1px rgba(0,0,0,0.4);
+    display: inline-block;
+    padding: 0 15px;
+    transform: translateY(2px);
+  }
+
+  .title-tag {
+    margin-top: 12px;
+    font-weight: 600;
+    font-size: 13px;
+    color: #cfbda8;
+  }
+</style>
+</head>
+<body>
+
+<h1>🎴 Kartenrücken-Typografie: Original Fraktur-Overlay</h1>
+<p class="sub">Schriftart: <strong>UnifrakturMaguntia</strong> – exakt wie auf der <em>Schattenbazar</em>-Vorlage, mathematisch zentriert ohne KI-Fehler.</p>
+
+<div class="grid">
+
+  <!-- CARD 1: Monsterdeck -->
+  <div class="card-container">
+    <div class="card-frame">
+      <!-- Beispiel mit Platzhalter-Textur bis generiert -->
+      <div style="width:100%; height:100%; background: linear-gradient(180deg, #2b1f17 0%, #17100b 100%); display:flex; align-items:center; justify-content:center; color:#5c4736; font-size:12px; text-align:center; padding:20px;">
+        [ Midjourney Bild ohne Text hier einfügen ]
+      </div>
+      <!-- Banderolen-Simulation -->
+      <div style="position:absolute; bottom:22px; left:25px; right:25px; height:34px; background:#f4ede0; border:2px solid #221811; border-radius:3px; opacity:0.92;"></div>
+      <!-- Vektor-Text -->
+      <div class="banner-overlay">
+        <span class="fraktur-text">Bestiarium Imperialis</span>
+      </div>
+    </div>
+    <div class="title-tag">1. Monsterdeck</div>
+  </div>
+
+  <!-- CARD 2: Ereignisdeck -->
+  <div class="card-container">
+    <div class="card-frame">
+      <div style="width:100%; height:100%; background: linear-gradient(180deg, #182226 0%, #0d1417 100%); display:flex; align-items:center; justify-content:center; color:#415861; font-size:12px; text-align:center; padding:20px;">
+        [ Midjourney Bild ohne Text hier einfügen ]
+      </div>
+      <div style="position:absolute; bottom:22px; left:25px; right:25px; height:34px; background:#f4ede0; border:2px solid #221811; border-radius:3px; opacity:0.92;"></div>
+      <div class="banner-overlay">
+        <span class="fraktur-text">Rad des Schicksals</span>
+      </div>
+    </div>
+    <div class="title-tag">2. Ereignisdeck</div>
+  </div>
+
+  <!-- CARD 3: Magiedeck -->
+  <div class="card-container">
+    <div class="card-frame">
+      <div style="width:100%; height:100%; background: linear-gradient(180deg, #1b1928 0%, #0d0c17 100%); display:flex; align-items:center; justify-content:center; color:#4e466e; font-size:12px; text-align:center; padding:20px;">
+        [ Midjourney Bild ohne Text hier einfügen ]
+      </div>
+      <div style="position:absolute; bottom:22px; left:25px; right:25px; height:34px; background:#f4ede0; border:2px solid #221811; border-radius:3px; opacity:0.92;"></div>
+      <div class="banner-overlay">
+        <span class="fraktur-text">Codex Arcanum</span>
+      </div>
+    </div>
+    <div class="title-tag">3. Magiedeck</div>
+  </div>
+
+  <!-- CARD 4: Begegnungsdeck -->
+  <div class="card-container">
+    <div class="card-frame">
+      <div style="width:100%; height:100%; background: linear-gradient(180deg, #1d221b 0%, #0c120a 100%); display:flex; align-items:center; justify-content:center; color:#495744; font-size:12px; text-align:center; padding:20px;">
+        [ Midjourney Bild ohne Text hier einfügen ]
+      </div>
+      <div style="position:absolute; bottom:22px; left:25px; right:25px; height:34px; background:#f4ede0; border:2px solid #221811; border-radius:3px; opacity:0.92;"></div>
+      <div class="banner-overlay">
+        <span class="fraktur-text">Die Tiefen Gewölbe</span>
+      </div>
+    </div>
+    <div class="title-tag">4. Begegnungsdeck</div>
+  </div>
+
+</div>
+
+</body>
+</html>
+

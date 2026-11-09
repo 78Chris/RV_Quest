@@ -78,9 +78,12 @@ Alle Teile sind **flach zerlegbar (Steckverbindung / Slot-Fit)** oder flache 30 
   - Rand links & rechts: **je 15 mm** — das ist das Dreifache des minimalen Greiferrands von Haushaltsdruckern (3–5 mm).
   - Selbst auf einfachen Standarddruckern ohne Randlosdruck werden weder Gitterlinien noch Texte jemals beschnitten!
 - **Aufbau der Doppelseiten (Spreads):**
-  - **Linke Seite (210 × 210 mm):** Szenario-Briefing, Raumbeschreibungen, Sonderregeln, Trigger-Texte, Monster-Stat-Blöcke und Siegbedingungen.
-  - **Rechte Seite (210 × 210 mm):** Vollfarbige 6×6-Gitter-Kampfkarte (180 × 180 mm) mit stimmungsvoller Boden-Illustration, vorgedruckten Hindernissen (Säulen, Sarkophage, Schutt) und Spawn-Buchstaben (`A`, `B`, `C`).
-  - *(Bei epischen Boss-Arenen kann sich die Karte nahtlos über beide Seiten auf 12 × 6 Felder erstrecken).*
+  - **Linke Seite (210 × 210 mm):** Szenario-Briefing, Raumbeschreibungen, dynamisches Raum-Setup (Begegnungsdeck `[V]` / `[H]`), Sonderregeln, Trigger-Texte, Monster-Stat-Blöcke und Siegbedingungen.
+  - **Rechte Seite (210 × 210 mm):** Kampfkarte im 6×6-Gitter (180 × 180 mm, exakte 30 mm Felder) mit atmosphärischer Bodenstein-Vektor-Illustration (Flagstones, Risse), vorgedruckten 3D-Hindernissen (Säulen, Sarkophage, Schatztruhen, Fallen) und taktischen Spawn-Zonen (`[V]`, `[H]`, `S1–S4`).
+  - **Druckformat:** Native HTML/Browser-Print (`.html`) Vorlagen für A4 Duplex-Druck („An langer Kante spiegeln“).  
+  - **Spezifikation & Großdruck:** Siehe [`GAMEBOOK_PRINT_SPECIFICATION.md`](file:///c:/Users/christoph.willimzik/Agent_Bunny/RV_Quest/printables/GAMEBOOK_PRINT_SPECIFICATION.md).
+  - **Schriftgröße:** Barrierefreier Großdruck (**11–12 pt Fließtext, 14–22 pt Titel**) für entspanntes Lesen am Spieltisch ohne Brille.
+  - **Grafik-Pipeline:** Modulare Vektoren und transparente 300 DPI PNG-Objekte (Säulen, Truhen, Sarkophage) – jederzeit austauschbar gegen freigestellte Midjourney-Dungeon-Assets.
 
 ---
 
@@ -93,6 +96,10 @@ Da Möbel und Wände im Buch vorgedruckt sind, werden nur noch wenige physische 
 ---
 
 ## 🃏 3. Spielkarten (Tarot-Format 70 × 120 mm)
+
+> **Herstellungsempfehlung (Methode 1 – Gutter-Fold):**  
+> Detaillierte Schritt-für-Schritt-Anleitung, Papiermarken und Klebetechniken siehe: [`CARD_PRINTING_GUIDE_METHOD_1.md`](file:///c:/Users/christoph.willimzik/Agent_Bunny/RV_Quest/printables/CARD_PRINTING_GUIDE_METHOD_1.md).  
+> **Empfohlenes Papier:** 180–200 g/m² Mattpapier (z. B. *Clairefontaine DCP* oder *Mondi Color Copy*). Durch das Falzen und Verkleben entsteht eine fertige Karte mit ca. 360–400 g/m² in professioneller Steifigkeit ohne Druckversatz.
 
 - **Kartenformat:** **Tarot (70 × 120 mm)**
   - Großzügiges, atmosphärisches Format mit viel Raum für stimmungsvolle Illustrationen, klare Typografie und gut lesbare Werte am Tisch.
