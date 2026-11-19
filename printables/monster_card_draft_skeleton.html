@@ -159,7 +159,7 @@
     text-align: center;
     position: relative;
     z-index: 2;
-    padding: 0 0.5mm 0.8mm 0.5mm;
+    padding: 0 0.5mm 0.5mm 0.5mm;
   }
 
   .header-top-row {
@@ -173,50 +173,52 @@
   .stars {
     color: #b33927;
     letter-spacing: 0.4mm;
-    font-size: 8.5pt;
+    font-size: 8pt;
   }
 
   .init-pill {
     font-family: 'Cinzel', serif;
-    font-size: 7.5pt;
+    font-size: 7.2pt;
     font-weight: 700;
     color: #3b2816;
     background: linear-gradient(180deg, #fcefd6 0%, #ecd3a3 100%);
-    padding: 0.2mm 1.5mm;
+    padding: 0.2mm 1.4mm;
     border-radius: 0.8mm;
     border: 0.2mm solid #9e782f;
   }
 
   .card-title {
     font-family: 'Cinzel', serif;
-    font-size: 13.5pt;
+    font-size: 13pt;
     font-weight: 900;
     color: #1a140e;
-    letter-spacing: 0.3mm;
-    margin: 0.2mm 0 0 0;
+    letter-spacing: 0.25mm;
+    margin: 0.1mm 0 0 0;
     text-transform: uppercase;
     line-height: 1.05;
   }
 
   .card-subtitle {
     font-family: 'Alegreya', serif;
-    font-size: 7.8pt;
+    font-size: 7.5pt;
     font-style: italic;
     color: #5c4736;
     margin: 0;
     line-height: 1.1;
   }
 
-  /* Artwork Window (32mm) */
+  /* Artwork Window (1:1 Square Ratio, 51 × 51 mm zentriert) */
   .art-container {
-    width: 100%;
-    height: 32mm;
+    width: 51mm;
+    height: 51mm;
+    aspect-ratio: 1 / 1;
     position: relative;
     border-radius: 1.2mm;
     overflow: hidden;
     border: 0.45mm solid #3b2c1d;
     background: #17110b;
-    margin-bottom: 1.2mm;
+    margin: 0 auto 0.8mm auto;
+    box-shadow: 0 0.8mm 2.5mm rgba(0, 0, 0, 0.25);
     z-index: 2;
   }
 
@@ -224,7 +226,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 16%;
+    object-position: center center;
     display: block;
     filter: contrast(1.04) saturate(1.02);
   }
@@ -237,41 +239,25 @@
     border: 0.2mm solid rgba(229, 193, 125, 0.4);
   }
 
-  /* 3-Zeilen Lore */
+  /* Lore Box (entfernt für volles 1:1 Artwork) */
   .lore-box {
-    background: rgba(240, 227, 204, 0.65);
-    border-left: 0.6mm solid #8c6a3a;
-    border-right: 0.6mm solid #8c6a3a;
-    padding: 0.6mm 1.2mm;
-    margin-bottom: 1.2mm;
-    text-align: center;
-    border-radius: 0.5mm;
-    z-index: 2;
+    display: none;
   }
 
-  .lore-text {
-    font-family: 'Alegreya', serif;
-    font-size: 7pt;
-    font-style: italic;
-    line-height: 1.22;
-    color: #3b2817;
-    margin: 0;
-  }
-
-  /* Stat Ribbon (4 Chips) */
+  /* Stat Ribbon (Originale Schriftgröße) */
   .stat-ribbon {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 0.8mm;
-    margin-bottom: 1.2mm;
+    margin-bottom: 0.9mm;
     z-index: 2;
   }
 
   .stat-chip {
     background: linear-gradient(180deg, #ffffff 0%, #f4ece1 100%);
     border: 0.3mm solid #4a3828;
-    border-radius: 1mm;
-    padding: 0.4mm 0.2mm;
+    border-radius: 0.9mm;
+    padding: 0.35mm 0.2mm;
     text-align: center;
   }
 
@@ -282,7 +268,7 @@
 
   .stat-label {
     display: block;
-    font-size: 5.8pt;
+    font-size: 5.6pt;
     font-weight: 700;
     color: #5c4736;
     text-transform: uppercase;
@@ -296,7 +282,7 @@
 
   .stat-value {
     font-family: 'Cinzel', serif;
-    font-size: 10.5pt;
+    font-size: 10.2pt;
     font-weight: 900;
     color: #1a140e;
     line-height: 1;
@@ -306,16 +292,18 @@
     color: #8c1d18;
   }
 
-  /* Rules & Verhalten Box */
+  /* Rules & Verhalten Box (Originale Schriftgröße, kompakter Aufbau) */
   .rules-box {
     flex: 1;
+    min-height: 0;
     background: #fffdfa;
     border: 0.35mm solid #4a3828;
     border-radius: 1.2mm;
-    padding: 1.2mm 1.6mm;
+    padding: 0.7mm 1.4mm;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
+    gap: 0.7mm;
     z-index: 2;
   }
 
@@ -324,21 +312,21 @@
     align-items: center;
     gap: 1mm;
     font-family: 'Cinzel', serif;
-    font-size: 7pt;
+    font-size: 6.8pt;
     font-weight: 700;
     color: #8c1d18;
     letter-spacing: 0.2mm;
     text-transform: uppercase;
-    margin-bottom: 0.4mm;
+    margin-bottom: 0.25mm;
     border-bottom: 0.2mm solid rgba(140, 29, 24, 0.25);
     padding-bottom: 0.2mm;
   }
 
   .rule-item {
-    font-size: 6.8pt;
-    line-height: 1.26;
+    font-size: 6.7pt;
+    line-height: 1.25;
     color: #1a140e;
-    margin-bottom: 0.8mm;
+    margin-bottom: 0;
   }
 
   .rule-tag {
@@ -353,21 +341,25 @@
   }
 
   .ai-step {
-    font-size: 6.8pt;
-    line-height: 1.26;
+    font-size: 6.7pt;
+    line-height: 1.25;
     color: #1a140e;
-    margin-bottom: 0.6mm;
+    margin-bottom: 0.35mm;
     display: flex;
     align-items: baseline;
     gap: 1mm;
   }
 
+  .ai-step:last-child {
+    margin-bottom: 0;
+  }
+
   .step-num {
     font-family: 'Cinzel', serif;
     font-weight: 700;
-    font-size: 6.8pt;
+    font-size: 6.7pt;
     color: #9e782f;
-    min-width: 2.8mm;
+    min-width: 2.6mm;
   }
 
   .step-title {
@@ -380,8 +372,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.8mm 1mm 0 1mm;
-    font-size: 5.8pt;
+    padding: 0.4mm 0.8mm 0 0.8mm;
+    font-size: 5.6pt;
     font-weight: 700;
     color: #5c4736;
     letter-spacing: 0.1mm;
@@ -520,13 +512,6 @@
              src="art_assets/MasterArtwork/Monsters/Color/full_body_shot_of_an_ancient_skeleton_warrior_in_a_dynamic_ag_aad26a7a-5551-4cee-9a94-24e811354d8b_0.png" 
              alt="Skelettkrieger Artwork">
         <div class="art-vignette"></div>
-      </div>
-
-      <!-- 3-Zeilen Lore -->
-      <div class="lore-box">
-        <p class="lore-text">
-          »Klappernde Gebeine in rostzerfressenem Eisen, gebunden an den ewigen Willen ihres Meisters. Sie kennen weder Furcht noch Gnade und marschieren stumm in den Tod.«
-        </p>
       </div>
 
       <!-- Stat Ribbon -->

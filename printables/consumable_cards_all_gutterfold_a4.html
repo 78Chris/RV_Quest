@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <title>Ausrüstungsdeck: Verbrauchsgegenstände (#37–#46) - A4 Gutter-Fold</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Alegreya:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    @page { size: A4 portrait; margin: 0; }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0; background: #ffffff;
+      font-family: 'Alegreya Sans', sans-serif; color: #1a140e;
+      -webkit-print-color-adjust: exact; print-color-adjust: exact;
+    }
+    @media screen {
+      body {
+        background: #1c1814; padding: 30px 0; display: flex; flex-direction: column; align-items: center; gap: 30px;
+      }
+      .toolbar {
+        position: fixed; top: 15px; right: 20px; background: #140f0c; border: 1px solid #5c4736;
+        color: #dfcaa7; padding: 10px 18px; border-radius: 8px; font-size: 13px; display: flex;
+        gap: 15px; align-items: center; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6); z-index: 1000;
+      }
+      .print-btn {
+        background: #9e782f; color: #fff; border: none; padding: 7px 16px; border-radius: 4px;
+        cursor: pointer; font-weight: bold; font-size: 13px; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      }
+      .print-btn:hover { background: #b88e38; }
+      .page-nav { display: flex; gap: 6px; }
+      .nav-link {
+        color: #dfcaa7; text-decoration: none; padding: 4px 8px; border-radius: 3px;
+        background: rgba(255, 255, 255, 0.08); font-size: 11px; font-weight: bold;
+      }
+      .nav-link:hover { background: #9e782f; color: #fff; }
+      .page { background: #ffffff; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45); }
+    }
+    @media print {
+      .no-print { display: none !important; }
+      body { background: #ffffff !important; padding: 0; }
+      .page { box-shadow: none !important; page-break-after: always; break-after: page; }
+    }
+    .page { width: 210mm; height: 297mm; position: relative; overflow: hidden; background: #ffffff; }
+    .card-pair { position: absolute; left: 23.33mm; width: 163.34mm; height: 138mm; display: flex; }
+    .card-pair.pos-1 { top: 8.5mm; }
+    .card-pair.pos-2 { top: 150.5mm; }
+    .tarot-face { width: 81.67mm; height: 138mm; position: relative; overflow: hidden; }
+    .front-face {
+      background: radial-gradient(circle at 50% 25%, #fdfbf7 0%, #f4ece0 65%, #e6d7c2 100%);
+      padding: 2.2mm 3.2mm 2.0mm 3.2mm; display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .card-border-frame {
+      position: absolute; top: 1.1mm; bottom: 1.1mm; left: 1.1mm; right: 1.1mm;
+      border: 0.45mm solid #2c2016; border-radius: 1.5mm; pointer-events: none;
+    }
+    .card-border-inner {
+      position: absolute; top: 1.7mm; bottom: 1.7mm; left: 1.7mm; right: 1.7mm;
+      border: 0.22mm solid #9e782f; border-radius: 1.2mm; pointer-events: none; opacity: 0.85;
+    }
+    .card-header { text-align: center; position: relative; z-index: 2; padding: 0 0.5mm 0.3mm 0.5mm; }
+    .card-title {
+      font-family: 'Cinzel', serif; font-size: 11.2pt; font-weight: 900; color: #1a140e;
+      letter-spacing: 0.2mm; margin: 0.2mm 0 0.1mm 0; text-transform: uppercase; line-height: 1.05;
+    }
+    .card-subtitle { font-family: 'Alegreya', serif; font-size: 7.6pt; font-style: italic; color: #5c4736; margin: 0; line-height: 1.1; }
+    .art-container {
+      width: 56.5mm; height: 56.5mm; aspect-ratio: 1 / 1; position: relative; border-radius: 1.3mm;
+      overflow: hidden; border: 0.45mm solid #3b2c1d; background: #ffffff; margin: 0.4mm auto 0.6mm auto;
+      box-shadow: 0 0.8mm 2.2mm rgba(0, 0, 0, 0.18);
+    }
+    .card-art {
+      width: 100%; height: 100%; object-fit: contain; object-position: center center;
+      display: block; background-color: #ffffff; filter: contrast(1.03) saturate(1.02);
+    }
+    .art-vignette {
+      position: absolute; inset: 0; box-shadow: inset 0 0 4mm rgba(60, 40, 20, 0.25);
+      pointer-events: none; border: 0.2mm solid rgba(158, 120, 47, 0.45);
+    }
+    .lore-box {
+      background: rgba(246, 237, 220, 0.75);
+      border-left: 0.65mm solid #8c6a3a;
+      border-right: 0.65mm solid #8c6a3a;
+      border-top: 0.2mm solid rgba(140, 106, 58, 0.3);
+      border-bottom: 0.2mm solid rgba(140, 106, 58, 0.3);
+      border-radius: 0.6mm;
+      padding: 0.6mm 1.6mm;
+      margin: 0.2mm 0.4mm 0.5mm 0.4mm;
+      text-align: center;
+      z-index: 2;
+      box-shadow: 0 0.3mm 0.8mm rgba(0, 0, 0, 0.05);
+    }
+    .lore-text {
+      font-family: 'Alegreya', serif; font-size: 6.8pt; font-style: italic;
+      color: #453424; line-height: 1.2; margin: 0; letter-spacing: 0.02mm;
+    }
+    .stat-ribbon {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2mm;
+      margin: 0.2mm 0.4mm 0.6mm 0.4mm; z-index: 2;
+    }
+    .stat-chip {
+      background: linear-gradient(180deg, #fdfaf4 0%, #efe4d0 100%); border: 0.28mm solid #8c6a3a;
+      border-radius: 1.0mm; padding: 0.4mm 0.8mm; text-align: center; display: flex; flex-direction: column;
+      justify-content: center; box-shadow: 0 0.3mm 0.8mm rgba(0, 0, 0, 0.12);
+    }
+    .stat-chip.highlight-stat { background: linear-gradient(180deg, #fcedec 0%, #f4d3d2 100%); border-color: #8c1d18; }
+    .stat-chip.highlight-shield { background: linear-gradient(180deg, #eff7ff 0%, #d3e5f7 100%); border-color: #3b6b99; }
+    .stat-chip.highlight-stat-green { background: linear-gradient(180deg, #eef7f0 0%, #d2e7d7 100%); border-color: #2a6639; }
+    .stat-chip.highlight-gold { background: linear-gradient(180deg, #fffcf0 0%, #fae8b8 100%); border-color: #b88e38; }
+    .stat-label { font-size: 5.6pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2mm; color: #5c4736; line-height: 1; margin-bottom: 0.2mm; }
+    .stat-value { font-family: 'Cinzel', serif; font-size: 10.5pt; font-weight: 900; color: #1a140e; line-height: 1; }
+    .stat-chip.highlight-stat .stat-value { color: #8c1d18; }
+    .stat-chip.highlight-shield .stat-value { color: #1a446e; }
+    .stat-chip.highlight-stat-green .stat-value { color: #1c522a; }
+    .stat-chip.highlight-gold .stat-value { color: #7a5410; }
+    .rules-box {
+      background: #ffffff; border: 0.32mm solid #4a3828; border-radius: 1.1mm;
+      padding: 0.8mm 1.6mm 0.9mm 1.6mm; display: flex; flex-direction: column; gap: 0.6mm;
+      margin: 0 0.4mm 0.5mm 0.4mm; z-index: 2; box-shadow: inset 0 0 1.5mm rgba(0, 0, 0, 0.04);
+    }
+    .section-header {
+      font-family: 'Cinzel', serif; font-size: 6.8pt; font-weight: 700; color: #8c1d18;
+      letter-spacing: 0.25mm; text-transform: uppercase; border-bottom: 0.2mm solid rgba(140, 29, 24, 0.25);
+      padding-bottom: 0.2mm; display: flex; justify-content: space-between; align-items: center;
+    }
+    .rule-title { font-family: 'Cinzel', serif; font-weight: 900; color: #2b1f15; }
+    .rule-body { font-size: 7.2pt; line-height: 1.25; color: #1a140e; margin: 0; }
+    .rule-body strong { color: #8c1d18; font-weight: 700; }
+    .card-footer {
+      display: flex; justify-content: space-between; align-items: center; padding: 0.2mm 1.0mm 0 1.0mm;
+      font-size: 5.6pt; font-weight: 700; color: #5c4736; letter-spacing: 0.1mm; z-index: 2; text-transform: uppercase;
+    }
+    .back-face { background: #140f0c; }
+    .card-back-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .crop-svg { position: absolute; top: 0; left: 0; width: 210mm; height: 297mm; pointer-events: none; }
+    .mark-cut { stroke: #111111; stroke-width: 0.22; stroke-linecap: square; }
+    .mark-fold { stroke: #992222; stroke-width: 0.28; stroke-dasharray: 1.5, 1; }
+  </style>
+</head>
+<body>
+  <div class="toolbar no-print">
+    <span>🛡️ <strong>Ausrüstungsdeck: Verbrauchsgegenstände (#37–#46)</strong> (10 Karten · 5 Bögen)</span>
+    <div class="page-nav">
+      <a href="#page1" class="nav-link">Bogen 1 (#37 & #38)</a>
+<a href="#page2" class="nav-link">Bogen 2 (#39 & #40)</a>
+<a href="#page3" class="nav-link">Bogen 3 (#41 & #42)</a>
+<a href="#page4" class="nav-link">Bogen 4 (#43 & #44)</a>
+<a href="#page5" class="nav-link">Bogen 5 (#45 & #46)</a>
+
+    </div>
+    <button class="print-btn" onclick="window.print()">🖨️ Alle 5 Bögen drucken / PDF</button>
+  </div>
+  
+  <!-- BOGEN 1 (#37 & #38) -->
+  <div class="page" id="page1">
+    <svg class="crop-svg" viewBox="0 0 210 297" width="210mm" height="297mm">
+      <line x1="23.33" y1="0.5" x2="23.33" y2="7.5" class="mark-cut" />
+      <line x1="105" y1="0.5" x2="105" y2="7.5" class="mark-fold" />
+      <line x1="186.67" y1="0.5" x2="186.67" y2="7.5" class="mark-cut" />
+
+      <line x1="1.0" y1="8.5" x2="20.0" y2="8.5" class="mark-cut" />
+      <line x1="190.0" y1="8.5" x2="209.0" y2="8.5" class="mark-cut" />
+      <line x1="1.0" y1="146.5" x2="20.0" y2="146.5" class="mark-cut" />
+      <line x1="190.0" y1="146.5" x2="209.0" y2="146.5" class="mark-cut" />
+
+      <line x1="23.33" y1="147.0" x2="23.33" y2="150.0" class="mark-cut" />
+      <line x1="105" y1="147.0" x2="105" y2="150.0" class="mark-fold" />
+      <line x1="186.67" y1="147.0" x2="186.67" y2="150.0" class="mark-cut" />
+
+      <line x1="1.0" y1="150.5" x2="20.0" y2="150.5" class="mark-cut" />
+      <line x1="190.0" y1="150.5" x2="209.0" y2="150.5" class="mark-cut" />
+      <line x1="1.0" y1="288.5" x2="20.0" y2="288.5" class="mark-cut" />
+      <line x1="190.0" y1="288.5" x2="209.0" y2="288.5" class="mark-cut" />
+
+      <line x1="23.33" y1="289.5" x2="23.33" y2="296.5" class="mark-cut" />
+      <line x1="105" y1="289.5" x2="105" y2="296.5" class="mark-fold" />
+      <line x1="186.67" y1="289.5" x2="186.67" y2="296.5" class="mark-cut" />
+
+      <line x1="105" y1="8.5" x2="105" y2="146.5" stroke="#777777" stroke-width="0.14" stroke-dasharray="2, 2" opacity="0.65" />
+      <line x1="105" y1="150.5" x2="105" y2="288.5" stroke="#777777" stroke-width="0.14" stroke-dasharray="2, 2" opacity="0.65" />
+    </svg>
+
+    <!-- KARTE #37: Heiltrank (Groß) -->
+    <div class="card-pair pos-1">
+      <div class="tarot-face front-face">
+        <div class="card-border-frame"></div>
+        <div class="card-border-inner"></div>
+        <div class="card-header">
+          <h2 class="card-title">Heiltrank (Groß)</h2>
+          <p class="card-subtitle">◈ Ausrüstungsdeck · Verbrauch</p>
+        </div>
+        <div class="art-container">
+          <img class="card-art" src="art_assets/MasterArtwork/Cards/Trinkets/A_single_isolated_large_ornate_faceted_glass_flask_filled_wit_f1a259b0-290d-4c2a-90a2-b3589229167b_0.png" alt="Heiltrank (Groß)">
+          <div class="art-vignette"></div>
+        </div>
+        <div class="lore-box">
+          <p class="lore-text">»Glühende rubinrote Flüssigkeit in geschliffenem Kristall. Schließt selbst klaffende Wunden in Sekundenschnelle.«</p>
+        </div>
+        <div class="stat-ribbon">
+          <div class="stat-chip highlight-stat-green"><span class="stat-label">🧪 Typ</span><span class="stat-value">Trank</span></div>
+          <div class="stat-chip"><span class="stat-label">Slot</span><span class="stat-value" style="font-size:7.5pt;">Rucksack</span></div>
+          <div class="stat-chip highlight-gold"><span class="stat-label">💰 Wert</span><span class="stat-value" style="font-size:7.5pt; color:#7a5410;">3 Gold</span></div>
+        </div>
+        <div class="rules-box">
+          <div class="section-header">
+            <span>📜 Gegenstandseffekt</span>
+            <span class="rule-title">Sonderregel</span>
+          </div>
+          <p class="rule-body">Sofortige Aktion: Stellt **4 LP** wieder her. Einweg.</p>
+        </div>
+        <div class="card-footer">
+          <span>🗡️ Der Schattenbazar</span>
+          <span>#37 / 54</span>
+        </div>
+      </div>
+      <div class="tarot-face back-face">
+        <img class="card-back-img" src="art_assets/MasterArtwork/Cards/Card Backs/Board_game_card_back_colord_woodcut_style_forbidden_midnight__21652bf5-8ecb-4a43-8d05-67df8e29d436_3.png" alt="Rückseite">
+      </div>
+    </div>
+    <!-- KARTE #38: Heiltrank (Standard) -->
+    <div class="card-pair pos-2">
+      <div class="tarot-face front-face">
+        <div class="card-border-frame"></div>
+        <div class="card-border-inner"></div>
+        <div class="card-header">
+          <h2 class="card-title">Heiltrank (Standard)</h2>
+          <p class="card-subtitle">◈ Ausrüstungsdeck · Verbrauch</p>
+        </div>
+        <div class="art-container">
+          <img class="card-art" src="art_assets/MasterArtwork/Cards/Trinkets/A_single_isolated_small_simple_round_glass_vial_filled_with_s_aa532604-5250-4165-b63a-74e19281b07c_1.png" alt="Heiltrank (Standard)">
+          <div class="art-vignette"></div>
+        </div>
+        <div class="lore-box">
+          <p class="lore-text">»Der verlässliche Begleiter eines jeden Abenteurers. Stoppt Blutungen und bringt verlorene Lebensgeister zurück.«</p>
+        </div>
+        <div class="stat-ribbon">
+          <div class="stat-chip highlight-stat-green"><span class="stat-label">🧪 Typ</span><span class="stat-value">Trank</span></div>
+          <div class="stat-chip"><span class="stat-label">Slot</span><span class="stat-value" style="font-size:7.5pt;">Rucksack</span></div>
+          <div class="stat-chip highlight-gold"><span class="stat-label">💰 Wert</span><span class="stat-value" style="font-size:7.5pt; color:#7a5410;">2 Gold</span></div>
+        </div>
+        <div class="rules-box">
+          <div class="section-header">
+            <span>📜 Gegenstandseffekt</span>
+            <span class="rule-title">Sonderregel</span>
+          </div>
+          <p class="rule-body">Sofortige Aktion: Stellt **2 LP** wieder her. Einweg.</p>
+        </div>
+        <div class="card-footer">
+          <span>🗡️ Der Schattenbazar</span>
+          <span>#38 / 54</span>
+        </div>
+      </div>
+      <div class="tarot-face back-face">
+        <img class="card-back-img" src="art_assets/MasterArtwork/Cards/Card Backs/Board_game_card_back_colord_woodcut_style_forbidden_midnight__21652bf5-8ecb-4a43-8d05-67df8e29d436_3.png" alt="Rückseite">
+      </div>
+    </div>
+  </div>
+
+  <!-- BOGEN 2 (#39 & #40) -->
+  <div class="page" id="page2">
+    <svg class="crop-svg" viewBox="0 0 210 297" width="210mm" height="297mm">
+      <line x1="23.33" y1="0.5" x2="23.33" y2="7.5" class="mark-cut" />
+      <line x1="105" y1="0.5" x2="105" y2="7.5" class="mark-fold" />
+      <line x1="186.67" y1="0.5" x2="186.67" y2="7.5" class="mark-cut" />
+
+      <line x1="1.0" y1="8.5" x2="20.0" y2="8.5" class="mark-cut" />
+      <line x1="190.0" y1="8.5" x2="209.0" y2="8.5" class="mark-cut" />
+      <line x1="1.0" y1="146.5" x2="20.0" y2="146.5" class="mark-cut" />
+      <line x1="190.0" y1="146.5" x2="209.0" y2="146.5" class="mark-cut" />
+
+      <line x1="23.33" y1="147.0" x2="23.33" y2="150.0" class="mark-cut" />
+      <line x1="105" y1="147.0" x2="105" y2="150.0" class="mark-fold" />
+      <line x1="186.67" y1="147.0" x2="186.67" y2="150.0" class="mark-cut" />
+
+      <line x1="1.0" y1="150.5" x2="20.0" y2="150.5" class="mark-cut" />
+      <line x1="190.0" y1="150.5" x2="209.0" y2="150.5" class="mark-cut" />
+      <line x1="1.0" y1="288.5" x2="20.0" y2="288.5" class="mark-cut" />
+      <line x1="190.0" y1="288.5" x2="209.0" y2="288.5" class="mark-cut" />
+
+      <line x1="23.33" y1="289.5" x2="23.33" y2="296.5" class="mark-cut" />
+      <line x1="105" y1="289.5" x2="105" y2="296.5" class="mark-fold" />
+      <line x1="186.67" y1="289.5" x2="186.67" y2="296.5" class="mark-cut" />
+
+      <line x1="105" y1="8.5" x2="105" y2="146.5" stroke="#777777" stroke-width="0.14" stroke-dasharray="2, 2" opacity="0.65" />
+      <line x1="105" y1="150.5" x2="105" y2="288.5" stroke="#777777" stroke-width="0.14" stroke-dasharray="2, 2" opacity="0.65" />
+    </svg>
+
+    <!-- KARTE #39: Elixier der Zähigkeit -->
+    <div class="card-pair pos-1">
+      <div class="tarot-face front-face">
+        <div class="card-border-frame"></div>
+        <div class="card-border-inner"></div>
+        <div class="card-header">
+          <h2 class="card-title">Elixier der Zähigkeit</h2>
+          <p class="card-subtitle">◈ Ausrüstungsdeck · Verbrauch</p>
+        </div>
+        <div class="art-container">
+          <img class="card-art" src="art_assets/MasterArtwork/Cards/Trinkets/A_single_isolated_thick_sturdy_amber-brown_glass_bottle_fille_11be1a31-1f82-45c5-88bd-f28d60cff5f6_1.png" alt="Elixier der Zähigkeit">
+          <div class="art-vignette"></div>
+        </div>
+        <div class="lore-box">
+          <p class="lore-text">»Dickflüssiges bernsteinfarbenes Gebräu. Lässt Muskeln und Knochen wie massives Eichenholz erstarren.«</p>
+        </div>
+        <div class="stat-ribbon">
+          <div class="stat-chip highlight-stat-green"><span class="stat-label">🧪 Typ</span><span class="stat-value">Trank</span></div>
+          <div class="stat-chip"><span class="stat-label">Slot</span><span class="stat-value" style="font-size:7.5pt;">Rucksack</span></div>
+          <div class="stat-chip highlight-gold"><span class="stat-label">💰 Wert</span><span class="stat-value" style="font-size:7.5pt; color:#7a5410;">2 Gold</span></div>
+        </div>
+        <div class="rules-box">
+          <div class="section-header">
+            <span>📜 Gegenstandseffekt</span>
+            <span class="rule-title">Sonderregel</span>
+          </div>
+          <p class="rule-body">Verleiht bis zum Rundenende +1 Schaden-Reduktion. Einweg.</p>
+        </div>
+        <div class="card-footer">
+          <span>🗡️ Der Schattenbazar</span>
+          <span>#39 / 54</span>
+        </div>
+      </div>
+      <div class="tarot-face back-face">
+        <img class="card-back-img" src="art_assets/MasterArtwork/Cards/Card Backs/Board_game_card_back_colord_woodcut_style_forbidden_midnight__21652bf5-8ecb-4a43-8d05-67df8e29d436_3.png" alt="Rückseite">
+      </div>
+    </div>
+    <!-- KARTE #40: Trank der Schnelligkeit -->
+    <div class="card-pair pos-2">
+      <div class="tarot-face front-face">
+        <div class="card-border-frame"></div>
+        <div class="card-border-inner"></div>
+        <div class="card-header">
+          <h2 class="card-title">Trank der Schnelligkeit</h2>
+          <p class="card-subtitle">◈ Ausrüstungsdeck · Verbrauch</p>
+        </div>
+        <div class="art-container">
+          <img class="card-art" src="art_assets/MasterArtwork/Cards/Trinkets/A_single_isolated_sleek_tall_elegant_glass_vial_filled_with_s_e1adb50a-4395-4d3b-88da-e809c6a1b206_0.png" alt="Trank der Schnelligkeit">
+          <div class="art-vignette"></div>
+        </div>
+        <div class="lore-box">
+          <p class="lore-text">»Funkelndes azurblaues Elixier. Beschleunigt den Puls und lässt die Welt ringsumher wie in Zeitlupe erscheinen.«</p>
+        </div>
+        <div class="stat-ribbon">
+          <div class="stat-chip highlight-stat-green"><span class="stat-label">🧪 Typ</span><span class="stat-value">Trank</span></div>
+          <div class="stat-chip"><span class="stat-label">Slot</span><span class="stat-value" style="font-size:7.5pt;">Rucksack</span></div>
+          <div class="stat-chip highlight-gold"><span class="stat-label">💰 Wert</span><span class="stat-value" style="font-size:7.5pt; color:#7a5410;">2 Gold</span></div>
+        </div>
+        <div class="rules-box">
+          <div class="section-header">
+            <span>📜 Gegenstandseffekt</span>
+            <span class="rule-title">Sonderregel</span>
+          </div>
+          <p class="rule-body">Verleiht für die aktuelle Runde +2 Bewegung und erlaubt 1 kostenlose Interaktion. Einweg.</p>
+        </div>
+        <div class="card-footer">
+          <span>🗡️ Der Schattenbazar</span>
+          <span>#40 / 54</span>
+        </div>
+      </div>
+      <div class="tarot-face back-face">
+        <img class="card-back-img" src="art_assets/MasterArtwork/Cards/Card Backs/Board_game_card_back_colord_woodcut_style_forbidden_midnight__21652bf5-8ecb-4a43-8d05-67df8e29d436_3.png" alt="Rückseite">
+      </div>
+    </div>
+  </div>
+
+  <!-- BOGEN 3 (#41 & #42) -->
+  <div class="page" id="page3">
+    <svg class="crop-svg" viewBox="0 0 210 297" width="210mm" height="297mm">
+      <line x1="23.33" y1="0.5" x2="23.33" y2="7.5" class="mark-cut" />
+      <line x1="105" y1="0.5" x2="105" y2="7.5" class="mark-fold" />
+      <line x1="186.67" y1="0.5" x2="186.67" y2="7.5" class="mark-cut" />
+
+      <line x1="1.0" y1="8.5" x2="20.0" y2="8.5" class="mark-cut" />
+      <line x1="190.0" y1="8.5" x2="209.0" y2="8.5" class="mark-cut" />
+      <line x1="1.0" y1="146.5" x2="20.0" y2="146.5" class="mark-cut" />
+      <line x1="190.0" y1="146.5" x2="209.0" y2="146.5" class="mark-cut" />
+
+      <line x1="23.33" y1="147.0" x2="23.33" y2="150.0" class="mark-cut" />
+      <line x1="105" y1="147.0" x2="105" y2="150.0" class="mark-fold" />
+      <line x1="186.67" y1="147.0" x2="186.67" y2="150.0" class="mark-cut" />
+
+      <line x1="1.0" y1="150.5" x2="20.0" y2="150.5" class="mark-cut" />
+      <line x1="190.0" y1="150.5" x2="209.0" y2="150.5" class="mark-cut" />
+      <line x1="1.0" y1="288.5" x2="20.0" y2="288.5" class="mark-cut" />
+      <line x1="190.0" y1="288.5" x2="209.0" y2="288.5" class="mark-cut" />
+
+      <line x1="23.33" y1="289.5" x2="23.33" y2="296.5" class="mark-cut" />
+      <line x1="105" y1="289.5" x2="105" y2="296.5" class="mark-fold" />
+      <line x1="186.67" y1="289.5" x2="186.67" y2="296.5" class="mark-cut" />
+
+      <line x1="105" y1="8.5" x2="105" y2="146.5" stroke="#777777" stroke-width="0.14" stroke-dasharray="2, 2" opacity="0.65" />
+      <line x1="105" y1="150.5" x2="105" y2="288.5" stroke="#777777" stroke-width="0.14" stroke-dasharray="2, 2" opacity="0.65" />
+    </svg>
+
+    <!-- KARTE #41: Fläschchen Kriechgift -->
+    <div class="card-pair pos-1">
+      <div class="tarot-face front-face">
+        <div class="card-border-frame"></div>
+        <div class="card-border-inner"></div>
+        <div class="card-header">
+          <h2 class="card-title">Fläschchen Kriechgift</h2>
+          <p class="card-subtitle">◈ Ausrüstungsdeck · Verbrauch</p>
+        </div>
+        <div class="art-container">
+          <img class="card-art" src="art_assets/MasterArtwork/Cards/Trinkets/A_single_isolated_small_sinister_dark_glass_vial_filled_with__fbe88141-c72e-4c48-bb12-2d6b20381598_1.png" alt="Fläschchen Kriechgift">
+          <div class="art-vignette"></div>
+        </div>
+        <div class="lore-box">
+          <p class="lore-text">»Zähflüssiges Gift aus den finstersten Sümpfen. Schon ein Tropfen auf der Klinge schwächt jeden Feind zusehends.«</p>
+        </div>
+        <div class="stat-ribbon">
+          <div class="stat-chip highlight-stat-green"><span class="stat-label">🧪 Typ</span><span class="stat-value">Öl</span></div>
+          <div class="stat-chip"><span class="stat-label">Slot</span><span class="stat-value" style="font-size:7.5pt;">Rucksack</span></div>
+          <div class="stat-chip highlight-gold"><span class="stat-label">💰 Wert</span><span class="stat-value" style="font-size:7.5pt; color:#7a5410;">3 Gold</span></div>
+        </div>
+        <div class="rules-box">
+          <div class="section-header">
+            <span>📜 Gegenstandseffekt</span>
+            <span class="rule-title">Sonderregel</span>
+          </div>
+          <p class="rule-body">Auf eine Klinge aufgetragen: Die nächsten 2 erfolgreichen Treffer verursachen Zustand `Vergiftet` (-1 auf alle Würfe).</p>
+        </div>
+        <div class="card-footer">
+          <span>🗡️ Der Schattenbazar</span>
+          <span>#41 / 54</span>
+        </div>
+      </div>
+      <div class="tarot-face back-face">
+        <img class="card-back-img" src="art_assets/MasterArtwork/Cards/Card Backs/Board_game_card_back_colord_woodcut_style_forbidden_midnight__21652bf5-8ecb-4a43-8d05-67df8e29d436_3.png" alt="Rückseite">
+      </div>
+    </div>
+    <!-- KARTE #42: Zwergen-Brandbombe -->
+    <div class="card-pair pos-2">
+      <div class="tarot-face front-face">
+        <div class="card-border-frame"></div>
+        <div class="card-border-inner"></div>
+        <div class="card-header">
+          <h2 class="card-title">Zwergen-Brandbombe</h2>
+          <p class="card-subtitle">◈ Ausrüstungsdeck · Verbrauch</p>
+        </div>
+        <div class="art-container">
+          <img class="card-art" src="art_assets/MasterArtwork/Cards/Trinkets/A_single_isolated_heavy_iron-cased_dwarven_grenade_its_casing_0611fdaf-5278-4b8e-941a-9b0a9cf12cd8_3.png" alt="Zwergen-Brandbombe">
+          <div class="art-vignette"></div>
+        </div>
+        <div class="lore-box">
+          <p class="lore-text">»Zwergischer Sprengstoff in dickem Gusseisen. Ein Funke genügt, um ganze Räume in sengendes Flammenmeer zu tauchen.«</p>
+        </div>
+        <div class="stat-ribbon">
+          <div class="stat-chip highlight-stat-green"><span class="stat-label">🧪 Typ</span><span class="stat-value">Wurfwaffe</span></div>
+          <div class="stat-chip"><span class="stat-label">Slot</span><span class="stat-value" style="font-size:7.5pt;">Rucksack</span></div>
+          <div class="stat-chip highlight-gold"><span class="stat-label">💰 Wert</span><span class="stat-value" style="font-size:7.5pt; color:#7a5410;">4 Gold</span></div>
+        </div>
+        <div class="rules-box">
+          <div class="section-header">
+            <span>📜 Gegenstandseffekt</span>
+            <span class="rule-title">Sonderregel</span>
+          </div>
+          <p class="rule-body">Reichweite 2 Felder. Trifft Ziel und alle angrenzenden Felder für 2 Schaden + Zustand `Brennend`. Einweg.</p>
+        </div>
+        <div class="card-footer">
+          <span>🗡️ Der Schattenbazar</span>
+          <span>#42 / 54</span>
+        </div>
+      </div>
+      <div class="tarot-face back-face">
+        <img class="card-back-img" src="art_assets/MasterArtwork/Cards/Card Backs/Board_game_card_back_colord_woodcut_style_forbidden_midnight__21652bf5-8ecb-4a43-8d05-67df8e29d436_3.png" alt="Rückseite">
+      </div>
+    </div>
+  </div>
+
+  <!-- BOGEN 4 (#43 & #44) -->
+  <div class="page" id="page4">
+    <svg class="crop-svg" viewBox="0 0 210 297" width="210mm" height="297mm">
+      <line x1="23.33" y1="0.5" x2="23.33" y2="7.5" class="mark-cut" />
+      <line x1="105" y1="0.5" x2="105" y2="7.5" class="mark-fold" />
+      <line x1="186.67" y1="0.5" x2="186.67" y2="7.5" class="mark-cut" />
+
+      <line x1="1.0" y1="8.5" x2="20.0" y2="8.5" class="mark-cut" />
+      <line x1="190.0" y1="8.5" x2="209.0" y2="8.5" class="mark-cut" />
+      <line x1="1.0" y1="146.5" x2="20.0" y2="146.5" class="mark-cut" />
+      <line x1="190.0" y1="146.5" x2="209.0" y2="146.5" class="mark-cut" />
+
+      <line x1="23.33" y1="147.0" x2="23.33" y2="150.0" class="mark-cut" />
+      <line x1="105" y1="147.0" x2="105" y2="150.0" class="mark-fold" />
+      <line x1="186.67" y1="147.0" x2="186.67" y2="150.0" class="mark-cut" />
+
+      <line x1="1.0" y1="150.5" x2="20.0" y2="150.5" class="mark-cut" />
+      <line x1="190.0" y1="150.5" x2="209.0" y2="150.5" class="mark-cut" />
+      <line x1="1.0" y1="288.5" x2="20.0" y2="288.5" class="mark-cut" />
+      <line x1="190.0" y1="288.5" x2="209.0" y2="288.5" class="mark-cut" />
+
+      <line x1="23.33" y1="289.5" x2="23.33" y2="296.5" class="mark-cut" />
+      <line x1="105" y1="289.5" x2="105" y2="296.5" class="mark-fold" />
+      <line x1="186.67" y1="289.5" x2="186.67" y2="296.5" class="mark-cut" />
+
+      <line x1="105" y1="8.5" x2="105" y2="146.5" stroke="#777777" stroke-width="0.14" stroke-dasharray="2, 2" opacity="0.65" />
+      <line x1="105" y1="150.5" x2="105" y2="288.5" stroke="#777777" stroke-width="0.14" stroke-dasharray="2, 2" opacity="0.65" />
+    </svg>
+
+    <!-- KARTE #43: Fokus-Räucherwerk -->
+    <div class="card-pair pos-1">
+      <div class="tarot-face front-face">
+        <div class="card-border-frame"></div>
+        <div class="card-border-inner"></div>
+        <div class="card-header">
+          <h2 class="card-title">Fokus-Räucherwerk</h2>
+          <p class="card-subtitle">◈ Ausrüstungsdeck · Verbrauch</p>
+        </div>
+        <div class="art-container">
+          <img class="card-art" src="art_assets/MasterArtwork/Cards/Trinkets/A_single_isolated_ornate_bronze_incense_burner_censer_with_fi_222fc47a-2064-4fd7-81cc-b65ea96c2357_3.png" alt="Fokus-Räucherwerk">
+          <div class="art-vignette"></div>
+        </div>
+        <div class="lore-box">
+          <p class="lore-text">»Mächtige Alchemistenkräuter in getriebener Bronzeschale. Der aufsteigende Rauch klärt den Geist und vertreibt alle Erschöpfung.«</p>
+        </div>
+        <div class="stat-ribbon">
+          <div class="stat-chip highlight-stat-green"><span class="stat-label">🧪 Typ</span><span class="stat-value">Magisch</span></div>
+          <div class="stat-chip"><span class="stat-label">Slot</span><span class="stat-value" style="font-size:7.5pt;">Rucksack</span></div>
+          <div class="stat-chip highlight-gold"><span class="stat-label">💰 Wert</span><span class="stat-value" style="font-size:7.5pt; color:#7a5410;">3 Gold</span></div>
+        </div>
+        <div class="rules-box">
+          <div class="section-header">
+            <span>📜 Gegenstandseffekt</span>
+            <span class="rule-title">Sonderregel</span>
+          </div>
+          <p class="rule-body">Nur für Zauberkundige: Entfernt sofort **2 Erschöpfungs-Boxen** (Fatigue). Einweg.</p>
+        </div>
+        <div class="card-footer">
+          <span>🗡️ Der Schattenbazar</span>
+          <span>#43 / 54</span>
+        </div>
+      </div>
+      <div class="tarot-face back-face">
+        <img class="card-back-img" src="art_assets/MasterArtwork/Cards/Card Backs/Board_game_card_back_colord_woodcut_style_forbidden_midnight__21652bf5-8ecb-4a43-8d05-67df8e29d436_3.png" alt="Rückseite">
+      </div>
+    </div>
+    <!-- KARTE #44: Gegengift-Ampulle -->
+    <div class="card-pair pos-2">
+      <div class="tarot-face front-face">
+        <div class="card-border-frame"></div>
+        <div class="card-border-inner"></div>
+        <div class="card-header">
+          <h2 class="card-title">Gegengift-Ampulle</h2>
+          <p class="card-subtitle">◈ Ausrüstungsdeck · Verbrauch</p>
+        </div>
+        <div class="art-container">
+          <img class="card-art" src="art_assets/MasterArtwork/Cards/Trinkets/A_single_isolated_delicate_glass_ampoule_with_thin_elongated__f9e9539c-65c8-4668-8666-c7cfa3edbe36_3.png" alt="Gegengift-Ampulle">
+          <div class="art-vignette"></div>
+        </div>
+        <div class="lore-box">
+          <p class="lore-text">»Klares smaragdgrünes Gegengift. Zersetzt selbst die tückischsten Monstergifte und löst lähmende Betäubung auf.«</p>
+        </div>
+        <div class="stat-ribbon">
+          <div class="stat-chip highlight-stat-green"><span class="stat-label">🧪 Typ</span><span class="stat-value">Trank</span></div>
+          <div class="stat-chip"><span class="stat-label">Slot</span><span class="stat-value" style="font-size:7.5pt;">Rucksack</span></div>
+          <div class="stat-chip highlight-gold"><span class="stat-label">💰 Wert</span><span class="stat-value" style="font-size:7.5pt; color:#7a5410;">2 Gold</span></div>
+        </div>
+        <div class="rules-box">
+          <div class="section-header">
+            <span>📜 Gegenstandseffekt</span>
+            <span class="rule-title">Sonderregel</span>
+          </div>
+          <p class="rule-body">Heilt sofort Gift und Betäubung eines Helden. Einweg.</p>
+        </div>
+        <div class="card-footer">
+          <span>🗡️ Der Schattenbazar</span>
+          <span>#44 / 54</span>
+        </div>
+      </div>
+      <div class="tarot-face back-face">
+        <img class="card-back-img" src="art_assets/MasterArtwork/Cards/Card Backs/Board_game_card_back_colord_woodcut_style_forbidden_midnight__21652bf5-8ecb-4a43-8d05-67df8e29d436_3.png" alt="Rückseite">
+      </div>
+    </div>
+  </div>
+
+  <!-- BOGEN 5 (#45 & #46) -->
+  <div class="page" id="page5">
+    <svg class="crop-svg" viewBox="0 0 210 297" width="210mm" height="297mm">
+      <line x1="23.33" y1="0.5" x2="23.33" y2="7.5" class="mark-cut" />
+      <line x1="105" y1="0.5" x2="105" y2="7.5" class="mark-fold" />
+      <line x1="186.67" y1="0.5" x2="186.67" y2="7.5" class="mark-cut" />
+
+      <line x1="1.0" y1="8.5" x2="20.0" y2="8.5" class="mark-cut" />
+      <line x1="190.0" y1="8.5" x2="209.0" y2="8.5" class="mark-cut" />
+      <line x1="1.0" y1="146.5" x2="20.0" y2="146.5" class="mark-cut" />
+      <line x1="190.0" y1="146.5" x2="209.0" y2="146.5" class="mark-cut" />
+
+      <line x1="23.33" y1="147.0" x2="23.33" y2="150.0" class="mark-cut" />
+      <line x1="105" y1="147.0" x2="105" y2="150.0" class="mark-fold" />
+      <line x1="186.67" y1="147.0" x2="186.67" y2="150.0" class="mark-cut" />
+
+      <line x1="1.0" y1="150.5" x2="20.0" y2="150.5" class="mark-cut" />
+      <line x1="190.0" y1="150.5" x2="209.0" y2="150.5" class="mark-cut" />
+      <line x1="1.0" y1="288.5" x2="20.0" y2="288.5" class="mark-cut" />
+      <line x1="190.0" y1="288.5" x2="209.0" y2="288.5" class="mark-cut" />
+
+      <line x1="23.33" y1="289.5" x2="23.33" y2="296.5" class="mark-cut" />
+      <line x1="105" y1="289.5" x2="105" y2="296.5" class="mark-fold" />
+      <line x1="186.67" y1="289.5" x2="186.67" y2="296.5" class="mark-cut" />
+
+      <line x1="105" y1="8.5" x2="105" y2="146.5" stroke="#777777" stroke-width="0.14" stroke-dasharray="2, 2" opacity="0.65" />
+      <line x1="105" y1="150.5" x2="105" y2="288.5" stroke="#777777" stroke-width="0.14" stroke-dasharray="2, 2" opacity="0.65" />
+    </svg>
+
+    <!-- KARTE #45: Wegrationen-Paket -->
+    <div class="card-pair pos-1">
+      <div class="tarot-face front-face">
+        <div class="card-border-frame"></div>
+        <div class="card-border-inner"></div>
+        <div class="card-header">
+          <h2 class="card-title">Wegrationen-Paket</h2>
+          <p class="card-subtitle">◈ Ausrüstungsdeck · Verbrauch</p>
+        </div>
+        <div class="art-container">
+          <img class="card-art" src="art_assets/MasterArtwork/Cards/Trinkets/A_single_isolated_leather-wrapped_bundle_of_rustic_travel_pro_863e3d20-6a78-40d1-a36b-50631821a9cc_2.png" alt="Wegrationen-Paket">
+          <div class="art-vignette"></div>
+        </div>
+        <div class="lore-box">
+          <p class="lore-text">»Trockenfleisch, Zwergenbrot und Hartkäse. Eine kräftigende Rast stellt die Ausdauer aller Gefährten wieder her.«</p>
+        </div>
+        <div class="stat-ribbon">
+          <div class="stat-chip highlight-stat-green"><span class="stat-label">🧪 Typ</span><span class="stat-value">Nahrung</span></div>
+          <div class="stat-chip"><span class="stat-label">Slot</span><span class="stat-value" style="font-size:7.5pt;">Rucksack</span></div>
+          <div class="stat-chip highlight-gold"><span class="stat-label">💰 Wert</span><span class="stat-value" style="font-size:7.5pt; color:#7a5410;">2 Gold</span></div>
+        </div>
+        <div class="rules-box">
+          <div class="section-header">
+            <span>📜 Gegenstandseffekt</span>
+            <span class="rule-title">Sonderregel</span>
+          </div>
+          <p class="rule-body">Nach einem Raum ohne Gegner: Alle 4 Helden regenerieren jeweils 1 LP. Einweg.</p>
+        </div>
+        <div class="card-footer">
+          <span>🗡️ Der Schattenbazar</span>
+          <span>#45 / 54</span>
+        </div>
+      </div>
+      <div class="tarot-face back-face">
+        <img class="card-back-img" src="art_assets/MasterArtwork/Cards/Card Backs/Board_game_card_back_colord_woodcut_style_forbidden_midnight__21652bf5-8ecb-4a43-8d05-67df8e29d436_3.png" alt="Rückseite">
+      </div>
+    </div>
+    <!-- KARTE #46: Alchemistenfeuer-Kolben -->
+    <div class="card-pair pos-2">
+      <div class="tarot-face front-face">
+        <div class="card-border-frame"></div>
+        <div class="card-border-inner"></div>
+        <div class="card-header">
+          <h2 class="card-title">Alchemistenfeuer-Kolben</h2>
+          <p class="card-subtitle">◈ Ausrüstungsdeck · Verbrauch</p>
+        </div>
+        <div class="art-container">
+          <img class="card-art" src="art_assets/MasterArtwork/Cards/Trinkets/A_single_isolated_round_glass_flask_filled_with_swirling_vola_a22bb087-d991-4540-a0d6-7f82cc960f10_3.png" alt="Alchemistenfeuer-Kolben">
+          <div class="art-vignette"></div>
+        </div>
+        <div class="lore-box">
+          <p class="lore-text">»Instabiles alchemistisches Gemisch. Zerplatzt beim Aufprall in ein zischendes Flammenmeer, das den Weg versperrt.«</p>
+        </div>
+        <div class="stat-ribbon">
+          <div class="stat-chip highlight-stat-green"><span class="stat-label">🧪 Typ</span><span class="stat-value">Wurfwaffe</span></div>
+          <div class="stat-chip"><span class="stat-label">Slot</span><span class="stat-value" style="font-size:7.5pt;">Rucksack</span></div>
+          <div class="stat-chip highlight-gold"><span class="stat-label">💰 Wert</span><span class="stat-value" style="font-size:7.5pt; color:#7a5410;">3 Gold</span></div>
+        </div>
+        <div class="rules-box">
+          <div class="section-header">
+            <span>📜 Gegenstandseffekt</span>
+            <span class="rule-title">Sonderregel</span>
+          </div>
+          <p class="rule-body">Reichweite 3 Felder. Zündet 1 Feld an: Brennt für 2 Runden; jede Figur, die das Feld betritt, erleidet 1 Schaden + `Brennend`.</p>
+        </div>
+        <div class="card-footer">
+          <span>🗡️ Der Schattenbazar</span>
+          <span>#46 / 54</span>
+        </div>
+      </div>
+      <div class="tarot-face back-face">
+        <img class="card-back-img" src="art_assets/MasterArtwork/Cards/Card Backs/Board_game_card_back_colord_woodcut_style_forbidden_midnight__21652bf5-8ecb-4a43-8d05-67df8e29d436_3.png" alt="Rückseite">
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

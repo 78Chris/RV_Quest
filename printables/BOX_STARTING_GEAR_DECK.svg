@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400mm" height="150mm" viewBox="0 0 400 150" style="background:white">
+  <!-- Box net for Starting Gear + Spells Deck (19 cards) -->
+  <!-- Card dimensions: 120 x 70 mm -->
+  <!-- Thickness: 10.55 mm -->
+  <!-- Flap width: 10 mm -->
+  <g id="box-net" transform="translate(0,0)">
+    <!-- Left side (small) -->
+    <rect x="10" y="0" width="10.55" height="120" fill="#c0c0c0" stroke="black"/>
+    <!-- Back panel (large) with card back artwork (use placeholder) -->
+    <image x="20.55" y="0" width="70" height="120" href="./art_assets/MasterArtwork/Cards/Card%20Backs/vintage_medieval_woodcut_etching_of_an_ancient_imperial_wizar_bd9e6812-0ff4-4a7c-abda-11b26cc5672c_3.png"/>
+    <!-- Right side (small) -->
+    <rect x="90.55" y="0" width="10.55" height="120" fill="#c0c0c0" stroke="black"/>
+    <!-- Front panel (large) same artwork -->
+    <image x="101.1" y="0" width="70" height="120" href="./art_assets/MasterArtwork/Cards/Card%20Backs/vintage_medieval_woodcut_etching_of_an_ancient_imperial_wizar_bd9e6812-0ff4-4a7c-abda-11b26cc5672c_3.png"/>
+    <!-- Top flap -->
+    <rect x="171.1" y="0" width="10" height="120" fill="#e0e0e0" stroke="black"/>
+    <!-- Bottom flap -->
+    <rect x="181.1" y="0" width="10" height="120" fill="#e0e0e0" stroke="black"/>
+  </g>
+  <g stroke="red" stroke-dasharray="1 1" fill="none">
+    <rect x="10" y="0" width="10.55" height="120"/>
+    <rect x="20.55" y="0" width="70" height="120"/>
+    <rect x="90.55" y="0" width="10.55" height="120"/>
+    <rect x="101.1" y="0" width="70" height="120"/>
+    <rect x="171.1" y="0" width="10" height="120"/>
+    <rect x="181.1" y="0" width="10" height="120"/>
+  </g>
+  <text x="5" y="135" font-size="5" fill="black">Starting Gear + Spells Deck – cut, fold, glue.</text>
+</svg>

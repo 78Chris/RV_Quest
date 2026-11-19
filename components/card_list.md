@@ -30,7 +30,7 @@
 |---|---|---|---|---|---|
 | 01 | **Breitschwert** | 1 Hand | 2 | 3 | Verlässlich: Bei einer gewürfelten 1 auf Angriff darf einmal neu gewürfelt werden. |
 | 02 | **Schwere Kriegsaxt** | 2 Hände | 3 | 4 | Wuchtig: Benötigt KRA 2+. Zerstört Holzbarrikaden/Türen automatisch ohne Wurf. |
-| 03 | **Morgenstern** | 1 Hand | 3 | 5 | Träge Spitze: Bei Fehlwurf Nachteil auf den nächsten eigenen Angriff. |
+| 03 | **Schwerer Streitkolben** | 1 Hand | 3 | 5 | Träge Wucht: Massiver geflanschter Eisenkopf. Bei Fehlwurf Nachteil auf den nächsten eigenen Angriff. |
 | 04 | **Elfen-Klingenfechter** | 1 Hand | 2 | 4 | Graziler Stahl: +1 auf Initiative-Würfe, wenn geführt. |
 | 05 | **Zweihänder der Garde** | 2 Hände | 3 | 6 | Rundumschlag: Bei einem Volltreffer (6) erleidet ein zweiter benachbarter Gegner 1 Schaden. |
 | 06 | **Meuchlerdolch** | 1 Hand | 1 | 3 | Giftkerbe: Wenn aus dem Hinterhalt (`Versteckt`) angegriffen wird: +2 Schaden statt +1. |
@@ -57,7 +57,7 @@
 | 21 | **Wurfspeer** | 1 Hand | 2 | 3 | Reichweite 3 Felder. Kann im Nahkampf oder Fernkampf genutzt werden (nach Wurf muss er aufgehoben werden). |
 | 22 | **Repetier-Armbrust** | 2 Hände | 2 | 7 | **Schnellfeuer:** Reichweite 3 Felder. Kann 2 Schüsse pro Angriffsaktion abfeuern (jeder Schuss 1 Schaden). |
 | 23 | **Nordische Wurfäxte (2x)** | Rucksack / 1 Hand | 2 | 4 | Reichweite 2 Felder. 2 Benutzungen. Stößt leichte Gegner (Goblins) bei Treffer 1 Feld zurück. |
-| 24 | **Giftschlauch-Blasrohr** | 1 Hand | 1 | 4 | **Lautlos:** Reichweite 3 Felder. Löst keinen Alarm/Aggro bei anderen Monstern aus; verursacht sofort Zustand `Vergiftet`. |
+| 24 | **Gifthauch-Blasrohr** | 1 Hand | 1 | 4 | **Lautlos:** Reichweite 3 Felder. Löst keinen Alarm/Aggro bei anderen Monstern aus; verursacht sofort Zustand `Vergiftet`. |
 
 ---
 
@@ -116,20 +116,20 @@
 | # | Name | Art | Auswirkung / Spieltext |
 |---|---|---|---|
 | 01 | **Herannahende Schritte** | Gefahr | Eine Patrouille nähert sich! Platziere 1 zufälligen Standard-Gegner am Eingang des aktuellen Raums. |
-| 02 | **Deckensturz** | Falle | Das Gewölbe bebt! Alle Figuren im Raum würfeln `GES (SG 6)`. Bei Misserfolg: 1 Schaden durch herabfallende Steine. |
+| 02 | **Deckensturz** | Falle | Das Gewölbe bebt! Alle Helden im Raum würfeln einen Rettungswurf auf `GES (SG 6)`. Bei Misserfolg: 1 Schaden durch herabfallende Steine. |
 | 03 | **Fackel verlischt** | Hindernis | Plötzlicher Luftzug löscht offenes Feuer. Bis zum Ausgeben einer Interaktions-Aktion zum Wiederanzünden haben alle Fernkampfangriffe Nachteil. |
 | 04 | **Fluchtsperre** | Falle | Ein schweres Fallgitter saust hinter der Gruppe herab! Der Rückweg ist für den Rest des Szenarios versperrt. |
 | 05 | **Magische Resonanz** | Magie | Ein arkaner Puls flutet den Dungeon. Die Magiegelehrte regeneriert sofort 1 Erschöpfungs-Box (oder ein zufälliger Zauber-Effekt triggert). |
-| 06 | **Heilige Quelle** | Segen | Ein unberührtes Becken mit klarem Quellwasser. Ein Held auf demselben oder benachbarten Feld darf trinken: Heilt 2 LP. |
+| 06 | **Heilige Quelle** | Segen | Ein unberührtes Becken mit heiligem Wasser entspringt in einer Nische. Ein beliebiger Held im Raum darf sofort trinken: Heilt 2 LP oder entfernt den Zustand Vergiftet. |
 | 07 | **Kriechende Dämpfe** | Giftgas | Giftiger Schwefel strömt aus Ritzen im Boden. Alle Helden erleiden den Zustand `Vergiftet`, es sei denn, sie bestehen `ZÄH (SG 6)`. |
 | 08 | **Goblin-Schadenfreude** | Sozial / Humor | Der Halsabschneider entdeckt eine versteckte Schnapsflasche. Wenn er trinkt: Er regeneriert 2 Erschöpfung, muss aber sofort einen Spruch der *Goblinzauber*-Tabelle würfeln! |
 | 09 | **Hinterhalt aus den Schatten** | Gefahr | 2 Riesenspinnen seilen sich von der Decke ab und greifen den Helden mit den wenigsten verbliebenen LP an! |
 | 10 | **Versteckte Nische** | Fund | Ein lockerer Wandstein offenbart ein altes Versteck. Zieht sofort **1 Karte vom Ausrüstungsdeck**! |
-| 11 | **Glitschiger Boden** | Hindernis | Schimmel und Moos bedecken die Fliesen. Bis zum nächsten Rundenende kostet jedes Bewegungsfeld 2 Bewegungspunkte. |
-| 12 | **Verhöhnung des Berserkers** | Psychologie | Aus den Tiefen hallen Schmährufe auf die Ahnen des Ödlands. Der Berserker MUSS in seinem nächsten Zug auf den nächsten Gegner stürmen (volle Bewegung nach vorn). |
-| 13 | **Göttlicher Schimmer** | Segen | Der Geist der Waldelfen berührt die Kriegstänzerin: Alle Helden erhalten bis zum nächsten Rundenende +1 auf Initiative. |
-| 14 | **Diebische Ratten** | Ärgernis | Eine Horde Dungeon-Ratten huscht durch die Rucksäcke. Ein zufälliger Held verliert 1 Goldmünze oder 1 Vorratsration. |
+| 11 | **Glitschiger Boden** | Hindernis | Schimmel und Moos bedecken die Fliesen. Bis zum nächsten Rundenende kostet jedes Bewegungsfeld 2 Bewegungspunkte (keine Doppelbewegung). |
+| 12 | **Verhöhnung des Berserkers** | Psychologie | Aus den Tiefen hallen Schmährufe auf die Ahnen des Ödlands. Der Berserker MUSS in seinem nächsten Zug auf den nächsten Gegner stürmen (+1 Schaden, erleidet aber +1 Schaden durch Angriffe bis zum nächsten Zug). |
+| 13 | **Göttlicher Schimmer** | Segen | Der Geist der Waldelfen berührt die Gruppe: Beim nächsten Raum-Initiativewurf erhalten alle Helden +1 Bonus; im aktuellen Raum sofort +1 Feld Bewegung. |
+| 14 | **Diebische Ratten** | Ärgernis | Eine Horde Dungeon-Ratten huscht durchs Lager. Die Gruppe verliert nach Wahl: 3 Gold aus der Gemeinschaftskasse ODER 1 Vorratsration/Trank. |
 | 15 | **Arkane Überladung** | Magie-Gefahr | Alle magischen Gegenstände und Schutzzauber knistern wild. Jede Figur mit Zubehör oder Magie erleidet 1 unblockbaren Schaden. |
 | 16 | **Klickendes Bodenblech** | Falle | Der vorderste Held hat eine Druckplatte ausgelöst! Pfeile schießen aus der Wand: Würfle `GES (SG 6)` gegen 2 Schaden. |
-| 17 | **Unheimliche Stille** | Atmosphäre | Das Knurren der Monster verstummt plötzlich... Nichts passiert in dieser Runde, aber alle Helden spüren die Anspannung (+1 Fokus auf nächsten Wurf). |
+| 17 | **Unheimliche Stille** | Atmosphäre | Das Knurren der Monster verstummt plötzlich... Nichts passiert in dieser Runde, aber alle Helden spüren die Anspannung: Jeder Held erhält Fokus (+1 Bonus auf nächsten Wurf). |
 | 18 | **Goldener Fund** | Schatz | Zwischen Gebeinen glänzt ein alter Beutel: Die Gruppe erhält sofort **4 Gold** in den Gemeinschaftstopf. |

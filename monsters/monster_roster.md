@@ -2,7 +2,7 @@
 
 > **Design-Prinzip:** Schnelle Runden im 2-Spieler-Koop ohne Spielleiter.  
 > Jeder Gegnertyp hat eine **feste Initiative (INIT: X)**, **statische Verteidigung (VT)** und ein einfaches, verständliches **3-Schritte-Verhalten** (Targeting / Action).  
-> **Kartenformat:** **Tarot (70 × 120 mm)** mit Gutter-Fold Klapp-Druckbogen und zentriertem Deckrücken *»Bestiarium Imperialis«*.
+> **Kartenformat:** **Tarot (82 × 140 mm)** mit Gutter-Fold Klapp-Druckbogen und zentriertem Deckrücken *»Bestiarium Imperialis«*.
 
 ---
 

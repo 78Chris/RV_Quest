@@ -2,7 +2,7 @@
 
 > **Verfahren:** Methode 1 – Klapp-Methode / Gutter-Fold  
 > **Ziel:** Karten in professioneller Brettspielqualität mit perfekter Passgenauigkeit (ohne Versatz zwischen Vorder- und Rückseite) auf Standard-Heimdruckern herstellen.  
-> **Format:** Tarot (70 × 120 mm) oder Poker-Format (63 × 88 mm)
+> **Format:** Tarot (82 × 140 mm) oder Poker-Format (63 × 88 mm)
 
 ---
 

@@ -20,6 +20,21 @@
   h1 { margin-bottom: 5px; font-size: 22px; color: #f5d78e; }
   p.sub { margin-top: 0; color: #aaa; font-size: 14px; margin-bottom: 25px; }
 
+  .controls-bar {
+    background: #2a2520;
+    border: 1px solid #4a3e32;
+    border-radius: 8px;
+    padding: 12px 20px;
+    margin-bottom: 25px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    font-size: 13px;
+    color: #e5d7c4;
+  }
+  .controls-bar label { display: flex; align-items: center; gap: 8px; }
+  .controls-bar input[type="range"] { width: 140px; }
+
   .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -59,22 +74,22 @@
   /* Der mathematisch zentrierte Fraktur-Text über der Banderole */
   .banner-overlay {
     position: absolute;
-    bottom: 25px; /* Höhe der Banderole im Holzschnitt-Rahmen */
+    bottom: var(--banner-bottom, 36px);
     left: 0;
     right: 0;
     text-align: center;
     pointer-events: none;
+    z-index: 10;
   }
 
   .fraktur-text {
     font-family: 'UnifrakturMaguntia', 'UnifrakturCook', 'Old English Text MT', serif;
-    font-size: 26px;
+    font-size: var(--banner-size, 24px);
     color: #120e0a; /* Tiefschwarze Holzschnitt-Tinte */
     letter-spacing: 0.5px;
     text-shadow: 0 0 1px rgba(0,0,0,0.4);
     display: inline-block;
     padding: 0 15px;
-    transform: translateY(2px);
   }
 
   .title-tag {
@@ -89,6 +104,19 @@
 
 <h1>🎴 Kartenrücken-Typografie: Original Fraktur-Overlay</h1>
 <p class="sub">Schriftart: <strong>UnifrakturMaguntia</strong> – exakt wie auf der <em>Schattenbazar</em>-Vorlage, mathematisch zentriert ohne KI-Fehler.</p>
+
+<div class="controls-bar">
+  <label>
+    <strong>Höhe (Y-Achse):</strong>
+    <input type="range" id="sliderBottom" min="10" max="70" value="38" oninput="updateControls()">
+    <span id="valBottom">38px</span>
+  </label>
+  <label>
+    <strong>Schriftgröße:</strong>
+    <input type="range" id="sliderSize" min="16" max="32" value="23" oninput="updateControls()">
+    <span id="valSize">23px</span>
+  </label>
+</div>
 
 <div class="grid">
 
@@ -151,7 +179,32 @@
     <div class="title-tag">4. Begegnungsdeck</div>
   </div>
 
+  <!-- CARD 5: Goblinzauber-Deck -->
+  <div class="card-container">
+    <div class="card-frame">
+      <img src="art_assets/MasterArtwork/Cards/Card Backs/vintage_medieval_woodcut_etching_of_a_battered_rogue_goblin_g_40cf9f65-3cc5-4a40-a5da-ab879092fef9_2.png" 
+           alt="Goblin-Fusel Kartenrücken"
+           style="width:100%; height:100%; object-fit:cover; display:block;">
+      <div class="banner-overlay">
+        <span class="fraktur-text">Goblin-Fusel</span>
+      </div>
+    </div>
+    <div class="title-tag">5. Goblinzauber (Chaosmagie)</div>
+  </div>
+
 </div>
+
+<script>
+  function updateControls() {
+    const bottom = document.getElementById('sliderBottom').value;
+    const size = document.getElementById('sliderSize').value;
+    document.documentElement.style.setProperty('--banner-bottom', bottom + 'px');
+    document.documentElement.style.setProperty('--banner-size', size + 'px');
+    document.getElementById('valBottom').innerText = bottom + 'px';
+    document.getElementById('valSize').innerText = size + 'px';
+  }
+  updateControls();
+</script>
 
 </body>
 </html>

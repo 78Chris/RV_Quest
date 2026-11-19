@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Equipment Deck Box Net</title>
+<style>
+  body { margin:0; padding:20px; background:#f0f0f0; font-family:sans-serif; }
+  .wrapper { max-width:900px; margin:auto; background:white; padding:20px; border:1px solid #ccc; }
+  h1 { text-align:center; }
+  .note { font-size:0.9em; color:#555; margin-bottom:10px; }
+  svg { width:100%; height:auto; border:1px solid #999; }
+</style>
+</head>
+<body>
+<div class="wrapper">
+<h1>Equipment Deck Box – Printable Net</h1>
+<p class="note">Cut along the <strong>red dashed</strong> lines, fold on the black borders and glue the two grey flaps (left/right) together. The top and bottom grey strips close the box. Large faces show the deck’s card‑back artwork.</p>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 190.06 196" width="800" height="460">
+  <!-- Dimensions (mm) – 1 mm = 1 unit -->
+  <!-- Card size: 70 mm × 120 mm, thickness ≈ 26.3 mm, side flap = 10 mm -->
+  <!-- Layout (horizontal): [Flap][Left][Back][Right][Flap] -->
+  <g transform="translate(0,0)">
+    <!-- Left side (small) -->
+    <rect x="10" y="0" width="26.3" height="120" fill="#c0c0c0" stroke="black"/>
+    <!-- Back panel (large) artwork -->
+    <image x="36.3" y="0" width="70" height="120" href="./art_assets/MasterArtwork/Cards/Card%20Backs/Board_game_card_back_colord_woodcut_style_forbidden_midnight__21652bf5-8ecb-4a43-8d05-67df8e29d436_3.png"/>
+    <!-- Right side (small) -->
+    <rect x="106.3" y="0" width="26.3" height="120" fill="#c0c0c0" stroke="black"/>
+    <!-- Front panel (large) same artwork (replace if different) -->
+    <image x="132.6" y="0" width="70" height="120" href="./art_assets/MasterArtwork/Cards/Card%20Backs/Board_game_card_back_colord_woodcut_style_forbidden_midnight__21652bf5-8ecb-4a43-8d05-67df8e29d436_3.png"/>
+    <!-- Left/right flaps (to glue) -->
+    <rect x="0" y="0" width="10" height="120" fill="#e0e0e0" stroke="black"/>
+    <rect x="202.6" y="0" width="10" height="120" fill="#e0e0e0" stroke="black"/>
+    <!-- Top & bottom closing flaps -->
+    <rect x="-10" y="-10" width="242.6" height="10" fill="#e0e0e0" stroke="black"/>
+    <rect x="-10" y="120" width="242.6" height="10" fill="#e0e0e0" stroke="black"/>
+  </g>
+  <!-- Cut guide – red dashes -->
+  <g stroke="red" stroke-dasharray="1 1" fill="none">
+    <rect x="10" y="0" width="26.3" height="120"/>
+    <rect x="36.3" y="0" width="70" height="120"/>
+    <rect x="106.3" y="0" width="26.3" height="120"/>
+    <rect x="132.6" y="0" width="70" height="120"/>
+    <rect x="0" y="0" width="10" height="120"/>
+    <rect x="202.6" y="0" width="10" height="120"/>
+    <rect x="-10" y="-10" width="242.6" height="10"/>
+    <rect x="-10" y="120" width="242.6" height="10"/>
+  </g>
+</svg>
+</div>
+</body>
+</html>

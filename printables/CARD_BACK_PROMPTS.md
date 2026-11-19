@@ -54,3 +54,18 @@ vintage medieval woodcut etching of a dark dungeon doorway entrance, heavy crack
 * **Status:** ✅ Fertig generiert und als Master-Referenz etabliert.
 * **Master-Palette:** Tiefviolett, Fackelschein/Bernstein, Kohleschwarz & Antik-Pergament.
 
+---
+
+## 6. 🍺 Goblinzauber-Deck: »Goblin-Fusel & Chaosmagie«
+
+*Ein verbeultes, klebriges, mit Schnapsflecken und Brandlöchern übersätes altes Lederheft. Im Zentrum eine zersprungene Tonflasche Fusel, umgeben von wirren magischen Rauchkringeln, zuckenden Funken, einem kleinen schreienden Hühnerkopf und einem schelmischen Goblinschädel.*
+
+* **Status:** ✅ Fertig generiert und als Master-Artwork festgelegt!
+* **Titel auf Banderole:** `Goblin-Fusel`
+* **Dateiname:** `vintage_medieval_woodcut_etching_of_a_battered_rogue_goblin_g_40cf9f65-3cc5-4a40-a5da-ab879092fef9_2.png`
+* **Pfad:** `RV_Quest/printables/art_assets/MasterArtwork/Cards/Card Backs/vintage_medieval_woodcut_etching_of_a_battered_rogue_goblin_g_40cf9f65-3cc5-4a40-a5da-ab879092fef9_2.png`
+* **Original-Prompt:**
+```text
+vintage medieval woodcut etching of a worn battered rogue goblin grimoire cover, stained leather bound with rusty iron nails, spattered with dried drink stains and scorched burn marks, central rustic arched wooden border framing an old corked clay schnapps jug leaking glowing green fumes, surrounded by chaotic crackling sparks, swirling purple smoke, a squawking chicken head silhouette, and a grinning goblin skull wearing a bandana, aged parchment banner at the bottom with gothic fraktur lettering reading "Goblin-Fusel", dark fantasy illustration, moss green, tarnished copper, smoky violet, warm clay umber, charcoal black ink outlines --ar 7:12 --sref https://i.imgur.com/YYHCCVL.png --sw 150 --v 6.1
+```
+

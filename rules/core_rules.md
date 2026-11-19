@@ -225,15 +225,15 @@ The **Magiegelehrte** (and any character temporarily able to cast) tracks magica
 
 ## 9. Conditions (Zustände)
 
-Short-term effects applied by attacks, spells, or traps.
+Short-term effects applied by attacks, spells, or traps (full rules in `rules/conditions.md`).
 
 | Condition | German | Effect | Duration |
 |---|---|---|---|
-| Burning | Brennend | Take 1 damage at start of your turn | Until extinguished (action) or 2 rounds |
-| Stunned | Betäubt | Lose your next turn | 1 round |
-| Slowed | Verlangsamt | Movement halved | 1 round |
-| Poisoned | Vergiftet | -1 to all rolls | Until healed / scenario ends |
-| Hidden | Versteckt | Cannot be targeted; first attack gains Vorteil | Until you attack or enter light |
+| Burning | Brennend | 1 direct damage at start of turn | Action to extinguish (GES SG 4) or end-of-turn save (ZÄH SG 6) |
+| Stunned | Betäubt | Standee prone: Lose turn to stand up | 1 round (ends upon standing up) |
+| Slowed | Verlangsamt | Movement halved; no sprint | Action to break free (KRA SG 6) or leaving terrain |
+| Poisoned | Vergiftet | 1 damage at start of turn + Nachteil on KRA/GES | Potion/spell or end-of-turn save (ZÄH SG 8) |
+| Hidden | Verborgen / Versteckt | Cannot be targeted; attack gains Vorteil +2 dmg | Until attack or exposed in open light |
 
 ---
 

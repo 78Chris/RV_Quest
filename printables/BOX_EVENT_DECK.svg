@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400mm" height="150mm" viewBox="0 0 400 150" style="background:white">
+  <!-- Box net for Event Deck (18 cards) -->
+  <!-- Card dimensions: 120 x 70 mm -->
+  <!-- Thickness: 10.1 mm -->
+  <!-- Flap width: 10 mm -->
+  <g id="box-net" transform="translate(0,0)">
+    <!-- Left side (small) -->
+    <rect x="10" y="0" width="10.1" height="120" fill="#d0b0b0" stroke="black"/>
+    <!-- Back panel (large) with event deck card back -->
+    <image x="20.1" y="0" width="70" height="120" href="./art_assets/MasterArtwork/Cards/Card%20Backs/vintage_medieval_woodcut_etching_of_the_wheel_of_fate_and_des_82b3e498-b408-49ea-a526-fe14d3629fa7_0.png"/>
+    <!-- Right side (small) -->
+    <rect x="90.1" y="0" width="10.1" height="120" fill="#d0b0b0" stroke="black"/>
+    <!-- Front panel (large) same artwork -->
+    <image x="100.2" y="0" width="70" height="120" href="./art_assets/MasterArtwork/Cards/Card%20Backs/vintage_medieval_woodcut_etching_of_the_wheel_of_fate_and_des_82b3e498-b408-49ea-a526-fe14d3629fa7_0.png"/>
+    <!-- Top flap -->
+    <rect x="170.2" y="0" width="10" height="120" fill="#e8e8e8" stroke="black"/>
+    <!-- Bottom flap -->
+    <rect x="180.2" y="0" width="10" height="120" fill="#e8e8e8" stroke="black"/>
+  </g>
+  <g stroke="red" stroke-dasharray="1 1" fill="none">
+    <rect x="10" y="0" width="10.1" height="120"/>
+    <rect x="20.1" y="0" width="70" height="120"/>
+    <rect x="90.1" y="0" width="10.1" height="120"/>
+    <rect x="100.2" y="0" width="70" height="120"/>
+    <rect x="170.2" y="0" width="10" height="120"/>
+    <rect x="180.2" y="0" width="10" height="120"/>
+  </g>
+  <text x="5" y="135" font-size="5" fill="black">Event Deck Box – cut, fold, glue. Large faces use event deck card‑back artwork; small faces coloured light‑brown.</text>
+</svg>

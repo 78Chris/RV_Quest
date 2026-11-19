@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <title>Ausrüstungsdeck: Rüstungen & Schilde (#25–#36) - A4 Gutter-Fold</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Alegreya:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    @page { size: A4 portrait; margin: 0; }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0; background: #ffffff;
+      font-family: 'Alegreya Sans', sans-serif; color: #1a140e;
+      -webkit-print-color-adjust: exact; print-color-adjust: exact;
+    }
+    @media screen {
+      body {
+        background: #1c1814; padding: 30px 0; display: flex; flex-direction: column; align-items: center; gap: 30px;
+      }
+      .toolbar {
+        position: fixed; top: 15px; right: 20px; background: #140f0c; border: 1px solid #5c4736;
+        color: #dfcaa7; padding: 10px 18px; border-radius: 8px; font-size: 13px; display: flex;
+        gap: 15px; align-items: center; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6); z-index: 1000;
+      }
+      .print-btn {
+        background: #9e782f; color: #fff; border: none; padding: 7px 16px; border-radius: 4px;
+        cursor: pointer; font-weight: bold; font-size: 13px; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      }
+      .print-btn:hover { background: #b88e38; }
+      .page-nav { display: flex; gap: 6px; }
+      .nav-link {
+        color: #dfcaa7; text-decoration: none; padding: 4px 8px; border-radius: 3px;
+        background: rgba(255, 255, 255, 0.08); font-size: 11px; font-weight: bold;
+      }
+      .nav-link:hover { background: #9e782f; color: #fff; }
+      .page { background: #ffffff; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45); }
+    }
+    @media print {
+      .no-print { display: none !important; }
+      body { background: #ffffff !important; padding: 0; }
+      .page { box-shadow: none !important; page-break-after: always; break-after: page; }
+    }
+    .page { width: 210mm; height: 297mm; position: relative; overflow: hidden; background: #ffffff; }
+    .card-pair { position: absolute; left: 23.33mm; width: 163.34mm; height: 138mm; display: flex; }
+    .card-pair.pos-1 { top: 8.5mm; }
+    .card-pair.pos-2 { top: 150.5mm; }
+    .tarot-face { width: 81.67mm; height: 138mm; position: relative; overflow: hidden; }
+    .front-face {
+      background: radial-gradient(circle at 50% 25%, #fdfbf7 0%, #f4ece0 65%, #e6d7c2 100%);
+      padding: 2.2mm 3.2mm 2.0mm 3.2mm; display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .card-border-frame {
+      position: absolute; top: 1.1mm; bottom: 1.1mm; left: 1.1mm; right: 1.1mm;
+      border: 0.45mm solid #2c2016; border-radius: 1.5mm; pointer-events: none;
+    }
+    .card-border-inner {
+      position: absolute; top: 1.7mm; bottom: 1.7mm; left: 1.7mm; right: 1.7mm;
+      border: 0.22mm solid #9e782f; border-radius: 1.2mm; pointer-events: none; opacity: 0.85;
+    }
+    .card-header { text-align: center; position: relative; z-index: 2; padding: 0 0.5mm 0.3mm 0.5mm; }
+    .card-title {
+      font-family: 'Cinzel', serif; font-size: 11.2pt; font-weight: 900; color: #1a140e;
+      letter-spacing: 0.2mm; margin: 0.2mm 0 0.1mm 0; text-transform: uppercase; line-height: 1.05;
+    }
+    .card-subtitle { font-family: 'Alegreya', serif; font-size: 7.6pt; font-style: italic; color: #5c4736; margin: 0; line-height: 1.1; }
+    .art-container {
+      width: 56.5mm; height: 56.5mm; aspect-ratio: 1 / 1; position: relative; border-radius: 1.3mm;
+      overflow: hidden; border: 0.45mm solid #3b2c1d; background: #ffffff; margin: 0.4mm auto 0.6mm auto;
+      box-shadow: 0 0.8mm 2.2mm rgba(0, 0, 0, 0.18);
+    }
+    .card-art {
+      width: 100%; height: 100%; object-fit: contain; object-position: center center;
+      display: block; background-color: #ffffff; filter: contrast(1.03) saturate(1.02);
+    }
+    .art-vignette {
+      position: absolute; inset: 0; box-shadow: inset 0 0 4mm rgba(60, 40, 20, 0.25);
+      pointer-events: none; border: 0.2mm solid rgba(158, 120, 47, 0.45);
+    }
+    .lore-box {
+      background: rgba(246, 237, 220, 0.75);
+      border-left: 0.65mm solid #8c6a3a;
+      border-right: 0.65mm solid #8c6a3a;
+      border-top: 0.2mm solid rgba(140, 106, 58, 0.3);
+      border-bottom: 0.2mm solid rgba(140, 106, 58, 0.3);
+      border-radius: 0.6mm;
+      padding: 0.6mm 1.6mm;
+      margin: 0.2mm 0.4mm 0.5mm 0.4mm;
+      text-align: center;
+      z-index: 2;
+      box-shadow: 0 0.3mm 0.8mm rgba(0, 0, 0, 0.05);
+    }
+    .lore-text {
+      font-family: 'Alegreya', serif; font-size: 6.8pt; font-style: italic;
+      color: #453424; line-height: 1.2; margin: 0; letter-spacing: 0.02mm;
+    }
+    .stat-ribbon {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2mm;
+      margin: 0.2mm 0.4mm 0.6mm 0.4mm; z-index: 2;
+    }
+    .stat-chip {
+      background: linear-gradient(180deg, #fdfaf4 0%, #efe4d0 100%); border: 0.28mm solid #8c6a3a;
+      border-radius: 1.0mm; padding: 0.4mm 0.8mm; text-align: center; display: flex; flex-direction: column;
+      justify-content: center; box-shadow: 0 0.3mm 0.8mm rgba(0, 0, 0, 0.12);
+    }
+    .stat-chip.highlight-stat { background: linear-gradient(180deg, #fcedec 0%, #f4d3d2 100%); border-color: #8c1d18; }
+    .stat-chip.highlight-shield { background: linear-gradient(180deg, #eff7ff 0%, #d3e5f7 100%); border-color: #3b6b99; }
+    .stat-chip.highlight-stat-green { background: linear-gradient(180deg, #eef7f0 0%, #d2e7d7 100%); border-color: #2a6639; }
+    .stat-chip.highlight-gold { background: linear-gradient(180deg, #fffcf0 0%, #fae8b8 100%); border-color: #b88e38; }
+    .stat-label { font-size: 5.6pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2mm; color: #5c4736; line-height: 1; margin-bottom: 0.2mm; }
+    .stat-value { font-family: 'Cinzel', serif; font-size: 10.5pt; font-weight: 900; color: #1a140e; line-height: 1; }
+    .stat-chip.highlight-stat .stat-value { color: #8c1d18; }
+    .stat-chip.highlight-shield .stat-value { color: #1a446e; }
+    .stat-chip.highlight-stat-green .stat-value { color: #1c522a; }
+    .stat-chip.highlight-gold .stat-value { color: #7a5410; }
+    .rules-box {
+      background: #ffffff; border: 0.32mm solid #4a3828; border-radius: 1.1mm;
+      padding: 0.8mm 1.6mm 0.9mm 1.6mm; display: flex; flex-direction: column; gap: 0.6mm;
+      margin: 0 0.4mm 0.5mm 0.4mm; z-index: 2; box-shadow: inset 0 0 1.5mm rgba(0, 0, 0, 0.04);
+    }
+    .section-header {
+      font-family: 'Cinzel', serif; font-size: 6.8pt; font-weight: 700; color: #8c1d18;
+      letter-spacing: 0.25mm; text-transform: uppercase; border-bottom: 0.2mm solid rgba(140, 29, 24, 0.25);
+      padding-bottom: 0.2mm; display: flex; justify-content: space-between; align-items: center;
+    }
+    .rule-title { font-family: 'Cinzel', serif; font-weight: 900; color: #2b1f15; }
+    .rule-body { font-size: 7.2pt; line-height: 1.25; color: #1a140e; margin: 0; }
+    .rule-body strong { color: #8c1d18; font-weight: 700; }
+    .card-footer {
+      display: flex; justify-content: space-between; align-items: center; padding: 0.2mm 1.0mm 0 1.0mm;
+      font-size: 5.6pt; font-weight: 700; color: #5c4736; letter-spacing: 0.1mm; z-index: 2; text-transform: uppercase;
+    }
+    .back-face { background: #140f0c; }
+    .card-back-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .crop-svg { position: absolute; top: 0; left: 0; width: 210mm; height: 297mm; pointer-events: none; }
+    .mark-cut { stroke: #111111; stroke-width: 0.22; stroke-linecap: square; }
+    .mark-fold { stroke: #992222; stroke-width: 0.28; stroke-dasharray: 1.5, 1; }
+  </style>
+</head>
+<body>
+  <div class="toolbar no-print">
+    <span>🛡️ <strong>Ausrüstungsdeck: Rüstungen & Schilde (#25–#36)</strong> (12 Karten · 6 Bögen)</span>
+    <div class="page-nav">
+      <a href="#page1" class="nav-link">Bogen 1 (#25 & #26)</a>
+<a href="#page2" class="nav-link">Bogen 2 (#27 & #28)</a>
+<a href="#page3" class="nav-link">Bogen 3 (#29 & #30)</a>
+<a href="#page4" class="nav-link">Bogen 4 (#31 & #32)</a>
+<a href="#page5" class="nav-link">Bogen 5 (#33 & #34)</a>
+<a href="#page6" class="nav-link">Bogen 6 (#35 & #36)</a>
+
+    </div>
+    <button class="print-btn" onclick="window.print()">🖨️ Alle 6 Bögen drucken / PDF</button>
+  </div>
+  
+  <!-- BOGEN 1 (#25 & #26) -->
+  <div class="page" id="page1">
+    <svg class="crop-svg" viewBox="0 0 210 297" width="210mm" height="297mm">
+      <line x1="23.33" y1="0.5" x2="23.33" y2="7.5" class="mark-cut" />
+      <line x1="105" y1="0.5" x2="105" y2="7.5" class="mark-fold" />
+      <line x1="186.67" y1="0.5" x2="186.67" y2="7.5" class="mark-cut" />
+
+      <line x1="1.0" y1="8.5" x2="20.0" y2="8.5" class="mark-cut" />
+      <line x1="190.0" y1="8.5" x2="209.0" y2="8.5" class="mark-cut" />
+      <line x1="1.0" y1="146.5" x2="20.0" y2="146.5" class="mark-cut" />
+      <line x1="190.0" y1="146.5" x2="209.0" y2="146.5" class="mark-cut" />
+
+      <line x1="23.33" y1="147.0" x2="23.33" y2="150.0" class="mark-cut" />
+      <line x1="105" y1="147.0" x2="105" y2="150.0" class="mark-fold" />
+      <line x1="186.67" y1="147.0" x2="186.67" y2="150.0" class="mark-cut" />
+
+      <line x1="1.0" y1="150.5" x2="20.0" y2="150.5" class="mark-cut" />
+      <line x1="190.0" y1="150.5" x2="209.0" y2="150.5" class="mark-cut" />
+      <line x1="1.0" y1="288.5" x2="20.0" y2="288.5" class="mark-cut" />
+      <line x1="190.0" y1="288.5" x2="209.0" y2="288.5" class="mark-cut" />
+
+      <line x1="23.33" y1="289.5" x2="23.33" y2="296.5" class="mark-cut" />
+      <line x1="105" y1="289.5" x2="105" y2="296.5" class="mark-fold" />
+      <line x1="186.67" y1="289.5" x2="186.67" y2="296.5" class="mark-cut" />
+
+      <line x1="105" y1="8.5" x2="105" y2="146.5" stroke="#777777" stroke-width="0.14" stroke-dasharray="2, 2" opacity="0.65" />
+      <line x1="105" y1="150.5" x2="105" y2="288.5" stroke="#777777" stroke-width="0.14" stroke-dasharray="2, 2" opacity="0.65" />
+    </svg>
+
+    <!-- KARTE #25: Verstärktes Lederwams -->
+    <div class="card-pair pos-1">
+      <div class="tarot-face front-face">
+        <div class="card-border-frame"></div>
+        <div class="card-border-inner"></div>
+        <div class="card-header">
+          <h2 class="card-title">Verstärktes Lederwams</h2>
+          <p class="card-subtitle">◈ Ausrüstungsdeck · Rüstung</p>
+        </div>
+        <div class="art-container">
+          <div style="display:flex;align-items:center;justify-content:center;height:100%;color:#888;">[Kein Bild]</div>
+          <div class="art-vignette"></div>
+        </div>
+        <div class="lore-box">
+          <p class="lore-text">»Aus zähem Hirschleder gegerbt und mit geschwärzten Nieten verstärkt. Leicht genug, um lautlos durch die Katakomben zu huschen.«</p>
+        </div>
+        <div class="stat-ribbon">
+          <div class="stat-chip highlight-shield"><span class="stat-label">🛡️ Rüstung</span><span class="stat-value">1</span></div>
+          <div class="stat-chip"><span class="stat-label">Slot</span><span class="stat-value" style="font-size:7.5pt;">Rüstung</span></div>
+          <div class="stat-chip highlight-gold"><span class="stat-label">💰 Wert</span><span class="stat-value" style="font-size:7.5pt; color:#7a5410;">3 Gold</span></div>
+        </div>
+        <div class="rules-box">
+          <div class="section-header">
+            <span>📜 Gegenstandseffekt</span>
+            <span class="rule-title">Sonderregel</span>
+          </div>
+          <p class="rule-body">Leicht: Keine Bewegungseinbuße. +1 auf Entkommen-Würfe.</p>
+        </div>
+        <div class="card-footer">
+          <span>🗡️ Der Schattenbazar</span>
+          <span>#25 / 54</span>
+        </div>
+      </div>
+      <div class="tarot-face back-face">
+        <img class="card-back-img" src="art_assets/MasterArtwork/Cards/Card Backs/Board_game_card_back_colord_woodcut_style_forbidden_midnight__21652bf5-8ecb-4a43-8d05-67df8e29d436_3.png" alt="Rückseite">
+      </div>
+    </div>
+    <!-- KARTE #26: Kettenhemd -->
+    <div class="card-pair pos-2">
+      <div class="tarot-face front-face">
+        <div class="card-border-frame"></div>
+        <div class="card-border-inner"></div>
+        <div class="card-header">
+          <h2 class="card-title">Kettenhemd</h2>
+          <p class="card-subtitle">◈ Ausrüstungsdeck · Rüstung</p>
+        </div>
+        <div class="art-container">
+          <img class="card-art" src="art_assets/MasterArtwork/Cards/Armour/A_single_isolated_empty_hollow_silver_iron_chainmail_hauberk__847fb441-a7a7-4e8e-a7c8-485a33e0321a_1.png" alt="Kettenhemd">
+          <div class="art-vignette"></div>
+        </div>
+        <div class="lore-box">
+          <p class="lore-text">»Tausende ineinander verflochtene Ringe aus kaltem Eisen. Dämpft selbst wuchtige Schwerthiebe und das Reißen scharfer Monsterklauen.«</p>
+        </div>
+        <div class="stat-ribbon">
+          <div class="stat-chip highlight-shield"><span class="stat-label">🛡️ Rüstung</span><span class="stat-value">2</span></div>
+          <div class="stat-chip"><span class="stat-label">Slot</span><span class="stat-value" style="font-size:7.5pt;">Rüstung</span></div>
+          <div class="stat-chip highlight-gold"><span class="stat-label">💰 Wert</span><span class="stat-value" style="font-size:7.5pt; color:#7a5410;">4 Gold</span></div>
+        </div>
+        <div class="rules-box">
+          <div class="section-header">
+            <span>📜 Gegenstandseffekt</span>
+            <span class="rule-title">Sonderregel</span>
+          </div>
+          <p class="rule-body">Solide: -1 Bewegung (kein Abzug, wenn Träger ZÄH 2+ besitzt!).</p>
+        </div>
+        <div class="card-footer">
+          <span>🗡️ Der Schattenbazar</span>
+          <span>#26 / 54</span>
+        </div>
+      </div>
+      <div class="tarot-face back-face">
+        <img class="card-back-img" src="art_assets/MasterArtwork/Cards/Card Backs/Board_game_card_back_colord_woodcut_style_forbidden_midnight__21652bf5-8ecb-4a43-8d05-67df8e29d436_3.png" alt="Rückseite">
+      </div>
+    </div>
+  </div>
+
+  <!-- BOGEN 2 (#27 & #28) -->
+  <div class="page" id="page2">
+    <svg class="crop-svg" viewBox="0 0 210 297" width="210mm" height="297mm">
+      <line x1="23.33" y1="0.5" x2="23.33" y2="7.5" class="mark-cut" />
+      <line x1="105" y1="0.5" x2="105" y2="7.5" class="mark-fold" />
+      <line x1="186.67" y1="0.5" x2="186.67" y2="7.5" class="mark-cut" />
+
+      <line x1="1.0" y1="8.5" x2="20.0" y2="8.5" class="mark-cut" />
+      <line x1="190.0" y1="8.5" x2="209.0" y2="8.5" class="mark-cut" />
+      <line x1="1.0" y1="146.5" x2="20.0" y2="146.5" class="mark-cut" />
+      <line x1="190.0" y1="146.5" x2="209.0" y2="146.5" class="mark-cut" />
+
+      <line x1="23.33" y1="147.0" x2="23.33" y2="150.0" class="mark-cut" />
+      <line x1="105" y1="147.0" x2="105" y2="150.0" class="mark-fold" />
+      <line x1="186.67" y1="147.0" x2="186.67" y2="150.0" class="mark-cut" />
+
+      <line x1="1.0" y1="150.5" x2="20.0" y2="150.5" class="mark-cut" />
+      <line x1="190.0" y1="150.5" x2="209.0" y2="150.5" class="mark-cut" />
+      <line x1="1.0" y1="288.5" x2="20.0" y2="288.5" class="mark-cut" />
+      <line x1="190.0" y1="288.5" x2="209.0" y2="288.5" class="mark-cut" />
+
+      <line x1="23.33" y1="289.5" x2="23.33" y2="296.5" class="mark-cut" />
+      <line x1="105" y1="289.5" x2="105" y2="296.5" class="mark-fold" />
+      <line x1="186.67" y1="289.5" x2="186.67" y2="296.5" class="mark-cut" />
+
+      <line x1="105" y1="8.5" x2="105" y2="146.5" stroke="#777777" stroke-width="0.14" stroke-dasharray="2, 2" opacity="0.65" />
+      <line x1="105" y1="150.5" x2="105" y2="288.5" stroke="#777777" stroke-width="0.14" stroke-dasharray="2, 2" opacity="0.65" />
+    </svg>
+
+    <!-- KARTE #27: Kaiserlicher Plattenpanzer -->
+    <div class="card-pair pos-1">
+      <div class="tarot-face front-face">
+        <div class="card-border-frame"></div>
+        <div class="card-border-inner"></div>
+        <div class="card-header">
+          <h2 class="card-title">Kaiserlicher Plattenpanzer</h2>
+          <p class="card-subtitle">◈ Ausrüstungsdeck · Rüstung</p>
+        </div>
+        <div class="art-container">
+          <img class="card-art" src="art_assets/MasterArtwork/Cards/Armour/A_single_isolated_massive_ornate_gothic_full_plate_cuirass_wi_4cb6a752-6166-4b2b-86a6-c504bdb2be31_3.png" alt="Kaiserlicher Plattenpanzer">
+          <div class="art-vignette"></div>
+        </div>
+        <div class="lore-box">
+          <p class="lore-text">»Echtes Meisterstück der imperialen Plattenschmiede. Verwandelt den Träger in eine uneinnehmbare wandelnde Festung.«</p>
+        </div>
+        <div class="stat-ribbon">
+          <div class="stat-chip highlight-shield"><span class="stat-label">🛡️ Rüstung</span><span class="stat-value">3</span></div>
+          <div class="stat-chip"><span class="stat-label">Slot</span><span class="stat-value" style="font-size:7.5pt;">Rüstung</span></div>
+          <div class="stat-chip highlight-gold"><span class="stat-label">💰 Wert</span><span class="stat-value" style="font-size:7.5pt; color:#7a5410;">6 Gold</span></div>
+        </div>
+        <div class="rules-box">
+          <div class="section-header">
+            <span>📜 Gegenstandseffekt</span>
+            <span class="rule-title">Sonderregel</span>
+          </div>
+          <p class="rule-body">Festung: -1 Bewegung. Erfordert ZÄH 2+. Träger kann keine Doppelbewegung (Sprinten) ausführen.</p>
+        </div>
+        <div class="card-footer">
+          <span>🗡️ Der Schattenbazar</span>
+          <span>#27 / 54</span>
+        </div>
+      </div>
+      <div class="tarot-face back-face">
+        <img class="card-back-img" src="art_assets/MasterArtwork/Cards/Card Backs/Board_game_card_back_colord_woodcut_style_forbidden_midnight__21652bf5-8ecb-4a43-8d05-67df8e29d436_3.png" alt="Rückseite">
+      </div>
+    </div>
+    <!-- KARTE #28: Rundschild -->
+    <div class="card-pair pos-2">
+      <div class="tarot-face front-face">
+        <div class="card-border-frame"></div>
+        <div class="card-border-inner"></div>
+        <div class="card-header">
+          <h2 class="card-title">Rundschild</h2>
+          <p class="card-subtitle">◈ Ausrüstungsdeck · Schild</p>
+        </div>
+        <div class="art-container">
+          <img class="card-art" src="art_assets/MasterArtwork/Cards/Armour/A_single_isolated_circular_Viking_round_wooden_shield_frontal_94f53ca3-5b43-4c08-8d16-c464bc2bad95_3.png" alt="Rundschild">
+          <div class="art-vignette"></div>
+        </div>
+        <div class="lore-box">
+          <p class="lore-text">»Zähes Eschenholz mit genietetem Eisenbuckel. Fängt tödliche Schwerthiebe ab, ohne die Beweglichkeit einzuschränken.«</p>
+        </div>
+        <div class="stat-ribbon">
+          <div class="stat-chip highlight-shield"><span class="stat-label">🛡️ Reduktion</span><span class="stat-value">+1 Reduktion</span></div>
+          <div class="stat-chip"><span class="stat-label">Slot</span><span class="stat-value" style="font-size:7.5pt;">1 Hand</span></div>
+          <div class="stat-chip highlight-gold"><span class="stat-label">💰 Wert</span><span class="stat-value" style="font-size:7.5pt; color:#7a5410;">3 Gold</span></div>
+        </div>
+        <div class="rules-box">
+          <div class="section-header">
+            <span>📜 Gegenstandseffekt</span>
+            <span class="rule-title">Sonderregel</span>
+          </div>
+          <p class="rule-body">Block: Kein Bewegungsabzug! 1× pro Runde: Reagiere auf einen Nahkampfangriff und reduziere Schaden um 1.</p>
+        </div>
+        <div class="card-footer">
+          <span>🗡️ Der Schattenbazar</span>
+          <span>#28 / 54</span>
+        </div>
+      </div>
+      <div class="tarot-face back-face">
+        <img class="card-back-img" src="art_assets/MasterArtwork/Cards/Card Backs/Board_game_card_back_colord_woodcut_style_forbidden_midnight__21652bf5-8ecb-4a43-8d05-67df8e29d436_3.png" alt="Rückseite">
+      </div>
+    </div>
+  </div>
+
+  <!-- BOGEN 3 (#29 & #30) -->
+  <div class="page" id="page3">
+    <svg class="crop-svg" viewBox="0 0 210 297" width="210mm" height="297mm">
+      <line x1="23.33" y1="0.5" x2="23.33" y2="7.5" class="mark-cut" />
+      <line x1="105" y1="0.5" x2="105" y2="7.5" class="mark-fold" />
+      <line x1="186.67" y1="0.5" x2="186.67" y2="7.5" class="mark-cut" />
+
+      <line x1="1.0" y1="8.5" x2="20.0" y2="8.5" class="mark-cut" />
+      <line x1="190.0" y1="8.5" x2="209.0" y2="8.5" class="mark-cut" />
+      <line x1="1.0" y1="146.5" x2="20.0" y2="146.5" class="mark-cut" />
+      <line x1="190.0" y1="146.5" x2="209.0" y2="146.5" class="mark-cut" />
+
+      <line x1="23.33" y1="147.0" x2="23.33" y2="150.0" class="mark-cut" />
+      <line x1="105" y1="147.0" x2="105" y2="150.0" class="mark-fold" />
+      <line x1="186.67" y1="147.0" x2="186.67" y2="150.0" class="mark-cut" />
+
+      <line x1="1.0" y1="150.5" x2="20.0" y2="150.5" class="mark-cut" />
+      <line x1="190.0" y1="150.5" x2="209.0" y2="150.5" class="mark-cut" />
+      <line x1="1.0" y1="288.5" x2="20.0" y2="288.5" class="mark-cut" />
+      <line x1="190.0" y1="288.5" x2="209.0" y2="288.5" class="mark-cut" />
+
+      <line x1="23.33" y1="289.5" x2="23.33" y2="296.5" class="mark-cut" />
+      <line x1="105" y1="289.5" x2="105" y2="296.5" class="mark-fold" />
+      <line x1="186.67" y1="289.5" x2="186.67" y2="296.5" class="mark-cut" />
+
+      <line x1="105" y1="8.5" x2="105" y2="146.5" stroke="#777777" stroke-width="0.14" stroke-dasharray="2, 2" opacity="0.65" />
+      <line x1="105" y1="150.5" x2="105" y2="288.5" stroke="#777777" stroke-width="0.14" stroke-dasharray="2, 2" opacity="0.65" />
+    </svg>
+
+    <!-- KARTE #29: Turmschild -->
+    <div class="card-pair pos-1">
+      <div class="tarot-face front-face">
+        <div class="card-border-frame"></div>
+        <div class="card-border-inner"></div>
+        <div class="card-header">
+          <h2 class="card-title">Turmschild</h2>
+          <p class="card-subtitle">◈ Ausrüstungsdeck · Schild</p>
+        </div>
+        <div class="art-container">
+          <div style="display:flex;align-items:center;justify-content:center;height:100%;color:#888;">[Kein Bild]</div>
+          <div class="art-vignette"></div>
+        </div>
+        <div class="lore-box">
+          <p class="lore-text">»Schwerer Setzschild aus massiven Eichenplanken. Bietet der ganzen Gruppe verlässliche Deckung vor herabregnenden Pfeilen.«</p>
+        </div>
+        <div class="stat-ribbon">
+          <div class="stat-chip highlight-shield"><span class="stat-label">🛡️ Reduktion</span><span class="stat-value">+2 Reduktion</span></div>
+          <div class="stat-chip"><span class="stat-label">Slot</span><span class="stat-value" style="font-size:7.5pt;">1 Hand</span></div>
+          <div class="stat-chip highlight-gold"><span class="stat-label">💰 Wert</span><span class="stat-value" style="font-size:7.5pt; color:#7a5410;">5 Gold</span></div>
+        </div>
+        <div class="rules-box">
+          <div class="section-header">
+            <span>📜 Gegenstandseffekt</span>
+            <span class="rule-title">Sonderregel</span>
+          </div>
+          <p class="rule-body">Bollwerk: -1 Bewegung. Erfordert KRA 2+. Bietet Teildeckung auch gegen Fernkampfangriffe.</p>
+        </div>
+        <div class="card-footer">
+          <span>🗡️ Der Schattenbazar</span>
+          <span>#29 / 54</span>
+        </div>
+      </div>
+      <div class="tarot-face back-face">
+        <img class="card-back-img" src="art_assets/MasterArtwork/Cards/Card Backs/Board_game_card_back_colord_woodcut_style_forbidden_midnight__21652bf5-8ecb-4a43-8d05-67df8e29d436_3.png" alt="Rückseite">
+      </div>
+    </div>
+    <!-- KARTE #30: Elfen-Schattenmantel -->
+    <div class="card-pair pos-2">
+      <div class="tarot-face front-face">
+        <div class="card-border-frame"></div>
+        <div class="card-border-inner"></div>
+        <div class="card-header">
+          <h2 class="card-title">Elfen-Schattenmantel</h2>
+          <p class="card-subtitle">◈ Ausrüstungsdeck · Rüstung</p>
+        </div>
+        <div class="art-container">
+          <img class="card-art" src="art_assets/MasterArtwork/Cards/Armour/A_single_isolated_empty_flowing_elven_hooded_cloak_floating_u_d38c806a-4c56-4547-bd40-019d387fe214_1.png" alt="Elfen-Schattenmantel">
+          <div class="art-vignette"></div>
+        </div>
+        <div class="lore-box">
+          <p class="lore-text">»Gewoben aus Schattenfäden und Elfenstoff. Bricht die Konturen des Trägers im Halbdunkel vollkommen auf.«</p>
+        </div>
+        <div class="stat-ribbon">
+          <div class="stat-chip highlight-shield"><span class="stat-label">🛡️ Rüstung</span><span class="stat-value">1</span></div>
+          <div class="stat-chip"><span class="stat-label">Slot</span><span class="stat-value" style="font-size:7.5pt;">Rüstung</span></div>
+          <div class="stat-chip highlight-gold"><span class="stat-label">💰 Wert</span><span class="stat-value" style="font-size:7.5pt; color:#7a5410;">5 Gold</span></div>
+        </div>
+        <div class="rules-box">
+          <div class="section-header">
+            <span>📜 Gegenstandseffekt</span>
+            <span class="rule-title">Sonderregel</span>
+          </div>
+          <p class="rule-body">Lautlos: Keine Bewegungseinbuße. Gibt Vorteil auf `LIS`-Schleichen.</p>
+        </div>
+        <div class="card-footer">
+          <span>🗡️ Der Schattenbazar</span>
+          <span>#30 / 54</span>
+        </div>
+      </div>
+      <div class="tarot-face back-face">
+        <img class="card-back-img" src="art_assets/MasterArtwork/Cards/Card Backs/Board_game_card_back_colord_woodcut_style_forbidden_midnight__21652bf5-8ecb-4a43-8d05-67df8e29d436_3.png" alt="Rückseite">
+      </div>
+    </div>
+  </div>
+
+  <!-- BOGEN 4 (#31 & #32) -->
+  <div class="page" id="page4">
+    <svg class="crop-svg" viewBox="0 0 210 297" width="210mm" height="297mm">
+      <line x1="23.33" y1="0.5" x2="23.33" y2="7.5" class="mark-cut" />
+      <line x1="105" y1="0.5" x2="105" y2="7.5" class="mark-fold" />
+      <line x1="186.67" y1="0.5" x2="186.67" y2="7.5" class="mark-cut" />
+
+      <line x1="1.0" y1="8.5" x2="20.0" y2="8.5" class="mark-cut" />
+      <line x1="190.0" y1="8.5" x2="209.0" y2="8.5" class="mark-cut" />
+      <line x1="1.0" y1="146.5" x2="20.0" y2="146.5" class="mark-cut" />
+      <line x1="190.0" y1="146.5" x2="209.0" y2="146.5" class="mark-cut" />
+
+      <line x1="23.33" y1="147.0" x2="23.33" y2="150.0" class="mark-cut" />
+      <line x1="105" y1="147.0" x2="105" y2="150.0" class="mark-fold" />
+      <line x1="186.67" y1="147.0" x2="186.67" y2="150.0" class="mark-cut" />
+
+      <line x1="1.0" y1="150.5" x2="20.0" y2="150.5" class="mark-cut" />
+      <line x1="190.0" y1="150.5" x2="209.0" y2="150.5" class="mark-cut" />
+      <line x1="1.0" y1="288.5" x2="20.0" y2="288.5" class="mark-cut" />
+      <line x1="190.0" y1="288.5" x2="209.0" y2="288.5" class="mark-cut" />
+
+      <line x1="23.33" y1="289.5" x2="23.33" y2="296.5" class="mark-cut" />
+      <line x1="105" y1="289.5" x2="105" y2="296.5" class="mark-fold" />
+      <line x1="186.67" y1="289.5" x2="186.67" y2="296.5" class="mark-cut" />
+
+      <line x1="105" y1="8.5" x2="105" y2="146.5" stroke="#777777" stroke-width="0.14" stroke-dasharray="2, 2" opacity="0.65" />
+      <line x1="105" y1="150.5" x2="105" y2="288.5" stroke="#777777" stroke-width="0.14" stroke-dasharray="2, 2" opacity="0.65" />
+    </svg>
+
+    <!-- KARTE #31: Faustschild (Buckler) -->
+    <div class="card-pair pos-1">
+      <div class="tarot-face front-face">
+        <div class="card-border-frame"></div>
+        <div class="card-border-inner"></div>
+        <div class="card-header">
+          <h2 class="card-title">Faustschild (Buckler)</h2>
+          <p class="card-subtitle">◈ Ausrüstungsdeck · Schild</p>
+        </div>
+        <div class="art-container">
+          <img class="card-art" src="art_assets/MasterArtwork/Cards/Armour/A_single_isolated_compact_small_all-metal_iron_fist_buckler_s_54320a53-eb92-47de-9333-850e95929a4f_0.png" alt="Faustschild (Buckler)">
+          <div class="art-vignette"></div>
+        </div>
+        <div class="lore-box">
+          <p class="lore-text">»Kompakter eiserner Faustschild. Klein genug für schmale Gänge und wendig genug für blitzschnelle Paraden.«</p>
+        </div>
+        <div class="stat-ribbon">
+          <div class="stat-chip highlight-shield"><span class="stat-label">🛡️ Reduktion</span><span class="stat-value">+1 Reduktion</span></div>
+          <div class="stat-chip"><span class="stat-label">Slot</span><span class="stat-value" style="font-size:7.5pt;">1 Hand</span></div>
+          <div class="stat-chip highlight-gold"><span class="stat-label">💰 Wert</span><span class="stat-value" style="font-size:7.5pt; color:#7a5410;">3 Gold</span></div>
+        </div>
+        <div class="rules-box">
+          <div class="section-header">
+            <span>📜 Gegenstandseffekt</span>
+            <span class="rule-title">Sonderregel</span>
+          </div>
+          <p class="rule-body">**Leichter Schild:** Kein Bewegungsabzug! Kann auch von Magiegelehrter oder Goblin getragen werden.</p>
+        </div>
+        <div class="card-footer">
+          <span>🗡️ Der Schattenbazar</span>
+          <span>#31 / 54</span>
+        </div>
+      </div>
+      <div class="tarot-face back-face">
+        <img class="card-back-img" src="art_assets/MasterArtwork/Cards/Card Backs/Board_game_card_back_colord_woodcut_style_forbidden_midnight__21652bf5-8ecb-4a43-8d05-67df8e29d436_3.png" alt="Rückseite">
+      </div>
+    </div>
+    <!-- KARTE #32: Stachelschild des Nordens -->
+    <div class="card-pair pos-2">
+      <div class="tarot-face front-face">
+        <div class="card-border-frame"></div>
+        <div class="card-border-inner"></div>
+        <div class="card-header">
+          <h2 class="card-title">Stachelschild des Nordens</h2>
+          <p class="card-subtitle">◈ Ausrüstungsdeck · Schild</p>
+        </div>
+        <div class="art-container">
+          <div style="display:flex;align-items:center;justify-content:center;height:100%;color:#888;">[Kein Bild]</div>
+          <div class="art-vignette"></div>
+        </div>
+        <div class="lore-box">
+          <p class="lore-text">»Mit brutalen Eisendornen besetzter Holzschild. Jeder geblockte Hieb wird für den Angreifer zur schmerzhaften Falle.«</p>
+        </div>
+        <div class="stat-ribbon">
+          <div class="stat-chip highlight-shield"><span class="stat-label">🛡️ Reduktion</span><span class="stat-value">+1 Reduktion</span></div>
+          <div class="stat-chip"><span class="stat-label">Slot</span><span class="stat-value" style="font-size:7.5pt;">1 Hand</span></div>
+          <div class="stat-chip highlight-gold"><span class="stat-label">💰 Wert</span><span class="stat-value" style="font-size:7.5pt; color:#7a5410;">5 Gold</span></div>
+        </div>
+        <div class="rules-box">
+          <div class="section-header">
+            <span>📜 Gegenstandseffekt</span>
+            <span class="rule-title">Sonderregel</span>
+          </div>
+          <p class="rule-body">**Dornenkonter:** Erfordert KRA 2+. Wird ein Nahkampfangriff pariert, erleidet der Angreifer 1 Rückstoß-Schaden.</p>
+        </div>
+        <div class="card-footer">
+          <span>🗡️ Der Schattenbazar</span>
+          <span>#32 / 54</span>
+        </div>
+      </div>
+      <div class="tarot-face back-face">
+        <img class="card-back-img" src="art_assets/MasterArtwork/Cards/Card Backs/Board_game_card_back_colord_woodcut_style_forbidden_midnight__21652bf5-8ecb-4a43-8d05-67df8e29d436_3.png" alt="Rückseite">
+      </div>
+    </div>
+  </div>
+
+  <!-- BOGEN 5 (#33 & #34) -->
+  <div class="page" id="page5">
+    <svg class="crop-svg" viewBox="0 0 210 297" width="210mm" height="297mm">
+      <line x1="23.33" y1="0.5" x2="23.33" y2="7.5" class="mark-cut" />
+      <line x1="105" y1="0.5" x2="105" y2="7.5" class="mark-fold" />
+      <line x1="186.67" y1="0.5" x2="186.67" y2="7.5" class="mark-cut" />
+
+      <line x1="1.0" y1="8.5" x2="20.0" y2="8.5" class="mark-cut" />
+      <line x1="190.0" y1="8.5" x2="209.0" y2="8.5" class="mark-cut" />
+      <line x1="1.0" y1="146.5" x2="20.0" y2="146.5" class="mark-cut" />
+      <line x1="190.0" y1="146.5" x2="209.0" y2="146.5" class="mark-cut" />
+
+      <line x1="23.33" y1="147.0" x2="23.33" y2="150.0" class="mark-cut" />
+      <line x1="105" y1="147.0" x2="105" y2="150.0" class="mark-fold" />
+      <line x1="186.67" y1="147.0" x2="186.67" y2="150.0" class="mark-cut" />
+
+      <line x1="1.0" y1="150.5" x2="20.0" y2="150.5" class="mark-cut" />
+      <line x1="190.0" y1="150.5" x2="209.0" y2="150.5" class="mark-cut" />
+      <line x1="1.0" y1="288.5" x2="20.0" y2="288.5" class="mark-cut" />
+      <line x1="190.0" y1="288.5" x2="209.0" y2="288.5" class="mark-cut" />
+
+      <line x1="23.33" y1="289.5" x2="23.33" y2="296.5" class="mark-cut" />
+      <line x1="105" y1="289.5" x2="105" y2="296.5" class="mark-fold" />
+      <line x1="186.67" y1="289.5" x2="186.67" y2="296.5" class="mark-cut" />
+
+      <line x1="105" y1="8.5" x2="105" y2="146.5" stroke="#777777" stroke-width="0.14" stroke-dasharray="2, 2" opacity="0.65" />
+      <line x1="105" y1="150.5" x2="105" y2="288.5" stroke="#777777" stroke-width="0.14" stroke-dasharray="2, 2" opacity="0.65" />
+    </svg>
+
+    <!-- KARTE #33: Eisenhelm der Stadtgarde -->
+    <div class="card-pair pos-1">
+      <div class="tarot-face front-face">
+        <div class="card-border-frame"></div>
+        <div class="card-border-inner"></div>
+        <div class="card-header">
+          <h2 class="card-title">Eisenhelm der Stadtgarde</h2>
+          <p class="card-subtitle">◈ Ausrüstungsdeck · Zubehör</p>
+        </div>
+        <div class="art-container">
+          <div style="display:flex;align-items:center;justify-content:center;height:100%;color:#888;">[Kein Bild]</div>
+          <div class="art-vignette"></div>
+        </div>
+        <div class="lore-box">
+          <p class="lore-text">»Geschmiedeter Eisenhut der Stadtwache. Schützt zuverlässig vor herabstürzenden Trümmern und betäubenden Keulenhieben.«</p>
+        </div>
+        <div class="stat-ribbon">
+          <div class="stat-chip highlight-stat"><span class="stat-label">⚔️ Schaden</span><span class="stat-value">Schutz</span></div>
+          <div class="stat-chip"><span class="stat-label">Slot</span><span class="stat-value" style="font-size:7.5pt;">Zubehör / Kopf</span></div>
+          <div class="stat-chip highlight-gold"><span class="stat-label">💰 Wert</span><span class="stat-value" style="font-size:7.5pt; color:#7a5410;">3 Gold</span></div>
+        </div>
+        <div class="rules-box">
+          <div class="section-header">
+            <span>📜 Gegenstandseffekt</span>
+            <span class="rule-title">Sonderregel</span>
+          </div>
+          <p class="rule-body">**Schädelwache:** Träger ist immun gegen den Zustand `Betäubt` (Stun) und halbiert Schaden durch Deckensturz-Fallen.</p>
+        </div>
+        <div class="card-footer">
+          <span>🗡️ Der Schattenbazar</span>
+          <span>#33 / 54</span>
+        </div>
+      </div>
+      <div class="tarot-face back-face">
+        <img class="card-back-img" src="art_assets/MasterArtwork/Cards/Card Backs/Board_game_card_back_colord_woodcut_style_forbidden_midnight__21652bf5-8ecb-4a43-8d05-67df8e29d436_3.png" alt="Rückseite">
+      </div>
+    </div>
+    <!-- KARTE #34: Hörnerhelm des Ödlands -->
+    <div class="card-pair pos-2">
+      <div class="tarot-face front-face">
+        <div class="card-border-frame"></div>
+        <div class="card-border-inner"></div>
+        <div class="card-header">
+          <h2 class="card-title">Hörnerhelm des Ödlands</h2>
+          <p class="card-subtitle">◈ Ausrüstungsdeck · Zubehör</p>
+        </div>
+        <div class="art-container">
+          <div style="display:flex;align-items:center;justify-content:center;height:100%;color:#888;">[Kein Bild]</div>
+          <div class="art-vignette"></div>
+        </div>
+        <div class="lore-box">
+          <p class="lore-text">»Furchterregende Trophäe aus dem Ödland. Verleiht dem Träger den unaufhaltsamen Zorn eines anstürmenden Tiers.«</p>
+        </div>
+        <div class="stat-ribbon">
+          <div class="stat-chip highlight-stat"><span class="stat-label">⚔️ Schaden</span><span class="stat-value">Berserker-Kraft</span></div>
+          <div class="stat-chip"><span class="stat-label">Slot</span><span class="stat-value" style="font-size:7.5pt;">Zubehör / Kopf</span></div>
+          <div class="stat-chip highlight-gold"><span class="stat-label">💰 Wert</span><span class="stat-value" style="font-size:7.5pt; color:#7a5410;">4 Gold</span></div>
+        </div>
+        <div class="rules-box">
+          <div class="section-header">
+            <span>📜 Gegenstandseffekt</span>
+            <span class="rule-title">Sonderregel</span>
+          </div>
+          <p class="rule-body">**Sturmangriff:** Wenn der Held vor dem Angriff mindestens 3 Felder geradeaus gestürmt ist: +1 Bonusschaden!</p>
+        </div>
+        <div class="card-footer">
+          <span>🗡️ Der Schattenbazar</span>
+          <span>#34 / 54</span>
+        </div>
+      </div>
+      <div class="tarot-face back-face">
+        <img class="card-back-img" src="art_assets/MasterArtwork/Cards/Card Backs/Board_game_card_back_colord_woodcut_style_forbidden_midnight__21652bf5-8ecb-4a43-8d05-67df8e29d436_3.png" alt="Rückseite">
+      </div>
+    </div>
+  </div>
+
+  <!-- BOGEN 6 (#35 & #36) -->
+  <div class="page" id="page6">
+    <svg class="crop-svg" viewBox="0 0 210 297" width="210mm" height="297mm">
+      <line x1="23.33" y1="0.5" x2="23.33" y2="7.5" class="mark-cut" />
+      <line x1="105" y1="0.5" x2="105" y2="7.5" class="mark-fold" />
+      <line x1="186.67" y1="0.5" x2="186.67" y2="7.5" class="mark-cut" />
+
+      <line x1="1.0" y1="8.5" x2="20.0" y2="8.5" class="mark-cut" />
+      <line x1="190.0" y1="8.5" x2="209.0" y2="8.5" class="mark-cut" />
+      <line x1="1.0" y1="146.5" x2="20.0" y2="146.5" class="mark-cut" />
+      <line x1="190.0" y1="146.5" x2="209.0" y2="146.5" class="mark-cut" />
+
+      <line x1="23.33" y1="147.0" x2="23.33" y2="150.0" class="mark-cut" />
+      <line x1="105" y1="147.0" x2="105" y2="150.0" class="mark-fold" />
+      <line x1="186.67" y1="147.0" x2="186.67" y2="150.0" class="mark-cut" />
+
+      <line x1="1.0" y1="150.5" x2="20.0" y2="150.5" class="mark-cut" />
+      <line x1="190.0" y1="150.5" x2="209.0" y2="150.5" class="mark-cut" />
+      <line x1="1.0" y1="288.5" x2="20.0" y2="288.5" class="mark-cut" />
+      <line x1="190.0" y1="288.5" x2="209.0" y2="288.5" class="mark-cut" />
+
+      <line x1="23.33" y1="289.5" x2="23.33" y2="296.5" class="mark-cut" />
+      <line x1="105" y1="289.5" x2="105" y2="296.5" class="mark-fold" />
+      <line x1="186.67" y1="289.5" x2="186.67" y2="296.5" class="mark-cut" />
+
+      <line x1="105" y1="8.5" x2="105" y2="146.5" stroke="#777777" stroke-width="0.14" stroke-dasharray="2, 2" opacity="0.65" />
+      <line x1="105" y1="150.5" x2="105" y2="288.5" stroke="#777777" stroke-width="0.14" stroke-dasharray="2, 2" opacity="0.65" />
+    </svg>
+
+    <!-- KARTE #35: Zwergen-Schuppenpanzer -->
+    <div class="card-pair pos-1">
+      <div class="tarot-face front-face">
+        <div class="card-border-frame"></div>
+        <div class="card-border-inner"></div>
+        <div class="card-header">
+          <h2 class="card-title">Zwergen-Schuppenpanzer</h2>
+          <p class="card-subtitle">◈ Ausrüstungsdeck · Rüstung</p>
+        </div>
+        <div class="art-container">
+          <img class="card-art" src="art_assets/MasterArtwork/Cards/Armour/A_single_isolated_heavy_dwarven_bronze_and_dark-iron_scale_ma_bcb98c9c-41fe-45d2-b621-793826704c93_0.png" alt="Zwergen-Schuppenpanzer">
+          <div class="art-vignette"></div>
+        </div>
+        <div class="lore-box">
+          <p class="lore-text">»Überlappende Horn- und Zwergenstahlplättchen. Schützt wie schwerer Harnisch, biegt sich aber geschmeidig bei jedem Schritt.«</p>
+        </div>
+        <div class="stat-ribbon">
+          <div class="stat-chip highlight-shield"><span class="stat-label">🛡️ Rüstung</span><span class="stat-value">2</span></div>
+          <div class="stat-chip"><span class="stat-label">Slot</span><span class="stat-value" style="font-size:7.5pt;">Rüstung</span></div>
+          <div class="stat-chip highlight-gold"><span class="stat-label">💰 Wert</span><span class="stat-value" style="font-size:7.5pt; color:#7a5410;">6 Gold</span></div>
+        </div>
+        <div class="rules-box">
+          <div class="section-header">
+            <span>📜 Gegenstandseffekt</span>
+            <span class="rule-title">Sonderregel</span>
+          </div>
+          <p class="rule-body">**Meisterschmiede:** Zwergische Biegsamkeit — bietet 2 Rüstung OHNE Bewegungsabzug!</p>
+        </div>
+        <div class="card-footer">
+          <span>🗡️ Der Schattenbazar</span>
+          <span>#35 / 54</span>
+        </div>
+      </div>
+      <div class="tarot-face back-face">
+        <img class="card-back-img" src="art_assets/MasterArtwork/Cards/Card Backs/Board_game_card_back_colord_woodcut_style_forbidden_midnight__21652bf5-8ecb-4a43-8d05-67df8e29d436_3.png" alt="Rückseite">
+      </div>
+    </div>
+    <!-- KARTE #36: Runengravierte Prunkrüstung -->
+    <div class="card-pair pos-2">
+      <div class="tarot-face front-face">
+        <div class="card-border-frame"></div>
+        <div class="card-border-inner"></div>
+        <div class="card-header">
+          <h2 class="card-title">Runengravierte Prunkrüstung</h2>
+          <p class="card-subtitle">◈ Ausrüstungsdeck · Rüstung</p>
+        </div>
+        <div class="art-container">
+          <div style="display:flex;align-items:center;justify-content:center;height:100%;color:#888;">[Kein Bild]</div>
+          <div class="art-vignette"></div>
+        </div>
+        <div class="lore-box">
+          <p class="lore-text">»Mit schützenden Schutzglyphen überzogene Rüstung. Neutralisiert sengendes Feuer und eisige Kälte bevor sie Fleisch treffen.«</p>
+        </div>
+        <div class="stat-ribbon">
+          <div class="stat-chip highlight-shield"><span class="stat-label">🛡️ Rüstung</span><span class="stat-value">3</span></div>
+          <div class="stat-chip"><span class="stat-label">Slot</span><span class="stat-value" style="font-size:7.5pt;">Rüstung</span></div>
+          <div class="stat-chip highlight-gold"><span class="stat-label">💰 Wert</span><span class="stat-value" style="font-size:7.5pt; color:#7a5410;">8 Gold</span></div>
+        </div>
+        <div class="rules-box">
+          <div class="section-header">
+            <span>📜 Gegenstandseffekt</span>
+            <span class="rule-title">Sonderregel</span>
+          </div>
+          <p class="rule-body">**Arkane Dämpfung:** Erfordert ZÄH 2+ (-1 Bewegung). Reduziert zusätzlich jeglichen Elementar-/Frostschaden um 1.</p>
+        </div>
+        <div class="card-footer">
+          <span>🗡️ Der Schattenbazar</span>
+          <span>#36 / 54</span>
+        </div>
+      </div>
+      <div class="tarot-face back-face">
+        <img class="card-back-img" src="art_assets/MasterArtwork/Cards/Card Backs/Board_game_card_back_colord_woodcut_style_forbidden_midnight__21652bf5-8ecb-4a43-8d05-67df8e29d436_3.png" alt="Rückseite">
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

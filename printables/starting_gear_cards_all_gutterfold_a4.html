@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <title>Helden-Startausrüstung (12 Karten) - A4 Gutter-Fold</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=UnifrakturMaguntia&family=Alegreya:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    @page { size: A4 portrait; margin: 0; }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0; background: #ffffff;
+      font-family: 'Alegreya Sans', sans-serif; color: #1a140e;
+      -webkit-print-color-adjust: exact; print-color-adjust: exact;
+    }
+    @media screen {
+      body {
+        background: #1c1814; padding: 30px 0; display: flex; flex-direction: column; align-items: center; gap: 30px;
+      }
+      .toolbar {
+        position: fixed; top: 15px; right: 20px; background: #140f0c; border: 1px solid #5c4736;
+        color: #dfcaa7; padding: 10px 18px; border-radius: 8px; font-size: 13px; display: flex;
+        gap: 15px; align-items: center; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6); z-index: 1000;
+      }
+      .print-btn {
+        background: #9e782f; color: #fff; border: none; padding: 7px 16px; border-radius: 4px;
+        cursor: pointer; font-weight: bold; font-size: 13px; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      }
+      .print-btn:hover { background: #b88e38; }
+      .page-nav { display: flex; gap: 6px; }
+      .nav-link {
+        color: #dfcaa7; text-decoration: none; padding: 4px 8px; border-radius: 3px;
+        background: rgba(255, 255, 255, 0.08); font-size: 11px; font-weight: bold;
+      }
+      .nav-link:hover { background: #9e782f; color: #fff; }
+      .page { background: #ffffff; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45); }
+    }
+    @media print {
+      .no-print { display: none !important; }
+      body { background: #ffffff !important; padding: 0; }
+      .page { box-shadow: none !important; page-break-after: always; break-after: page; }
+    }
+    .page { width: 210mm; height: 297mm; position: relative; overflow: hidden; }
+    .card-pair { position: absolute; left: 23.33mm; width: 163.34mm; height: 138mm; display: flex; }
+    .card-pair.pos-1 { top: 8.5mm; }
+    .card-pair.pos-2 { top: 150.5mm; }
+    .tarot-face { width: 81.67mm; height: 138mm; position: relative; overflow: hidden; }
+    .front-face {
+      background: radial-gradient(circle at 50% 25%, #fdfbf7 0%, #f4ece0 65%, #e6d7c2 100%);
+      padding: 2.2mm 3.2mm 2.0mm 3.2mm; display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .card-border-frame {
+      position: absolute; top: 1.1mm; bottom: 1.1mm; left: 1.1mm; right: 1.1mm;
+      border: 0.45mm solid #2c2016; border-radius: 1.5mm; pointer-events: none;
+    }
+    .card-border-inner {
+      position: absolute; top: 1.7mm; bottom: 1.7mm; left: 1.7mm; right: 1.7mm;
+      border: 0.22mm solid #9e782f; border-radius: 1.2mm; pointer-events: none; opacity: 0.85;
+    }
+    .card-header { text-align: center; position: relative; z-index: 2; padding: 0 0.5mm 0.3mm 0.5mm; }
+    .header-top-row { display: flex; justify-content: space-between; align-items: center; padding: 0 0.5mm; margin-bottom: 0.3mm; }
+    .type-pill {
+      font-family: 'Cinzel', serif; font-size: 6.8pt; font-weight: 700; color: #4a341e;
+      background: rgba(184, 142, 53, 0.18); padding: 0.2mm 1.6mm; border-radius: 0.8mm;
+      border: 0.2mm solid #9e782f; letter-spacing: 0.2mm; text-transform: uppercase;
+    }
+    .slot-pill {
+      font-family: 'Cinzel', serif; font-size: 6.8pt; font-weight: 700; color: #2b1d12;
+      background: linear-gradient(180deg, #fcefd6 0%, #ecd3a3 100%); padding: 0.2mm 1.6mm;
+      border-radius: 0.8mm; border: 0.2mm solid #9e782f; letter-spacing: 0.2mm;
+    }
+    .card-title {
+      font-family: 'Cinzel', serif; font-size: 11.2pt; font-weight: 900; color: #1a140e;
+      letter-spacing: 0.2mm; margin: 0.2mm 0 0.1mm 0; text-transform: uppercase; line-height: 1.05;
+    }
+    .card-subtitle { font-family: 'Alegreya', serif; font-size: 7.6pt; font-style: italic; color: #5c4736; margin: 0; line-height: 1.1; }
+    .art-container {
+      width: 56.5mm; height: 56.5mm; aspect-ratio: 1 / 1; position: relative; border-radius: 1.3mm;
+      overflow: hidden; border: 0.45mm solid #3b2c1d; background: #ffffff; margin: 0.4mm auto 0.6mm auto;
+      box-shadow: 0 0.8mm 2.2mm rgba(0, 0, 0, 0.18);
+    }
+    .card-art {
+      width: 100%; height: 100%; object-fit: contain; object-position: center center;
+      display: block; background-color: #ffffff; filter: contrast(1.03) saturate(1.02);
+    }
+    .art-vignette {
+      position: absolute; inset: 0; box-shadow: inset 0 0 4mm rgba(60, 40, 20, 0.25);
+      pointer-events: none; border: 0.2mm solid rgba(158, 120, 47, 0.45);
+    }
+    .lore-box {
+      background: rgba(246, 237, 220, 0.75);
+      border-left: 0.65mm solid #8c6a3a;
+      border-right: 0.65mm solid #8c6a3a;
+      border-top: 0.2mm solid rgba(140, 106, 58, 0.3);
+      border-bottom: 0.2mm solid rgba(140, 106, 58, 0.3);
+      border-radius: 0.6mm;
+      padding: 0.6mm 1.6mm;
+      margin: 0.2mm 0.4mm 0.5mm 0.4mm;
+      text-align: center;
+      z-index: 2;
+      box-shadow: 0 0.3mm 0.8mm rgba(0, 0, 0, 0.05);
+    }
+    .lore-text {
+      font-family: 'Alegreya', serif;
+      font-size: 6.8pt;
+      font-style: italic;
+      color: #453424;
+      line-height: 1.2;
+      margin: 0;
+      letter-spacing: 0.02mm;
+    }
+    .stat-ribbon { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2mm; margin-bottom: 0.6mm; z-index: 2; }
+    .stat-chip {
+      background: linear-gradient(180deg, #fdfaf4 0%, #efe4d0 100%); border: 0.28mm solid #8c6a3a;
+      border-radius: 1.0mm; padding: 0.4mm 0.8mm; text-align: center; display: flex; flex-direction: column;
+      justify-content: center; box-shadow: 0 0.3mm 0.8mm rgba(0, 0, 0, 0.12);
+    }
+    .stat-chip.highlight-stat { background: linear-gradient(180deg, #eff7ff 0%, #d3e5f7 100%); border-color: #3b6b99; }
+    .stat-chip.highlight-gold { background: linear-gradient(180deg, #fffcf0 0%, #fae8b8 100%); border-color: #b88e38; }
+    .stat-label { font-size: 5.6pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2mm; color: #5c4736; line-height: 1; margin-bottom: 0.2mm; }
+    .stat-value { font-family: 'Cinzel', serif; font-size: 10.5pt; font-weight: 900; color: #1a140e; line-height: 1; }
+    .stat-chip.highlight-stat .stat-value { color: #1a446e; }
+    .rules-box {
+      background: #ffffff; border: 0.32mm solid #4a3828; border-radius: 1.1mm;
+      padding: 0.8mm 1.6mm 0.9mm 1.6mm; display: flex; flex-direction: column; gap: 0.6mm;
+      margin-bottom: 0.5mm; z-index: 2; box-shadow: inset 0 0 1.5mm rgba(0, 0, 0, 0.04);
+    }
+    .section-header {
+      font-family: 'Cinzel', serif; font-size: 6.8pt; font-weight: 700; color: #8c1d18;
+      letter-spacing: 0.25mm; text-transform: uppercase; border-bottom: 0.2mm solid rgba(140, 29, 24, 0.25);
+      padding-bottom: 0.2mm; display: flex; justify-content: space-between; align-items: center;
+    }
+    .rule-title { font-family: 'Cinzel', serif; font-weight: 900; color: #2b1f15; }
+    .rule-body { font-size: 7.2pt; line-height: 1.25; color: #1a140e; margin: 0; }
+    .rule-body strong { color: #8c1d18; font-weight: 700; }
+    .card-footer {
+      display: flex; justify-content: space-between; align-items: center; padding: 0.2mm 0.6mm 0 0.6mm;
+      font-size: 5.6pt; font-weight: 700; color: #5c4736; letter-spacing: 0.1mm; z-index: 2; text-transform: uppercase;
+    }
+    .rarity-pill {
+      color: #735414; background: rgba(184, 142, 53, 0.15); padding: 0.2mm 1.2mm;
+      border-radius: 0.6mm; border: 0.2mm solid rgba(184, 142, 53, 0.35);
+    }
+    .back-face { background: #140f0c; }
+    .card-back-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .back-title-overlay {
+      position: absolute; top: 86.4%; left: 50%; transform: translate(-50%, -50%);
+      width: 58mm; text-align: center; pointer-events: none; line-height: 1;
+    }
+    .fraktur-title { font-family: 'UnifrakturMaguntia', serif; font-size: 15.5pt; color: #120e0a; letter-spacing: 0.2mm; display: inline-block; }
+    .crop-svg { position: absolute; top: 0; left: 0; width: 210mm; height: 297mm; pointer-events: none; }
+    .mark-cut { stroke: #111111; stroke-width: 0.22; stroke-linecap: square; }
+    .mark-fold { stroke: #992222; stroke-width: 0.28; stroke-dasharray: 1.5, 1; }
+    .mark-txt { font-family: 'Cinzel', serif; font-size: 2.2px; fill: #992222; font-weight: bold; }
+    .mark-sub { font-family: 'Alegreya Sans', sans-serif; font-size: 1.8px; fill: #666666; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <div class="toolbar no-print">
+    <span>🛡️ <strong>Helden-Startausrüstung</strong> (12 Karten · 6 Bögen)</span>
+    <div class="page-nav">
+      <a href="#page1" class="nav-link">Bogen 1</a>
+<a href="#page2" class="nav-link">Bogen 2</a>
+<a href="#page3" class="nav-link">Bogen 3</a>
+<a href="#page4" class="nav-link">Bogen 4</a>
+<a href="#page5" class="nav-link">Bogen 5</a>
+<a href="#page6" class="nav-link">Bogen 6</a>
+
+    </div>
+    <button class="print-btn" onclick="window.print()">🖨️ Alle 6 Bögen drucken / PDF</button>
+  </div>
+  
+  <!-- BOGEN 1 -->
+  <div class="page" id="page1">
+    <svg class="crop-svg" viewBox="0 0 210 297" width="210mm" height="297mm">
+      <line x1="23.33" y1="0.5" x2="23.33" y2="7.5" class="mark-cut" />
+      <text x="23.33" y="2.5" text-anchor="middle" class="mark-sub">✂</text>
+      <line x1="105" y1="0.5" x2="105" y2="7.5" class="mark-fold" />
+      <text x="105" y="3.2" text-anchor="middle" class="mark-txt">▼ FALZLINIE (GUTTER-FOLD) ▼</text>
+      <line x1="186.67" y1="0.5" x2="186.67" y2="7.5" class="mark-cut" />
+      <text x="186.67" y="2.5" text-anchor="middle" class="mark-sub">✂</text>
+
+      <line x1="1.0" y1="8.5" x2="20.0" y2="8.5" class="mark-cut" />
+      <line x1="190.0" y1="8.5" x2="209.0" y2="8.5" class="mark-cut" />
+      <line x1="1.0" y1="146.5" x2="20.0" y2="146.5" class="mark-cut" />
+      <line x1="190.0" y1="146.5" x2="209.0" y2="146.5" class="mark-cut" />
+
+      <line x1="23.33" y1="147.0" x2="23.33" y2="150.0" class="mark-cut" />
+      <line x1="105" y1="147.0" x2="105" y2="150.0" class="mark-fold" />
+      <line x1="186.67" y1="147.0" x2="186.67" y2="150.0" class="mark-cut" />
+
+      <line x1="1.0" y1="150.5" x2="20.0" y2="150.5" class="mark-cut" />
+      <line x1="190.0" y1="150.5" x2="209.0" y2="150.5" class="mark-cut" />
+      <line x1="1.0" y1="288.5" x2="20.0" y2="288.5" class="mark-cut" />
+      <line x1="190.0" y1="288.5" x2="209.0" y2="288.5" class="mark-cut" />
+
+      <line x1="23.33" y1="289.5" x2="23.33" y2="296.5" class="mark-cut" />
+      <text x="23.33" y="295.5" text-anchor="middle" class="mark-sub">✂</text>
+      <line x1="105" y1="289.5" x2="105" y2="296.5" class="mark-fold" />
+      <text x="105" y="295.5" text-anchor="middle" class="mark-txt">▲ FALZLINIE (GUTTER-FOLD) ▲</text>
+      <line x1="186.67" y1="289.5" x2="186.67" y2="296.5" class="mark-cut" />
+      <text x="186.67" y="295.5" text-anchor="middle" class="mark-sub">✂</text>
+
+      <line x1="105" y1="8.5" x2="105" y2="146.5" stroke="#777777" stroke-width="0.14" stroke-dasharray="2, 2" opacity="0.65" />
+      <line x1="105" y1="150.5" x2="105" y2="288.5" stroke="#777777" stroke-width="0.14" stroke-dasharray="2, 2" opacity="0.65" />
+    </svg>
+    
+    <!-- KARTE: Nordische Barbarenaxt (Nordland-Berserker) -->
+    <div class="card-pair pos-1">
+      <div class="tarot-face front-face">
+        <div class="card-border-frame"></div>
+        <div class="card-border-inner"></div>
+        <div class="card-header">
+          <h2 class="card-title">Nordische Barbarenaxt</h2>
+          <p class="card-subtitle">◈ Startausrüstung · Nordland-Berserker</p>
+        </div>
+        <div class="art-container">
+          <img class="card-art" style="transform: rotate(-45deg) scale(1.04); transform-origin: center center;" src="art_assets/MasterArtwork/Cards/Starting Gear/A_single_isolated_massive_northern_barbarian_battleaxe_broad__4f17bdab-15e6-40c9-9c92-869768c69c13_2.png" alt="Nordische Barbarenaxt">
+          <div class="art-vignette"></div>
+        </div>
+        <div class="lore-box"><p class="lore-text">»Aus grobem Ödland-Eisen geschlagen. Die eingekerbten Ahnenrunen dürsten nach dem Schädelspalten im Kampfgetümmel.«</p></div>
+        <div class="stat-ribbon">
+          <div class="stat-chip highlight-stat"><span class="stat-label">⚔️ Schaden</span><span class="stat-value">3</span></div>
+          <div class="stat-chip"><span class="stat-label">Slot</span><span class="stat-value" style="font-size:7.5pt;">2 Hände</span></div>
+          <div class="stat-chip highlight-gold"><span class="stat-label">Typ</span><span class="stat-value" style="font-size:7.5pt; color:#7a5410;">Waffe</span></div>
+        </div>
+        <div class="rules-box">
+          <div class="section-header">
+            <span>📜 Gegenstandseffekt</span>
+            <span class="rule-title">◈ Startkarte</span>
+          </div>
+          <p class="rule-body"><strong>Wuchtig:</strong> Benötigt KRA 2+.</p>
+        </div>
+        <div class="card-footer">
+          <span>◈ Nordland-Berserker</span>
+          <span>#01 / 12</span>
+          <span class="rarity-pill">Startausrüstung</span>
+        </div>
+      </div>
+      <div class="tarot-face back-face">
+        <img class="card-back-img" src="art_assets/MasterArtwork/Cards/Card Backs/Board_game_card_back_colord_woodcut_style_forbidden_midnight__21652bf5-8ecb-4a43-8d05-67df8e29d436_3.png" alt="Rückseite">
+        <div class="back-title-overlay"><div class="fraktur-title">Startausrüstung</div></div>
+      </div>
+    </div>
+    
+    <!-- KARTE: Dickes Lederwams (Nordland-Berserker) -->
+    <div class="card-pair pos-2">
+      <div class="tarot-face front-face">
+        <div class="card-border-frame"></div>
+        <div class="card-border-inner"></div>
+        <div class="card-header">
+          <h2 class="card-title">Dickes Lederwams</h2>
+          <p class="card-subtitle">◈ Startausrüstung · Nordland-Berserker</p>
+        </div>
+        <div class="art-container">
+          <img class="card-art" src="art_assets/MasterArtwork/Cards/Starting Gear/A_single_isolated_rugged_heavy_brown_leather_jerkin_vest_laid_cf10a995-d7a2-4849-a538-b380445068ab_0.png" alt="Dickes Lederwams">
+          <div class="art-vignette"></div>
+        </div>
+        <div class="lore-box"><p class="lore-text">»Gegerbt aus zäher Steppenbisonhaut und mit groben Sehnen vernäht. Hält die klirrende Kälte und stumpfe Hiebe fern.«</p></div>
+        <div class="stat-ribbon">
+          <div class="stat-chip highlight-stat"><span class="stat-label">🛡️ Rüstung</span><span class="stat-value">1</span></div>
+          <div class="stat-chip"><span class="stat-label">Slot</span><span class="stat-value" style="font-size:7.5pt;">Körper</span></div>
+          <div class="stat-chip highlight-gold"><span class="stat-label">Typ</span><span class="stat-value" style="font-size:7.5pt; color:#7a5410;">Rüstung</span></div>
+        </div>
+        <div class="rules-box">
+          <div class="section-header">
+            <span>📜 Gegenstandseffekt</span>
+            <span class="rule-title">◈ Startkarte</span>
+          </div>
+          <p class="rule-body"><strong>Schaden-Reduktion 1</strong>. Bewegungsweite / Geschwindigkeit <strong>+0</strong>.</p>
+        </div>
+        <div class="card-footer">
+          <span>◈ Nordland-Berserker</span>
+          <span>#02 / 12</span>
+          <span class="rarity-pill">Startausrüstung</span>
+        </div>
+      </div>
+      <div class="tarot-face back-face">
+        <img class="card-back-img" src="art_assets/MasterArtwork/Cards/Card Backs/Board_game_card_back_colord_woodcut_style_forbidden_midnight__21652bf5-8ecb-4a43-8d05-67df8e29d436_3.png" alt="Rückseite">
+        <div class="back-title-overlay"><div class="fraktur-title">Startausrüstung</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOGEN 2 -->
+  <div class="page" id="page2">
+    <svg class="crop-svg" viewBox="0 0 210 297" width="210mm" height="297mm">
+      <line x1="23.33" y1="0.5" x2="23.33" y2="7.5" class="mark-cut" />
+      <text x="23.33" y="2.5" text-anchor="middle" class="mark-sub">✂</text>
+      <line x1="105" y1="0.5" x2="105" y2="7.5" class="mark-fold" />
+      <text x="105" y="3.2" text-anchor="middle" class="mark-txt">▼ FALZLINIE (GUTTER-FOLD) ▼</text>
+      <line x1="186.67" y1="0.5" x2="186.67" y2="7.5" class="mark-cut" />
+      <text x="186.67" y="2.5" text-anchor="middle" class="mark-sub">✂</text>
+
+      <line x1="1.0" y1="8.5" x2="20.0" y2="8.5" class="mark-cut" />
+      <line x1="190.0" y1="8.5" x2="209.0" y2="8.5" class="mark-cut" />
+      <line x1="1.0" y1="146.5" x2="20.0" y2="146.5" class="mark-cut" />
+      <line x1="190.0" y1="146.5" x2="209.0" y2="146.5" class="mark-cut" />
+
+      <line x1="23.33" y1="147.0" x2="23.33" y2="150.0" class="mark-cut" />
+      <line x1="105" y1="147.0" x2="105" y2="150.0" class="mark-fold" />
+      <line x1="186.67" y1="147.0" x2="186.67" y2="150.0" class="mark-cut" />
+
+      <line x1="1.0" y1="150.5" x2="20.0" y2="150.5" class="mark-cut" />
+      <line x1="190.0" y1="150.5" x2="209.0" y2="150.5" class="mark-cut" />
+      <line x1="1.0" y1="288.5" x2="20.0" y2="288.5" class="mark-cut" />
+      <line x1="190.0" y1="288.5" x2="209.0" y2="288.5" class="mark-cut" />
+
+      <line x1="23.33" y1="289.5" x2="23.33" y2="296.5" class="mark-cut" />
+      <text x="23.33" y="295.5" text-anchor="middle" class="mark-sub">✂</text>
+      <line x1="105" y1="289.5" x2="105" y2="296.5" class="mark-fold" />
+      <text x="105" y="295.5" text-anchor="middle" class="mark-txt">▲ FALZLINIE (GUTTER-FOLD) ▲</text>
+      <line x1="186.67" y1="289.5" x2="186.67" y2="296.5" class="mark-cut" />
+      <text x="186.67" y="295.5" text-anchor="middle" class="mark-sub">✂</text>
+
+      <line x1="105" y1="8.5" x2="105" y2="146.5" stroke="#777777" stroke-width="0.14" stroke-dasharray="2, 2" opacity="0.65" />
+      <line x1="105" y1="150.5" x2="105" y2="288.5" stroke="#777777" stroke-width="0.14" stroke-dasharray="2, 2" opacity="0.65" />
+    </svg>
+    
+    <!-- KARTE: Trockenfleisch-Ration (Nordland-Berserker) -->
+    <div class="card-pair pos-1">
+      <div class="tarot-face front-face">
+        <div class="card-border-frame"></div>
+        <div class="card-border-inner"></div>
+        <div class="card-header">
+          <h2 class="card-title">Trockenfleisch-Ration</h2>
+          <p class="card-subtitle">◈ Startausrüstung · Nordland-Berserker</p>
+        </div>
+        <div class="art-container">
+          <img class="card-art" src="art_assets/MasterArtwork/Cards/Starting Gear/A_single_isolated_adventurer_trail_ration_several_thick_strip_32cae4f9-1ded-41e6-8b21-dfd578878b21_1.png" alt="Trockenfleisch-Ration">
+          <div class="art-vignette"></div>
+        </div>
+        <div class="lore-box"><p class="lore-text">»Über rauchigem Torffeuer gedörrtes Hirschfleisch. Zäh wie Baumrinde, verleiht aber frische Kraft für die nächste Schlacht.«</p></div>
+        <div class="stat-ribbon">
+          <div class="stat-chip highlight-stat"><span class="stat-label">❤️ Heilung</span><span class="stat-value">+2 LP</span></div>
+          <div class="stat-chip"><span class="stat-label">Slot</span><span class="stat-value" style="font-size:7.5pt;">Rucksack</span></div>
+          <div class="stat-chip highlight-gold"><span class="stat-label">Typ</span><span class="stat-value" style="font-size:7.5pt; color:#7a5410;">Verbrauch</span></div>
+        </div>
+        <div class="rules-box">
+          <div class="section-header">
+            <span>📜 Gegenstandseffekt</span>
+            <span class="rule-title">◈ Startkarte</span>
+          </div>
+          <p class="rule-body">Stellt zwischen zwei Räumen oder nach dem Kampf <strong>2 LP</strong> wieder her. <em>Einweggegenstand</em>.</p>
+        </div>
+        <div class="card-footer">
+          <span>◈ Nordland-Berserker</span>
+          <span>#03 / 12</span>
+          <span class="rarity-pill">Startausrüstung</span>
+        </div>
+      </div>
+      <div class="tarot-face back-face">
+        <img class="card-back-img" src="art_assets/MasterArtwork/Cards/Card Backs/Board_game_card_back_colord_woodcut_style_forbidden_midnight__21652bf5-8ecb-4a43-8d05-67df8e29d436_3.png" alt="Rückseite">
+        <div class="back-title-overlay"><div class="fraktur-title">Startausrüstung</div></div>
+      </div>
+    </div>
+    
+    <!-- KARTE: Zwillingsklinge (Rechts) (Elfische Kriegstänzerin) -->
+    <div class="card-pair pos-2">
+      <div class="tarot-face front-face">
+        <div class="card-border-frame"></div>
+        <div class="card-border-inner"></div>
+        <div class="card-header">
+          <h2 class="card-title">Zwillingsklinge (Rechts)</h2>
+          <p class="card-subtitle">◈ Startausrüstung · Elfische Kriegstänzerin</p>
+        </div>
+        <div class="art-container">
+          <img class="card-art" src="art_assets/MasterArtwork/Cards/Starting Gear/A_single_isolated_masterwork_elven_curved_short_sword_slender_642256ee-cf7c-44f7-9651-933f7d02efe3_1.png" alt="Zwillingsklinge (Rechts)">
+          <div class="art-vignette"></div>
+        </div>
+        <div class="lore-box"><p class="lore-text">»Geschmiedet aus flüsterndem Sternensilber. Schneidet lautlos durch Rüstzeug wie ein Herbstwind durch verdorrtes Laub.«</p></div>
+        <div class="stat-ribbon">
+          <div class="stat-chip highlight-stat"><span class="stat-label">⚔️ Schaden</span><span class="stat-value">2</span></div>
+          <div class="stat-chip"><span class="stat-label">Slot</span><span class="stat-value" style="font-size:7.5pt;">1 Hand</span></div>
+          <div class="stat-chip highlight-gold"><span class="stat-label">Typ</span><span class="stat-value" style="font-size:7.5pt; color:#7a5410;">Waffe</span></div>
+        </div>
+        <div class="rules-box">
+          <div class="section-header">
+            <span>📜 Gegenstandseffekt</span>
+            <span class="rule-title">◈ Startkarte</span>
+          </div>
+          <p class="rule-body"><strong>Kriegstanz:</strong> Ermöglicht den ersten der beiden schnellen Angriffe der Kriegstänzerin.</p>
+        </div>
+        <div class="card-footer">
+          <span>◈ Elfische Kriegstänzerin</span>
+          <span>#04 / 12</span>
+          <span class="rarity-pill">Startausrüstung</span>
+        </div>
+      </div>
+      <div class="tarot-face back-face">
+        <img class="card-back-img" src="art_assets/MasterArtwork/Cards/Card Backs/Board_game_card_back_colord_woodcut_style_forbidden_midnight__21652bf5-8ecb-4a43-8d05-67df8e29d436_3.png" alt="Rückseite">
+        <div class="back-title-overlay"><div class="fraktur-title">Startausrüstung</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOGEN 3 -->
+  <div class="page" id="page3">
+    <svg class="crop-svg" viewBox="0 0 210 297" width="210mm" height="297mm">
+      <line x1="23.33" y1="0.5" x2="23.33" y2="7.5" class="mark-cut" />
+      <text x="23.33" y="2.5" text-anchor="middle" class="mark-sub">✂</text>
+      <line x1="105" y1="0.5" x2="105" y2="7.5" class="mark-fold" />
+      <text x="105" y="3.2" text-anchor="middle" class="mark-txt">▼ FALZLINIE (GUTTER-FOLD) ▼</text>
+      <line x1="186.67" y1="0.5" x2="186.67" y2="7.5" class="mark-cut" />
+      <text x="186.67" y="2.5" text-anchor="middle" class="mark-sub">✂</text>
+
+      <line x1="1.0" y1="8.5" x2="20.0" y2="8.5" class="mark-cut" />
+      <line x1="190.0" y1="8.5" x2="209.0" y2="8.5" class="mark-cut" />
+      <line x1="1.0" y1="146.5" x2="20.0" y2="146.5" class="mark-cut" />
+      <line x1="190.0" y1="146.5" x2="209.0" y2="146.5" class="mark-cut" />
+
+      <line x1="23.33" y1="147.0" x2="23.33" y2="150.0" class="mark-cut" />
+      <line x1="105" y1="147.0" x2="105" y2="150.0" class="mark-fold" />
+      <line x1="186.67" y1="147.0" x2="186.67" y2="150.0" class="mark-cut" />
+
+      <line x1="1.0" y1="150.5" x2="20.0" y2="150.5" class="mark-cut" />
+      <line x1="190.0" y1="150.5" x2="209.0" y2="150.5" class="mark-cut" />
+      <line x1="1.0" y1="288.5" x2="20.0" y2="288.5" class="mark-cut" />
+      <line x1="190.0" y1="288.5" x2="209.0" y2="288.5" class="mark-cut" />
+
+      <line x1="23.33" y1="289.5" x2="23.33" y2="296.5" class="mark-cut" />
+      <text x="23.33" y="295.5" text-anchor="middle" class="mark-sub">✂</text>
+      <line x1="105" y1="289.5" x2="105" y2="296.5" class="mark-fold" />
+      <text x="105" y="295.5" text-anchor="middle" class="mark-txt">▲ FALZLINIE (GUTTER-FOLD) ▲</text>
+      <line x1="186.67" y1="289.5" x2="186.67" y2="296.5" class="mark-cut" />
+      <text x="186.67" y="295.5" text-anchor="middle" class="mark-sub">✂</text>
+
+      <line x1="105" y1="8.5" x2="105" y2="146.5" stroke="#777777" stroke-width="0.14" stroke-dasharray="2, 2" opacity="0.65" />
+      <line x1="105" y1="150.5" x2="105" y2="288.5" stroke="#777777" stroke-width="0.14" stroke-dasharray="2, 2" opacity="0.65" />
+    </svg>
+    
+    <!-- KARTE: Zwillingsklinge (Links) (Elfische Kriegstänzerin) -->
+    <div class="card-pair pos-1">
+      <div class="tarot-face front-face">
+        <div class="card-border-frame"></div>
+        <div class="card-border-inner"></div>
+        <div class="card-header">
+          <h2 class="card-title">Zwillingsklinge (Links)</h2>
+          <p class="card-subtitle">◈ Startausrüstung · Elfische Kriegstänzerin</p>
+        </div>
+        <div class="art-container">
+          <img class="card-art" src="art_assets/MasterArtwork/Cards/Starting Gear/A_single_isolated_matching_elven_parrying_sword_gracefully_cu_1d3abbe1-dc9c-4b3c-88da-d3beac339d44_1.png" alt="Zwillingsklinge (Links)">
+          <div class="art-vignette"></div>
+        </div>
+        <div class="lore-box"><p class="lore-text">»Die parierende Schwester der Führungsklinge. Ihre geschwungene Parierstange fängt gegnerische Schläge spielend ab.«</p></div>
+        <div class="stat-ribbon">
+          <div class="stat-chip highlight-stat"><span class="stat-label">⚔️ Schaden</span><span class="stat-value">2</span></div>
+          <div class="stat-chip"><span class="stat-label">Slot</span><span class="stat-value" style="font-size:7.5pt;">1 Hand</span></div>
+          <div class="stat-chip highlight-gold"><span class="stat-label">Typ</span><span class="stat-value" style="font-size:7.5pt; color:#7a5410;">Waffe</span></div>
+        </div>
+        <div class="rules-box">
+          <div class="section-header">
+            <span>📜 Gegenstandseffekt</span>
+            <span class="rule-title">◈ Startkarte</span>
+          </div>
+          <p class="rule-body"><strong>Kriegstanz:</strong> Ermöglicht den zweiten der beiden Angriffe in Kombination mit der Führungshand.</p>
+        </div>
+        <div class="card-footer">
+          <span>◈ Elfische Kriegstänzerin</span>
+          <span>#05 / 12</span>
+          <span class="rarity-pill">Startausrüstung</span>
+        </div>
+      </div>
+      <div class="tarot-face back-face">
+        <img class="card-back-img" src="art_assets/MasterArtwork/Cards/Card Backs/Board_game_card_back_colord_woodcut_style_forbidden_midnight__21652bf5-8ecb-4a43-8d05-67df8e29d436_3.png" alt="Rückseite">
+        <div class="back-title-overlay"><div class="fraktur-title">Startausrüstung</div></div>
+      </div>
+    </div>
+    
+    <!-- KARTE: Gewebtes Elfenleder (Elfische Kriegstänzerin) -->
+    <div class="card-pair pos-2">
+      <div class="tarot-face front-face">
+        <div class="card-border-frame"></div>
+        <div class="card-border-inner"></div>
+        <div class="card-header">
+          <h2 class="card-title">Gewebtes Elfenleder</h2>
+          <p class="card-subtitle">◈ Startausrüstung · Elfische Kriegstänzerin</p>
+        </div>
+        <div class="art-container">
+          <img class="card-art" src="art_assets/MasterArtwork/Cards/Starting Gear/A_single_isolated_empty_elven_light_leather_cuirass_laid_flat_96234bce-8173-4cf5-ae54-67ac0df29a10_0.png" alt="Gewebtes Elfenleder">
+          <div class="art-vignette"></div>
+        </div>
+        <div class="lore-box"><p class="lore-text">»Aus laubförmigen Schuppen gewoben, so leicht wie eine zweite Haut. Verleiht Schutz, ohne auch nur einen Schritt zu hemmen.«</p></div>
+        <div class="stat-ribbon">
+          <div class="stat-chip highlight-stat"><span class="stat-label">🛡️ Rüstung</span><span class="stat-value">1</span></div>
+          <div class="stat-chip"><span class="stat-label">Slot</span><span class="stat-value" style="font-size:7.5pt;">Körper</span></div>
+          <div class="stat-chip highlight-gold"><span class="stat-label">Typ</span><span class="stat-value" style="font-size:7.5pt; color:#7a5410;">Rüstung</span></div>
+        </div>
+        <div class="rules-box">
+          <div class="section-header">
+            <span>📜 Gegenstandseffekt</span>
+            <span class="rule-title">◈ Startkarte</span>
+          </div>
+          <p class="rule-body"><strong>Schaden-Reduktion 1</strong>. Geschmeidig gearbeitet, Geschwindigkeit <strong>+0</strong>.</p>
+        </div>
+        <div class="card-footer">
+          <span>◈ Elfische Kriegstänzerin</span>
+          <span>#06 / 12</span>
+          <span class="rarity-pill">Startausrüstung</span>
+        </div>
+      </div>
+      <div class="tarot-face back-face">
+        <img class="card-back-img" src="art_assets/MasterArtwork/Cards/Card Backs/Board_game_card_back_colord_woodcut_style_forbidden_midnight__21652bf5-8ecb-4a43-8d05-67df8e29d436_3.png" alt="Rückseite">
+        <div class="back-title-overlay"><div class="fraktur-title">Startausrüstung</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOGEN 4 -->
+  <div class="page" id="page4">
+    <svg class="crop-svg" viewBox="0 0 210 297" width="210mm" height="297mm">
+      <line x1="23.33" y1="0.5" x2="23.33" y2="7.5" class="mark-cut" />
+      <text x="23.33" y="2.5" text-anchor="middle" class="mark-sub">✂</text>
+      <line x1="105" y1="0.5" x2="105" y2="7.5" class="mark-fold" />
+      <text x="105" y="3.2" text-anchor="middle" class="mark-txt">▼ FALZLINIE (GUTTER-FOLD) ▼</text>
+      <line x1="186.67" y1="0.5" x2="186.67" y2="7.5" class="mark-cut" />
+      <text x="186.67" y="2.5" text-anchor="middle" class="mark-sub">✂</text>
+
+      <line x1="1.0" y1="8.5" x2="20.0" y2="8.5" class="mark-cut" />
+      <line x1="190.0" y1="8.5" x2="209.0" y2="8.5" class="mark-cut" />
+      <line x1="1.0" y1="146.5" x2="20.0" y2="146.5" class="mark-cut" />
+      <line x1="190.0" y1="146.5" x2="209.0" y2="146.5" class="mark-cut" />
+
+      <line x1="23.33" y1="147.0" x2="23.33" y2="150.0" class="mark-cut" />
+      <line x1="105" y1="147.0" x2="105" y2="150.0" class="mark-fold" />
+      <line x1="186.67" y1="147.0" x2="186.67" y2="150.0" class="mark-cut" />
+
+      <line x1="1.0" y1="150.5" x2="20.0" y2="150.5" class="mark-cut" />
+      <line x1="190.0" y1="150.5" x2="209.0" y2="150.5" class="mark-cut" />
+      <line x1="1.0" y1="288.5" x2="20.0" y2="288.5" class="mark-cut" />
+      <line x1="190.0" y1="288.5" x2="209.0" y2="288.5" class="mark-cut" />
+
+      <line x1="23.33" y1="289.5" x2="23.33" y2="296.5" class="mark-cut" />
+      <text x="23.33" y="295.5" text-anchor="middle" class="mark-sub">✂</text>
+      <line x1="105" y1="289.5" x2="105" y2="296.5" class="mark-fold" />
+      <text x="105" y="295.5" text-anchor="middle" class="mark-txt">▲ FALZLINIE (GUTTER-FOLD) ▲</text>
+      <line x1="186.67" y1="289.5" x2="186.67" y2="296.5" class="mark-cut" />
+      <text x="186.67" y="295.5" text-anchor="middle" class="mark-sub">✂</text>
+
+      <line x1="105" y1="8.5" x2="105" y2="146.5" stroke="#777777" stroke-width="0.14" stroke-dasharray="2, 2" opacity="0.65" />
+      <line x1="105" y1="150.5" x2="105" y2="288.5" stroke="#777777" stroke-width="0.14" stroke-dasharray="2, 2" opacity="0.65" />
+    </svg>
+    
+    <!-- KARTE: Gezinkter Dolch (Goblin-Halsabschneider) -->
+    <div class="card-pair pos-1">
+      <div class="tarot-face front-face">
+        <div class="card-border-frame"></div>
+        <div class="card-border-inner"></div>
+        <div class="card-header">
+          <h2 class="card-title">Gezinkter Dolch</h2>
+          <p class="card-subtitle">◈ Startausrüstung · Goblin-Halsabschneider</p>
+        </div>
+        <div class="art-container">
+          <img class="card-art" src="art_assets/MasterArtwork/Cards/Starting Gear/A_single_isolated_wicked_notched_goblin_dagger_jagged_steel_b_0ad645fa-bf4c-4ad6-b581-f6ee72b40545_3.png" alt="Gezinkter Dolch">
+          <div class="art-vignette"></div>
+        </div>
+        <div class="lore-box"><p class="lore-text">»Schartig, rostig und unbemerkt mit Blei im Knauf beschwert. Perfekt ausbalanciert für den feigen Stoß aus dem Schatten.«</p></div>
+        <div class="stat-ribbon">
+          <div class="stat-chip highlight-stat"><span class="stat-label">⚔️ Schaden</span><span class="stat-value">1</span></div>
+          <div class="stat-chip"><span class="stat-label">Slot</span><span class="stat-value" style="font-size:7.5pt;">1 Hand</span></div>
+          <div class="stat-chip highlight-gold"><span class="stat-label">Typ</span><span class="stat-value" style="font-size:7.5pt; color:#7a5410;">Waffe</span></div>
+        </div>
+        <div class="rules-box">
+          <div class="section-header">
+            <span>📜 Gegenstandseffekt</span>
+            <span class="rule-title">◈ Startkarte</span>
+          </div>
+          <p class="rule-body"><strong>Hinterhalt:</strong> <strong>+1 Vorteil auf Schleichen (LIS)</strong>. Bei Meucheln aus dem Versteck: <strong>+1 Bonusschaden</strong>.</p>
+        </div>
+        <div class="card-footer">
+          <span>◈ Goblin-Halsabschneider</span>
+          <span>#07 / 12</span>
+          <span class="rarity-pill">Startausrüstung</span>
+        </div>
+      </div>
+      <div class="tarot-face back-face">
+        <img class="card-back-img" src="art_assets/MasterArtwork/Cards/Card Backs/Board_game_card_back_colord_woodcut_style_forbidden_midnight__21652bf5-8ecb-4a43-8d05-67df8e29d436_3.png" alt="Rückseite">
+        <div class="back-title-overlay"><div class="fraktur-title">Startausrüstung</div></div>
+      </div>
+    </div>
+    
+    <!-- KARTE: Geflickte Ledertunika (Goblin-Halsabschneider) -->
+    <div class="card-pair pos-2">
+      <div class="tarot-face front-face">
+        <div class="card-border-frame"></div>
+        <div class="card-border-inner"></div>
+        <div class="card-header">
+          <h2 class="card-title">Geflickte Ledertunika</h2>
+          <p class="card-subtitle">◈ Startausrüstung · Goblin-Halsabschneider</p>
+        </div>
+        <div class="art-container">
+          <img class="card-art" src="art_assets/MasterArtwork/Cards/Starting Gear/A_single_isolated_patched_goblin_leather_vest_laid_flat_misma_41ef85ac-58f3-443f-b7ad-4b31461f7444_0.png" alt="Geflickte Ledertunika">
+          <div class="art-vignette"></div>
+        </div>
+        <div class="lore-box"><p class="lore-text">»Zusammengeklaut aus fremden Stiefeln und Echsenhaut. Stinkt bestialisch, birgt aber Dutzende nützlicher Geheimtaschen.«</p></div>
+        <div class="stat-ribbon">
+          <div class="stat-chip highlight-stat"><span class="stat-label">🛡️ Rüstung</span><span class="stat-value">1</span></div>
+          <div class="stat-chip"><span class="stat-label">Slot</span><span class="stat-value" style="font-size:7.5pt;">Körper</span></div>
+          <div class="stat-chip highlight-gold"><span class="stat-label">Typ</span><span class="stat-value" style="font-size:7.5pt; color:#7a5410;">Rüstung</span></div>
+        </div>
+        <div class="rules-box">
+          <div class="section-header">
+            <span>📜 Gegenstandseffekt</span>
+            <span class="rule-title">◈ Startkarte</span>
+          </div>
+          <p class="rule-body"><strong>Schaden-Reduktion 1</strong>. Zusammengeflickt aus Resten, Geschwindigkeit <strong>+0</strong>.</p>
+        </div>
+        <div class="card-footer">
+          <span>◈ Goblin-Halsabschneider</span>
+          <span>#08 / 12</span>
+          <span class="rarity-pill">Startausrüstung</span>
+        </div>
+      </div>
+      <div class="tarot-face back-face">
+        <img class="card-back-img" src="art_assets/MasterArtwork/Cards/Card Backs/Board_game_card_back_colord_woodcut_style_forbidden_midnight__21652bf5-8ecb-4a43-8d05-67df8e29d436_3.png" alt="Rückseite">
+        <div class="back-title-overlay"><div class="fraktur-title">Startausrüstung</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOGEN 5 -->
+  <div class="page" id="page5">
+    <svg class="crop-svg" viewBox="0 0 210 297" width="210mm" height="297mm">
+      <line x1="23.33" y1="0.5" x2="23.33" y2="7.5" class="mark-cut" />
+      <text x="23.33" y="2.5" text-anchor="middle" class="mark-sub">✂</text>
+      <line x1="105" y1="0.5" x2="105" y2="7.5" class="mark-fold" />
+      <text x="105" y="3.2" text-anchor="middle" class="mark-txt">▼ FALZLINIE (GUTTER-FOLD) ▼</text>
+      <line x1="186.67" y1="0.5" x2="186.67" y2="7.5" class="mark-cut" />
+      <text x="186.67" y="2.5" text-anchor="middle" class="mark-sub">✂</text>
+
+      <line x1="1.0" y1="8.5" x2="20.0" y2="8.5" class="mark-cut" />
+      <line x1="190.0" y1="8.5" x2="209.0" y2="8.5" class="mark-cut" />
+      <line x1="1.0" y1="146.5" x2="20.0" y2="146.5" class="mark-cut" />
+      <line x1="190.0" y1="146.5" x2="209.0" y2="146.5" class="mark-cut" />
+
+      <line x1="23.33" y1="147.0" x2="23.33" y2="150.0" class="mark-cut" />
+      <line x1="105" y1="147.0" x2="105" y2="150.0" class="mark-fold" />
+      <line x1="186.67" y1="147.0" x2="186.67" y2="150.0" class="mark-cut" />
+
+      <line x1="1.0" y1="150.5" x2="20.0" y2="150.5" class="mark-cut" />
+      <line x1="190.0" y1="150.5" x2="209.0" y2="150.5" class="mark-cut" />
+      <line x1="1.0" y1="288.5" x2="20.0" y2="288.5" class="mark-cut" />
+      <line x1="190.0" y1="288.5" x2="209.0" y2="288.5" class="mark-cut" />
+
+      <line x1="23.33" y1="289.5" x2="23.33" y2="296.5" class="mark-cut" />
+      <text x="23.33" y="295.5" text-anchor="middle" class="mark-sub">✂</text>
+      <line x1="105" y1="289.5" x2="105" y2="296.5" class="mark-fold" />
+      <text x="105" y="295.5" text-anchor="middle" class="mark-txt">▲ FALZLINIE (GUTTER-FOLD) ▲</text>
+      <line x1="186.67" y1="289.5" x2="186.67" y2="296.5" class="mark-cut" />
+      <text x="186.67" y="295.5" text-anchor="middle" class="mark-sub">✂</text>
+
+      <line x1="105" y1="8.5" x2="105" y2="146.5" stroke="#777777" stroke-width="0.14" stroke-dasharray="2, 2" opacity="0.65" />
+      <line x1="105" y1="150.5" x2="105" y2="288.5" stroke="#777777" stroke-width="0.14" stroke-dasharray="2, 2" opacity="0.65" />
+    </svg>
+    
+    <!-- KARTE: Flasche Goblin-Fusel (Goblin-Halsabschneider) -->
+    <div class="card-pair pos-1">
+      <div class="tarot-face front-face">
+        <div class="card-border-frame"></div>
+        <div class="card-border-inner"></div>
+        <div class="card-header">
+          <h2 class="card-title">Flasche Goblin-Fusel</h2>
+          <p class="card-subtitle">◈ Startausrüstung · Goblin-Halsabschneider</p>
+        </div>
+        <div class="art-container">
+          <img class="card-art" src="art_assets/MasterArtwork/Cards/Starting Gear/A_single_isolated_crude_bulbous_glass_flask_of_goblin_moonshi_f037a9a8-3c4d-481b-bc5d-e43a30377af8_2.png" alt="Flasche Goblin-Fusel">
+          <div class="art-vignette"></div>
+        </div>
+        <div class="lore-box"><p class="lore-text">»Gegorene Höhlenpilze und Schwarzpulver-Reste. Brennt wie Höllenfeuer in der Kehle und setzt chaotische Geistesblitze frei.«</p></div>
+        <div class="stat-ribbon">
+          <div class="stat-chip highlight-stat"><span class="stat-label">🧪 Ladungen</span><span class="stat-value">3</span></div>
+          <div class="stat-chip"><span class="stat-label">Slot</span><span class="stat-value" style="font-size:7.5pt;">Rucksack</span></div>
+          <div class="stat-chip highlight-gold"><span class="stat-label">Typ</span><span class="stat-value" style="font-size:7.5pt; color:#7a5410;">Zubehör</span></div>
+        </div>
+        <div class="rules-box">
+          <div class="section-header">
+            <span>📜 Gegenstandseffekt</span>
+            <span class="rule-title">◈ Startkarte</span>
+          </div>
+          <p class="rule-body">Enthält 3 Schlucke Schnaps. Jeder Schluck erlaubt <strong>1 Wurf auf der Goblinzauber-Tabelle</strong> (kostet 1 Erschöpfungs-Box).</p>
+        </div>
+        <div class="card-footer">
+          <span>◈ Goblin-Halsabschneider</span>
+          <span>#09 / 12</span>
+          <span class="rarity-pill">Startausrüstung</span>
+        </div>
+      </div>
+      <div class="tarot-face back-face">
+        <img class="card-back-img" src="art_assets/MasterArtwork/Cards/Card Backs/Board_game_card_back_colord_woodcut_style_forbidden_midnight__21652bf5-8ecb-4a43-8d05-67df8e29d436_3.png" alt="Rückseite">
+        <div class="back-title-overlay"><div class="fraktur-title">Startausrüstung</div></div>
+      </div>
+    </div>
+    
+    <!-- KARTE: Akademie-Fokusstab (Magiegelehrte) -->
+    <div class="card-pair pos-2">
+      <div class="tarot-face front-face">
+        <div class="card-border-frame"></div>
+        <div class="card-border-inner"></div>
+        <div class="card-header">
+          <h2 class="card-title">Akademie-Fokusstab</h2>
+          <p class="card-subtitle">◈ Startausrüstung · Magiegelehrte</p>
+        </div>
+        <div class="art-container">
+          <img class="card-art" style="transform: rotate(-45deg) scale(1.22); transform-origin: center center;" src="art_assets/MasterArtwork/Cards/Starting Gear/A_single_isolated_ornate_arcane_focus_staff_tall_polished_dar_6f2b299b-4237-4ed9-9aa4-f71112c40c7e_2.png" alt="Akademie-Fokusstab">
+          <div class="art-vignette"></div>
+        </div>
+        <div class="lore-box"><p class="lore-text">»Gedrechseltes Mahagoni mit einem Saphirkristall an der Spitze. Bündelt das flüchtige Ätherlicht und glättet arkanes Chaos.«</p></div>
+        <div class="stat-ribbon">
+          <div class="stat-chip highlight-stat"><span class="stat-label">⚔️ Schaden</span><span class="stat-value">1</span></div>
+          <div class="stat-chip"><span class="stat-label">Slot</span><span class="stat-value" style="font-size:7.5pt;">2 Hände</span></div>
+          <div class="stat-chip highlight-gold"><span class="stat-label">Typ</span><span class="stat-value" style="font-size:7.5pt; color:#7a5410;">Waffe</span></div>
+        </div>
+        <div class="rules-box">
+          <div class="section-header">
+            <span>📜 Gegenstandseffekt</span>
+            <span class="rule-title">◈ Startkarte</span>
+          </div>
+          <p class="rule-body">Nahkampfschaden 1. <strong>Arkaner Fokus:</strong> Einmal pro Szenario darf ein misslungener Zauberwurf wiederholt werden.</p>
+        </div>
+        <div class="card-footer">
+          <span>◈ Magiegelehrte</span>
+          <span>#10 / 12</span>
+          <span class="rarity-pill">Startausrüstung</span>
+        </div>
+      </div>
+      <div class="tarot-face back-face">
+        <img class="card-back-img" src="art_assets/MasterArtwork/Cards/Card Backs/Board_game_card_back_colord_woodcut_style_forbidden_midnight__21652bf5-8ecb-4a43-8d05-67df8e29d436_3.png" alt="Rückseite">
+        <div class="back-title-overlay"><div class="fraktur-title">Startausrüstung</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOGEN 6 -->
+  <div class="page" id="page6">
+    <svg class="crop-svg" viewBox="0 0 210 297" width="210mm" height="297mm">
+      <line x1="23.33" y1="0.5" x2="23.33" y2="7.5" class="mark-cut" />
+      <text x="23.33" y="2.5" text-anchor="middle" class="mark-sub">✂</text>
+      <line x1="105" y1="0.5" x2="105" y2="7.5" class="mark-fold" />
+      <text x="105" y="3.2" text-anchor="middle" class="mark-txt">▼ FALZLINIE (GUTTER-FOLD) ▼</text>
+      <line x1="186.67" y1="0.5" x2="186.67" y2="7.5" class="mark-cut" />
+      <text x="186.67" y="2.5" text-anchor="middle" class="mark-sub">✂</text>
+
+      <line x1="1.0" y1="8.5" x2="20.0" y2="8.5" class="mark-cut" />
+      <line x1="190.0" y1="8.5" x2="209.0" y2="8.5" class="mark-cut" />
+      <line x1="1.0" y1="146.5" x2="20.0" y2="146.5" class="mark-cut" />
+      <line x1="190.0" y1="146.5" x2="209.0" y2="146.5" class="mark-cut" />
+
+      <line x1="23.33" y1="147.0" x2="23.33" y2="150.0" class="mark-cut" />
+      <line x1="105" y1="147.0" x2="105" y2="150.0" class="mark-fold" />
+      <line x1="186.67" y1="147.0" x2="186.67" y2="150.0" class="mark-cut" />
+
+      <line x1="1.0" y1="150.5" x2="20.0" y2="150.5" class="mark-cut" />
+      <line x1="190.0" y1="150.5" x2="209.0" y2="150.5" class="mark-cut" />
+      <line x1="1.0" y1="288.5" x2="20.0" y2="288.5" class="mark-cut" />
+      <line x1="190.0" y1="288.5" x2="209.0" y2="288.5" class="mark-cut" />
+
+      <line x1="23.33" y1="289.5" x2="23.33" y2="296.5" class="mark-cut" />
+      <text x="23.33" y="295.5" text-anchor="middle" class="mark-sub">✂</text>
+      <line x1="105" y1="289.5" x2="105" y2="296.5" class="mark-fold" />
+      <text x="105" y="295.5" text-anchor="middle" class="mark-txt">▲ FALZLINIE (GUTTER-FOLD) ▲</text>
+      <line x1="186.67" y1="289.5" x2="186.67" y2="296.5" class="mark-cut" />
+      <text x="186.67" y="295.5" text-anchor="middle" class="mark-sub">✂</text>
+
+      <line x1="105" y1="8.5" x2="105" y2="146.5" stroke="#777777" stroke-width="0.14" stroke-dasharray="2, 2" opacity="0.65" />
+      <line x1="105" y1="150.5" x2="105" y2="288.5" stroke="#777777" stroke-width="0.14" stroke-dasharray="2, 2" opacity="0.65" />
+    </svg>
+    
+    <!-- KARTE: Verzauberte Gelehrtenrobe (Magiegelehrte) -->
+    <div class="card-pair pos-1">
+      <div class="tarot-face front-face">
+        <div class="card-border-frame"></div>
+        <div class="card-border-inner"></div>
+        <div class="card-header">
+          <h2 class="card-title">Verzauberte Gelehrtenrobe</h2>
+          <p class="card-subtitle">◈ Startausrüstung · Magiegelehrte</p>
+        </div>
+        <div class="art-container">
+          <img class="card-art" src="art_assets/MasterArtwork/Cards/Starting Gear/A_single_isolated_empty_imperial_academy_scholar_robe_display_8410397e-7d94-4d40-a254-9235d899a184_1.png" alt="Verzauberte Gelehrtenrobe">
+          <div class="art-vignette"></div>
+        </div>
+        <div class="lore-box"><p class="lore-text">»Mit schimmernden Goldfäden in den kaiserlichen Schutzkreis gewirkt. Wehrt feindliche Flüche und arkanes Feuer ab.«</p></div>
+        <div class="stat-ribbon">
+          <div class="stat-chip highlight-stat"><span class="stat-label">🛡️ Rüstung</span><span class="stat-value">1</span></div>
+          <div class="stat-chip"><span class="stat-label">Slot</span><span class="stat-value" style="font-size:7.5pt;">Körper</span></div>
+          <div class="stat-chip highlight-gold"><span class="stat-label">Typ</span><span class="stat-value" style="font-size:7.5pt; color:#7a5410;">Rüstung</span></div>
+        </div>
+        <div class="rules-box">
+          <div class="section-header">
+            <span>📜 Gegenstandseffekt</span>
+            <span class="rule-title">◈ Startkarte</span>
+          </div>
+          <p class="rule-body"><strong>Schaden-Reduktion 1</strong>. <strong>Arkaner Schutz:</strong> <strong>+1</strong> auf alle Rettungswürfe gegen magische Effekte.</p>
+        </div>
+        <div class="card-footer">
+          <span>◈ Magiegelehrte</span>
+          <span>#11 / 12</span>
+          <span class="rarity-pill">Startausrüstung</span>
+        </div>
+      </div>
+      <div class="tarot-face back-face">
+        <img class="card-back-img" src="art_assets/MasterArtwork/Cards/Card Backs/Board_game_card_back_colord_woodcut_style_forbidden_midnight__21652bf5-8ecb-4a43-8d05-67df8e29d436_3.png" alt="Rückseite">
+        <div class="back-title-overlay"><div class="fraktur-title">Startausrüstung</div></div>
+      </div>
+    </div>
+    
+    <!-- KARTE: Heiltrank der Akademie (Magiegelehrte) -->
+    <div class="card-pair pos-2">
+      <div class="tarot-face front-face">
+        <div class="card-border-frame"></div>
+        <div class="card-border-inner"></div>
+        <div class="card-header">
+          <h2 class="card-title">Heiltrank der Akademie</h2>
+          <p class="card-subtitle">◈ Startausrüstung · Magiegelehrte</p>
+        </div>
+        <div class="art-container">
+          <img class="card-art" src="art_assets/MasterArtwork/Cards/Starting Gear/A_single_isolated_refined_alchemical_healing_potion_fluted_cl_abc2e4e0-c595-49a4-a2e3-356859bf72c0_1.png" alt="Heiltrank der Akademie">
+          <div class="art-vignette"></div>
+        </div>
+        <div class="lore-box"><p class="lore-text">»Destilliert aus Sonnenblütenessenz und Alraunenwurzel. Versiegelt selbst tiefe Wunden im goldenen Schein der Genesung.«</p></div>
+        <div class="stat-ribbon">
+          <div class="stat-chip highlight-stat"><span class="stat-label">❤️ Heilung</span><span class="stat-value">+3 LP</span></div>
+          <div class="stat-chip"><span class="stat-label">Slot</span><span class="stat-value" style="font-size:7.5pt;">Rucksack</span></div>
+          <div class="stat-chip highlight-gold"><span class="stat-label">Typ</span><span class="stat-value" style="font-size:7.5pt; color:#7a5410;">Trank</span></div>
+        </div>
+        <div class="rules-box">
+          <div class="section-header">
+            <span>📜 Gegenstandseffekt</span>
+            <span class="rule-title">◈ Startkarte</span>
+          </div>
+          <p class="rule-body"><strong>Sofortige Aktion:</strong> Stellt sofort <strong>3 LP</strong> wieder her. <em>Einweggegenstand</em>.</p>
+        </div>
+        <div class="card-footer">
+          <span>◈ Magiegelehrte</span>
+          <span>#12 / 12</span>
+          <span class="rarity-pill">Startausrüstung</span>
+        </div>
+      </div>
+      <div class="tarot-face back-face">
+        <img class="card-back-img" src="art_assets/MasterArtwork/Cards/Card Backs/Board_game_card_back_colord_woodcut_style_forbidden_midnight__21652bf5-8ecb-4a43-8d05-67df8e29d436_3.png" alt="Rückseite">
+        <div class="back-title-overlay"><div class="fraktur-title">Startausrüstung</div></div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

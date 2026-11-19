@@ -95,29 +95,39 @@ Da Möbel und Wände im Buch vorgedruckt sind, werden nur noch wenige physische 
 
 ---
 
-## 🃏 3. Spielkarten (Tarot-Format 70 × 120 mm)
+## 🃏 3. Spielkarten (Tarot-Format 82 × 140 mm)
 
 > **Herstellungsempfehlung (Methode 1 – Gutter-Fold):**  
 > Detaillierte Schritt-für-Schritt-Anleitung, Papiermarken und Klebetechniken siehe: [`CARD_PRINTING_GUIDE_METHOD_1.md`](file:///c:/Users/christoph.willimzik/Agent_Bunny/RV_Quest/printables/CARD_PRINTING_GUIDE_METHOD_1.md).  
 > **Empfohlenes Papier:** 180–200 g/m² Mattpapier (z. B. *Clairefontaine DCP* oder *Mondi Color Copy*). Durch das Falzen und Verkleben entsteht eine fertige Karte mit ca. 360–400 g/m² in professioneller Steifigkeit ohne Druckversatz.
 
-- **Kartenformat:** **Tarot (70 × 120 mm)**
+- **Kartenformat:** **Tarot (82 × 140 mm)**
   - Großzügiges, atmosphärisches Format mit viel Raum für stimmungsvolle Illustrationen, klare Typografie und gut lesbare Werte am Tisch.
-  - **A4-Druck-Layout:** Bei 70 × 120 mm passen 4 Karten pro A4-Bogen (oder 2 zusammenklappbare Paare mit Gutter-Fold-Falzkante).
+  - **A4-Druck-Layout:** Bei 82 × 140 mm passen 4 Karten pro A4-Bogen (oder 2 zusammenklappbare Paare mit Gutter-Fold-Falzkante).
 - **Karten-Übersicht:**
   - 12× Startausrüstungs-Karten (`characters/starter_cards_and_spells.md`)
-  - 6× Zauberkarten der Magiegelehrten
-  - 1× Goblinzauber-Referenzkarte
-  - 54× Ausrüstungsdeck (Loot & Markt, `components/card_list.md` — erweitert um Stangenwaffen, Hämmer, Flegel, Helme & Rüstungsstufen)
-  - 18× Ereigniskarten (Event Deck, `components/card_list.md`)
-  - 16× Begegnungskarten (Encounter Deck, `components/encounter_cards.md`)
-  - 12× Monsterkarten (Bestiarium Imperialis, `monsters/monster_roster.md` — Tarot 70 × 120 mm mit 3-Zeilen Lore, Stat-Ribbon, 'Verhalten' & Fraktur-Deckrücken)
-  - *Gesamt:* 119 Tarot-Karten.
+  - 6× Zauberkarten der Magiegelehrten (*Codex Arcanum*)
+  - 8× Goblinzauber-Karten (*Goblin-Fusel & Chaosmagie* — Master-Rücken: `vintage_medieval_woodcut_etching_of_a_battered_rogue_goblin_g_40cf9f65-3cc5-4a40-a5da-ab879092fef9_2.png`, Banderole: »Goblin-Fusel«)
+  - 1× Huhn-Marker (Chicken Counter, runder 20 mm Holz-/Karton-Marker)
+  - 54× Ausrüstungsdeck (Loot & Markt, `components/card_list.md` — Master-Rücken: »Der Schattenbazar«)
+  - 18× Ereigniskarten (Event Deck, `components/card_list.md` — Master-Rücken: »Rad des Schicksals«)
+  - 16× Begegnungskarten (Encounter Deck, `components/encounter_cards.md` — Master-Rücken: »Die Tiefen Gewölbe«)
+  - 12× Monsterkarten (Bestiarium Imperialis, `monsters/monster_roster.md` — Master-Rücken: »Bestiarium Imperialis«)
+  - 4× Boss-Tableaus (A5 Querformat, `printables/boss_cards_a5_gutterfold.html`)
+  - *Gesamt:* 126 Karten & Tableaus.
 - **Grafik- & Illustrationskonzept:**
-  - **Karten-Artwork & Rückseiten:** Werden über KI-Bildgeneratoren mit strukturierten Style-Prompts generiert (historischer Holzschnitt / Dark Fantasy Linocut auf Altpergament).
+  - **Karten-Artwork & Rückseiten:** Werden über KI-Bildgeneratoren mit strukturierten Style-Prompts generiert (historischer Holzschnitt / Dark Fantasy Linocut auf Altpergament im 1:1-Format).
   - **Deck-Rückseiten mit Fraktur-Overlay:** Banderolen liegen bei $Y = 85{,}7\,\%$ Kartenhöhe und werden mit `UnifrakturMaguntia` exakt zentriert.
   - **Druckbogen-Standard (Tintentyp-sparend):** Reines Weiß (`#ffffff`) außerhalb der Kartenfläche, präzise 0.2 mm Eck-Schnittmarken und rot gestrichelte Falzachsen (`▼ FALZLINIE (GUTTER-FOLD) ▼`) für 100% deckungsgleiches Klappen ohne Duplex-Versatz.
-  - Kartenvorderseiten kombinieren den generierten Holzschnitt-Illustrationskasten (32 mm Höhe) mit gestochen scharfen SVG/HTML-Rahmen, Typografie, 3-Zeilen-Lore-Kasten und strukturierter `Verhalten`-Sektion.
+  - **Integrierte Lore-Box:** Jede Karte besitzt standardmäßig eine zentrierte, kursiv gesetzte Lore-/Flavor-Text-Box (`.lore-box`, Schrift: *Alegreya Italic* 6.8–7.2pt) unterhalb des Artwork-Containers auf Pergamentfond mit seitlichen Akzentlinien.
+  - **Standard-Kartenaufbau:**
+    - **Header:** Zentrierter Kartentitel & Subtitle. Keine redundanten Pills/Boxen über dem Titel.
+    - **Artwork-Container:** 56,5 × 56,5 mm (1:1 unbeschnitten) mit feiner Vignette.
+    - **Lore-Box:** Zentrierte, kursiv gesetzte Lore-/Flavor-Text-Box (`.lore-box`, Schrift: *Alegreya Italic* 6.8–7.2pt) unterhalb des Bildkastens auf Pergamentfond mit seitlichen Akzentlinien.
+    - **Stat-Ribbon:** 3 funktionale Chips (Hauptstat, Slot und Typ/Gold).
+    - **Rules-Box:** Klar strukturierte Regeleffekte mit fettem Text und Einheiten.
+    - **Footer:** Kartennummer, Herkunft/Deck und Seltenheit.
+  - Kartenvorderseiten kombinieren den generierten Holzschnitt-Illustrationskasten (56,5 × 56,5 mm, zentriert, 1:1 unbeschnitten) mit gestochen scharfen SVG/HTML-Rahmen, Typografie (100% Originalgröße für maximale Lesbarkeit), Lore-Box und strukturierter Stat-/Regelsektion.
 
 ---
 

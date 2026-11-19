@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>RV_Quest · Karten-Produktions- & Druck-Checkliste (Deck Tracking)</title>
+<style>
+  @page {
+    size: A4 portrait;
+    margin: 8mm 10mm 8mm 10mm;
+  }
+  * {
+    box-sizing: border-box;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a;
+    background: #f4f4f7;
+    margin: 0;
+    padding: 16px;
+    font-size: 8.5pt;
+    line-height: 1.25;
+  }
+  @media screen {
+    .toolbar {
+      max-width: 210mm;
+      margin: 0 auto 12px auto;
+      background: #1e1915;
+      color: #f5eedf;
+      padding: 10px 16px;
+      border-radius: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+    }
+    .toolbar h2 {
+      margin: 0;
+      font-size: 11pt;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+    }
+    .print-btn {
+      background: linear-gradient(180deg, #9e782f 0%, #6f5119 100%);
+      border: 1px solid #d4af37;
+      color: #fff;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 9pt;
+      transition: transform 0.1s;
+    }
+    .print-btn:hover {
+      transform: scale(1.03);
+      background: #b88d37;
+    }
+    .page-sheet {
+      max-width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto 20px auto;
+      background: #ffffff;
+      padding: 10mm 12mm;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+      border-radius: 2px;
+    }
+  }
+  @media print {
+    body {
+      background: #ffffff !important;
+      padding: 0 !important;
+    }
+    .toolbar {
+      display: none !important;
+    }
+    .page-sheet {
+      padding: 0 !important;
+      margin: 0 !important;
+      box-shadow: none !important;
+      page-break-after: always;
+      break-after: page;
+    }
+  }
+
+  header {
+    border-bottom: 2px solid #2b1f15;
+    padding-bottom: 5px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  h1 {
+    font-size: 14pt;
+    margin: 0 0 2px 0;
+    color: #1a140e;
+    letter-spacing: 0.3px;
+  }
+  .subtitle {
+    font-size: 7.8pt;
+    color: #5c4736;
+    margin: 0;
+  }
+  .meta-stats {
+    display: flex;
+    gap: 6px;
+  }
+  .badge {
+    font-size: 7.2pt;
+    padding: 2.5px 7px;
+    background: #f5f0e6;
+    border: 1px solid #c9bca6;
+    border-radius: 3px;
+    font-weight: 700;
+    color: #3e2d1d;
+    white-space: nowrap;
+  }
+  .badge.highlight {
+    background: #e9f3e8;
+    border-color: #8bbd87;
+    color: #215e1c;
+  }
+
+  .summary-banner {
+    background: #faf6f0;
+    border: 1px solid #d8cbba;
+    border-left: 3.5px solid #8c6a3a;
+    border-radius: 4px;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+    font-size: 7.6pt;
+    color: #3b2c1d;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .summary-banner strong {
+    color: #1a140e;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 9px;
+  }
+  .full-width {
+    grid-column: 1 / -1;
+  }
+
+  .deck-card {
+    border: 1px solid #ddd2c4;
+    border-radius: 4px;
+    background: #ffffff;
+    overflow: hidden;
+    page-break-inside: avoid;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+  }
+  .deck-header {
+    background: #f4ece1;
+    border-bottom: 1px solid #ddd2c4;
+    padding: 4px 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .deck-title {
+    font-size: 8.5pt;
+    font-weight: 700;
+    color: #221811;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .deck-meta {
+    font-size: 6.9pt;
+    font-weight: 700;
+    background: #e8dccb;
+    padding: 1.5px 5.5px;
+    border-radius: 3px;
+    color: #4b3622;
+  }
+  .deck-file {
+    font-size: 6.8pt;
+    color: #66503c;
+    background: #fdfbf7;
+    padding: 2.5px 8px;
+    border-bottom: 1px dashed #e6dcd0;
+    font-family: Consolas, monospace;
+    display: flex;
+    justify-content: space-between;
+  }
+  .deck-file a {
+    color: #8c1d18;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .deck-file a:hover {
+    text-decoration: underline;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 7.5pt;
+  }
+  th {
+    background: #faf7f2;
+    padding: 2.5px 6px;
+    font-size: 6.8pt;
+    font-weight: 700;
+    color: #5c4736;
+    border-bottom: 1px solid #e8decb;
+    text-transform: uppercase;
+    text-align: left;
+  }
+  th.center, td.center {
+    text-align: center;
+  }
+  td {
+    padding: 2.5px 6px;
+    border-bottom: 1px solid #f2ede4;
+    vertical-align: middle;
+  }
+  tr:last-child td {
+    border-bottom: none;
+  }
+  tr:nth-child(even) td {
+    background: #fdfbf8;
+  }
+
+  .col-id {
+    width: 38px;
+    font-weight: 700;
+    color: #7a6350;
+    font-family: Consolas, monospace;
+    font-size: 7pt;
+  }
+  .col-name {
+    font-weight: 600;
+    color: #1a140e;
+  }
+  .col-sub {
+    font-size: 6.6pt;
+    color: #7a6652;
+    display: block;
+    margin-top: 0.5px;
+  }
+  .col-stat {
+    font-size: 6.8pt;
+    color: #443222;
+    white-space: nowrap;
+  }
+  .col-opt {
+    width: 44px;
+    text-align: center;
+  }
+
+  /* CHECKBOX STYLING */
+  .checkbox-slot {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .check-box {
+    width: 13px;
+    height: 13px;
+    border: 1.3px solid #4a3b2c;
+    border-radius: 2px;
+    display: inline-block;
+    background: #ffffff;
+    cursor: pointer;
+    vertical-align: middle;
+  }
+  .check-box.checked-auto {
+    background: #2e7d32;
+    border-color: #215e1c;
+    position: relative;
+  }
+  .check-box.checked-auto::after {
+    content: "✓";
+    color: #ffffff;
+    font-size: 9pt;
+    font-weight: bold;
+    position: absolute;
+    top: -2.5px;
+    left: 1.5px;
+    line-height: 1;
+  }
+  .check-box.blank {
+    background: #ffffff;
+    border-color: #555555;
+  }
+
+  .cardback-pill {
+    display: inline-block;
+    font-size: 6.5pt;
+    font-weight: 700;
+    padding: 1px 4px;
+    border-radius: 2px;
+    background: #ede6d8;
+    color: #4a3a29;
+    border: 0.5px solid #c9bca6;
+  }
+
+  .footer-note {
+    margin-top: 10px;
+    padding-top: 5px;
+    border-top: 1px solid #d8cbba;
+    font-size: 7.1pt;
+    color: #6a5745;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <h2>📋 <strong>RV_Quest · Karten-Produktions- & Druck-Checkliste</strong> (Status & Deck Tracking)</h2>
+  <div>
+    <button class="print-btn" onclick="window.print()">🖨️ Liste drucken (A4)</button>
+  </div>
+</div>
+
+<!-- ================================= PAGE 1 ================================= -->
+<div class="page-sheet">
+  <header>
+    <div>
+      <h1>RV_Quest — Spielkarten Produktions-Checkliste</h1>
+      <p class="subtitle">Übersicht aller 126 Spielkarten & Tableaus im Tarot-Format (70 × 120 mm) · Gutter-Fold Druckmethode (A4 Duplex-Falz)</p>
+    </div>
+    <div class="meta-stats">
+      <span class="badge highlight">126 Karten & Tableaus</span>
+      <span class="badge highlight">100% Layout Fertig</span>
+      <span class="badge">A4 Gutter-Fold</span>
+    </div>
+  </header>
+
+  <div class="summary-banner">
+    <div>
+      <strong>Verwendungszweck:</strong> Diese Liste dokumentiert den zweistufigen Fertigungsprozess für jede Karte:
+      <strong>[1] Generiert</strong> (HTML-Bogen mit Artwork erstellt) &amp;
+      <strong>[2] Gedruckt</strong> (Gedruckt, gefalzt, verklebt und geschnitten).
+    </div>
+    <div>
+      <strong>Falzlinie:</strong> <code>X = 105 mm</code> · <strong>Papier:</strong> 180–200 g/m² Matt
+    </div>
+  </div>
+
+  <div class="grid">
+
+    <!-- 1. STARTING GEAR (12) -->
+    <div class="deck-card">
+      <div class="deck-header">
+        <span class="deck-title">🛡️ Startausrüstung</span>
+        <span class="deck-meta">12 Karten · 6 Bögen</span>
+      </div>
+      <div class="deck-file">
+        <span><code>starting_gear_cards_all_gutterfold_a4.html</code></span>
+        <span class="cardback-pill">Rücken: Startausrüstung</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name &amp; Held</th>
+            <th>Typ / Slot</th>
+            <th class="col-opt center">Gen.</th>
+            <th class="col-opt center">Gedr.</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="col-id">#01</td>
+            <td class="col-name">Nordische Barbarenaxt<span class="col-sub">Nordland-Berserker</span></td>
+            <td class="col-stat">Waffe (2H) · ⚔️3</td>
+            <td class="col-opt"><span class="checkbox-slot"><span class="check-box checked-auto" title="Generiert"></span></span></td>
+            <td class="col-opt"><span class="checkbox-slot"><span class="check-box blank" title="Gedruckt"></span></span></td>
+          </tr>
+          <tr>
+            <td class="col-id">#02</td>
+            <td class="col-name">Dickes Lederwams<span class="col-sub">Nordland-Berserker</span></td>
+            <td class="col-stat">Rüstung (Körper) · 🛡️1</td>
+            <td class="col-opt"><span class="checkbox-slot"><span class="check-box checked-auto"></span></span></td>
+            <td class="col-opt"><span class="checkbox-slot"><span class="check-box blank"></span></span></td>
+          </tr>
+          <tr>
+            <td class="col-id">#03</td>
+            <td class="col-name">Trockenfleisch-Ration<span class="col-sub">Nordland-Berserker</span></td>
+            <td class="col-stat">Verbrauch · ❤️+2 LP</td>
+            <td class="col-opt"><span class="checkbox-slot"><span class="check-box checked-auto"></span></span></td>
+            <td class="col-opt"><span class="checkbox-slot"><span class="check-box blank"></span></span></td>
+          </tr>
+          <tr>
+            <td class="col-id">#04</td>
+            <td class="col-name">Zwillingsklinge (Rechts)<span class="col-sub">Elfische Kriegstänzerin</span></td>
+            <td class="col-stat">Waffe (1H) · ⚔️2</td>
+            <td class="col-opt"><span class="checkbox-slot"><span class="check-box checked-auto"></span></span></td>
+            <td class="col-opt"><span class="checkbox-slot"><span class="check-box blank"></span></span></td>
+          </tr>
+          <tr>
+            <td class="col-id">#05</td>
+            <td class="col-name">Zwillingsklinge (Links)<span class="col-sub">Elfische Kriegstänzerin</span></td>
+            <td class="col-stat">Waffe (1H) · ⚔️2</td>
+            <td class="col-opt"><span class="checkbox-slot"><span class="check-box checked-auto"></span></span></td>
+            <td class="col-opt"><span class="checkbox-slot"><span class="check-box blank"></span></span></td>
+          </tr>
+          <tr>
+            <td class="col-id">#06</td>
+            <td class="col-name">Elfen-Seidengewand<span class="col-sub">Elfische Kriegstänzerin</span></td>
+            <td class="col-stat">Rüstung (Körper) · 🛡️0 / +1 Bew</td>
+            <td class="col-opt"><span class="checkbox-slot"><span class="check-box checked-auto"></span></span></td>
+            <td class="col-opt"><span class="checkbox-slot"><span class="check-box blank"></span></span></td>
+          </tr>
+          <tr>
+            <td class="col-id">#07</td>
+            <td class="col-name">Rostiger Grabungsdolch<span class="col-sub">Goblin-Halsabschneider</span></td>
+            <td class="col-stat">Waffe (1H) · ⚔️1 (+Hinterhalt)</td>
+            <td class="col-opt"><span class="checkbox-slot"><span class="check-box checked-auto"></span></span></td>
+            <td class="col-opt"><span class="checkbox-slot"><span class="check-box blank"></span></span></td>
+          </tr>
+          <tr>
+            <td class="col-id">#08</td>
+            <td class="col-name">Dreckiger Flickenteppich-Umhang<span class="col-sub">Goblin-Halsabschneider</span></td>
+            <td class="col-stat">Rüstung (Körper) · 🛡️0 / List+1</td>
+            <td class="col-opt"><span class="checkbox-slot"><span class="check-box checked-auto"></span></span></td>
+            <td class="col-opt"><span class="checkbox-slot"><span class="check-box blank"></span></span></td>
+          </tr>
+          <tr>
+            <td class="col-id">#09</td>
+            <td class="col-name">Flasche Goblin-Fusel (3 Schlucke)<span class="col-sub">Goblin-Halsabschneider</span></td>
+            <td class="col-stat">Zubehör · Chaoszauber-Auslöser</td>
+            <td class="col-opt"><span class="checkbox-slot"><span class="check-box checked-auto"></span></span></td>
+            <td class="col-opt"><span class="checkbox-slot"><span class="check-box blank"></span></span></td>
+          </tr>
+          <tr>
+            <td class="col-id">#10</td>
+            <td class="col-name">Akademie-Fokusstab<span class="col-sub">Magiegelehrte</span></td>
+            <td class="col-stat">Waffe (2H) · ⚔️1 / Reroll</td>
+            <td class="col-opt"><span class="checkbox-slot"><span class="check-box checked-auto"></span></span></td>
+            <td class="col-opt"><span class="checkbox-slot"><span class="check-box blank"></span></span></td>
+          </tr>
+          <tr>
+            <td class="col-id">#11</td>
+            <td class="col-name">Verzauberte Gelehrtenrobe<span class="col-sub">Magiegelehrte</span></td>
+            <td class="col-stat">Rüstung (Körper) · 🛡️1 / Magieschutz</td>
+            <td class="col-opt"><span class="checkbox-slot"><span class="check-box checked-auto"></span></span></td>
+            <td class="col-opt"><span class="checkbox-slot"><span class="check-box blank"></span></span></td>
+          </tr>
+          <tr>
+            <td class="col-id">#12</td>
+            <td class="col-name">Heiltrank der Akademie<span class="col-sub">Magiegelehrte</span></td>
+            <td class="col-stat">Verbrauch · ❤️+3 LP</td>
+            <td class="col-opt"><span class="checkbox-slot"><span class="check-box checked-auto"></span></span></td>
+            <td class="col-opt"><span class="checkbox-slot"><span class="check-box blank"></span></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 2. MAGIC DECK (14: 6 Spells + 8 Goblin Magic) -->
+    <div class="deck-card">
+      <div class="deck-header">
+        <span class="deck-title">🔮 Magiedeck &amp; Goblinzauber</span>
+        <span class="deck-meta">14 Karten · 7 Bögen</span>
+      </div>
+      <div class="deck-file">
+        <span><code>magic_cards_all_gutterfold_a4.html</code></span>
+        <span class="cardback-pill">Rücken: Codex Arcanum / Fusel</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Spruchname / Deck</th>
+            <th>Kosten / Reichweite</th>
+            <th class="col-opt center">Gen.</th>
+            <th class="col-opt center">Gedr.</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="col-id">#Z1</td>
+            <td class="col-name">Feuerstrahl<span class="col-sub">Codex Arcanum (Magiegelehrte)</span></td>
+            <td class="col-stat">1 Box · 4F · ⚔️3 Feuer</td>
+            <td class="col-opt"><span class="checkbox-slot"><span class="check-box checked-auto"></span></span></td>
+            <td class="col-opt"><span class="checkbox-slot"><span class="check-box blank"></span></span></td>
+          </tr>
+          <tr>
+            <td class="col-id">#Z2</td>
+            <td class="col-name">Arkaner Schild<span class="col-sub">Codex Arcanum (Magiegelehrte)</span></td>
+            <td class="col-stat">1 Box · Selbst/2F · +2 Red.</td>
+            <td class="col-opt"><span class="checkbox-slot"><span class="check-box checked-auto"></span></span></td>
+            <td class="col-opt"><span class="checkbox-slot"><span class="check-box blank"></span></span></td>
+          </tr>
+          <tr>
+            <td class="col-id">#Z3</td>
+            <td class="col-name">Eisige Fesseln<span class="col-sub">Codex Arcanum (Magiegelehrte)</span></td>
+            <td class="col-stat">1 Box · 3F · 1 Eis + Betäubt</td>
+            <td class="col-opt"><span class="checkbox-slot"><span class="check-box checked-auto"></span></span></td>
+            <td class="col-opt"><span class="checkbox-slot"><span class="check-box blank"></span></span></td>
+          </tr>
+          <tr>
+            <td class="col-id">#Z4</td>
+            <td class="col-name">Arkane Druckwelle<span class="col-sub">Codex Arcanum (Magiegelehrte)</span></td>
+            <td class="col-stat">2 Boxen · 1F Umkr. · 2 Schaden</td>
+            <td class="col-opt"><span class="checkbox-slot"><span class="check-box checked-auto"></span></span></td>
+            <td class="col-opt"><span class="checkbox-slot"><span class="check-box blank"></span></span></td>
+          </tr>
+          <tr>
+            <td class="col-id">#Z5</td>
+            <td class="col-name">Telekinese<span class="col-sub">Codex Arcanum (Magiegelehrte)</span></td>
+            <td class="col-stat">1 Box · 4F · Hebel / Entwaffnen</td>
+            <td class="col-opt"><span class="checkbox-slot"><span class="check-box checked-auto"></span></span></td>
+            <td class="col-opt"><span class="checkbox-slot"><span class="check-box blank"></span></span></td>
+          </tr>
+          <tr>
+            <td class="col-id">#Z6</td>
+            <td class="col-name">Blendendes Licht<span class="col-sub">Codex Arcanum (Magiegelehrte)</span></td>
+            <td class="col-stat">1 Box · 3F · Nachteil Feinde</td>
+            <td class="col-opt"><span class="checkbox-slot"><span class="check-box checked-auto"></span></span></td>
+            <td class="col-opt"><span class="checkbox-slot"><span class="check-box blank"></span></span></td>
+          </tr>
+          <tr>
+            <td class="col-id">#01</td>
+            <td class="col-name">Rülpser des Verderbens<span class="col-sub">Goblin-Fusel &amp; Chaosmagie</span></td>
+            <td class="col-stat">1 Schluck · Nah · Nachteil Alle</td>
+            <td class="col-opt"><span class="checkbox-slot"><span class="check-box checked-auto"></span></span></td>
+            <td class="col-opt"><span class="checkbox-slot"><span class="check-box blank"></span></span></td>
+          </tr>
+          <tr>
+            <td class="col-id">#02</td>
+            <td class="col-name">Guck mal, da drüben!<span class="col-sub">Goblin-Fusel &amp; Chaosmagie</span></td>
+            <td class="col-stat">1 Schluck · Selbst · Verborgen</td>
+            <td class="col-opt"><span class="checkbox-slot"><span class="check-box checked-auto"></span></span></td>
+            <td class="col-opt"><span class="checkbox-slot"><span class="check-box blank"></span></span></td>
+          </tr>
+          <tr>
+            <td class="col-id">#03</td>
+            <td class="col-name">Zufälliger Funkenregen<span class="col-sub">Goblin-Fusel &amp; Chaosmagie</span></td>
+            <td class="col-stat">1 Schluck · 3F · 2 Feuer / Brenn.</td>
+            <td class="col-opt"><span class="checkbox-slot"><span class="check-box checked-auto"></span></span></td>
+            <td class="col-opt"><span class="checkbox-slot"><span class="check-box blank"></span></span></td>
+          </tr>
+          <tr>
+            <td class="col-id">#04</td>
+            <td class="col-name">Gummiknochen-Schub<span class="col-sub">Goblin-Fusel &amp; Chaosmagie</span></td>
+            <td class="col-stat">1 Schluck · Selbst · +3 Bew.</td>
+            <td class="col-opt"><span class="checkbox-slot"><span class="check-box checked-auto"></span></span></td>
+            <td class="col-opt"><span class="checkbox-slot"><span class="check-box blank"></span></span></td>
+          </tr>
+          <tr>
+            <td class="col-id">#05</td>
+            <td class="col-name">Magischer Klebefinger<span class="col-sub">Goblin-Fusel &amp; Chaosmagie</span></td>
+            <td class="col-stat">1 Schluck · 2F · Waffe / Loot</td>
+            <td class="col-opt"><span class="checkbox-slot"><span class="check-box checked-auto"></span></span></td>
+            <td class="col-opt"><span class="checkbox-slot"><span class="check-box blank"></span></span></td>
+          </tr>
+          <tr>
+            <td class="col-id">#06</td>
+            <td class="col-name">Reine Akademie-Magie!<span class="col-sub">Goblin-Fusel &amp; Chaosmagie</span></td>
+            <td class="col-stat">1 Schluck · Sicht · 4 Blitz (R0)</td>
+            <td class="col-opt"><span class="checkbox-slot"><span class="check-box checked-auto"></span></span></td>
+            <td class="col-opt"><span class="checkbox-slot"><span class="check-box blank"></span></span></td>
+          </tr>
+          <tr>
+            <td class="col-id">#07</td>
+            <td class="col-name">Blitz-Rückschlag (⚡ Negativ)<span class="col-sub">Goblin-Fusel &amp; Chaosmagie</span></td>
+            <td class="col-stat">1 Schluck · Selbst · 2 Dmg + Stun</td>
+            <td class="col-opt"><span class="checkbox-slot"><span class="check-box checked-auto"></span></span></td>
+            <td class="col-opt"><span class="checkbox-slot"><span class="check-box blank"></span></span></td>
+          </tr>
+          <tr>
+            <td class="col-id">#08</td>
+            <td class="col-name">Huhn der Verdammnis (🐔)<span class="col-sub">Goblin-Fusel &amp; Chaosmagie</span></td>
+            <td class="col-stat">1 Schluck · Marker · Bestien-Jagd</td>
+            <td class="col-opt"><span class="checkbox-slot"><span class="check-box checked-auto"></span></span></td>
+            <td class="col-opt"><span class="checkbox-slot"><span class="check-box blank"></span></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 3. EVENTS (18) -->
+    <div class="deck-card">
+      <div class="deck-header">
+        <span class="deck-title">🎡 Ereignisdeck: Rad des Schicksals</span>
+        <span class="deck-meta">18 Karten · 9 Bögen</span>
+      </div>
+      <div class="deck-file">
+        <span><code>event_cards_all_gutterfold_a4.html</code></span>
+        <span class="cardback-pill">Rücken: Rad des Schicksals</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Ereignistitel</th>
+            <th>Kategorie / Timing</th>
+            <th class="col-opt center">Gen.</th>
+            <th class="col-opt center">Gedr.</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="col-id">#01</td><td class="col-name">Herannahende Schritte<span class="col-sub">Patrouillen-Alarm</span></td><td class="col-stat">Gefahr · Sofort</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#02</td><td class="col-name">Deckensturz<span class="col-sub">Steinschlag</span></td><td class="col-stat">Falle · Sofort</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#03</td><td class="col-name">Fackel verlischt<span class="col-sub">Verhüllende Schwärze</span></td><td class="col-stat">Hindernis · Anhaltend</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#04</td><td class="col-name">Fluchtsperre<span class="col-sub">Fallgitter saust nieder</span></td><td class="col-stat">Falle · Dauerhaft</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#05</td><td class="col-name">Magische Resonanz<span class="col-sub">Arkaner Ley-Puls</span></td><td class="col-stat">Magie · Sofort</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#06</td><td class="col-name">Rastlose Gebeine<span class="col-sub">Nekromantische Erhebung</span></td><td class="col-stat">Untot · Sofort</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#07</td><td class="col-name">Giftige Ausdünstung<span class="col-sub">Sumpfgas-Ventil</span></td><td class="col-stat">Gefahr · Sofort</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#08</td><td class="col-name">Flickerndes Hoffnungslicht<span class="col-sub">Göttlicher Beistand</span></td><td class="col-stat">Segen · Einmalig</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#09</td><td class="col-name">Schatzsucher-Glück<span class="col-sub">Versteckte Mauernische</span></td><td class="col-stat">Fund · Sofort</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#10</td><td class="col-name">Versteckte Falltür<span class="col-sub">Boden bricht weg</span></td><td class="col-stat">Falle · Sofort</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#11</td><td class="col-name">Kalter Hauch des Todes<span class="col-sub">Krypta-Schauer</span></td><td class="col-stat">Spuk · Sofort</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#12</td><td class="col-name">Flüsternde Schatten<span class="col-sub">Paranoia &amp; Zaudern</span></td><td class="col-stat">Wahnsinn · Rundenende</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#13</td><td class="col-name">Waffenbruch-Schreck<span class="col-sub">Sprödes Eisen</span></td><td class="col-stat">Malheur · Reaktiv</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#14</td><td class="col-name">Blutrausch-Ansporn<span class="col-sub">Uralter Kriegsschrei</span></td><td class="col-stat">Kampf · 1 Runde</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#15</td><td class="col-name">Klebrige Spinngewebe<span class="col-sub">Zähe Fäden</span></td><td class="col-stat">Gelände · Raumweit</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#16</td><td class="col-name">Heilige Quelle<span class="col-sub">Gesegnetes Quellwasser</span></td><td class="col-stat">Segen · Interaktion</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#17</td><td class="col-name">Alarmsignal der Goblins<span class="col-sub">Schrille Kriegshörner</span></td><td class="col-stat">Alarm · Dauerhaft</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#18</td><td class="col-name">Gunst der Schicksalsgöttin<span class="col-sub">Fortunas Lächeln</span></td><td class="col-stat">Schicksal · Handkarte</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 4. ENCOUNTERS (16) -->
+    <div class="deck-card">
+      <div class="deck-header">
+        <span class="deck-title">🚪 Begegnungsdeck: Die Tiefen Gewölbe</span>
+        <span class="deck-meta">16 Karten · 8 Bögen</span>
+      </div>
+      <div class="deck-file">
+        <span><code>encounter_cards_all_gutterfold_a4.html</code></span>
+        <span class="cardback-pill">Rücken: Die Tiefen Gewölbe</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Raumtyp &amp; Gegner</th>
+            <th>Gefahr / Terrain</th>
+            <th class="col-opt center">Gen.</th>
+            <th class="col-opt center">Gedr.</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="col-id">#01</td><td class="col-name">Goblin-Wachposten<span class="col-sub">1 Späher + 1 Schütze</span></td><td class="col-stat">Standard · Raum 3×3</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#02</td><td class="col-name">Verlassene Gruft<span class="col-sub">2 Skelettkrieger</span></td><td class="col-stat">Untot · Schweres Gelände</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#03</td><td class="col-name">Spinnennest im Bogenwerk<span class="col-sub">1 Riesenspinne</span></td><td class="col-stat">Bestie · Netzfalle</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#04</td><td class="col-name">Worg-Zwinger<span class="col-sub">1 Ödland-Worg + 1 Goblin</span></td><td class="col-stat">Gefahr · Sturmangriff</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#05</td><td class="col-name">Kultisten-Altar<span class="col-sub">1 Schattenkultist + 1 Skelett</span></td><td class="col-stat">Magie · Dunkler Fluch</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#06</td><td class="col-name">Schimmelige Vorratskammer<span class="col-sub">2 Goblins beim Zechen</span></td><td class="col-stat">Hinterhalt · Loot-Chance</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#07</td><td class="col-name">Eingestürzte Säulenhalle<span class="col-sub">1 Skelett-Schütze + 1 Krieger</span></td><td class="col-stat">Fernkampf · Deckung</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#08</td><td class="col-name">Ghul-Schindergrube<span class="col-sub">1 Moor-Ghul</span></td><td class="col-stat">Zäh · Lähmendes Gift</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#09</td><td class="col-name">Gepanzerte Wachstube<span class="col-sub">1 Goblin-Veteran + Wache</span></td><td class="col-stat">Elite · Alarmgong</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#10</td><td class="col-name">Alchemistisches Labor<span class="col-sub">1 Kultist an Retorten</span></td><td class="col-stat">Explosiv · Reagenzien</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#11</td><td class="col-name">Überfluteter Kanalisationstrakt<span class="col-sub">2 Spinnen über Wasser</span></td><td class="col-stat">Wasser · Halbe Bew.</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#12</td><td class="col-name">Grabkammer der Champions<span class="col-sub">2 Antike Skelettkrieger</span></td><td class="col-stat">Schildwall · VT +1</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#13</td><td class="col-name">Gnadenlose Enge<span class="col-sub">1 Worg im Engpass</span></td><td class="col-stat">Engstelle · Kein Vorbeikommen</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#14</td><td class="col-name">Ritualstätte des Blutes<span class="col-sub">2 Schattenkultisten</span></td><td class="col-stat">Opferung · Zeitlimit</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#15</td><td class="col-name">Schatzkammer-Vorraum<span class="col-sub">Falle + 1 Elite-Wache</span></td><td class="col-stat">Verschlossen · Goldkiste</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#16</td><td class="col-name">Hinterhalt im Zwielicht<span class="col-sub">2 Goblin-Schützen in Nischen</span></td><td class="col-stat">Hinterhalt · Überraschung</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <div class="footer-note">
+    <span>RV_Quest Board Game · Tarot Card Printing Checklist</span>
+    <span>Seite 1 von 2 · Startausrüstung, Magie, Ereignisse &amp; Begegnungen (60 Karten)</span>
+  </div>
+</div>
+
+<!-- ================================= PAGE 2 ================================= -->
+<div class="page-sheet">
+  <header>
+    <div>
+      <h1>RV_Quest — Spielkarten Produktions-Checkliste</h1>
+      <p class="subtitle">Ausrüstungsdeck (54 Karten) &amp; Bestiarium Imperialis (12 Monsterkarten &amp; Tableaus)</p>
+    </div>
+    <div class="meta-stats">
+      <span class="badge highlight">66 Karten &amp; Tableaus</span>
+      <span class="badge">Schattenbazar &amp; Bestiarium</span>
+    </div>
+  </header>
+
+  <div class="summary-banner">
+    <div>
+      <strong>Loot- &amp; Monsterdeck:</strong> Alle 54 Markt- &amp; Schatzkarten nutzen die Banderole <em>»Der Schattenbazar«</em>.
+      Monsterkarten &amp; A5-Boss-Tableaus nutzen <em>»Bestiarium Imperialis«</em>.
+    </div>
+    <div>
+      <strong>Gutter-Fold Schnitt:</strong> <code>81.67 × 138 mm</code> Duplex (Tarot 70 × 120 mm gefalzt)
+    </div>
+  </div>
+
+  <div class="grid">
+
+    <!-- 5. AUSRÜSTUNGSDECK (54 KARTEN) -->
+    <div class="deck-card">
+      <div class="deck-header">
+        <span class="deck-title">🗡️ Ausrüstung: Nah- &amp; Fernkampfwaffen</span>
+        <span class="deck-meta">24 Karten · 12 Bögen</span>
+      </div>
+      <div class="deck-file">
+        <span><code>melee_cards_all_gutterfold_a4.html</code> &amp; <code>ranged...</code></span>
+        <span class="cardback-pill">Rücken: Der Schattenbazar</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Waffenname</th>
+            <th>Slot / Schaden / Wert</th>
+            <th class="col-opt center">Gen.</th>
+            <th class="col-opt center">Gedr.</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="col-id">#01</td><td class="col-name">Eisernes Kurzschwert</td><td class="col-stat">1 Hand · ⚔️2 · 15G</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#02</td><td class="col-name">Breitschwert des Gardisten</td><td class="col-stat">1 Hand · ⚔️3 · 30G</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#03</td><td class="col-name">Schartiger Krummsäbel</td><td class="col-stat">1 Hand · ⚔️2 (Bluten) · 20G</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#04</td><td class="col-name">Schwerer Streitkolben</td><td class="col-stat">1 Hand · ⚔️2 (Betäuben) · 25G</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#05</td><td class="col-name">Geschmiedeter Kriegshammer</td><td class="col-stat">1 Hand · ⚔️3 (Rüst. -1) · 35G</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#06</td><td class="col-name">Zweihänder der Ehrengarde</td><td class="col-stat">2 Hände · ⚔️4 · 50G</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#07</td><td class="col-name">Henkersaxt</td><td class="col-stat">2 Hände · ⚔️5 (KRA 2+) · 55G</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#08</td><td class="col-name">Jagdspieß</td><td class="col-stat">2 Hände · ⚔️2 (Reichw. 2) · 20G</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#09</td><td class="col-name">Hellebarde der Bastion</td><td class="col-stat">2 Hände · ⚔️3 (Reichw. 2) · 45G</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#10</td><td class="col-name">Parierdolch</td><td class="col-stat">1 Hand · ⚔️1 (+1 VT) · 20G</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#11</td><td class="col-name">Meucheldolch der Schatten</td><td class="col-stat">1 Hand · ⚔️2 (+Crit) · 40G</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#12</td><td class="col-name">Morgenstern des Fanatikers</td><td class="col-stat">1 Hand · ⚔️3 · 35G</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#13</td><td class="col-name">Runenverzierte Streitaxt</td><td class="col-stat">1 Hand · ⚔️3 · 45G</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#14</td><td class="col-name">Kriegsflegel</td><td class="col-stat">1 Hand · ⚔️3 (Schild ignor.) · 35G</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#15</td><td class="col-name">Flammenklinge von Kar-Drak</td><td class="col-stat">1 Hand · ⚔️3 (Feuer) · 65G</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#16</td><td class="col-name">Runenschwert des Königs</td><td class="col-stat">1 Hand · ⚔️4 · 75G</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#17</td><td class="col-name">Eibenholz-Kurzbogen</td><td class="col-stat">2 Hände · 🏹2 (5F) · 20G</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#18</td><td class="col-name">Komposit-Langbogen</td><td class="col-stat">2 Hände · 🏹3 (8F) · 45G</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#19</td><td class="col-name">Leichte Jagdarmbrust</td><td class="col-stat">2 Hände · 🏹3 (6F) · 35G</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#20</td><td class="col-name">Schwere Festungsarmbrust</td><td class="col-stat">2 Hände · 🏹4 (Laden) · 60G</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#21</td><td class="col-name">Ausbalancierte Wurfmesser (3)</td><td class="col-stat">Rucksack · 🏹1 (3F) · 15G</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#22</td><td class="col-name">Schwere Wurfaxt (2)</td><td class="col-stat">Rucksack · 🏹2 (3F) · 20G</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#23</td><td class="col-name">Elfischer Waldläuferbogen</td><td class="col-stat">2 Hände · 🏹3 (Scharf) · 70G</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#24</td><td class="col-name">Repetierarmbrust der Akademie</td><td class="col-stat">2 Hände · 🏹2 (Doppelschuss) · 80G</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 6. RÜSTUNGEN, VERBRAUCH & TRINKETS (30 KARTEN) -->
+    <div class="deck-card">
+      <div class="deck-header">
+        <span class="deck-title">🛡️ Ausrüstung: Schutz, Tränke &amp; Relikte</span>
+        <span class="deck-meta">30 Karten · 15 Bögen</span>
+      </div>
+      <div class="deck-file">
+        <span><code>armor...</code>, <code>consumable...</code> &amp; <code>trinket...</code></span>
+        <span class="cardback-pill">Rücken: Der Schattenbazar</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Gegenstandsname</th>
+            <th>Slot / Effekt / Wert</th>
+            <th class="col-opt center">Gen.</th>
+            <th class="col-opt center">Gedr.</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="col-id">#25</td><td class="col-name">Beschlagene Lederrüstung</td><td class="col-stat">Körper · 🛡️1 · 20G</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#26</td><td class="col-name">Ringpanzerhemd</td><td class="col-stat">Körper · 🛡️2 · 40G</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#27</td><td class="col-name">Ritterlicher Schuppenpanzer</td><td class="col-stat">Körper · 🛡️2 (Bew -1) · 55G</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#28</td><td class="col-name">Voller Plattenharnisch</td><td class="col-stat">Körper · 🛡️3 (Bew -1) · 90G</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#29</td><td class="col-name">Holzrundschild</td><td class="col-stat">1 Hand · 🛡️+1 VT · 15G</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#30</td><td class="col-name">Eisenbeschlagener Schild</td><td class="col-stat">1 Hand · 🛡️+1 Red / +1 VT · 35G</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#31</td><td class="col-name">Turmschild der Bastion</td><td class="col-stat">1 Hand · 🛡️+2 Red · 50G</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#32</td><td class="col-name">Lederkappe des Kundschafters</td><td class="col-stat">Kopf · List +1 · 15G</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#33</td><td class="col-name">Eisenhelm des Wächters</td><td class="col-stat">Kopf · 🛡️+1 Kopftreffer · 25G</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#34</td><td class="col-name">Visierhelm des Paladins</td><td class="col-stat">Kopf · Furcht-Immun · 45G</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#35</td><td class="col-name">Schulterpanzer des Veteranen</td><td class="col-stat">Schultern · 🛡️+1 · 30G</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#36</td><td class="col-name">Gepanzerte Eisenstiefel</td><td class="col-stat">Füße · Standfest · 25G</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#37</td><td class="col-name">Kleiner Heiltrank</td><td class="col-stat">Verbrauch · ❤️+2 LP · 10G</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#38</td><td class="col-name">Großer Heiltrank</td><td class="col-stat">Verbrauch · ❤️+4 LP · 25G</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#39</td><td class="col-name">Gegengift-Elixier</td><td class="col-stat">Verbrauch · Heilt Gift · 15G</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#40</td><td class="col-name">Stärke-Elixier der Riesen</td><td class="col-stat">Verbrauch · KRA +2 (1 Runde) · 20G</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#41</td><td class="col-name">Fläschchen Katzen-Gewandtheit</td><td class="col-stat">Verbrauch · GES +2 (1 Runde) · 20G</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#42</td><td class="col-name">Konzentrations-Tinktur</td><td class="col-stat">Verbrauch · -2 Erschöpfung · 25G</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#43</td><td class="col-name">Alchemistisches Feuer</td><td class="col-stat">Verbrauch · 2 Fl-Schaden + Brand · 20G</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#44</td><td class="col-name">Wurf-Rauchbombe</td><td class="col-stat">Verbrauch · Nebelwolke / Flucht · 15G</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#45</td><td class="col-name">Verbandszeug &amp; Wundsalbe</td><td class="col-stat">Verbrauch · Bluten stoppen · 10G</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#46</td><td class="col-name">Flüssiges Sonnenlicht</td><td class="col-stat">Verbrauch · 4 Dmg Untote · 30G</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#47</td><td class="col-name">Glücksamulett der Bettler</td><td class="col-stat">Hals · 1x Reroll pro Raum · 35G</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#48</td><td class="col-name">Ring der Zähigkeit</td><td class="col-stat">Finger · +2 Max-LP · 40G</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#49</td><td class="col-name">Schattendieb-Handschuhe</td><td class="col-stat">Hände · Schlösser knacken +1 · 30G</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#50</td><td class="col-name">Siebenmeilen-Stiefel</td><td class="col-stat">Füße · +1 Bewegung dauerhaft · 50G</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#51</td><td class="col-name">Kristallenes Fokus-Amulett</td><td class="col-stat">Hals · Zauberschaden +1 · 55G</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#52</td><td class="col-name">Gürtel der Bärenkraft</td><td class="col-stat">Gürtel · KRA +1 dauerhaft · 60G</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#53</td><td class="col-name">Wandersmanns-Laterne</td><td class="col-stat">1 Hand · Fallen-Entdeckung +1 · 25G</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+          <tr><td class="col-id">#54</td><td class="col-name">Auge des Sehers</td><td class="col-stat">Relikt · 1 Ereignis aufdecken · 70G</td><td class="col-opt"><span class="check-box checked-auto"></span></td><td class="col-opt"><span class="check-box blank"></span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 7. MONSTERKARTEN & BOSS-TABLEAUS (12) -->
+    <div class="deck-card full-width">
+      <div class="deck-header">
+        <span class="deck-title">🐺 Bestiarium Imperialis: Monsterkarten &amp; Boss-Tableaus</span>
+        <span class="deck-meta">8 Standard-Karten (Tarot) + 4 Boss-Tableaus (A5 Querformat)</span>
+      </div>
+      <div class="deck-file">
+        <span><code>monster_cards_all_gutterfold_a4.html</code> (4 Bögen) &amp; <code>boss_cards_a5_gutterfold.html</code> (4 Bögen A5)</span>
+        <span class="cardback-pill">Rücken: Bestiarium Imperialis</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Monstername &amp; Art</th>
+            <th>Rolle / Gefahrenstufe</th>
+            <th>Format / Maße</th>
+            <th>Werte (LP / Rüstung / Angriff)</th>
+            <th class="col-opt center">Gen.</th>
+            <th class="col-opt center">Gedr.</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="col-id">#01</td>
+            <td class="col-name">Goblin-Späher<span class="col-sub">Humanoider Plänkler</span></td>
+            <td>Standard (★☆☆)</td>
+            <td>Tarot 70 × 120 mm</td>
+            <td class="col-stat">LP 3 · Rüst. 0 · Dolch ⚔️1 · Bew. 4</td>
+            <td class="col-opt"><span class="check-box checked-auto"></span></td>
+            <td class="col-opt"><span class="check-box blank"></span></td>
+          </tr>
+          <tr>
+            <td class="col-id">#02</td>
+            <td class="col-name">Goblin-Schütze<span class="col-sub">Feiger Fernkämpfer</span></td>
+            <td>Standard (★☆☆)</td>
+            <td>Tarot 70 × 120 mm</td>
+            <td class="col-stat">LP 2 · Rüst. 0 · Kurzbogen 🏹1 · Bew. 4</td>
+            <td class="col-opt"><span class="checkbox-slot"><span class="check-box checked-auto"></span></span></td>
+            <td class="col-opt"><span class="checkbox-slot"><span class="check-box blank"></span></span></td>
+          </tr>
+          <tr>
+            <td class="col-id">#03</td>
+            <td class="col-name">Skelettkrieger<span class="col-sub">Rastlose Vorhut</span></td>
+            <td>Standard (★☆☆)</td>
+            <td>Tarot 70 × 120 mm</td>
+            <td class="col-stat">LP 4 · Rüst. 1 · Rostiges Schwert ⚔️2 · Bew. 3</td>
+            <td class="col-opt"><span class="check-box checked-auto"></span></td>
+            <td class="col-opt"><span class="check-box blank"></span></td>
+          </tr>
+          <tr>
+            <td class="col-id">#04</td>
+            <td class="col-name">Riesenspinne<span class="col-sub">Lauernder Schrecken</span></td>
+            <td>Standard (★☆☆)</td>
+            <td>Tarot 70 × 120 mm</td>
+            <td class="col-stat">LP 5 · Rüst. 0 · Giftbiss ⚔️2 (Gift SG 6) · Bew. 4</td>
+            <td class="col-opt"><span class="check-box checked-auto"></span></td>
+            <td class="col-opt"><span class="check-box blank"></span></td>
+          </tr>
+          <tr>
+            <td class="col-id">#05</td>
+            <td class="col-name">Ödland-Worg<span class="col-sub">Reißende Bestie</span></td>
+            <td>Gefährlich (★★☆)</td>
+            <td>Tarot 70 × 120 mm</td>
+            <td class="col-stat">LP 6 · Rüst. 0 · Zähne ⚔️3 (Anspringen) · Bew. 5</td>
+            <td class="col-opt"><span class="check-box checked-auto"></span></td>
+            <td class="col-opt"><span class="check-box blank"></span></td>
+          </tr>
+          <tr>
+            <td class="col-id">#06</td>
+            <td class="col-name">Schattenkultist<span class="col-sub">Dunkler Zauberer</span></td>
+            <td>Gefährlich (★★☆)</td>
+            <td>Tarot 70 × 120 mm</td>
+            <td class="col-stat">LP 4 · Rüst. 0 · Dunkelstrahl 🔮2 · Bew. 3</td>
+            <td class="col-opt"><span class="check-box checked-auto"></span></td>
+            <td class="col-opt"><span class="check-box blank"></span></td>
+          </tr>
+          <tr>
+            <td class="col-id">#07</td>
+            <td class="col-name">Moor-Ghul<span class="col-sub">Verfaulter Fleischfresser</span></td>
+            <td>Gefährlich (★★☆)</td>
+            <td>Tarot 70 × 120 mm</td>
+            <td class="col-stat">LP 7 · Rüst. 0 · Klauen ⚔️2 (Lähmung) · Bew. 3</td>
+            <td class="col-opt"><span class="check-box checked-auto"></span></td>
+            <td class="col-opt"><span class="check-box blank"></span></td>
+          </tr>
+          <tr>
+            <td class="col-id">#08</td>
+            <td class="col-name">Skelett-Schütze<span class="col-sub">Präziser Scharfschütze</span></td>
+            <td>Gefährlich (★★☆)</td>
+            <td>Tarot 70 × 120 mm</td>
+            <td class="col-stat">LP 3 · Rüst. 0 · Knochenbogen 🏹2 · Bew. 3</td>
+            <td class="col-opt"><span class="check-box checked-auto"></span></td>
+            <td class="col-opt"><span class="check-box blank"></span></td>
+          </tr>
+          <tr>
+            <td class="col-id">#B1</td>
+            <td class="col-name">Gargoyle-Wächter<span class="col-sub">Erweckter Steinerner Koloss (Szenario 1 Boss)</span></td>
+            <td>Boss (★★★)</td>
+            <td>A5 Querformat (Tableau)</td>
+            <td class="col-stat">LP 16 · Rüst. 2 · Steinfaust ⚔️4 · Flügelschlag</td>
+            <td class="col-opt"><span class="check-box checked-auto"></span></td>
+            <td class="col-opt"><span class="check-box blank"></span></td>
+          </tr>
+          <tr>
+            <td class="col-id">#B2</td>
+            <td class="col-name">Gorzok der Schlächter<span class="col-sub">Goblin-Kriegsfürst (Szenario 2 Boss)</span></td>
+            <td>Boss (★★★)</td>
+            <td>A5 Querformat (Tableau)</td>
+            <td class="col-stat">LP 18 · Rüst. 1 · Spaltaxt ⚔️4 · Goblin-Rufe</td>
+            <td class="col-opt"><span class="check-box checked-auto"></span></td>
+            <td class="col-opt"><span class="check-box blank"></span></td>
+          </tr>
+          <tr>
+            <td class="col-id">#B3</td>
+            <td class="col-name">Krypta-Brutmutter<span class="col-sub">Monströse Riesenspinne (Szenario 3 Boss)</span></td>
+            <td>Boss (★★★)</td>
+            <td>A5 Querformat (Tableau)</td>
+            <td class="col-stat">LP 20 · Rüst. 1 · Tödlicher Biss ⚔️4 · Eikon-Brut</td>
+            <td class="col-opt"><span class="check-box checked-auto"></span></td>
+            <td class="col-opt"><span class="check-box blank"></span></td>
+          </tr>
+          <tr>
+            <td class="col-id">#B4</td>
+            <td class="col-name">Malakor der Lich-König<span class="col-sub">Herrscher der Finsternis (Szenario 4 Endboss)</span></td>
+            <td>Endboss (★★★★)</td>
+            <td>A5 Querformat (Tableau)</td>
+            <td class="col-stat">LP 24 · Rüst. 2 · Seelensense ⚔️5 · Todesblitz</td>
+            <td class="col-opt"><span class="check-box checked-auto"></span></td>
+            <td class="col-opt"><span class="check-box blank"></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <div class="footer-note">
+    <span>RV_Quest Board Game · Tarot Card Printing Checklist</span>
+    <span>Seite 2 von 2 · Ausrüstungsdeck &amp; Bestiarium Imperialis (66 Karten &amp; Tableaus) · Gesamt: 126</span>
+  </div>
+</div>
+
+</body>
+</html>

@@ -5,6 +5,11 @@
 
 ## 🔴 Priorität 1: Unmittelbare nächste Schritte (Kernsysteme & Buch)
 
+- [ ] **Klärungs- und Design-Punkte (Regeln & Battlemap-Kacheln)**
+  - [ ] **Elite-Ausrüstung / Beute-Stufen definieren:** Klären, ob ein eigenes "Elite-Ausrüstungsdeck" (oder Rarity-Stufen wie Selten/Episch) existieren soll oder ob wertvolle Truhen/Sarkophage über "Zieh 2, wähle 1" bzw. garantierte Gold-Boni abgebildet werden.
+  - [ ] **Wände auf Dungeon-Kacheln (Tile Walls):** Diskutieren und festlegen, wie feste Wände / Pfeiler auf den Raum-Kacheln integriert werden, um Räume taktisch interessanter zu gestalten (Sichtlinien, Deckung, Engpässe).
+  - [ ] **Gänge & kleinere Räume (Sub-Tiles):** Diskutieren, wie Korridore und Räume dargestellt werden, die kleiner als die volle Kachelgröße sind (z. B. 2×6 Korridore, L-Formen, modulare Wand-Overlays).
+  - [ ] **Kachel-Rastermaß (6×6 vs. 7×7):** Finale Festlegung des Grids auf A4: Bei $30 \times 30\,\text{mm}$ Rastermaß ergibt **6×6 Felder** genau $180 \times 180\,\text{mm}$ (passt mit gesunden Druckrändern ideal auf 210 mm A4-Breite). $7 \times 7$ Felder ($210 \times 210\,\text{mm}$) stößt an die physische Papierkante und hat keinen Druckrand.
 - [x] **Game Book Master-Vorlage & Szenario 01 (HTML/Browser-Print)**
   - [x] A4-Duplex-Druckbogen (`printables/gamebook_scenario_01_a4.html`) mit Großdruck (11–12 pt), Schnittkanten bei 210 mm und 30 mm Vektorgittern
   - [x] Dynamisches Setup mit Begegnungsdeck (`[V]` / `[H]` Zonen) integriert
@@ -48,7 +53,7 @@
 
 ### C. Ausrüstung, Waffen & Rüstungen (Individuelle Holzschnitt-Artworks)
 *Format: 1:1 Vignette oder 3:4 Freisteller mit Holzschnitt-Rahmen*
-- [ ] **Nahkampfwaffen (16 Motive):** Breitschwert, Kriegsaxt, Morgenstern, Elfenklinge, Zweihänder, Meuchlerdolch, Säbel, Runenhammer, Hellebarde, Zwergenhammer, Flegel, Rapier, Parierdolch, Henkersbeil, Pike, Schattenklinge
+- [ ] **Nahkampfwaffen (16 Motive):** Breitschwert, Kriegsaxt, Schwerer Streitkolben, Elfenklinge, Zweihänder, Meuchlerdolch, Säbel, Runenhammer, Hellebarde, Zwergenhammer, Flegel, Rapier, Parierdolch, Henkersbeil, Pike, Schattenklinge
 - [ ] **Fernkampfwaffen (8 Motive):** Jagdbogen, Schwere Armbrust, Elfen-Langbogen, Wurfmesser, Wurfspeer, Repetier-Armbrust, Wurfäxte, Blasrohr
 - [ ] **Rüstungen & Schilde (12 Motive):** Lederharnisch, Kettenhemd, Schuppenpanzer, Plattenrüstung, Eisenhelm, Hörnerhelm, Holzschild, Turmschild, Buckler, Stachelschild etc.
 - [ ] **Tränke, Relikte & Zubehör (18 Motive):** Heiltrank, Gegengift, Elfen-Wundsalbe, Diebeswerkzeug, Kletterseil, Fackel, Schutzamulett, Ringe etc.

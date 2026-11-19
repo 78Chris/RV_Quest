@@ -7,7 +7,7 @@
 | Langschwert   | Einhandwaffe   | 2       | 3             | – |
 | Kurzschwert   | Einhandwaffe   | 2       | 2             | Schnell (kann +1 Bewegung) |
 | Axt           | Einhandwaffe   | 2       | 3             | – |
-| Morgenstern   | Einhandwaffe   | 3       | 5             | Bei Fehlwurf Nachteil auf nächsten Angriff |
+| Schwerer Streitkolben | Einhandwaffe   | 3       | 5             | Träge Wucht: Bei Fehlwurf Nachteil auf nächsten Angriff |
 | Dolch         | Kleine Klinge  | 1       | 2             | +1 Vorteil bei „Schleichen“ (LIS) |
 | Bogen         | Fernkampfwaffe | 2       | 4             | Reichweite 3 Tiles |
 | Wurfmesser    | Wurfwaffe      | 1       | 2             | Kann bis zu 2 Tiles werfen |
@@ -17,19 +17,25 @@
 
 | Name          | Stufe | Schaden‑Reduktion | Kosten (Gold) | Geschwindigkeit |
 |---------------|-------|-------------------|---------------|-----------------|
-| Leder        | leicht | 1                 | 2             | +0 (keine Veränderung) |
-| Ketten       | mittel | 2                 | 4             | –1 (Bewegung um 1 Tile reduziert) |
-| Platten      | schwer | 3                 | 6             | –2 (Bewegung um 2 Tiles reduziert) |
+| Leder        | leicht | 1                 | 2 / 3         | +0 (keine Einbuße; Startausrüstung) |
+| Ketten       | mittel | 2                 | 4             | –1 (Bewegung um 1 Feld reduziert; kein Abzug bei ZÄH 2+) |
+| Platten      | schwer | 3                 | 6             | –1 (Bewegung um 1 Feld reduziert, kein Sprinten; erfordert ZÄH 2+) |
 
-> **Hinweis:** Jeder Held startet mit einer leichten Rüstung (Leder). Zusätzliche Rüstung kann zwischen den Szenarien gekauft werden.
+> **Hinweis:** Jeder Held startet mit einer leichten Rüstung (Leder). Zusätzliche Rüstung kann zwischen den Szenarien gekauft oder als Beute gefunden werden. Unabhängig von Abzügen gilt die **Mindestbewegung von 2 Feldern**.
 
-## 2b. Schilde & Besondere Gegenstände
+## 2b. Schilde, Reaktionen & Besondere Gegenstände
 
 | Gegenstand           | Typ                | Effekt                                           | Kosten (Gold) |
 |----------------------|--------------------|--------------------------------------------------|---------------|
-| Schild               | Verteidigung       | +1 Schaden‑Reduktion, -1 Bewegung                | 3 |
+| Rundschild           | Verteidigung (1H)  | Block (Reaktion): 1× pro Runde Schaden um 1 senken; kein Bewegungsabzug | 3 |
+| Turmschild           | Verteidigung (1H)  | Bollwerk: -1 Bewegung, Teildeckung gegen Fernkampf; erfordert KRA 2+ | 4 |
+| Stachelschild        | Verteidigung (1H)  | Dornenkonter: Pariert der Träger, erleidet Angreifer 1 Schaden; erfordert KRA 2+ | 5 |
 | Glücks‑Amulett       | Gegenstand         | Einmal pro Szenario: +2 auf einen beliebigen Wurf| 3 |
 | Trank der Schnelligkeit | Verbrauchsgegenstand | +1 Bewegung für 1 Runde                         | 2 |
+
+### 2c. Reaktionen & Parieren (Begriffsdefinitionen)
+- **Reaktion (Schildblock / Verteidigungseffekt):** Eine Reaktion ist eine blitzschnelle defensive Aktion, die **außerhalb des eigenen Zuges** ausgeführt wird, sobald der Charakter Ziel eines Angriffs wird (z. B. Schaden um 1 reduzieren). Jeder Held darf maximal **1 defensive Reaktion pro Runde** nutzen.
+- **Pariert (Erfolgreiche Abwehr):** Ein Angriff gilt als **pariert**, wenn der gegnerische Trefferwurf (1d6 + Bonus) **niedriger als der Verteidigungswert (VT)** des Ziels ist (also ein regulärer Fehlschlag des Angreifers vorliegt). Effekte wie der *Dornenkonter* des Stachelschilds lösen in diesem Moment automatisch aus.
 
 ## 3. Ausrüstungsdeck & Wirtschaftssystem (Equipment Deck & Economy)
 
@@ -156,7 +162,7 @@ Für Bosse mit **LP 14+** (Grabunhold 14 LP, Lich-König Malakor 18 LP) lieg
 
 ## 7. Offene Fragen (zur Bestätigung)
 - **Gewicht von Rüstungen**: Der Geschwindigkeit‑Modifikator (‑1 bzw. ‑2 Tiles) bleibt die einzige Konsequenz.
-- **Besondere Waffen**: Wir planen später Sonderwaffen (z. B. Morgenstern) und verzauberte Gegenstände.
+- **Besondere Waffen**: Wir planen später Sonderwaffen (z. B. Schwerer Streitkolben) und verzauberte Gegenstände.
 - Gibt es weitere **Ausrüstungs‑Ideen** oder **Spezialgegenstände**, die wir jetzt aufnehmen sollten?
 
 ---

@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <title>Ausrüstungsdeck: Fernkampfwaffen (#17–#24) - A4 Gutter-Fold</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Alegreya:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    @page { size: A4 portrait; margin: 0; }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0; background: #ffffff;
+      font-family: 'Alegreya Sans', sans-serif; color: #1a140e;
+      -webkit-print-color-adjust: exact; print-color-adjust: exact;
+    }
+    @media screen {
+      body {
+        background: #1c1814; padding: 30px 0; display: flex; flex-direction: column; align-items: center; gap: 30px;
+      }
+      .toolbar {
+        position: fixed; top: 15px; right: 20px; background: #140f0c; border: 1px solid #5c4736;
+        color: #dfcaa7; padding: 10px 18px; border-radius: 8px; font-size: 13px; display: flex;
+        gap: 15px; align-items: center; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6); z-index: 1000;
+      }
+      .print-btn {
+        background: #9e782f; color: #fff; border: none; padding: 7px 16px; border-radius: 4px;
+        cursor: pointer; font-weight: bold; font-size: 13px; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      }
+      .print-btn:hover { background: #b88e38; }
+      .page-nav { display: flex; gap: 6px; }
+      .nav-link {
+        color: #dfcaa7; text-decoration: none; padding: 4px 8px; border-radius: 3px;
+        background: rgba(255, 255, 255, 0.08); font-size: 11px; font-weight: bold;
+      }
+      .nav-link:hover { background: #9e782f; color: #fff; }
+      .page { background: #ffffff; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45); }
+    }
+    @media print {
+      .no-print { display: none !important; }
+      body { background: #ffffff !important; padding: 0; }
+      .page { box-shadow: none !important; page-break-after: always; break-after: page; }
+    }
+    .page { width: 210mm; height: 297mm; position: relative; overflow: hidden; background: #ffffff; }
+    .card-pair { position: absolute; left: 23.33mm; width: 163.34mm; height: 138mm; display: flex; }
+    .card-pair.pos-1 { top: 8.5mm; }
+    .card-pair.pos-2 { top: 150.5mm; }
+    .tarot-face { width: 81.67mm; height: 138mm; position: relative; overflow: hidden; }
+    .front-face {
+      background: radial-gradient(circle at 50% 25%, #fdfbf7 0%, #f4ece0 65%, #e6d7c2 100%);
+      padding: 2.2mm 3.2mm 2.0mm 3.2mm; display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .card-border-frame {
+      position: absolute; top: 1.1mm; bottom: 1.1mm; left: 1.1mm; right: 1.1mm;
+      border: 0.45mm solid #2c2016; border-radius: 1.5mm; pointer-events: none;
+    }
+    .card-border-inner {
+      position: absolute; top: 1.7mm; bottom: 1.7mm; left: 1.7mm; right: 1.7mm;
+      border: 0.22mm solid #9e782f; border-radius: 1.2mm; pointer-events: none; opacity: 0.85;
+    }
+    .card-header { text-align: center; position: relative; z-index: 2; padding: 0 0.5mm 0.3mm 0.5mm; }
+    .card-title {
+      font-family: 'Cinzel', serif; font-size: 11.2pt; font-weight: 900; color: #1a140e;
+      letter-spacing: 0.2mm; margin: 0.2mm 0 0.1mm 0; text-transform: uppercase; line-height: 1.05;
+    }
+    .card-subtitle { font-family: 'Alegreya', serif; font-size: 7.6pt; font-style: italic; color: #5c4736; margin: 0; line-height: 1.1; }
+    .art-container {
+      width: 56.5mm; height: 56.5mm; aspect-ratio: 1 / 1; position: relative; border-radius: 1.3mm;
+      overflow: hidden; border: 0.45mm solid #3b2c1d; background: #ffffff; margin: 0.4mm auto 0.6mm auto;
+      box-shadow: 0 0.8mm 2.2mm rgba(0, 0, 0, 0.18);
+    }
+    .card-art {
+      width: 100%; height: 100%; object-fit: contain; object-position: center center;
+      display: block; background-color: #ffffff; filter: contrast(1.03) saturate(1.02);
+    }
+    .art-vignette {
+      position: absolute; inset: 0; box-shadow: inset 0 0 4mm rgba(60, 40, 20, 0.25);
+      pointer-events: none; border: 0.2mm solid rgba(158, 120, 47, 0.45);
+    }
+    .lore-box {
+      background: rgba(246, 237, 220, 0.75);
+      border-left: 0.65mm solid #8c6a3a;
+      border-right: 0.65mm solid #8c6a3a;
+      border-top: 0.2mm solid rgba(140, 106, 58, 0.3);
+      border-bottom: 0.2mm solid rgba(140, 106, 58, 0.3);
+      border-radius: 0.6mm;
+      padding: 0.6mm 1.6mm;
+      margin: 0.2mm 0.4mm 0.5mm 0.4mm;
+      text-align: center;
+      z-index: 2;
+      box-shadow: 0 0.3mm 0.8mm rgba(0, 0, 0, 0.05);
+    }
+    .lore-text {
+      font-family: 'Alegreya', serif; font-size: 6.8pt; font-style: italic;
+      color: #453424; line-height: 1.2; margin: 0; letter-spacing: 0.02mm;
+    }
+    .stat-ribbon {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2mm;
+      margin: 0.2mm 0.4mm 0.6mm 0.4mm; z-index: 2;
+    }
+    .stat-chip {
+      background: linear-gradient(180deg, #fdfaf4 0%, #efe4d0 100%); border: 0.28mm solid #8c6a3a;
+      border-radius: 1.0mm; padding: 0.4mm 0.8mm; text-align: center; display: flex; flex-direction: column;
+      justify-content: center; box-shadow: 0 0.3mm 0.8mm rgba(0, 0, 0, 0.12);
+    }
+    .stat-chip.highlight-stat { background: linear-gradient(180deg, #fcedec 0%, #f4d3d2 100%); border-color: #8c1d18; }
+    .stat-chip.highlight-shield { background: linear-gradient(180deg, #eff7ff 0%, #d3e5f7 100%); border-color: #3b6b99; }
+    .stat-chip.highlight-stat-green { background: linear-gradient(180deg, #eef7f0 0%, #d2e7d7 100%); border-color: #2a6639; }
+    .stat-chip.highlight-gold { background: linear-gradient(180deg, #fffcf0 0%, #fae8b8 100%); border-color: #b88e38; }
+    .stat-label { font-size: 5.6pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2mm; color: #5c4736; line-height: 1; margin-bottom: 0.2mm; }
+    .stat-value { font-family: 'Cinzel', serif; font-size: 10.5pt; font-weight: 900; color: #1a140e; line-height: 1; }
+    .stat-chip.highlight-stat .stat-value { color: #8c1d18; }
+    .stat-chip.highlight-shield .stat-value { color: #1a446e; }
+    .stat-chip.highlight-stat-green .stat-value { color: #1c522a; }
+    .stat-chip.highlight-gold .stat-value { color: #7a5410; }
+    .rules-box {
+      background: #ffffff; border: 0.32mm solid #4a3828; border-radius: 1.1mm;
+      padding: 0.8mm 1.6mm 0.9mm 1.6mm; display: flex; flex-direction: column; gap: 0.6mm;
+      margin: 0 0.4mm 0.5mm 0.4mm; z-index: 2; box-shadow: inset 0 0 1.5mm rgba(0, 0, 0, 0.04);
+    }
+    .section-header {
+      font-family: 'Cinzel', serif; font-size: 6.8pt; font-weight: 700; color: #8c1d18;
+      letter-spacing: 0.25mm; text-transform: uppercase; border-bottom: 0.2mm solid rgba(140, 29, 24, 0.25);
+      padding-bottom: 0.2mm; display: flex; justify-content: space-between; align-items: center;
+    }
+    .rule-title { font-family: 'Cinzel', serif; font-weight: 900; color: #2b1f15; }
+    .rule-body { font-size: 7.2pt; line-height: 1.25; color: #1a140e; margin: 0; }
+    .rule-body strong { color: #8c1d18; font-weight: 700; }
+    .card-footer {
+      display: flex; justify-content: space-between; align-items: center; padding: 0.2mm 1.0mm 0 1.0mm;
+      font-size: 5.6pt; font-weight: 700; color: #5c4736; letter-spacing: 0.1mm; z-index: 2; text-transform: uppercase;
+    }
+    .back-face { background: #140f0c; }
+    .card-back-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .crop-svg { position: absolute; top: 0; left: 0; width: 210mm; height: 297mm; pointer-events: none; }
+    .mark-cut { stroke: #111111; stroke-width: 0.22; stroke-linecap: square; }
+    .mark-fold { stroke: #992222; stroke-width: 0.28; stroke-dasharray: 1.5, 1; }
+  </style>
+</head>
+<body>
+  <div class="toolbar no-print">
+    <span>🛡️ <strong>Ausrüstungsdeck: Fernkampfwaffen (#17–#24)</strong> (8 Karten · 4 Bögen)</span>
+    <div class="page-nav">
+      <a href="#page1" class="nav-link">Bogen 1 (#17 & #18)</a>
+<a href="#page2" class="nav-link">Bogen 2 (#19 & #20)</a>
+<a href="#page3" class="nav-link">Bogen 3 (#21 & #22)</a>
+<a href="#page4" class="nav-link">Bogen 4 (#23 & #24)</a>
+
+    </div>
+    <button class="print-btn" onclick="window.print()">🖨️ Alle 4 Bögen drucken / PDF</button>
+  </div>
+  
+  <!-- BOGEN 1 (#17 & #18) -->
+  <div class="page" id="page1">
+    <svg class="crop-svg" viewBox="0 0 210 297" width="210mm" height="297mm">
+      <line x1="23.33" y1="0.5" x2="23.33" y2="7.5" class="mark-cut" />
+      <line x1="105" y1="0.5" x2="105" y2="7.5" class="mark-fold" />
+      <line x1="186.67" y1="0.5" x2="186.67" y2="7.5" class="mark-cut" />
+
+      <line x1="1.0" y1="8.5" x2="20.0" y2="8.5" class="mark-cut" />
+      <line x1="190.0" y1="8.5" x2="209.0" y2="8.5" class="mark-cut" />
+      <line x1="1.0" y1="146.5" x2="20.0" y2="146.5" class="mark-cut" />
+      <line x1="190.0" y1="146.5" x2="209.0" y2="146.5" class="mark-cut" />
+
+      <line x1="23.33" y1="147.0" x2="23.33" y2="150.0" class="mark-cut" />
+      <line x1="105" y1="147.0" x2="105" y2="150.0" class="mark-fold" />
+      <line x1="186.67" y1="147.0" x2="186.67" y2="150.0" class="mark-cut" />
+
+      <line x1="1.0" y1="150.5" x2="20.0" y2="150.5" class="mark-cut" />
+      <line x1="190.0" y1="150.5" x2="209.0" y2="150.5" class="mark-cut" />
+      <line x1="1.0" y1="288.5" x2="20.0" y2="288.5" class="mark-cut" />
+      <line x1="190.0" y1="288.5" x2="209.0" y2="288.5" class="mark-cut" />
+
+      <line x1="23.33" y1="289.5" x2="23.33" y2="296.5" class="mark-cut" />
+      <line x1="105" y1="289.5" x2="105" y2="296.5" class="mark-fold" />
+      <line x1="186.67" y1="289.5" x2="186.67" y2="296.5" class="mark-cut" />
+
+      <line x1="105" y1="8.5" x2="105" y2="146.5" stroke="#777777" stroke-width="0.14" stroke-dasharray="2, 2" opacity="0.65" />
+      <line x1="105" y1="150.5" x2="105" y2="288.5" stroke="#777777" stroke-width="0.14" stroke-dasharray="2, 2" opacity="0.65" />
+    </svg>
+
+    <!-- KARTE #17: Jagdbogen -->
+    <div class="card-pair pos-1">
+      <div class="tarot-face front-face">
+        <div class="card-border-frame"></div>
+        <div class="card-border-inner"></div>
+        <div class="card-header">
+          <h2 class="card-title">Jagdbogen</h2>
+          <p class="card-subtitle">◈ Ausrüstungsdeck · Waffe</p>
+        </div>
+        <div class="art-container">
+          <img class="card-art" src="art_assets/MasterArtwork/Cards/Weapons/A_single_traditional_medieval_recurve_shortbow_isolated_singl_7267e570-8cf8-4e27-b717-05956a773742_2.png" alt="Jagdbogen">
+          <div class="art-vignette"></div>
+        </div>
+        <div class="lore-box">
+          <p class="lore-text">»Aus bestem Eibenholz gespannt. Zielsicher und schnell genug, um fliehendes Wild und heranstürmende Goblins zu stoppen.«</p>
+        </div>
+        <div class="stat-ribbon">
+          <div class="stat-chip highlight-stat"><span class="stat-label">⚔️ Schaden</span><span class="stat-value">2</span></div>
+          <div class="stat-chip"><span class="stat-label">Slot</span><span class="stat-value" style="font-size:7.5pt;">2 Hände</span></div>
+          <div class="stat-chip highlight-gold"><span class="stat-label">💰 Wert</span><span class="stat-value" style="font-size:7.5pt; color:#7a5410;">4 Gold</span></div>
+        </div>
+        <div class="rules-box">
+          <div class="section-header">
+            <span>📜 Gegenstandseffekt</span>
+            <span class="rule-title">Sonderregel</span>
+          </div>
+          <p class="rule-body">Reichweite 4 Felder. Erfordert Sichtlinie.</p>
+        </div>
+        <div class="card-footer">
+          <span>🗡️ Der Schattenbazar</span>
+          <span>#17 / 54</span>
+        </div>
+      </div>
+      <div class="tarot-face back-face">
+        <img class="card-back-img" src="art_assets/MasterArtwork/Cards/Card Backs/Board_game_card_back_colord_woodcut_style_forbidden_midnight__21652bf5-8ecb-4a43-8d05-67df8e29d436_3.png" alt="Rückseite">
+      </div>
+    </div>
+    <!-- KARTE #18: Schwere Armbrust -->
+    <div class="card-pair pos-2">
+      <div class="tarot-face front-face">
+        <div class="card-border-frame"></div>
+        <div class="card-border-inner"></div>
+        <div class="card-header">
+          <h2 class="card-title">Schwere Armbrust</h2>
+          <p class="card-subtitle">◈ Ausrüstungsdeck · Waffe</p>
+        </div>
+        <div class="art-container">
+          <img class="card-art" src="art_assets/MasterArtwork/Cards/Weapons/A_single_isolated_heavy_military_crossbow_massive_dark_walnut_d122447a-8c47-4e82-a566-720db099f288_1.png" alt="Schwere Armbrust">
+          <div class="art-vignette"></div>
+        </div>
+        <div class="lore-box">
+          <p class="lore-text">»Verstärkter Stahlbogen und Nussholzschaft. Schlägt selbst durch gehärtete Eisenbleche wie durch Pergament.«</p>
+        </div>
+        <div class="stat-ribbon">
+          <div class="stat-chip highlight-stat"><span class="stat-label">⚔️ Schaden</span><span class="stat-value">3</span></div>
+          <div class="stat-chip"><span class="stat-label">Slot</span><span class="stat-value" style="font-size:7.5pt;">2 Hände</span></div>
+          <div class="stat-chip highlight-gold"><span class="stat-label">💰 Wert</span><span class="stat-value" style="font-size:7.5pt; color:#7a5410;">5 Gold</span></div>
+        </div>
+        <div class="rules-box">
+          <div class="section-header">
+            <span>📜 Gegenstandseffekt</span>
+            <span class="rule-title">Sonderregel</span>
+          </div>
+          <p class="rule-body">Reichweite 3 Felder. Durchdringt 1 Rüstung des Ziels; Nachladen benötigt halbe Bewegung.</p>
+        </div>
+        <div class="card-footer">
+          <span>🗡️ Der Schattenbazar</span>
+          <span>#18 / 54</span>
+        </div>
+      </div>
+      <div class="tarot-face back-face">
+        <img class="card-back-img" src="art_assets/MasterArtwork/Cards/Card Backs/Board_game_card_back_colord_woodcut_style_forbidden_midnight__21652bf5-8ecb-4a43-8d05-67df8e29d436_3.png" alt="Rückseite">
+      </div>
+    </div>
+  </div>
+
+  <!-- BOGEN 2 (#19 & #20) -->
+  <div class="page" id="page2">
+    <svg class="crop-svg" viewBox="0 0 210 297" width="210mm" height="297mm">
+      <line x1="23.33" y1="0.5" x2="23.33" y2="7.5" class="mark-cut" />
+      <line x1="105" y1="0.5" x2="105" y2="7.5" class="mark-fold" />
+      <line x1="186.67" y1="0.5" x2="186.67" y2="7.5" class="mark-cut" />
+
+      <line x1="1.0" y1="8.5" x2="20.0" y2="8.5" class="mark-cut" />
+      <line x1="190.0" y1="8.5" x2="209.0" y2="8.5" class="mark-cut" />
+      <line x1="1.0" y1="146.5" x2="20.0" y2="146.5" class="mark-cut" />
+      <line x1="190.0" y1="146.5" x2="209.0" y2="146.5" class="mark-cut" />
+
+      <line x1="23.33" y1="147.0" x2="23.33" y2="150.0" class="mark-cut" />
+      <line x1="105" y1="147.0" x2="105" y2="150.0" class="mark-fold" />
+      <line x1="186.67" y1="147.0" x2="186.67" y2="150.0" class="mark-cut" />
+
+      <line x1="1.0" y1="150.5" x2="20.0" y2="150.5" class="mark-cut" />
+      <line x1="190.0" y1="150.5" x2="209.0" y2="150.5" class="mark-cut" />
+      <line x1="1.0" y1="288.5" x2="20.0" y2="288.5" class="mark-cut" />
+      <line x1="190.0" y1="288.5" x2="209.0" y2="288.5" class="mark-cut" />
+
+      <line x1="23.33" y1="289.5" x2="23.33" y2="296.5" class="mark-cut" />
+      <line x1="105" y1="289.5" x2="105" y2="296.5" class="mark-fold" />
+      <line x1="186.67" y1="289.5" x2="186.67" y2="296.5" class="mark-cut" />
+
+      <line x1="105" y1="8.5" x2="105" y2="146.5" stroke="#777777" stroke-width="0.14" stroke-dasharray="2, 2" opacity="0.65" />
+      <line x1="105" y1="150.5" x2="105" y2="288.5" stroke="#777777" stroke-width="0.14" stroke-dasharray="2, 2" opacity="0.65" />
+    </svg>
+
+    <!-- KARTE #19: Elfen-Langbogen -->
+    <div class="card-pair pos-1">
+      <div class="tarot-face front-face">
+        <div class="card-border-frame"></div>
+        <div class="card-border-inner"></div>
+        <div class="card-header">
+          <h2 class="card-title">Elfen-Langbogen</h2>
+          <p class="card-subtitle">◈ Ausrüstungsdeck · Waffe</p>
+        </div>
+        <div class="art-container">
+          <img class="card-art" src="art_assets/MasterArtwork/Cards/Weapons/A_single_tall_elegant_elven_longbow_isolated_single_weapon_on_c502d520-b25e-4308-a64d-210f79e5f1ca_3.png" alt="Elfen-Langbogen">
+          <div class="art-vignette"></div>
+        </div>
+        <div class="lore-box">
+          <p class="lore-text">»Ein hochgewachsener Bogen aus federndem Weißholz. Pfeile fliegen flach und lautlos über gewaltige Distanzen.«</p>
+        </div>
+        <div class="stat-ribbon">
+          <div class="stat-chip highlight-stat"><span class="stat-label">⚔️ Schaden</span><span class="stat-value">2</span></div>
+          <div class="stat-chip"><span class="stat-label">Slot</span><span class="stat-value" style="font-size:7.5pt;">2 Hände</span></div>
+          <div class="stat-chip highlight-gold"><span class="stat-label">💰 Wert</span><span class="stat-value" style="font-size:7.5pt; color:#7a5410;">6 Gold</span></div>
+        </div>
+        <div class="rules-box">
+          <div class="section-header">
+            <span>📜 Gegenstandseffekt</span>
+            <span class="rule-title">Sonderregel</span>
+          </div>
+          <p class="rule-body">Reichweite 5 Felder. Kein Nachteil bei Schüssen auf maximale Distanz.</p>
+        </div>
+        <div class="card-footer">
+          <span>🗡️ Der Schattenbazar</span>
+          <span>#19 / 54</span>
+        </div>
+      </div>
+      <div class="tarot-face back-face">
+        <img class="card-back-img" src="art_assets/MasterArtwork/Cards/Card Backs/Board_game_card_back_colord_woodcut_style_forbidden_midnight__21652bf5-8ecb-4a43-8d05-67df8e29d436_3.png" alt="Rückseite">
+      </div>
+    </div>
+    <!-- KARTE #20: Wurfmesser-Set (3x) -->
+    <div class="card-pair pos-2">
+      <div class="tarot-face front-face">
+        <div class="card-border-frame"></div>
+        <div class="card-border-inner"></div>
+        <div class="card-header">
+          <h2 class="card-title">Wurfmesser-Set (3x)</h2>
+          <p class="card-subtitle">◈ Ausrüstungsdeck · Waffe</p>
+        </div>
+        <div class="art-container">
+          <img class="card-art" src="art_assets/MasterArtwork/Cards/Weapons/A_single_isolated_three_sleek_balanced_throwing_knives_arrang_1b44f8fc-8db4-4d46-9246-01bfdf64852a_1.png" alt="Wurfmesser-Set (3x)">
+          <div class="art-vignette"></div>
+        </div>
+        <div class="lore-box">
+          <p class="lore-text">»Drei perfekt ausbalancierte Wurfklingen. Ein Griff an den Gürtel, und das Ziel wird noch vor dem Ansturm genagelt.«</p>
+        </div>
+        <div class="stat-ribbon">
+          <div class="stat-chip highlight-stat"><span class="stat-label">⚔️ Schaden</span><span class="stat-value">1</span></div>
+          <div class="stat-chip"><span class="stat-label">Slot</span><span class="stat-value" style="font-size:7.5pt;">Rucksack / 1 Hand</span></div>
+          <div class="stat-chip highlight-gold"><span class="stat-label">💰 Wert</span><span class="stat-value" style="font-size:7.5pt; color:#7a5410;">3 Gold</span></div>
+        </div>
+        <div class="rules-box">
+          <div class="section-header">
+            <span>📜 Gegenstandseffekt</span>
+            <span class="rule-title">Sonderregel</span>
+          </div>
+          <p class="rule-body">Reichweite 2 Felder. 3 Benutzungen (mit Markern tracken), danach verbraucht.</p>
+        </div>
+        <div class="card-footer">
+          <span>🗡️ Der Schattenbazar</span>
+          <span>#20 / 54</span>
+        </div>
+      </div>
+      <div class="tarot-face back-face">
+        <img class="card-back-img" src="art_assets/MasterArtwork/Cards/Card Backs/Board_game_card_back_colord_woodcut_style_forbidden_midnight__21652bf5-8ecb-4a43-8d05-67df8e29d436_3.png" alt="Rückseite">
+      </div>
+    </div>
+  </div>
+
+  <!-- BOGEN 3 (#21 & #22) -->
+  <div class="page" id="page3">
+    <svg class="crop-svg" viewBox="0 0 210 297" width="210mm" height="297mm">
+      <line x1="23.33" y1="0.5" x2="23.33" y2="7.5" class="mark-cut" />
+      <line x1="105" y1="0.5" x2="105" y2="7.5" class="mark-fold" />
+      <line x1="186.67" y1="0.5" x2="186.67" y2="7.5" class="mark-cut" />
+
+      <line x1="1.0" y1="8.5" x2="20.0" y2="8.5" class="mark-cut" />
+      <line x1="190.0" y1="8.5" x2="209.0" y2="8.5" class="mark-cut" />
+      <line x1="1.0" y1="146.5" x2="20.0" y2="146.5" class="mark-cut" />
+      <line x1="190.0" y1="146.5" x2="209.0" y2="146.5" class="mark-cut" />
+
+      <line x1="23.33" y1="147.0" x2="23.33" y2="150.0" class="mark-cut" />
+      <line x1="105" y1="147.0" x2="105" y2="150.0" class="mark-fold" />
+      <line x1="186.67" y1="147.0" x2="186.67" y2="150.0" class="mark-cut" />
+
+      <line x1="1.0" y1="150.5" x2="20.0" y2="150.5" class="mark-cut" />
+      <line x1="190.0" y1="150.5" x2="209.0" y2="150.5" class="mark-cut" />
+      <line x1="1.0" y1="288.5" x2="20.0" y2="288.5" class="mark-cut" />
+      <line x1="190.0" y1="288.5" x2="209.0" y2="288.5" class="mark-cut" />
+
+      <line x1="23.33" y1="289.5" x2="23.33" y2="296.5" class="mark-cut" />
+      <line x1="105" y1="289.5" x2="105" y2="296.5" class="mark-fold" />
+      <line x1="186.67" y1="289.5" x2="186.67" y2="296.5" class="mark-cut" />
+
+      <line x1="105" y1="8.5" x2="105" y2="146.5" stroke="#777777" stroke-width="0.14" stroke-dasharray="2, 2" opacity="0.65" />
+      <line x1="105" y1="150.5" x2="105" y2="288.5" stroke="#777777" stroke-width="0.14" stroke-dasharray="2, 2" opacity="0.65" />
+    </svg>
+
+    <!-- KARTE #21: Wurfspeer -->
+    <div class="card-pair pos-1">
+      <div class="tarot-face front-face">
+        <div class="card-border-frame"></div>
+        <div class="card-border-inner"></div>
+        <div class="card-header">
+          <h2 class="card-title">Wurfspeer</h2>
+          <p class="card-subtitle">◈ Ausrüstungsdeck · Waffe</p>
+        </div>
+        <div class="art-container">
+          <img class="card-art" src="art_assets/MasterArtwork/Cards/Weapons/A_single_isolated_classic_iron-tipped_javelin_long_smooth_ash_45d4fa0e-e926-45b6-9891-1b5e430c2cc5_3.png" alt="Wurfspeer">
+          <div class="art-vignette"></div>
+        </div>
+        <div class="lore-box">
+          <p class="lore-text">»Solider Wurfspeer mit gehärteter Eisenspitze. Durchbohrt heranstürmende Bestien und bricht deren Schwung.«</p>
+        </div>
+        <div class="stat-ribbon">
+          <div class="stat-chip highlight-stat"><span class="stat-label">⚔️ Schaden</span><span class="stat-value">2</span></div>
+          <div class="stat-chip"><span class="stat-label">Slot</span><span class="stat-value" style="font-size:7.5pt;">1 Hand</span></div>
+          <div class="stat-chip highlight-gold"><span class="stat-label">💰 Wert</span><span class="stat-value" style="font-size:7.5pt; color:#7a5410;">3 Gold</span></div>
+        </div>
+        <div class="rules-box">
+          <div class="section-header">
+            <span>📜 Gegenstandseffekt</span>
+            <span class="rule-title">Sonderregel</span>
+          </div>
+          <p class="rule-body">Reichweite 3 Felder. Kann im Nahkampf oder Fernkampf genutzt werden (nach Wurf muss er aufgehoben werden).</p>
+        </div>
+        <div class="card-footer">
+          <span>🗡️ Der Schattenbazar</span>
+          <span>#21 / 54</span>
+        </div>
+      </div>
+      <div class="tarot-face back-face">
+        <img class="card-back-img" src="art_assets/MasterArtwork/Cards/Card Backs/Board_game_card_back_colord_woodcut_style_forbidden_midnight__21652bf5-8ecb-4a43-8d05-67df8e29d436_3.png" alt="Rückseite">
+      </div>
+    </div>
+    <!-- KARTE #22: Repetier-Armbrust -->
+    <div class="card-pair pos-2">
+      <div class="tarot-face front-face">
+        <div class="card-border-frame"></div>
+        <div class="card-border-inner"></div>
+        <div class="card-header">
+          <h2 class="card-title">Repetier-Armbrust</h2>
+          <p class="card-subtitle">◈ Ausrüstungsdeck · Waffe</p>
+        </div>
+        <div class="art-container">
+          <img class="card-art" src="art_assets/MasterArtwork/Cards/Weapons/A_single_isolated_exotic_mechanical_repeating_crossbow_dark_e_0cfd5c1f-74c0-488b-867f-b69a714d1f74_3.png" alt="Repetier-Armbrust">
+          <div class="art-vignette"></div>
+        </div>
+        <div class="lore-box">
+          <p class="lore-text">»Ausgetüfteltes Zahnrad- und Hebelwerk. Ermöglicht Salven scharfer Bolzen in atemberaubender Folge.«</p>
+        </div>
+        <div class="stat-ribbon">
+          <div class="stat-chip highlight-stat"><span class="stat-label">⚔️ Schaden</span><span class="stat-value">2</span></div>
+          <div class="stat-chip"><span class="stat-label">Slot</span><span class="stat-value" style="font-size:7.5pt;">2 Hände</span></div>
+          <div class="stat-chip highlight-gold"><span class="stat-label">💰 Wert</span><span class="stat-value" style="font-size:7.5pt; color:#7a5410;">7 Gold</span></div>
+        </div>
+        <div class="rules-box">
+          <div class="section-header">
+            <span>📜 Gegenstandseffekt</span>
+            <span class="rule-title">Sonderregel</span>
+          </div>
+          <p class="rule-body">**Schnellfeuer:** Reichweite 3 Felder. Kann 2 Schüsse pro Angriffsaktion abfeuern (jeder Schuss 1 Schaden).</p>
+        </div>
+        <div class="card-footer">
+          <span>🗡️ Der Schattenbazar</span>
+          <span>#22 / 54</span>
+        </div>
+      </div>
+      <div class="tarot-face back-face">
+        <img class="card-back-img" src="art_assets/MasterArtwork/Cards/Card Backs/Board_game_card_back_colord_woodcut_style_forbidden_midnight__21652bf5-8ecb-4a43-8d05-67df8e29d436_3.png" alt="Rückseite">
+      </div>
+    </div>
+  </div>
+
+  <!-- BOGEN 4 (#23 & #24) -->
+  <div class="page" id="page4">
+    <svg class="crop-svg" viewBox="0 0 210 297" width="210mm" height="297mm">
+      <line x1="23.33" y1="0.5" x2="23.33" y2="7.5" class="mark-cut" />
+      <line x1="105" y1="0.5" x2="105" y2="7.5" class="mark-fold" />
+      <line x1="186.67" y1="0.5" x2="186.67" y2="7.5" class="mark-cut" />
+
+      <line x1="1.0" y1="8.5" x2="20.0" y2="8.5" class="mark-cut" />
+      <line x1="190.0" y1="8.5" x2="209.0" y2="8.5" class="mark-cut" />
+      <line x1="1.0" y1="146.5" x2="20.0" y2="146.5" class="mark-cut" />
+      <line x1="190.0" y1="146.5" x2="209.0" y2="146.5" class="mark-cut" />
+
+      <line x1="23.33" y1="147.0" x2="23.33" y2="150.0" class="mark-cut" />
+      <line x1="105" y1="147.0" x2="105" y2="150.0" class="mark-fold" />
+      <line x1="186.67" y1="147.0" x2="186.67" y2="150.0" class="mark-cut" />
+
+      <line x1="1.0" y1="150.5" x2="20.0" y2="150.5" class="mark-cut" />
+      <line x1="190.0" y1="150.5" x2="209.0" y2="150.5" class="mark-cut" />
+      <line x1="1.0" y1="288.5" x2="20.0" y2="288.5" class="mark-cut" />
+      <line x1="190.0" y1="288.5" x2="209.0" y2="288.5" class="mark-cut" />
+
+      <line x1="23.33" y1="289.5" x2="23.33" y2="296.5" class="mark-cut" />
+      <line x1="105" y1="289.5" x2="105" y2="296.5" class="mark-fold" />
+      <line x1="186.67" y1="289.5" x2="186.67" y2="296.5" class="mark-cut" />
+
+      <line x1="105" y1="8.5" x2="105" y2="146.5" stroke="#777777" stroke-width="0.14" stroke-dasharray="2, 2" opacity="0.65" />
+      <line x1="105" y1="150.5" x2="105" y2="288.5" stroke="#777777" stroke-width="0.14" stroke-dasharray="2, 2" opacity="0.65" />
+    </svg>
+
+    <!-- KARTE #23: Nordische Wurfäxte (2x) -->
+    <div class="card-pair pos-1">
+      <div class="tarot-face front-face">
+        <div class="card-border-frame"></div>
+        <div class="card-border-inner"></div>
+        <div class="card-header">
+          <h2 class="card-title">Nordische Wurfäxte (2x)</h2>
+          <p class="card-subtitle">◈ Ausrüstungsdeck · Waffe</p>
+        </div>
+        <div class="art-container">
+          <img class="card-art" src="art_assets/MasterArtwork/Cards/Weapons/A_single_isolated_two_compact_bearded_throwing_axes_arranged__8cf2241c-6c77-4479-9077-21a3490c584b_1.png" alt="Nordische Wurfäxte (2x)">
+          <div class="art-vignette"></div>
+        </div>
+        <div class="lore-box">
+          <p class="lore-text">»Kompakte Bartaxtköpfe auf griffigen Eschenholzschäften. Schleudert selbst zähe Angreifer meterweit zurück.«</p>
+        </div>
+        <div class="stat-ribbon">
+          <div class="stat-chip highlight-stat"><span class="stat-label">⚔️ Schaden</span><span class="stat-value">2</span></div>
+          <div class="stat-chip"><span class="stat-label">Slot</span><span class="stat-value" style="font-size:7.5pt;">Rucksack / 1 Hand</span></div>
+          <div class="stat-chip highlight-gold"><span class="stat-label">💰 Wert</span><span class="stat-value" style="font-size:7.5pt; color:#7a5410;">4 Gold</span></div>
+        </div>
+        <div class="rules-box">
+          <div class="section-header">
+            <span>📜 Gegenstandseffekt</span>
+            <span class="rule-title">Sonderregel</span>
+          </div>
+          <p class="rule-body">Reichweite 2 Felder. 2 Benutzungen. Stößt leichte Gegner (Goblins) bei Treffer 1 Feld zurück.</p>
+        </div>
+        <div class="card-footer">
+          <span>🗡️ Der Schattenbazar</span>
+          <span>#23 / 54</span>
+        </div>
+      </div>
+      <div class="tarot-face back-face">
+        <img class="card-back-img" src="art_assets/MasterArtwork/Cards/Card Backs/Board_game_card_back_colord_woodcut_style_forbidden_midnight__21652bf5-8ecb-4a43-8d05-67df8e29d436_3.png" alt="Rückseite">
+      </div>
+    </div>
+    <!-- KARTE #24: Gifthauch-Blasrohr -->
+    <div class="card-pair pos-2">
+      <div class="tarot-face front-face">
+        <div class="card-border-frame"></div>
+        <div class="card-border-inner"></div>
+        <div class="card-header">
+          <h2 class="card-title">Gifthauch-Blasrohr</h2>
+          <p class="card-subtitle">◈ Ausrüstungsdeck · Waffe</p>
+        </div>
+        <div class="art-container">
+          <img class="card-art" src="art_assets/MasterArtwork/Cards/Weapons/A_single_isolated_slim_dark_bamboo_blowgun_decorated_with_tri_0ac6925d-5c9b-4bd2-9c8d-a80967e58127_3.png" alt="Gifthauch-Blasrohr">
+          <div class="art-vignette"></div>
+        </div>
+        <div class="lore-box">
+          <p class="lore-text">»Dunkles Bambusrohr mit Runengravuren. Lautlose Nadeln, deren Gift das Herz des Ziels fast unbemerkt lähmt.«</p>
+        </div>
+        <div class="stat-ribbon">
+          <div class="stat-chip highlight-stat"><span class="stat-label">⚔️ Schaden</span><span class="stat-value">1</span></div>
+          <div class="stat-chip"><span class="stat-label">Slot</span><span class="stat-value" style="font-size:7.5pt;">1 Hand</span></div>
+          <div class="stat-chip highlight-gold"><span class="stat-label">💰 Wert</span><span class="stat-value" style="font-size:7.5pt; color:#7a5410;">4 Gold</span></div>
+        </div>
+        <div class="rules-box">
+          <div class="section-header">
+            <span>📜 Gegenstandseffekt</span>
+            <span class="rule-title">Sonderregel</span>
+          </div>
+          <p class="rule-body">**Lautlos:** Reichweite 3 Felder. Löst keinen Alarm/Aggro bei anderen Monstern aus; verursacht sofort Zustand `Vergiftet`.</p>
+        </div>
+        <div class="card-footer">
+          <span>🗡️ Der Schattenbazar</span>
+          <span>#24 / 54</span>
+        </div>
+      </div>
+      <div class="tarot-face back-face">
+        <img class="card-back-img" src="art_assets/MasterArtwork/Cards/Card Backs/Board_game_card_back_colord_woodcut_style_forbidden_midnight__21652bf5-8ecb-4a43-8d05-67df8e29d436_3.png" alt="Rückseite">
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

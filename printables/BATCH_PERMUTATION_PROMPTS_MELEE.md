@@ -27,10 +27,10 @@
 ---
 
 ## 🗡️ Batch 3: Dolche & Flegel (Daggers & Flails)
-*Enthält: #03 Morgenstern, #06 Meuchlerdolch, #11 Streitflegel, #13 Parierdolch*
+*Enthält: #03 Schwerer Streitkolben, #06 Meuchlerdolch, #11 Streitflegel, #13 Parierdolch*
 
 ```text
-/imagine prompt: A single isolated {medieval morning star flail menacing spiked iron ball on forged chain stout wooden haft, slender assassin's stiletto dagger narrow dark steel blade glistening green poison tip black leather grip, inquisitor's flail heavy spiked iron ball thick chain ornate carved religious wooden handle with brass collar, main-gauche parrying dagger wide triangular blade upswept quillons with knuckle ring and brown leather grip}, angled composition tilted 20 degrees, bold clean black woodcut lineart, hatched engraving shading, hand-colored woodcut print, Albrecht Dürer vintage medieval engraving style, clean vibrant flat color fills, pure solid white background, clean cutout silhouette, no shadows on background, borderless, generous white margin around item --ar 1:1 --sref https://i.imgur.com/VzU1WIk.png https://i.imgur.com/m6GMSd5.png https://i.imgur.com/juHvFJo.png --sw 100 --c 20 --v 6.1
+/imagine prompt: A single isolated {heavy medieval flanged mace solid steel flanges on reinforced haft, slender assassin's stiletto dagger narrow dark steel blade glistening green poison tip black leather grip, inquisitor's flail heavy spiked iron ball thick chain ornate carved religious wooden handle with brass collar, main-gauche parrying dagger wide triangular blade upswept quillons with knuckle ring and brown leather grip}, angled composition tilted 20 degrees, bold clean black woodcut lineart, hatched engraving shading, hand-colored woodcut print, Albrecht Dürer vintage medieval engraving style, clean vibrant flat color fills, pure solid white background, clean cutout silhouette, no shadows on background, borderless, generous white margin around item --ar 1:1 --sref https://i.imgur.com/VzU1WIk.png https://i.imgur.com/m6GMSd5.png https://i.imgur.com/juHvFJo.png --sw 100 --c 20 --v 6.1
 ```
 
 ---

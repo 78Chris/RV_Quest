@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400mm" height="150mm" viewBox="0 0 400 150" style="background:white">
+  <!-- Box net for Encounter Deck (16 cards) -->
+  <!-- Card dimensions: 120 x 70 mm -->
+  <!-- Thickness: 9.2 mm -->
+  <!-- Flap width: 10 mm -->
+  <g id="box-net" transform="translate(0,0)">
+    <!-- Left side (small) -->
+    <rect x="10" y="0" width="9.2" height="120" fill="#c0c0c0" stroke="black"/>
+    <!-- Back panel (large) with encounter deck card back artwork -->
+    <image x="19.2" y="0" width="70" height="120" href="./art_assets/MasterArtwork/Cards/Card%20Backs/Board_game_card_back_colord_woodcut_style_forbidden_midnight__21652bf5-8ecb-4a43-8d05-67df8e29d436_3.png"/>
+    <!-- Right side (small) -->
+    <rect x="89.2" y="0" width="9.2" height="120" fill="#c0c0c0" stroke="black"/>
+    <!-- Front panel (large) same artwork -->
+    <image x="98.4" y="0" width="70" height="120" href="./art_assets/MasterArtwork/Cards/Card%20Backs/Board_game_card_back_colord_woodcut_style_forbidden_midnight__21652bf5-8ecb-4a43-8d05-67df8e29d436_3.png"/>
+    <!-- Top flap -->
+    <rect x="168.4" y="0" width="10" height="120" fill="#e0e0e0" stroke="black"/>
+    <!-- Bottom flap -->
+    <rect x="178.4" y="0" width="10" height="120" fill="#e0e0e0" stroke="black"/>
+  </g>
+  <g stroke="red" stroke-dasharray="1 1" fill="none">
+    <rect x="10" y="0" width="9.2" height="120"/>
+    <rect x="19.2" y="0" width="70" height="120"/>
+    <rect x="89.2" y="0" width="9.2" height="120"/>
+    <rect x="98.4" y="0" width="70" height="120"/>
+    <rect x="168.4" y="0" width="10" height="120"/>
+    <rect x="178.4" y="0" width="10" height="120"/>
+  </g>
+  <text x="5" y="135" font-size="5" fill="black">Encounter Deck Box – cut, fold, glue. Large faces use encounter deck card‑back artwork, small faces coloured grey.</text>
+</svg>

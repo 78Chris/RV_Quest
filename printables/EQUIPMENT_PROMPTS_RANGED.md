@@ -70,7 +70,7 @@ Two compact bearded throwing axes arranged crossed in an X pattern, isolated obj
 
 ---
 
-### 24. Giftschlauch-Blasrohr (Poison Blowgun)
+### 24. Gifthauch-Blasrohr (Poison Blowgun)
 *Kartentyp: 1 Hand | Schaden: 1 | Reichweite: 3*
 
 ```text

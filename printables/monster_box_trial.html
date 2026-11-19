@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<!--
+  RV_Quest – Deck Box Printable Net (Monster Deck, Trial)
+  ═══════════════════════════════════════════════════════
+  Card size (final production): 82 × 140 mm (Oversized Tarot)
+  To change box depth, edit DEPTH_MM in the <script> block.
+
+  NET ANATOMY (Face-1 left, Face-2 right):
+
+    Y0 ┌────────────── [Face-1 TOP TUCK FLAP — angled] ────────────────┐
+    Y1 ├─[glue]─[depL]─[Face-1  LID top     ]─[depR]─[F2 plain top]──┤
+    Y2 ├─[glue]─[depL]─[Face-1  MAIN (image)]─[depR]─[F2 MAIN     ]──┤
+    Y3 ├─[glue]─[depL]─[Face-1  plain bottom]─[depR]─[F2  LID bot ]──┤
+    Y4 └──────────────────────────────────────── [Face-2 BOTTOM TUCK] ┘
+    Y5
+
+  One side opens (Face-2 tuck tucks inside at top of assembled box).
+  Depth sides + glue tab are continuous Y1→Y4.
+  Both main artwork panels sit at the same Y2→Y3 range.
+-->
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Monster-Deck-Box – Printable Net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+<style>
+  @page { size: A4 portrait; margin: 10mm; }
+  body {
+    margin: 0;
+    padding: 10mm;
+    background: #fff;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .info {
+    font-family: sans-serif;
+    font-size: 7.5pt;
+    color: #333;
+    margin-bottom: 5mm;
+    line-height: 1.6;
+  }
+  @media print { .info { display: none; } }
+  /* Ensure UnifrakturMaguntia loads before SVG text renders */
+  .font-preload {
+    font-family: 'UnifrakturMaguntia', serif;
+    font-size: 1px;
+    color: transparent;
+    position: absolute;
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+
+<!-- font preload trick so it's ready when SVG renders -->
+<span class="font-preload">Bestiarium Imperialis</span>
+
+<p class="info">
+  <strong>Monster-Deck-Box — Trial Print. Print at 100% actual size.</strong>&nbsp;
+  <span style="color:#cc0000">■</span> Red = cut.&nbsp;
+  <span style="color:#0044cc">‒ ‒</span> Blue = score + fold (mountain folds).&nbsp;
+  <strong>Assembly:</strong> Cut → Score all blue lines → Fold depth sides inward (90°) → 
+  Fold Face-1 lid + tuck inward → Fold Face-2 lid + tuck inward from opposite side → 
+  Glue left tab → Done.
+</p>
+
+<div id="net"></div>
+
+<script>
+/* ═══════════════════════════════════════════════
+   BOX PARAMETERS — edit DEPTH_MM for each deck
+   ═══════════════════════════════════════════════
+   Rough guide (gutter-fold doubled cards, 180–200 g/m²):
+     12 cards →  7.4 mm    18 cards → 11 mm
+     20 cards → 12 mm      54 cards → 26 mm
+*/
+const DEPTH_MM  = 7.4;    // ← change this per deck
+const CARD_W    = 82;     // mm — card width  (Oversized Tarot, final)
+const CARD_H    = 140;    // mm — card height (Oversized Tarot, final)
+const TUCK_H    = 12;     // mm — tuck flap height
+const GLUE_W    = 10;     // mm — glue tab width
+
+// Card-back image (relative to this HTML file)
+const IMG_SRC   = "art_assets/MasterArtwork/Cards/Card Backs/" +
+  "vintage_medieval_woodcut_etching_of_a_monstrous_grimoire_cove_3d567044-557c-4aad-aa98-7cdc5a5ff889_2.png";
+
+// Fraktur title text (overlaid on the banderole at ~85.7% height)
+const DECK_TITLE = "Bestiarium Imperialis";
+
+// Banderole text parameters (match original card CSS)
+const TITLE_Y_PCT = 0.857;  // 85.7% down the face
+const TITLE_W_MM  = 54;     // mm — constrained width to fit banderole
+
+/* ─────────────────────────────────────────────
+   Derived X/Y coordinates
+───────────────────────────────────────────── */
+const X0 = 0;
+const X1 = X0 + GLUE_W;         // right edge of glue tab
+const X2 = X1 + DEPTH_MM;       // left edge of Face-1
+const X3 = X2 + CARD_W;         // right edge of Face-1 / left of depth-R
+const X4 = X3 + DEPTH_MM;       // left edge of Face-2
+const X5 = X4 + CARD_W;         // right edge of net
+const NET_W = X5;
+
+// Y0: top of net — Face-1 tuck starts here
+// Y1: fold line tuck→lid (also: Face-2 starts here with plain flap)
+// Y2: fold line lid→main face
+// Y3: fold line main→plain/lid bottom
+// Y4: fold line plain/lid→Face-2 tuck (Face-1 ends here)
+// Y5: bottom of net — Face-2 tuck ends here
+const Y0 = 0;
+const Y1 = TUCK_H;
+const Y2 = Y1 + DEPTH_MM;
+const Y3 = Y2 + CARD_H;
+const Y4 = Y3 + DEPTH_MM;
+const Y5 = Y4 + TUCK_H;
+const NET_H = Y5;
+
+/* ─────────────────────────────────────────────
+   SVG builder helpers
+───────────────────────────────────────────── */
+const NS = "http://www.w3.org/2000/svg";
+const svg = document.createElementNS(NS, "svg");
+svg.setAttribute("xmlns", NS);
+svg.setAttribute("width",  NET_W + "mm");
+svg.setAttribute("height", NET_H + "mm");
+svg.setAttribute("viewBox", `0 0 ${NET_W} ${NET_H}`);
+
+function mkEl(tag, attrs) {
+  const e = document.createElementNS(NS, tag);
+  for (const [k,v] of Object.entries(attrs)) e.setAttribute(k, v);
+  svg.appendChild(e);
+  return e;
+}
+const R = (x,y,w,h,f)   => mkEl("rect",    {x,y,width:w,height:h,fill:f,stroke:"none"});
+const P = (pts,f)        => mkEl("polygon", {points:pts.map(p=>p.join(",")).join(" "),fill:f,stroke:"none"});
+const L = (x1,y1,x2,y2,s,sw,d) => {
+  const e = mkEl("line",{x1,y1,x2,y2,stroke:s,"stroke-width":sw,fill:"none"});
+  if (d) e.setAttribute("stroke-dasharray",d);
+  return e;
+};
+const IMG = (x,y,w,h,href) => mkEl("image",{x,y,width:w,height:h,href,preserveAspectRatio:"xMidYMid slice"});
+function TXT(x, y, text, size, anchor, tLen) {
+  const e = document.createElementNS(NS, "text");
+  e.setAttribute("x", x);
+  e.setAttribute("y", y);
+  e.setAttribute("font-family", "UnifrakturMaguntia, serif");
+  e.setAttribute("font-size", size);
+  e.setAttribute("fill", "#120e0a");
+  e.setAttribute("text-anchor", anchor || "middle");
+  e.setAttribute("dominant-baseline", "auto");
+  if (tLen) {
+    e.setAttribute("textLength", tLen);
+    e.setAttribute("lengthAdjust", "spacingAndGlyphs");
+  }
+  e.textContent = text;
+  svg.appendChild(e);
+  return e;
+}
+
+/* ─────────────────────────────────────────────
+   FILLS
+───────────────────────────────────────────── */
+// Glue tab (parchment) — Y1 → Y4 (no tuck zones)
+R(X0, Y1, GLUE_W, Y4-Y1, "#c8b89a");
+
+// Depth-L (dark brown) — Y1 → Y4
+R(X1, Y1, DEPTH_MM, Y4-Y1, "#3b2a1a");
+
+// ── FACE-1 (LEFT) — TUCK AT TOP ──────────────
+// Tuck flap (angled polygon, parchment): Y0 → Y1
+//   corners: (X2,Y1),(X2+DEPTH,Y0),(X3-DEPTH,Y0),(X3,Y1)
+P([[X2,Y1],[X2+DEPTH_MM,Y0],[X3-DEPTH_MM,Y0],[X3,Y1]], "#c8b89a");
+
+// Lid panel top (parchment): Y1 → Y2
+R(X2, Y1, CARD_W, DEPTH_MM, "#c8b89a");
+
+// Main face (artwork): Y2 → Y3
+IMG(X2, Y2, CARD_W, CARD_H, IMG_SRC);
+
+// Fraktur title on Face-1 at ~85.7% face height
+TXT(X2 + CARD_W/2, Y2 + CARD_H * TITLE_Y_PCT, DECK_TITLE, 5.5, "middle", TITLE_W_MM);
+
+// Plain bottom flap (parchment): Y3 → Y4
+R(X2, Y3, CARD_W, DEPTH_MM, "#c8b89a");
+
+// ── Depth-R (dark brown) — Y1 → Y4
+R(X3, Y1, DEPTH_MM, Y4-Y1, "#3b2a1a");
+
+// ── FACE-2 (RIGHT) — TUCK AT BOTTOM ─────────
+// Plain top flap (parchment): Y1 → Y2
+R(X4, Y1, CARD_W, DEPTH_MM, "#c8b89a");
+
+// Main face (artwork): Y2 → Y3
+IMG(X4, Y2, CARD_W, CARD_H, IMG_SRC);
+
+// Fraktur title on Face-2
+TXT(X4 + CARD_W/2, Y2 + CARD_H * TITLE_Y_PCT, DECK_TITLE, 5.5, "middle", TITLE_W_MM);
+
+// Lid panel bottom (parchment): Y3 → Y4
+R(X4, Y3, CARD_W, DEPTH_MM, "#c8b89a");
+
+// Tuck flap bottom (angled polygon, parchment): Y4 → Y5
+//   corners: (X4,Y4),(X4+DEPTH,Y5),(X5-DEPTH,Y5),(X5,Y4)
+P([[X4,Y4],[X4+DEPTH_MM,Y5],[X5-DEPTH_MM,Y5],[X5,Y4]], "#c8b89a");
+
+/* ─────────────────────────────────────────────
+   FOLD LINES (blue dashed)
+───────────────────────────────────────────── */
+const F = (x1,y1,x2,y2) => L(x1,y1,x2,y2,"#0044cc",0.3,"2 1.5");
+
+// Vertical folds
+F(X1, Y1, X1, Y4);         // glue-tab | depth-L
+F(X2, Y0, X2, Y4);         // depth-L  | Face-1  (tuck top → plain bottom)
+F(X3, Y1, X3, Y4);         // Face-1   | depth-R
+F(X4, Y1, X4, Y5);         // depth-R  | Face-2  (plain top → tuck bottom)
+
+// Horizontal folds (full net width for clarity)
+F(X0, Y1, X5, Y1);         // tuck-top fold / Face-2 plain-top fold
+F(X2, Y2, X5, Y2);         // lid-top→main / plain-top→main
+F(X2, Y3, X5, Y3);         // main→plain-bottom / main→lid-bottom
+F(X0, Y4, X5, Y4);         // plain-bottom fold / lid-bottom→tuck fold
+
+/* ─────────────────────────────────────────────
+   OUTER CUT LINE (red solid polygon)
+   Clockwise from top-left angled corner of Face-1 tuck
+───────────────────────────────────────────── */
+const cutPts = [
+  [X2+DEPTH_MM, Y0],     // ← top-left of Face-1 tuck (angled)
+  [X3-DEPTH_MM, Y0],     // top-right of Face-1 tuck (angled)
+  [X3, Y1],              // bottom-right of Face-1 tuck
+  [X4, Y1],              // top-left of Face-2 (gap = top of depth-R cut)
+  [X5, Y1],              // top-right of Face-2 plain-top
+  [X5, Y4],              // before Face-2 bottom tuck starts
+  [X5-DEPTH_MM, Y5],     // bottom-right of Face-2 tuck (angled)
+  [X4+DEPTH_MM, Y5],     // bottom-left of Face-2 tuck (angled)
+  [X4, Y4],              // top-left of Face-2 tuck
+  [X0, Y4],              // bottom-left of net (glue tab + depth-L + Face-1 plain)
+  [X0, Y1],              // top-left of glue tab
+  [X2, Y1],              // top-right of depth-L (where Face-1 tuck starts)
+  [X2+DEPTH_MM, Y0],     // close — back to start
+];
+const cp = cutPts.map(p=>p.join(",")).join(" ");
+mkEl("polygon", {points:cp, fill:"none", stroke:"#cc0000", "stroke-width":"0.5"});
+
+// Cut line in the gap between Face-1 tuck bottom-right and Face-2 top-left
+// (this segment is already in the polygon but make it crisp with a line too)
+L(X3, Y1, X4, Y1, "#cc0000", 0.5, null);
+
+/* ─────────────────────────────────────────────
+   Mount into page
+───────────────────────────────────────────── */
+document.getElementById("net").appendChild(svg);
+</script>
+</body>
+</html>

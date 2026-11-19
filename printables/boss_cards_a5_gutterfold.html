@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="utf-8">
+  <title>Bestiarium Imperialis - 4 Boss- &amp; Großmonster-Tableaus (A5-Querformat Gutter-Fold)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=UnifrakturMaguntia&family=Alegreya:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap"
+    rel="stylesheet">
+
+  <style>
+    /* ========================================================= */
+    /* A4 PRINT SETUP (Pure White, Zero Ink-Waste Outside Cards) */
+    /* ========================================================= */
+    @page {
+      size: A4 portrait;
+      margin: 0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+      font-family: 'Alegreya Sans', sans-serif;
+      color: #1a140e;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    /* Screen Workbench Display */
+    @media screen {
+      body {
+        background: #181410;
+        padding: 30px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+      }
+
+      .toolbar {
+        position: fixed;
+        top: 15px;
+        right: 20px;
+        background: #140f0c;
+        border: 1px solid #5c4736;
+        color: #dfcaa7;
+        padding: 10px 18px;
+        border-radius: 8px;
+        font-size: 13px;
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+        z-index: 1000;
+      }
+
+      .print-btn {
+        background: #9e782f;
+        color: #fff;
+        border: none;
+        padding: 7px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 13px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      }
+
+      .print-btn:hover {
+        background: #b88e38;
+      }
+
+      .page-nav {
+        display: flex;
+        gap: 8px;
+      }
+
+      .nav-link {
+        color: #dfcaa7;
+        text-decoration: none;
+        padding: 4px 8px;
+        border-radius: 3px;
+        background: rgba(255, 255, 255, 0.08);
+        font-size: 11px;
+        font-weight: bold;
+      }
+
+      .nav-link:hover {
+        background: #9e782f;
+        color: #fff;
+      }
+
+      .page {
+        background: #ffffff;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+      }
+    }
+
+    @media print {
+      .no-print {
+        display: none !important;
+      }
+
+      body {
+        background: #ffffff !important;
+        padding: 0;
+      }
+
+      .page {
+        box-shadow: none !important;
+        page-break-after: always;
+        break-after: page;
+      }
+    }
+
+    /* ========================================================= */
+    /* A4 PAGE CONTAINER (210 x 297 mm)                          */
+    /* ========================================================= */
+    .page {
+      width: 210mm;
+      height: 297mm;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* ========================================================= */
+    /* A5 GUTTER-FOLD UNIT (195 x 276 mm auf A4)                 */
+    /* Gefaltetes Endformat: 195 x 138 mm (Querformat)           */
+    /* Symmetrisch: Links/Rechts = 7.5mm, Oben/Unten = 10.5mm     */
+    /* Falzkante: Y = 148.5mm (exakte Bogenmitte)                */
+    /* ========================================================= */
+    .boss-unit {
+      position: absolute;
+      left: 7.5mm;
+      width: 195mm;
+      height: 276mm;
+      top: 10.5mm;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .boss-face {
+      width: 195mm;
+      height: 138mm;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* ========================================================= */
+    /* 1. VORDERSEITE (FRONT FACE - DAS TAKTISCHE TABLEAU)       */
+    /* ========================================================= */
+    .front-face {
+      background: radial-gradient(circle at 40% 30%, #fdf9f0 0%, #f4ead5 60%, #e0ceaa 100%);
+      padding: 3.5mm 5.0mm 3.0mm 5.0mm;
+      display: flex;
+      gap: 5.0mm;
+    }
+
+    /* Zierrahmen */
+    .card-border-frame {
+      position: absolute;
+      top: 1.5mm;
+      bottom: 1.5mm;
+      left: 1.5mm;
+      right: 1.5mm;
+      border: 0.55mm solid #2c2016;
+      border-radius: 2.0mm;
+      pointer-events: none;
+    }
+
+    .card-border-inner {
+      position: absolute;
+      top: 2.2mm;
+      bottom: 2.2mm;
+      left: 2.2mm;
+      right: 2.2mm;
+      border: 0.28mm solid #9e782f;
+      border-radius: 1.5mm;
+      pointer-events: none;
+      opacity: 0.85;
+    }
+
+    /* Linke Spalte (Artwork & Lore): 74mm */
+    .col-left {
+      width: 74mm;
+      display: flex;
+      flex-direction: column;
+      gap: 2.2mm;
+      z-index: 2;
+    }
+
+    .boss-art-container {
+      width: 74mm;
+      height: 94mm;
+      position: relative;
+      border-radius: 1.6mm;
+      overflow: hidden;
+      border: 0.5mm solid #3b2c1d;
+      background: #17110b;
+      box-shadow: 0 1mm 3mm rgba(0, 0, 0, 0.3);
+      flex-shrink: 0;
+    }
+
+    .boss-art {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+      display: block;
+    }
+
+    .boss-art.art-grabunhold {
+      object-position: center bottom;
+    }
+
+    .boss-art.art-todesritter {
+      object-position: center bottom;
+    }
+
+    .art-vignette {
+      position: absolute;
+      inset: 0;
+      box-shadow: inset 0 0 6mm rgba(0, 0, 0, 0.65);
+      pointer-events: none;
+      border: 0.25mm solid rgba(229, 193, 125, 0.4);
+    }
+
+    .boss-lore-box {
+      flex: 1;
+      background: rgba(246, 237, 220, 0.88);
+      border-left: 0.8mm solid #8c6a3a;
+      border-right: 0.8mm solid #8c6a3a;
+      border-top: 0.25mm solid rgba(140, 106, 58, 0.35);
+      border-bottom: 0.25mm solid rgba(140, 106, 58, 0.35);
+      border-radius: 0.8mm;
+      padding: 1.6mm 2.4mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      box-shadow: 0 0.4mm 1.5mm rgba(0, 0, 0, 0.06);
+    }
+
+    .boss-lore-text {
+      font-family: 'Alegreya', serif;
+      font-size: 7.3pt;
+      font-style: italic;
+      color: #453424;
+      line-height: 1.25;
+      margin: 0;
+    }
+
+    /* Rechte Spalte (Stats, Health-Track & Regeln): 106mm */
+    .col-right {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      z-index: 2;
+    }
+
+    /* Header */
+    .boss-header {
+      border-bottom: 0.35mm solid rgba(140, 29, 24, 0.3);
+      padding-bottom: 1.0mm;
+      margin-bottom: 1.2mm;
+    }
+
+    .boss-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.4mm;
+    }
+
+    .boss-stars {
+      color: #b33927;
+      letter-spacing: 0.6mm;
+      font-size: 10pt;
+    }
+
+    .boss-badges {
+      display: flex;
+      gap: 1.5mm;
+    }
+
+    .boss-pill {
+      font-family: 'Cinzel', serif;
+      font-size: 7.6pt;
+      font-weight: 700;
+      color: #3b2816;
+      background: linear-gradient(180deg, #fcefd6 0%, #ecd3a3 100%);
+      padding: 0.4mm 2.0mm;
+      border-radius: 1.0mm;
+      border: 0.25mm solid #9e782f;
+    }
+
+    .boss-pill.danger {
+      background: linear-gradient(180deg, #fee8e6 0%, #f6c0bc 100%);
+      color: #8c1d18;
+      border-color: #8c1d18;
+    }
+
+    .boss-title {
+      font-family: 'Cinzel', serif;
+      font-size: 16pt;
+      font-weight: 900;
+      color: #1a140e;
+      letter-spacing: 0.3mm;
+      margin: 0.2mm 0 0 0;
+      text-transform: uppercase;
+      line-height: 1.05;
+    }
+
+    .boss-subtitle {
+      font-family: 'Alegreya', serif;
+      font-size: 8.5pt;
+      font-style: italic;
+      color: #5c4736;
+      margin: 0;
+      line-height: 1.1;
+    }
+
+    /* Health Wound-Track (Interaktive Abstreichleiste) */
+    .health-track-container {
+      background: #fbf5ea;
+      border: 0.35mm solid #6e543c;
+      border-radius: 1.2mm;
+      padding: 1.2mm 2.0mm;
+      margin-bottom: 1.5mm;
+    }
+
+    .track-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 6.5pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15mm;
+      color: #6e1c17;
+      margin-bottom: 0.8mm;
+    }
+
+    .wound-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.0mm;
+    }
+
+    .wound-box {
+      width: 5.0mm;
+      height: 5.0mm;
+      border: 0.3mm solid #4a3828;
+      background: #ffffff;
+      border-radius: 0.8mm;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cinzel', serif;
+      font-size: 6.0pt;
+      font-weight: bold;
+      color: #4a3828;
+    }
+
+    .wound-box.enrage-zone {
+      border-color: #8c1d18;
+      background: #fff0f0;
+      color: #8c1d18;
+    }
+
+    /* Stat Ribbon */
+    .boss-stat-ribbon {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.2mm;
+      margin-bottom: 1.5mm;
+    }
+
+    .boss-stat-chip {
+      background: linear-gradient(180deg, #ffffff 0%, #f4ece1 100%);
+      border: 0.35mm solid #4a3828;
+      border-radius: 1.0mm;
+      padding: 0.5mm 0.3mm;
+      text-align: center;
+    }
+
+    .boss-stat-chip.highlight-red {
+      border-color: #8c1d18;
+      background: linear-gradient(180deg, #fff7f7 0%, #f7dede 100%);
+    }
+
+    .boss-stat-label {
+      display: block;
+      font-size: 6.0pt;
+      font-weight: 700;
+      color: #5c4736;
+      text-transform: uppercase;
+      letter-spacing: 0.1mm;
+      margin-bottom: 0.2mm;
+    }
+
+    .boss-stat-chip.highlight-red .boss-stat-label {
+      color: #8c1d18;
+    }
+
+    .boss-stat-value {
+      font-family: 'Cinzel', serif;
+      font-size: 11pt;
+      font-weight: 900;
+      color: #1a140e;
+      line-height: 1;
+    }
+
+    .boss-stat-chip.highlight-red .boss-stat-value {
+      color: #8c1d18;
+    }
+
+    /* Taktische Box (Sonderregeln & Phasen) */
+    .boss-rules-box {
+      flex: 1;
+      background: #fffdfa;
+      border: 0.35mm solid #4a3828;
+      border-radius: 1.2mm;
+      padding: 1.2mm 2.0mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .boss-section-title {
+      font-family: 'Cinzel', serif;
+      font-size: 7.2pt;
+      font-weight: 700;
+      color: #8c1d18;
+      letter-spacing: 0.2mm;
+      text-transform: uppercase;
+      border-bottom: 0.25mm solid rgba(140, 29, 24, 0.25);
+      padding-bottom: 0.2mm;
+      margin-bottom: 0.6mm;
+    }
+
+    .boss-rule-text {
+      font-size: 7.2pt;
+      line-height: 1.25;
+      color: #1a140e;
+      margin-bottom: 0.8mm;
+    }
+
+    .boss-rule-tag {
+      font-weight: 700;
+      color: #701612;
+    }
+
+    /* Footer */
+    .boss-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1.0mm;
+      font-size: 6.2pt;
+      font-weight: 700;
+      color: #5c4736;
+      text-transform: uppercase;
+      letter-spacing: 0.1mm;
+    }
+
+    /* ========================================================= */
+    /* 2. RÜCKSEITE (BACK FACE - DIE AKTIONSTABELLE & SETUP)      */
+    /* ========================================================= */
+    /* Buch-Wendung (Book-Turn): Um 180 Grad gedreht, sodass beim */
+    /* Zusammenfalten an der Unterkante beide Seiten aufrecht sind */
+    .back-face {
+      background: radial-gradient(circle at 50% 50%, #fbf5e8 0%, #f0e1c6 70%, #d8c29b 100%);
+      padding: 3.5mm 5.0mm 3.0mm 5.0mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transform: rotate(180deg);
+    }
+
+    .back-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 0.4mm solid #5c4736;
+      padding-bottom: 0.8mm;
+      margin-bottom: 1.2mm;
+      z-index: 2;
+    }
+
+    .back-title {
+      font-family: 'Cinzel', serif;
+      font-size: 13.5pt;
+      font-weight: 900;
+      color: #1a140e;
+      letter-spacing: 0.25mm;
+      margin: 0;
+      text-transform: uppercase;
+    }
+
+    .back-subtitle {
+      font-family: 'Alegreya', serif;
+      font-size: 8.5pt;
+      font-style: italic;
+      color: #735414;
+      margin: 0;
+    }
+
+    /* Action Table (D6-Matrix) */
+    .action-table-container {
+      background: #ffffff;
+      border: 0.4mm solid #4a3828;
+      border-radius: 1.4mm;
+      overflow: hidden;
+      margin-bottom: 1.5mm;
+      z-index: 2;
+    }
+
+    .action-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 7.2pt;
+    }
+
+    .action-table th {
+      background: #2b1f15;
+      color: #f7e6ca;
+      font-family: 'Cinzel', serif;
+      font-size: 6.8pt;
+      font-weight: 700;
+      letter-spacing: 0.2mm;
+      padding: 0.8mm 1.6mm;
+      text-align: left;
+    }
+
+    .action-table td {
+      padding: 1.0mm 1.6mm;
+      border-bottom: 0.2mm solid #e5d8c3;
+      vertical-align: top;
+      line-height: 1.25;
+    }
+
+    .action-table tr:nth-child(even) td {
+      background: #faf6ef;
+    }
+
+    .action-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .die-roll-pill {
+      font-family: 'Cinzel', serif;
+      font-weight: 900;
+      font-size: 7.5pt;
+      background: #8c1d18;
+      color: #ffffff;
+      padding: 0.2mm 1.4mm;
+      border-radius: 0.8mm;
+      display: inline-block;
+      text-align: center;
+      min-width: 6.5mm;
+    }
+
+    /* 2 Spalten für Unterbereich (Lair Hazards & Belohnung) */
+    .back-bottom-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5mm;
+      z-index: 2;
+    }
+
+    .back-card-panel {
+      background: rgba(255, 255, 255, 0.7);
+      border: 0.35mm solid #6b533d;
+      border-radius: 1.2mm;
+      padding: 1.2mm 2.0mm;
+    }
+
+    .panel-header {
+      font-family: 'Cinzel', serif;
+      font-size: 6.8pt;
+      font-weight: 700;
+      color: #8c1d18;
+      letter-spacing: 0.2mm;
+      text-transform: uppercase;
+      border-bottom: 0.2mm solid rgba(140, 29, 24, 0.25);
+      padding-bottom: 0.2mm;
+      margin-bottom: 0.6mm;
+    }
+
+    .panel-content {
+      font-size: 6.9pt;
+      line-height: 1.25;
+      color: #1a140e;
+    }
+
+    /* ========================================================= */
+    /* CROP & FOLD MARKINGS (DURCHGEHENDE LINEAL-ANLEGEKANTEN)   */
+    /* ========================================================= */
+    .crop-svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 210mm;
+      height: 297mm;
+      pointer-events: none;
+    }
+
+    .mark-cut {
+      stroke: #111111;
+      stroke-width: 0.25;
+      stroke-linecap: square;
+    }
+
+    .mark-fold {
+      stroke: #992222;
+      stroke-width: 0.3;
+      stroke-dasharray: 2, 1.5;
+    }
+
+    .mark-txt {
+      font-family: 'Cinzel', serif;
+      font-size: 2.4px;
+      fill: #992222;
+      font-weight: bold;
+    }
+
+    .mark-sub {
+      font-family: 'Alegreya Sans', sans-serif;
+      font-size: 2.0px;
+      fill: #666666;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Bildschirm-Toolbar (Wird im Druck ausgeblendet) -->
+  <div class="toolbar no-print">
+    <span>👑 <strong>Boss-Tableaus</strong> (A5-Querformat Gutter-Fold)</span>
+    <div class="page-nav">
+      <a href="#boss1" class="nav-link">Grabunhold (#01)</a>
+      <a href="#boss2" class="nav-link">Blutgolem (#02)</a>
+      <a href="#boss3" class="nav-link">Todesritter (#03)</a>
+      <a href="#boss4" class="nav-link">Malakor (#04)</a>
+    </div>
+    <button class="print-btn" onclick="window.print()">🖨️ Alle 4 Boss-Bögen drucken</button>
+  </div>
+
+
+  <!-- ========================================================================= -->
+  <!-- BÖGEN 1: GRABUNHOLD / GRUFTWÄCHTER (Szenario 1 Boss)                      -->
+  <!-- ========================================================================= -->
+  <div class="page" id="boss1">
+    <svg class="crop-svg" viewBox="0 0 210 297" width="210mm" height="297mm">
+      <!-- OBERE ANLEGEKANTEN (Y = 0.5 bis 9.5mm) -->
+      <line x1="7.5" y1="0.5" x2="7.5" y2="9.5" class="mark-cut" />
+      <text x="7.5" y="3.5" text-anchor="middle" class="mark-sub">✂</text>
+      <line x1="105" y1="0.5" x2="105" y2="9.5" stroke="#9e782f" stroke-width="0.2" stroke-dasharray="1,1" />
+      <line x1="202.5" y1="0.5" x2="202.5" y2="9.5" class="mark-cut" />
+      <text x="202.5" y="3.5" text-anchor="middle" class="mark-sub">✂</text>
+
+      <!-- HORIZONTALE SCHNITTMARKEN LINKS & RECHTS -->
+      <line x1="0.5" y1="10.5" x2="6.5" y2="10.5" class="mark-cut" />
+      <line x1="203.5" y1="10.5" x2="209.5" y2="10.5" class="mark-cut" />
+
+      <!-- ZENTRALE FALZLINIE (Y = 148.5mm — Exakte Bogenmitte) -->
+      <line x1="0.5" y1="148.5" x2="6.5" y2="148.5" class="mark-fold" />
+      <line x1="203.5" y1="148.5" x2="209.5" y2="148.5" class="mark-fold" />
+      <text x="105" y="146.5" text-anchor="middle" class="mark-txt">▼ FALZLINIE (GUTTER-FOLD) — HIER LINEAL ANLEGEN ZUM RILLEN ▼</text>
+      <line x1="7.5" y1="148.5" x2="202.5" y2="148.5" stroke="#777777" stroke-width="0.18" stroke-dasharray="3, 2" opacity="0.75" />
+
+      <line x1="0.5" y1="286.5" x2="6.5" y2="286.5" class="mark-cut" />
+      <line x1="203.5" y1="286.5" x2="209.5" y2="286.5" class="mark-cut" />
+
+      <!-- UNTERE ANLEGEKANTEN (Y = 287.5 bis 296.5mm) -->
+      <line x1="7.5" y1="287.5" x2="7.5" y2="296.5" class="mark-cut" />
+      <text x="7.5" y="295.0" text-anchor="middle" class="mark-sub">✂</text>
+      <line x1="202.5" y1="287.5" x2="202.5" y2="296.5" class="mark-cut" />
+      <text x="202.5" y="295.0" text-anchor="middle" class="mark-sub">✂</text>
+    </svg>
+
+    <div class="boss-unit">
+      <!-- 1. VORDERSEITE (OBEN) -->
+      <div class="boss-face front-face">
+        <div class="card-border-frame"></div>
+        <div class="card-border-inner"></div>
+
+        <!-- Linke Spalte: Artwork & Lore -->
+        <div class="col-left">
+          <div class="boss-art-container">
+            <img class="boss-art art-grabunhold"
+              src="art_assets/MasterArtwork/Monsters/Color/Full_body_shot_of_a_colossal_undead_zombie_giant_brute_in_an__01306d8c-e182-4de3-90f1-bc9926b19357_1.png"
+              alt="Grabunhold Artwork">
+            <div class="art-vignette"></div>
+          </div>
+          <div class="boss-lore-box">
+            <p class="boss-lore-text">
+              »Ein uralter Koloss aus verfluchtem Erz und Moder. Seit Jahrhunderten bewacht er unerbittlich die Gräber von Dun-Karr. Sein gewaltiger Streitkolben zerschmettert Knochen und Schilde gleichermaßen zu Staub, während er jeden Eindringling ohne Rast in die Finsternis treibt.«
+            </p>
+          </div>
+        </div>
+
+        <!-- Rechte Spalte: Stats, Wound-Track & Regeln -->
+        <div class="col-right">
+          <div class="boss-header">
+            <div class="boss-top-row">
+              <span class="boss-stars">★★★</span>
+              <div class="boss-badges">
+                <span class="boss-pill danger">BOSS</span>
+                <span class="boss-pill">INIT: 6</span>
+              </div>
+            </div>
+            <h1 class="boss-title">Grabunhold</h1>
+            <p class="boss-subtitle">◈ Gruftwächter von Dun-Karr · Altertümlicher Untoter Koloss</p>
+          </div>
+
+          <!-- Health Wound-Track (14 LP) -->
+          <div class="health-track-container">
+            <div class="track-header">
+              <span>❤️ Lebenspunkte-Leiste (14 LP)</span>
+              <span style="color:#8c1d18; font-weight:bold;">⚔️ Blutig &amp; Zornig ab &le; 7 LP</span>
+            </div>
+            <div class="wound-grid">
+              <div class="wound-box">1</div><div class="wound-box">2</div><div class="wound-box">3</div><div class="wound-box">4</div><div class="wound-box">5</div><div class="wound-box">6</div><div class="wound-box">7</div>
+              <div class="wound-box enrage-zone">8</div><div class="wound-box enrage-zone">9</div><div class="wound-box enrage-zone">10</div><div class="wound-box enrage-zone">11</div><div class="wound-box enrage-zone">12</div><div class="wound-box enrage-zone">13</div><div class="wound-box enrage-zone">14</div>
+            </div>
+          </div>
+
+          <!-- Stat Ribbon -->
+          <div class="boss-stat-ribbon">
+            <div class="boss-stat-chip highlight-red">
+              <span class="boss-stat-label">❤️ Leben</span>
+              <span class="boss-stat-value">14</span>
+            </div>
+            <div class="boss-stat-chip">
+              <span class="boss-stat-label">🛡️ VT / Rüst.</span>
+              <span class="boss-stat-value">7 <span style="font-size:7pt; font-weight:bold;">(-1)</span></span>
+            </div>
+            <div class="boss-stat-chip">
+              <span class="boss-stat-label">👟 Bew.</span>
+              <span class="boss-stat-value">2</span>
+            </div>
+            <div class="boss-stat-chip">
+              <span class="boss-stat-label">⚔️ Streitkolben</span>
+              <span class="boss-stat-value">+3 <span style="font-size:7.5pt; font-weight:bold;">(3D)</span></span>
+            </div>
+          </div>
+
+          <!-- Regeln & Taktik -->
+          <div class="boss-rules-box">
+            <div>
+              <div class="boss-section-title">📜 Passive Fertigkeiten &amp; Resistenzen</div>
+              <div class="boss-rule-text">
+                <span class="boss-rule-tag">Zäh wie Granit:</span> Kann nicht betäubt, verlangsamt oder weggestoßen werden. Jeder erlittene Schaden wird um 1 reduziert (Rüstung).
+              </div>
+              <div class="boss-rule-text">
+                <span class="boss-rule-tag">Rundumschwung:</span> Stehen &ge; 2 Helden angrenzend, schlägt er im Kreis: Trifft <em>alle angrenzenden Figuren</em> mit 2 Schaden!
+              </div>
+            </div>
+
+            <div class="boss-footer">
+              <span>💀 Bestiarium Imperialis · Boss-Tableau #01</span>
+              <span>Szenario 1: Die verfluchte Krypta</span>
+              <span style="color:#735414;">💰 5 Gold + 1 Ausrüstungszug</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. RÜCKSEITE (UNTEN - DIE AKTIONSTABELLE) -->
+      <div class="boss-face back-face">
+        <div class="card-border-frame"></div>
+        <div class="card-border-inner"></div>
+
+        <div class="back-header">
+          <div>
+            <h2 class="back-title">Grabunhold — Solo / Koop Aktions-Matrix</h2>
+            <p class="back-subtitle">◈ Automatisches Verhalten, Raumgefahren &amp; Phasenwechsel</p>
+          </div>
+          <span class="die-roll-pill" style="font-size:8pt; padding:0.4mm 2.2mm;">🎲 1D6 WÜRFELN</span>
+        </div>
+
+        <!-- D6 Aktionstabelle -->
+        <div class="action-table-container">
+          <table class="action-table">
+            <thead>
+              <tr>
+                <th style="width: 14mm; text-align: center;">Wurf</th>
+                <th style="width: 42mm;">Taktische Aktion</th>
+                <th>Ausführung &amp; Kampfeffekt</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="text-align: center;"><span class="die-roll-pill">1 – 2</span></td>
+                <td><strong>Rundumschlag / Keulenwirbel</strong></td>
+                <td>Stehen &ge; 2 Helden angrenzend $\rightarrow$ Führt <em>Rundumschwung</em> (2 Schaden auf alle) aus. Andernfalls stürmt er 2 Felder auf den Helden mit der <strong>höchsten Rüstung</strong> zu.</td>
+              </tr>
+              <tr>
+                <td style="text-align: center;"><span class="die-roll-pill">3 – 4</span></td>
+                <td><strong>Zertrümmernder Hieb</strong></td>
+                <td>Führt gezielten Schlag gegen sein Primärziel aus: <strong>1d6 + 3</strong> gegen VT (<strong>3 Schaden</strong>, abzüglich Rüstung). Bei Treffer erleidet das Ziel zusätzlich <strong>1 Erschöpfung</strong>.</td>
+              </tr>
+              <tr>
+                <td style="text-align: center;"><span class="die-roll-pill">5 – 6</span></td>
+                <td><strong>Erderschütternder Stampfer</strong></td>
+                <td>Schlägt die schwere Keule auf das Pflaster: Alle Helden im Raum müssen <strong>GES vs SG 6</strong> bestehen oder werden <strong>zu Boden geworfen (Liegend)</strong>.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Lair Hazard & Phasenwechsel -->
+        <div class="back-bottom-grid">
+          <div class="back-card-panel">
+            <div class="panel-header">⚡ Phasen-Eskalation (Zorn ab &le; 7 LP)</div>
+            <div class="panel-content">
+              Fällt der Grabunhold auf 7 oder weniger LP, zerbersten Teile seiner verfluchten Rüstung: Er erhält permanent <strong>+1 Bewegung (jetzt 3 Felder)</strong>. Jeder gewürfelte Volltreffer (natürliche 6) verursacht beim Helden <em>Rüstungsbruch</em> (-1 VT bis Rast).
+            </div>
+          </div>
+          <div class="back-card-panel">
+            <div class="panel-header">🏛️ Raumgefahr &amp; Siegbelohnung</div>
+            <div class="panel-content">
+              <strong>Deckensturz (Raum 4):</strong> Bei ungeraden Runden fallen Trümmer von der Decke (Helden auf markierten Feldern erleiden 1 Schaden).<br>
+              <strong>Sieg:</strong> 5 Gold in die Gruppenkasse, 1 freier Ausrüstungszug &amp; Szenario 2 freigeschaltet!
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ========================================================================= -->
+  <!-- BÖGEN 2: DER BLUTGOLEM (Szenario 4 Belagerungs-Monster)                    -->
+  <!-- ========================================================================= -->
+  <div class="page" id="boss2">
+    <svg class="crop-svg" viewBox="0 0 210 297" width="210mm" height="297mm">
+      <line x1="7.5" y1="0.5" x2="7.5" y2="9.5" class="mark-cut" />
+      <text x="7.5" y="3.5" text-anchor="middle" class="mark-sub">✂</text>
+      <line x1="202.5" y1="0.5" x2="202.5" y2="9.5" class="mark-cut" />
+      <text x="202.5" y="3.5" text-anchor="middle" class="mark-sub">✂</text>
+      <line x1="0.5" y1="10.5" x2="6.5" y2="10.5" class="mark-cut" />
+      <line x1="203.5" y1="10.5" x2="209.5" y2="10.5" class="mark-cut" />
+      <line x1="0.5" y1="148.5" x2="6.5" y2="148.5" class="mark-fold" />
+      <line x1="203.5" y1="148.5" x2="209.5" y2="148.5" class="mark-fold" />
+      <text x="105" y="146.5" text-anchor="middle" class="mark-txt">▼ FALZLINIE (GUTTER-FOLD) — HIER LINEAL ANLEGEN ZUM RILLEN ▼</text>
+      <line x1="7.5" y1="148.5" x2="202.5" y2="148.5" stroke="#777777" stroke-width="0.18" stroke-dasharray="3, 2" opacity="0.75" />
+      <line x1="0.5" y1="286.5" x2="6.5" y2="286.5" class="mark-cut" />
+      <line x1="203.5" y1="286.5" x2="209.5" y2="286.5" class="mark-cut" />
+      <line x1="7.5" y1="287.5" x2="7.5" y2="296.5" class="mark-cut" />
+      <text x="7.5" y="295.0" text-anchor="middle" class="mark-sub">✂</text>
+      <line x1="202.5" y1="287.5" x2="202.5" y2="296.5" class="mark-cut" />
+      <text x="202.5" y="295.0" text-anchor="middle" class="mark-sub">✂</text>
+    </svg>
+
+    <div class="boss-unit">
+      <!-- 1. VORDERSEITE -->
+      <div class="boss-face front-face">
+        <div class="card-border-frame"></div>
+        <div class="card-border-inner"></div>
+
+        <div class="col-left">
+          <div class="boss-art-container">
+            <img class="boss-art"
+              src="art_assets/MasterArtwork/Monsters/Color/full_body_shot_of_a_colossal_brute_blood_golem_in_a_savage_lu_e231e4cc-e869-4bfc-a2fa-7a6d9c4294b4_3.png"
+              alt="Blutgolem Artwork">
+            <div class="art-vignette"></div>
+          </div>
+          <div class="boss-lore-box">
+            <p class="boss-lore-text">
+              »Eine gewaltige, pulsierende Monstrosität aus geronnenem Opferblut und splitterndem Knochenmark. Erschaffen durch verbotene Nekromantie, zermalmt er jede Barrikade und saugt seinen Opfern gierig die Lebenskraft aus den Leibern, um seine wogende Masse zu nähren.«
+            </p>
+          </div>
+        </div>
+
+        <div class="col-right">
+          <div class="boss-header">
+            <div class="boss-top-row">
+              <span class="boss-stars">★★★</span>
+              <div class="boss-badges">
+                <span class="boss-pill danger">GROSSES MONSTER</span>
+                <span class="boss-pill">INIT: 4</span>
+              </div>
+            </div>
+            <h1 class="boss-title">Der Blutgolem</h1>
+            <p class="boss-subtitle">◈ Fleischgewordene Belagerungswaffe · Szenario 4 Sub-Boss</p>
+          </div>
+
+          <!-- Health Wound-Track (10 LP) -->
+          <div class="health-track-container">
+            <div class="track-header">
+              <span>❤️ Lebenspunkte-Leiste (10 LP)</span>
+              <span style="color:#8c1d18; font-weight:bold;">💥 Todes-Explosion bei 0 LP!</span>
+            </div>
+            <div class="wound-grid">
+              <div class="wound-box">1</div><div class="wound-box">2</div><div class="wound-box">3</div><div class="wound-box">4</div><div class="wound-box">5</div>
+              <div class="wound-box enrage-zone">6</div><div class="wound-box enrage-zone">7</div><div class="wound-box enrage-zone">8</div><div class="wound-box enrage-zone">9</div><div class="wound-box enrage-zone">10</div>
+            </div>
+          </div>
+
+          <!-- Stat Ribbon -->
+          <div class="boss-stat-ribbon">
+            <div class="boss-stat-chip highlight-red">
+              <span class="boss-stat-label">❤️ Leben</span>
+              <span class="boss-stat-value">10</span>
+            </div>
+            <div class="boss-stat-chip">
+              <span class="boss-stat-label">🛡️ VT / Rüst.</span>
+              <span class="boss-stat-value">6 <span style="font-size:7pt; font-weight:bold;">(0)</span></span>
+            </div>
+            <div class="boss-stat-chip">
+              <span class="boss-stat-label">👟 Bew.</span>
+              <span class="boss-stat-value">3</span>
+            </div>
+            <div class="boss-stat-chip">
+              <span class="boss-stat-label">🩸 Blutfäuste</span>
+              <span class="boss-stat-value">+3 <span style="font-size:7.5pt; font-weight:bold;">(2D)</span></span>
+            </div>
+          </div>
+
+          <!-- Regeln & Taktik -->
+          <div class="boss-rules-box">
+            <div>
+              <div class="boss-section-title">📜 Passive Fertigkeiten &amp; Belagerungs-Macht</div>
+              <div class="boss-rule-text">
+                <span class="boss-rule-tag">Blutsauger:</span> Jeder Schaden, den der Blutgolem an Helden verursacht, <span style="color:#8c1d18; font-weight:bold;">heilt ihn zeitgleich</span> um genau diese Anzahl an LP!
+              </div>
+              <div class="boss-rule-text">
+                <span class="boss-rule-tag">Unaufhaltsame Masse:</span> Kann nicht betäubt, weggestoßen oder verlangsamt werden. Zerstört Holzbarrikaden mit einem einzigen Schritt automatisch!
+              </div>
+            </div>
+
+            <div class="boss-footer">
+              <span>💀 Bestiarium Imperialis · Boss-Tableau #02</span>
+              <span>Szenario 4: Die belagerte Felsen-Zitadelle</span>
+              <span style="color:#735414;">💰 4 Gold + Fallgitter-Zugang</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. RÜCKSEITE -->
+      <div class="boss-face back-face">
+        <div class="card-border-frame"></div>
+        <div class="card-border-inner"></div>
+
+        <div class="back-header">
+          <div>
+            <h2 class="back-title">Der Blutgolem — Solo / Koop Aktions-Matrix</h2>
+            <p class="back-subtitle">◈ Automatisches Verhalten, Blutsaugen &amp; Todes-Explosion</p>
+          </div>
+          <span class="die-roll-pill" style="font-size:8pt; padding:0.4mm 2.2mm;">🎲 1D6 WÜRFELN</span>
+        </div>
+
+        <!-- D6 Aktionstabelle -->
+        <div class="action-table-container">
+          <table class="action-table">
+            <thead>
+              <tr>
+                <th style="width: 14mm; text-align: center;">Wurf</th>
+                <th style="width: 42mm;">Taktische Aktion</th>
+                <th>Ausführung &amp; Kampfeffekt</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="text-align: center;"><span class="die-roll-pill">1 – 2</span></td>
+                <td><strong>Belagerungs-Drang</strong></td>
+                <td>Zieht auf kürzestem Weg auf die nächste verbleibende Holzbarrikade zu (bricht sie nieder) oder auf den Helden mit den <strong>meisten aktuellen LP</strong>.</td>
+              </tr>
+              <tr>
+                <td style="text-align: center;"><span class="die-roll-pill">3 – 4</span></td>
+                <td><strong>Blutsaugende Fäuste</strong></td>
+                <td>Schlägt mit gewaltigen Fleischfäusten zu: <strong>1d6 + 3</strong> gegen VT (<strong>2 Schaden &amp; heilt 2 LP</strong>). Ziel erhält Zustand <em>Blutend</em>.</td>
+              </tr>
+              <tr>
+                <td style="text-align: center;"><span class="die-roll-pill">5 – 6</span></td>
+                <td><strong>Berstende Adern (Fläche)</strong></td>
+                <td>Versprüht siedendes Blut im Umkreis von 2 Feldern: Alle Helden müssen <strong>ZÄH vs SG 6</strong> bestehen oder erleiden <strong>2 Schaden</strong>.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Lair Hazard & Phasenwechsel -->
+        <div class="back-bottom-grid">
+          <div class="back-card-panel">
+            <div class="panel-header">💥 Todes-Explosion (Bei 0 LP)</div>
+            <div class="panel-content">
+              Fällt der Blutgolem auf 0 LP, kollabiert seine fleischliche Hülle und explodiert: Alle Figuren auf <strong>angrenzenden Feldern</strong> erleiden sofort <strong>2 Schaden</strong> (ein erfolgreicher Wurf auf <em>GES vs SG 6</em> halbiert den Schaden auf 1).
+            </div>
+          </div>
+          <div class="back-card-panel">
+            <div class="panel-header">🏰 Missionsziel &amp; Belohnung</div>
+            <div class="panel-content">
+              <strong>Fallgitter am Pass:</strong> Nach dem Sieg über den Blutgolem kann ein Held an der Winde <code>[H]</code> das Fallgitter öffnen.<br>
+              <strong>Kopfgeld:</strong> 4 Gold in die Gruppenkasse &amp; Zutritt zum Thronsaal des Todesritters!
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ========================================================================= -->
+  <!-- BÖGEN 3: TODESRITTER VON MOR-GOTH (Szenario 4 Boss)                       -->
+  <!-- ========================================================================= -->
+  <div class="page" id="boss3">
+    <svg class="crop-svg" viewBox="0 0 210 297" width="210mm" height="297mm">
+      <line x1="7.5" y1="0.5" x2="7.5" y2="9.5" class="mark-cut" />
+      <text x="7.5" y="3.5" text-anchor="middle" class="mark-sub">✂</text>
+      <line x1="202.5" y1="0.5" x2="202.5" y2="9.5" class="mark-cut" />
+      <text x="202.5" y="3.5" text-anchor="middle" class="mark-sub">✂</text>
+      <line x1="0.5" y1="10.5" x2="6.5" y2="10.5" class="mark-cut" />
+      <line x1="203.5" y1="10.5" x2="209.5" y2="10.5" class="mark-cut" />
+      <line x1="0.5" y1="148.5" x2="6.5" y2="148.5" class="mark-fold" />
+      <line x1="203.5" y1="148.5" x2="209.5" y2="148.5" class="mark-fold" />
+      <text x="105" y="146.5" text-anchor="middle" class="mark-txt">▼ FALZLINIE (GUTTER-FOLD) — HIER LINEAL ANLEGEN ZUM RILLEN ▼</text>
+      <line x1="7.5" y1="148.5" x2="202.5" y2="148.5" stroke="#777777" stroke-width="0.18" stroke-dasharray="3, 2" opacity="0.75" />
+      <line x1="0.5" y1="286.5" x2="6.5" y2="286.5" class="mark-cut" />
+      <line x1="203.5" y1="286.5" x2="209.5" y2="286.5" class="mark-cut" />
+      <line x1="7.5" y1="287.5" x2="7.5" y2="296.5" class="mark-cut" />
+      <text x="7.5" y="295.0" text-anchor="middle" class="mark-sub">✂</text>
+      <line x1="202.5" y1="287.5" x2="202.5" y2="296.5" class="mark-cut" />
+      <text x="202.5" y="295.0" text-anchor="middle" class="mark-sub">✂</text>
+    </svg>
+
+    <div class="boss-unit">
+      <!-- 1. VORDERSEITE -->
+      <div class="boss-face front-face">
+        <div class="card-border-frame"></div>
+        <div class="card-border-inner"></div>
+
+        <div class="col-left">
+          <div class="boss-art-container">
+            <img class="boss-art art-todesritter"
+              src="art_assets/MasterArtwork/Monsters/Color/full_body_shot_of_an_ancient_undead_wight_champion_knight_in__130085ff-01fa-43bb-bd9a-02c87ee00339_3.png"
+              alt="Todesritter Artwork">
+            <div class="art-vignette"></div>
+          </div>
+          <div class="boss-lore-box">
+            <p class="boss-lore-text">
+              »Einst der gefürchtetste Kriegsherr der Gründerzeit, auferstanden zu ewigem, kaltem Hass unter verfluchten Bannern. Seine uralte Runenklinge schneidet durch Fleisch und Geist, während er gnadenlos das Vermächtnis der Verdammten über das Schlachtfeld trägt.«
+            </p>
+          </div>
+        </div>
+
+        <div class="col-right">
+          <div class="boss-header">
+            <div class="boss-top-row">
+              <span class="boss-stars">★★★</span>
+              <div class="boss-badges">
+                <span class="boss-pill danger">BOSS</span>
+                <span class="boss-pill">INIT: 6</span>
+              </div>
+            </div>
+            <h1 class="boss-title">Todesritter</h1>
+            <p class="boss-subtitle">◈ Kriegsfürst von Mor-Goth · Gepanzerte Untote Elite</p>
+          </div>
+
+          <!-- Health Wound-Track (8 LP) -->
+          <div class="health-track-container">
+            <div class="track-header">
+              <span>❤️ Lebenspunkte-Leiste (8 LP)</span>
+              <span style="color:#8c1d18; font-weight:bold;">⚔️ Runenmacht entfesselt ab &le; 4 LP</span>
+            </div>
+            <div class="wound-grid">
+              <div class="wound-box">1</div><div class="wound-box">2</div><div class="wound-box">3</div><div class="wound-box">4</div>
+              <div class="wound-box enrage-zone">5</div><div class="wound-box enrage-zone">6</div><div class="wound-box enrage-zone">7</div><div class="wound-box enrage-zone">8</div>
+            </div>
+          </div>
+
+          <!-- Stat Ribbon -->
+          <div class="boss-stat-ribbon">
+            <div class="boss-stat-chip highlight-red">
+              <span class="boss-stat-label">❤️ Leben</span>
+              <span class="boss-stat-value">8</span>
+            </div>
+            <div class="boss-stat-chip">
+              <span class="boss-stat-label">🛡️ VT / Rüst.</span>
+              <span class="boss-stat-value">7 <span style="font-size:7pt; font-weight:bold;">(-1)</span></span>
+            </div>
+            <div class="boss-stat-chip">
+              <span class="boss-stat-label">👟 Bew.</span>
+              <span class="boss-stat-value">3</span>
+            </div>
+            <div class="boss-stat-chip">
+              <span class="boss-stat-label">⚔️ Runenklinge</span>
+              <span class="boss-stat-value">+3 <span style="font-size:7.5pt; font-weight:bold;">(2D)</span></span>
+            </div>
+          </div>
+
+          <!-- Regeln & Taktik -->
+          <div class="boss-rules-box">
+            <div>
+              <div class="boss-section-title">📜 Grabeskälte &amp; Taktische Paraden</div>
+              <div class="boss-rule-text">
+                <span class="boss-rule-tag">Grabeskälte:</span> Angrenzende Helden verlieren <span style="font-weight:600;">1 Bewegung</span> auf all ihren Zügen.
+              </div>
+              <div class="boss-rule-text">
+                <span class="boss-rule-tag">Schildblock:</span> 1× pro Runde pariert er den ersten erlittenen Nahkampftreffer (<span style="color:#8c1d18; font-weight:bold;">-1 Schaden</span> zusätzlich zur Rüstung).
+              </div>
+            </div>
+
+            <div class="boss-footer">
+              <span>💀 Bestiarium Imperialis · Boss-Tableau #03</span>
+              <span>Szenario 4: Thronsaal des Bergfrieds</span>
+              <span style="color:#735414;">💰 3 Gold + 1 Meisterwaffe</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. RÜCKSEITE -->
+      <div class="boss-face back-face">
+        <div class="card-border-frame"></div>
+        <div class="card-border-inner"></div>
+
+        <div class="back-header">
+          <div>
+            <h2 class="back-title">Todesritter — Solo / Koop Aktions-Matrix</h2>
+            <p class="back-subtitle">◈ Duelltaktik, Totenruf &amp; Runenfluch</p>
+          </div>
+          <span class="die-roll-pill" style="font-size:8pt; padding:0.4mm 2.2mm;">🎲 1D6 WÜRFELN</span>
+        </div>
+
+        <div class="action-table-container">
+          <table class="action-table">
+            <thead>
+              <tr>
+                <th style="width: 14mm; text-align: center;">Wurf</th>
+                <th style="width: 42mm;">Taktische Aktion</th>
+                <th>Ausführung &amp; Kampfeffekt</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="text-align: center;"><span class="die-roll-pill">1 – 2</span></td>
+                <td><strong>Herausforderung des Fürsten</strong></td>
+                <td>Sucht gezielt den Nahkampf mit dem stärksten Krieger (Berserker / Kriegstänzerin). Nahkampfangriff mit <strong>1d6 + 3</strong> (2 Schaden).</td>
+              </tr>
+              <tr>
+                <td style="text-align: center;"><span class="die-roll-pill">3 – 4</span></td>
+                <td><strong>Runenschlag (Seelengeißel)</strong></td>
+                <td>Führt mächtigen Schlag aus: <strong>1d6 + 3</strong> gegen VT. Bei Treffer erleidet das Ziel <strong>2 Schaden + 1 Erschöpfung</strong>!</td>
+              </tr>
+              <tr>
+                <td style="text-align: center;"><span class="die-roll-pill">5 – 6</span></td>
+                <td><strong>Ruf der Grabeskrypta</strong></td>
+                <td>Erhebt seine Klinge: Ruft sofort <strong>1 Skelettkrieger</strong> an der nächsten Nische herbei! Stehen bereits 2 Skelette im Raum $\rightarrow$ Führt <em>Runenschlag</em> aus.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="back-bottom-grid">
+          <div class="back-card-panel">
+            <div class="panel-header">⚡ Runenfluch (Ab &le; 4 LP)</div>
+            <div class="panel-content">
+              Fällt der Todesritter unter 5 LP, entfesseln sich die verfluchten Runen seiner Klinge: Jeder seiner Treffer entzieht dem Ziel zusätzlich <strong>1 Mana oder 1 Erschöpfung</strong>.
+            </div>
+          </div>
+          <div class="back-card-panel">
+            <div class="panel-header">👑 Sieg &amp; Artefaktbeute</div>
+            <div class="panel-content">
+              <strong>Szenariosieg:</strong> Das Szenario ist gewonnen, wenn der Todesritter und alle Monster im Thronsaal vernichtet sind.<br>
+              <strong>Belohnung:</strong> 3 Gold + 1 Kaiserliche Meisterwaffe (Ziehe 2 Ausrüstungskarten, wähle 1)!
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ========================================================================= -->
+  <!-- BÖGEN 4: LICH-KÖNIG MALAKOR (Szenario 5 Kampagnen-Finale)                  -->
+  <!-- ========================================================================= -->
+  <div class="page" id="boss4">
+    <svg class="crop-svg" viewBox="0 0 210 297" width="210mm" height="297mm">
+      <line x1="7.5" y1="0.5" x2="7.5" y2="9.5" class="mark-cut" />
+      <text x="7.5" y="3.5" text-anchor="middle" class="mark-sub">✂</text>
+      <line x1="202.5" y1="0.5" x2="202.5" y2="9.5" class="mark-cut" />
+      <text x="202.5" y="3.5" text-anchor="middle" class="mark-sub">✂</text>
+      <line x1="0.5" y1="10.5" x2="6.5" y2="10.5" class="mark-cut" />
+      <line x1="203.5" y1="10.5" x2="209.5" y2="10.5" class="mark-cut" />
+      <line x1="0.5" y1="148.5" x2="6.5" y2="148.5" class="mark-fold" />
+      <line x1="203.5" y1="148.5" x2="209.5" y2="148.5" class="mark-fold" />
+      <text x="105" y="146.5" text-anchor="middle" class="mark-txt">▼ FALZLINIE (GUTTER-FOLD) — HIER LINEAL ANLEGEN ZUM RILLEN ▼</text>
+      <line x1="7.5" y1="148.5" x2="202.5" y2="148.5" stroke="#777777" stroke-width="0.18" stroke-dasharray="3, 2" opacity="0.75" />
+      <line x1="0.5" y1="286.5" x2="6.5" y2="286.5" class="mark-cut" />
+      <line x1="203.5" y1="286.5" x2="209.5" y2="286.5" class="mark-cut" />
+      <line x1="7.5" y1="287.5" x2="7.5" y2="296.5" class="mark-cut" />
+      <text x="7.5" y="295.0" text-anchor="middle" class="mark-sub">✂</text>
+      <line x1="202.5" y1="287.5" x2="202.5" y2="296.5" class="mark-cut" />
+      <text x="202.5" y="295.0" text-anchor="middle" class="mark-sub">✂</text>
+    </svg>
+
+    <div class="boss-unit">
+      <!-- 1. VORDERSEITE -->
+      <div class="boss-face front-face">
+        <div class="card-border-frame"></div>
+        <div class="card-border-inner"></div>
+
+        <div class="col-left">
+          <div class="boss-art-container">
+            <img class="boss-art"
+              src="art_assets/MasterArtwork/Monsters/Color/full_body_shot_of_the_ancient_lich_king_Malakor_in_a_dynamic__99f2d997-5a1c-42a6-8643-43a46921ef88_3.png"
+              alt="Lich-König Malakor Artwork">
+            <div class="art-vignette"></div>
+          </div>
+          <div class="boss-lore-box">
+            <p class="boss-lore-text">
+              »Der uralte Herrscher des Nördlichen Ödlands, Gebieter über den ewigen Frost und die Seelen der Gefallenen. Sein eisiger Blick lässt das Blut der Kühnsten gefrieren, während er aus den Schatten seines gefrorenen Thronsaals die Fäden des Verderbens webt.«
+            </p>
+          </div>
+        </div>
+
+        <div class="col-right">
+          <div class="boss-header">
+            <div class="boss-top-row">
+              <span class="boss-stars">★★★★</span>
+              <div class="boss-badges">
+                <span class="boss-pill danger">ENDGEGNER</span>
+                <span class="boss-pill">INIT: 7 &amp; 3</span>
+              </div>
+            </div>
+            <h1 class="boss-title">Lich-König Malakor</h1>
+            <p class="boss-subtitle">◈ Gebieter von Mor-Malakor · 2 Aktionen pro Runde (Init 7 &amp; Init 3)</p>
+          </div>
+
+          <!-- Health Wound-Track (18 LP) -->
+          <div class="health-track-container">
+            <div class="track-header">
+              <span>❤️ Lebenspunkte-Leiste (18 LP)</span>
+              <span style="color:#8c1d18; font-weight:bold;">❄️ Arktischer Wirbel bei &lt; 9 LP!</span>
+            </div>
+            <div class="wound-grid">
+              <div class="wound-box">1</div><div class="wound-box">2</div><div class="wound-box">3</div><div class="wound-box">4</div><div class="wound-box">5</div><div class="wound-box">6</div>
+              <div class="wound-box">7</div><div class="wound-box">8</div><div class="wound-box">9</div>
+              <div class="wound-box enrage-zone">10</div><div class="wound-box enrage-zone">11</div><div class="wound-box enrage-zone">12</div><div class="wound-box enrage-zone">13</div><div class="wound-box enrage-zone">14</div><div class="wound-box enrage-zone">15</div><div class="wound-box enrage-zone">16</div><div class="wound-box enrage-zone">17</div><div class="wound-box enrage-zone">18</div>
+            </div>
+          </div>
+
+          <!-- Stat Ribbon -->
+          <div class="boss-stat-ribbon">
+            <div class="boss-stat-chip highlight-red">
+              <span class="boss-stat-label">❤️ Leben</span>
+              <span class="boss-stat-value">18</span>
+            </div>
+            <div class="boss-stat-chip">
+              <span class="boss-stat-label">🛡️ VT / Rüst.</span>
+              <span class="boss-stat-value">8 <span style="font-size:7pt; font-weight:bold;">(-1)</span></span>
+            </div>
+            <div class="boss-stat-chip">
+              <span class="boss-stat-label">👟 Bew.</span>
+              <span class="boss-stat-value">3 <span style="font-size:6.5pt; font-weight:bold;">(Flug)</span></span>
+            </div>
+            <div class="boss-stat-chip">
+              <span class="boss-stat-label">❄️ Frost/Sense</span>
+              <span class="boss-stat-value">+4 <span style="font-size:7.5pt; font-weight:bold;">(3D)</span></span>
+            </div>
+          </div>
+
+          <!-- Regeln & Taktik -->
+          <div class="boss-rules-box">
+            <div>
+              <div class="boss-section-title">📜 Frosthauch-Aura &amp; Seelenkäfig</div>
+              <div class="boss-rule-text">
+                <span class="boss-rule-tag">Frosthauch-Aura:</span> Zu Rundenbeginn erleidet jeder Held im Raum <span style="color:#1d4b8c; font-weight:bold;">1 Frostschaden</span> (Deckung oder Feuerschale schützt).
+              </div>
+              <div class="boss-rule-text">
+                <span class="boss-rule-tag">Seelenkäfig:</span> Solange &ge; 1 Skelettkrieger direkt an Malakor angrenzt, kann ihm <strong>kein Nahkampfschaden</strong> zugefügt werden!
+              </div>
+            </div>
+
+            <div class="boss-footer">
+              <span>💀 Bestiarium Imperialis · Boss-Tableau #04</span>
+              <span>Szenario 5: Der Thron von Mor-Malakor</span>
+              <span style="color:#735414; font-weight:bold;">👑 KAMPAGNEN-SIEG!</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. RÜCKSEITE -->
+      <div class="boss-face back-face">
+        <div class="card-border-frame"></div>
+        <div class="card-border-inner"></div>
+
+        <div class="back-header">
+          <div>
+            <h2 class="back-title">Lich-König Malakor — Solo / Koop 2-Phasen-Matrix</h2>
+            <p class="back-subtitle">◈ 2 Aktionen pro Runde (Aktion 1: Init 7 | Aktion 2: Init 3)</p>
+          </div>
+          <span class="die-roll-pill" style="font-size:8pt; padding:0.4mm 2.2mm;">⚡ 2 AKTIONEN / RUNDE</span>
+        </div>
+
+        <div class="action-table-container">
+          <table class="action-table">
+            <thead>
+              <tr>
+                <th style="width: 18mm; text-align: center;">Aktivierung</th>
+                <th style="width: 44mm;">Boss-Aktion</th>
+                <th>Ausführung &amp; Taktischer Ablauf</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="text-align: center;"><span class="die-roll-pill" style="background:#1d4b8c;">AKTION 1 (INIT 7)</span></td>
+                <td><strong>Totenbeschwörung / Froststrahl</strong></td>
+                <td>Sind weniger als 2 Skelette im Thronsaal? $\rightarrow$ <strong>Totenbeschwörung (2 Skelette)</strong> aus dem Boden!<br>Andernfalls: <strong>Froststrahl des Todes</strong> (R4, 1d6 + 4 gegen VT, <strong>3 Schaden</strong>) auf den weitesten Helden.</td>
+              </tr>
+              <tr>
+                <td style="text-align: center;"><span class="die-roll-pill" style="background:#5c1815;">AKTION 2 (INIT 3)</span></td>
+                <td><strong>Seelenernter-Sense (Nahkampf)</strong></td>
+                <td>Zieht auf den Helden mit den <em>wenigsten verbleibenden LP</em> zu: <strong>1d6 + 3</strong> gegen VT (<strong>3 Schaden + 1 Erschöpfung</strong>). Bei Niederschlag heilt er sich um 3 LP.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="back-bottom-grid">
+          <div class="back-card-panel">
+            <div class="panel-header">❄️ Phasenwechsel: Arktischer Wirbelsturm (&lt; 9 LP)</div>
+            <div class="panel-content">
+              Fällt Malakor unter 9 LP, zerbersten die Spektral-Runen der Kuppel: Ein eisiger Mahlstrom <strong>löscht 1 aktive Feuerschale</strong>. Alle Helden müssen einen <strong>ZÄH-Wurf SG 6</strong> bestehen oder erleiden 2 Frostschaden! Malakor erhält fortan +1 Schaden auf all seine Angriffe.
+            </div>
+          </div>
+          <div class="back-card-panel">
+            <div class="panel-header">👑 Sieg über die Dunkelheit</div>
+            <div class="panel-content">
+              <strong>Triumph:</strong> Sinkt Malakor auf 0 LP, zerfällt sein Seelenkäfig zu arktischem Staub. Das Kaiserreich ist gerettet!<br>
+              <strong>Belohnung:</strong> 10 Gold pro Held, Epischer Kampagnen-Sieg &amp; Unsterblicher Ruhm in den Chroniken von Sylvanheim!
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
+

@@ -103,7 +103,7 @@ Im Spiel gibt es **5 fundamentale Zustände**. Um den Spieltisch im Wohnmobil ü
 
 ---
 
-## 4. Kombinierte Effekte & Stapelregeln
+## 4. Kombinierte Effekte & Sonderimmunitäten
 
 1. **Kein Mehrfach-Stapeln:** Ein Charakter kann nicht „doppelt brennend“ sein. Ein neuer Feuertreffer frischt lediglich die Dauer auf, verursacht aber nicht 2× Feuerschaden pro Runde.
 2. **Kombinationen erlaubt:** Eine Figur kann gleichzeitig *Vergiftet* und *Verlangsamt* sein.
@@ -111,6 +111,10 @@ Im Spiel gibt es **5 fundamentale Zustände**. Um den Spieltisch im Wohnmobil ü
    1. 🔥 Brennend (1 Schaden)
    2. ☠️ Vergiftet (1 Schaden)
    3. Handlungsfähigkeit prüfen (💫 Betäubt?)
+4. **Untote & Konstrukte (Sonderimmunitäten):**
+   * **Untote Gegner** (z. B. Skelettkrieger, Scharfschützen, Lich-König Malakor) und **Konstrukte** besitzen kein pulsierendes Blut und kein Schmerzempfinden im Fleisch. Sie sind **vollständig immun gegen den Zustand `Vergiftet`** sowie gegen periodischen Schaden durch **`Brennend`** (sofern auf der Monsterkarte nicht explizit eine Feuerschwäche vermerkt ist).
+5. **Entkommen-Würfe (Begriffsdefinition):**
+   * Als **„Entkommen-Wurf“** gilt jede Probe (z. B. KRA-Wurf zum Losreißen aus Netzen, GES-Wurf zum Entkommen aus Greifarmen, Fesseln oder Schlingfallen), um den Zustand `Verlangsamt` oder eine Bewegungsunfähigkeit zu beenden. Rüstungen mit dem Bonus *„+1 auf Entkommen-Würfe“* (wie das *Verstärkte Lederwams*) modifizieren diese Proben direkt.
 
 ---
 

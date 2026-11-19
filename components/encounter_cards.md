@@ -37,7 +37,7 @@ Jede Begegnungskarte enthält 4 klare Elemente:
 | **B06** | **Erwachen der Ahnen** | 3× Skelettkrieger `[V/H]` | 1× Offene Grube (Schwieriges Terrain) | Knochenknacken: Magierin kann mit `VER (SG 6)` 1 Skelett sofort zerschmettern. |
 | **B07** | **Die Gruft der Bogenschützen** | 1× Skelettkrieger `[V]`<br>2× Goblin-Bogenschützen `[H]` | 2× Säulen (Volle Deckung) | Fernkämpfer feuern aus der Deckung. |
 | **B08** | **Schändlicher Schrein** | 2× Skelettkrieger `[V]` | 1× Dunkelaltar | Solange der Schrein steht, regenerieren Skelette 1 LP am Rundenende (`VER SG 6` zum Entweihen). |
-| **B09** | **Grabkammer-Hinterhalt!** | 2× Skelettkrieger `[V]`<br>1× Ödland-Worg `[V]` | 1× Steinsarkophag (Elite-Beute) | **»Hinterhalt!«** Die Untoten brechen aus Wandnischen hervor! |
+| **B09** | **Grabkammer-Hinterhalt!** | 2× Skelettkrieger `[V]`<br>1× Ödland-Worg `[V]` | 1× Steinsarkophag (Wertvolle Beute) | **»Hinterhalt!«** Die Untoten brechen aus Wandnischen hervor! |
 
 ---
 
@@ -56,8 +56,8 @@ Jede Begegnungskarte enthält 4 klare Elemente:
 
 | # | Name | Monster-Aufstellung | Raum-Element | Besonderheit |
 |---|---|---|---|---|
-| **B14** | **Verlassene Schatzkammer** | *Keine Monster zu Beginn!* | 1× Schwere Eisentruhe (Elite-Beute)<br>1× Giftnadel-Falle | *Stille vor dem Sturm:* Beim Öffnen der Truhe muss 1 Ereigniskarte gezogen werden. |
-| **B15** | **Heilige Quelle / Alchemisten-Ruine** | 1× Skelettkrieger (Wächter) | 1× Leuchtendes Wasserbecken | Helden können trinken: Heilt 3 LP oder entfernt 2 Erschöpfung (einmalig). |
+| **B14** | **Verlassene Schatzkammer** | *Keine Monster zu Beginn!* | 1× Schwere Eisentruhe (Wertvolle Beute)<br>1× Giftnadel-Falle | *Stille vor dem Sturm:* Beim Öffnen der Truhe muss 1 Ereigniskarte gezogen werden. |
+| **B15** | **Heilige Quelle** | 1× Skelettkrieger (Wächter) | 1× Leuchtendes Wasserbecken | Helden können trinken: Heilt 3 LP oder entfernt 2 Erschöpfung (einmalig). |
 | **B16** | **Der Kerker der Gefangenen** | 2× Goblin-Späher `[V]` | 1× Gefängniszelle | Ein befreiter Händler schenkt der Gruppe 1 Ausrüstungskarte aus Dankbarkeit! |
 
 ---

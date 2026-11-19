@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400mm" height="150mm" viewBox="0 0 400 150" style="background:white">
+  <!-- Box net for Equipment Deck (54 cards) -->
+  <!-- Parameters -->
+  <!-- Card dimensions: 120 x 70 mm -->
+  <!-- Thickness: 26.3 mm -->
+  <!-- Flap width: 10 mm -->
+  <!-- Layout: [Flap][Left][Back][Right][Flap] horizontally, height 120 mm -->
+  <!-- Front panel is back side in layout -->
+  <g id="box-net" transform="translate(0,0)">
+    <!-- Left side (small side) -->
+    <rect x="10" y="0" width="26.3" height="120" fill="#c0c0c0" stroke="black"/>
+    <!-- Back panel (large side with card back) -->
+    <image x="36.3" y="0" width="70" height="120" href="./art_assets/MasterArtwork/Cards/Card%20Backs/Board_game_card_back_colord_woodcut_style_forbidden_midnight__21652bf5-8ecb-4a43-8d05-67df8e29d436_3.png"/>
+    <!-- Right side (small side) -->
+    <rect x="106.3" y="0" width="26.3" height="120" fill="#c0c0c0" stroke="black"/>
+    <!-- Front panel (large side, same card back) -->
+    <image x="132.6" y="0" width="70" height="120" href="./art_assets/MasterArtwork/Cards/Card%20Backs/Board_game_card_back_colord_woodcut_style_forbidden_midnight__21652bf5-8ecb-4a43-8d05-67df8e29d436_3.png"/>
+    <!-- Top flap -->
+    <rect x="202.6" y="0" width="10" height="120" fill="#e0e0e0" stroke="black"/>
+    <!-- Bottom flap -->
+    <rect x="212.6" y="0" width="10" height="120" fill="#e0e0e0" stroke="black"/>
+  </g>
+  <!-- Cut lines -->
+  <g stroke="red" stroke-dasharray="1 1" fill="none">
+    <rect x="10" y="0" width="26.3" height="120"/>
+    <rect x="36.3" y="0" width="70" height="120"/>
+    <rect x="106.3" y="0" width="26.3" height="120"/>
+    <rect x="132.6" y="0" width="70" height="120"/>
+    <rect x="202.6" y="0" width="10" height="120"/>
+    <rect x="212.6" y="0" width="10" height="120"/>
+  </g>
+  <text x="5" y="135" font-size="5" fill="black">Equipment Deck Box – cut, fold, glue. Large faces use deck card‑back artwork, small faces coloured grey.</text>
+</svg>

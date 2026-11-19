@@ -12,7 +12,20 @@ Print-and-play files and laser cutter design files.
 
 | File | Status | Contents |
 |---|---|---|
-| `production_specs.md` | ✅ Confirmed | Exact 3mm plywood standee heights (30mm width, Ø30mm bases), tiles, sealing methods, and card specs |
+| `card_production_checklist_a4.html` | ✅ Ready to Print | **Printable Card Production Checklist (2 A4 Pages)**: Complete tracker for all 126 cards & tableaus across all decks with dual checkboxes: **[Gen.]** (Generated) & **[Gedr.]** (Printed) |
+| `magic_cards_all_gutterfold_a4.html` | ✅ Ready to Print | **Master Magic & Goblin Deck**: 14 Cards (6 Codex Arcanum Spells + 8 Goblin-Fusel Chaos Magic; 7 A4 pages, Gutter-Fold with vector back banners) |
+| `event_cards_all_gutterfold_a4.html` | ✅ Ready to Print | **Master Event Deck**: 18 Cards (Rad des Schicksals; 9 A4 pages, Gutter-Fold) |
+| `encounter_cards_all_gutterfold_a4.html` | ✅ Ready to Print | **Master Encounter Deck**: 16 Cards (Die Tiefen Gewölbe; 8 A4 pages, Gutter-Fold) |
+| `starting_gear_cards_all_gutterfold_a4.html` | ✅ Ready to Print | **Master Starting Gear Deck**: 12 Cards (3 per hero; 6 A4 pages, Gutter-Fold) |
+| `melee_cards_all_gutterfold_a4.html` | ✅ Ready to Print | **Ausrüstung: Nahkampf**: 16 Cards (#01–#16; 8 A4 pages, Gutter-Fold) |
+| `ranged_cards_all_gutterfold_a4.html` | ✅ Ready to Print | **Ausrüstung: Fernkampf**: 8 Cards (#17–#24; 4 A4 pages, Gutter-Fold) |
+| `armor_cards_all_gutterfold_a4.html` | ✅ Ready to Print | **Ausrüstung: Rüstung**: 12 Cards (#25–#36; 6 A4 pages, Gutter-Fold) |
+| `consumable_cards_all_gutterfold_a4.html` | ✅ Ready to Print | **Ausrüstung: Tränke/Verbrauch**: 10 Cards (#37–#46; 5 A4 pages, Gutter-Fold) |
+| `trinket_cards_all_gutterfold_a4.html` | ✅ Ready to Print | **Ausrüstung: Relikte/Zubehör**: 8 Cards (#47–#54; 4 A4 pages, Gutter-Fold) |
+| `MONSTER_CARDS_PRODUCTION_SPECS.md` | ✅ Ready (v2.0) | Complete production specification for Oversized Tarot (81.67×138 mm, 7:12 ratio) & A5 Boss Gutter-Fold cards |
+| `monster_cards_all_gutterfold_a4.html` | ✅ Ready to Print | **Master Standard Monster Deck**: 8 Standard Monster Cards (4 A4 pages, 2 cards per sheet, centered with 8.5mm margins & continuous ruler guides) |
+| `boss_cards_a5_gutterfold.html` | ✅ Ready to Print | **Master Boss & Large Monster Dashboards**: 4 A5-Landscape Cards (Grabunhold, Blutgolem, Todesritter, Malakor; 1 per A4 page, 195×138 mm Gutter-Fold with health tracks & D6 action matrices) |
+| `monster_card_draft_skeleton_oversized_140mm.html` | ✅ Ready to Print | Oversized Tarot prototype (Skelettkrieger, 81.67 × 138 mm, interactive dimension toggle & ruler guides) |
 | `card_example_barbarenaxt.svg` | ✅ Sample Created | Mini-Euro (44 × 68 mm) SVG vector card front |
 | `card_back_ausruestung.svg` | ✅ Sample Created | Mini-Euro (44 × 68 mm) SVG vector card back |
 | `card_standard_poker_barbarenaxt.svg` | ✅ Ready (Poker Size) | **Standard Playing Card / Poker Size (63.5 × 88.9 mm)** with large, highly legible fonts |

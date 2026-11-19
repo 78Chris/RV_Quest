@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Battlemap Gitter- & Token-Test (RV Quest)</title>
+  <style>
+    :root {
+      --grid-size: 30mm; /* Exakt 30mm genormtes Spielraster */
+    }
+    body {
+      background-color: #1a1a1e;
+      color: #e5e5ea;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      margin: 0;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    h1 {
+      margin: 0 0 8px 0;
+      font-size: 24px;
+      color: #f1c40f;
+    }
+    p.desc {
+      margin: 0 0 24px 0;
+      color: #a0a0b0;
+      max-width: 800px;
+      text-align: center;
+      line-height: 1.5;
+    }
+    .controls {
+      margin-bottom: 25px;
+      display: flex;
+      gap: 15px;
+      background: #282830;
+      padding: 12px 20px;
+      border-radius: 8px;
+    }
+    label {
+      cursor: pointer;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    select {
+      background: #383842;
+      color: white;
+      border: 1px solid #555;
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+
+    /* Das Battlemap Spielfeld (Maßstab 1:1 Print) */
+    .map-container {
+      position: relative;
+      width: calc(var(--grid-size) * 7);  /* 7 Felder breit = 210mm (A4 Breite) */
+      height: calc(var(--grid-size) * 7); /* 7 Felder hoch = 210mm */
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+      border: 3px solid #000;
+      overflow: hidden;
+      background-size: cover;
+      background-position: center;
+      transition: background-image 0.2s ease;
+    }
+
+    /* Vektor-Gitter Ebenen */
+    .grid-lines {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.45) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.45) 1px, transparent 1px);
+      background-size: var(--grid-size) var(--grid-size);
+    }
+
+    .grid-crosses {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-size: var(--grid-size) var(--grid-size);
+      background-image: radial-gradient(circle, #f1c40f 2px, transparent 2.5px);
+      background-position: 0 0;
+    }
+
+    /* Möbel / Dungeonelemente als freigestellte Tokens */
+    .token {
+      position: absolute;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      filter: drop-shadow(2px 5px 6px rgba(0,0,0,0.85));
+      z-index: 5;
+      user-select: none;
+    }
+
+    .token-chest {
+      left: calc(var(--grid-size) * 3);
+      top: calc(var(--grid-size) * 2);
+      width: var(--grid-size);
+      height: var(--grid-size);
+      background: radial-gradient(circle, rgba(160, 82, 45, 0.95) 0%, rgba(100, 45, 20, 0.95) 100%);
+      border: 3px solid #221;
+      border-radius: 6px;
+      color: #ffd700;
+      font-weight: bold;
+      font-size: 11px;
+      text-align: center;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.6);
+    }
+    .token-chest::after {
+      content: "📦 TRUHE\A(1×1)";
+      white-space: pre-wrap;
+    }
+
+    .token-sarcophagus {
+      left: calc(var(--grid-size) * 1);
+      top: calc(var(--grid-size) * 4);
+      width: calc(var(--grid-size) * 2);
+      height: var(--grid-size);
+      background: #4a4a55;
+      border: 3px solid #111;
+      border-radius: 4px;
+      color: #fff;
+      font-weight: bold;
+      font-size: 11px;
+      text-align: center;
+      box-shadow: inset 0 0 8px rgba(0,0,0,0.8);
+    }
+    .token-sarcophagus::after {
+      content: "⚰️ SARKOPHAG (2×1)";
+    }
+
+    .token-pillar {
+      left: calc(var(--grid-size) * 5);
+      top: calc(var(--grid-size) * 4);
+      width: var(--grid-size);
+      height: var(--grid-size);
+      background: radial-gradient(circle, #555 40%, #222 100%);
+      border: 3px solid #111;
+      border-radius: 50%;
+      color: #ddd;
+      font-weight: bold;
+      font-size: 10px;
+      text-align: center;
+    }
+    .token-pillar::after {
+      content: "🏛️ SÄULE\A(1×1)";
+      white-space: pre-wrap;
+    }
+
+    .analysis-box {
+      margin-top: 30px;
+      max-width: 800px;
+      background: #23232b;
+      padding: 20px 24px;
+      border-left: 4px solid #f1c40f;
+      border-radius: 4px;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .analysis-box h3 {
+      margin-top: 0;
+      color: #f1c40f;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🛡️ RV Quest: Battlemap Overlay-Test (1:1 Maßstab)</h1>
+  <p class="desc">
+    Hier wird deine generierte Bodentextur mit einem <strong>exakten 30×30 mm Spielraster</strong> 
+    und <strong>freigestellten Möbel-Tokens</strong> überlagert. 
+    Teste unten die Ansichten, um zu sehen, wie stark die Steinfugen mit dem Spielfluss konkurrieren.
+  </p>
+
+  <div class="controls">
+    <label>
+      Hintergrundbild:
+      <select id="bgSelect" onchange="changeBg(this.value)">
+        <option value="new_stone_floor.jpg">⭐ NEU: Steinplatten (Bild 7 - Top-Down)</option>
+        <option value="new_swamp_floor.jpg">⭐ NEU: Sumpfboden (Bild 10 - Perfekt!)</option>
+        <option value="test_floor_tile.jpg">Alt: Bild 3 (Grobe Fugen)</option>
+        <option value="test_floor_tile_1.jpg">Alt: Bild 1 (Wand-Optik)</option>
+      </select>
+    </label>
+
+    <label>
+      <input type="checkbox" id="toggleGrid" checked onchange="toggleLayer('grid-lines', this.checked)">
+      30mm Linien-Gitter
+    </label>
+
+    <label>
+      <input type="checkbox" id="toggleCrosses" checked onchange="toggleLayer('grid-crosses', this.checked)">
+      Eck-Fadenkreuze
+    </label>
+
+    <label>
+      <input type="checkbox" id="toggleTokens" checked onchange="toggleLayer('token-layer', this.checked)">
+      Möbel-Tokens
+    </label>
+  </div>
+
+  <div class="map-container" id="map" style="background-image: url('new_stone_floor.jpg');">
+    <div id="grid-lines" class="grid-lines"></div>
+    <div id="grid-crosses" class="grid-crosses"></div>
+
+    <div id="token-layer">
+      <div class="token token-chest"></div>
+      <div class="token token-sarcophagus"></div>
+      <div class="token token-pillar"></div>
+    </div>
+  </div>
+
+  <div class="analysis-box">
+    <h3>🔍 Was man hier sofort erkennt:</h3>
+    <ul>
+      <li><strong>Visueller Fugen-Konflikt:</strong> Wenn du die Gitterlinien an- und ausschaltest, siehst du sofort: Die dicken schwarzen Steinfugen der KI laufen schräg durch die quadratischen Spielfelder. Ein Spieler kann auf den ersten Blick schwer unterscheiden, ob eine Linie ein Kanten-Feld oder nur eine Mörtelfuge ist.</li>
+      <li><strong>Möbel-Funktionalität:</strong> Schalte die <em>Möbel-Tokens</em> an. Sie decken den Boden sauber ab und sind sofort als interaktive Spielelemente (Deckung, Beute) erkennbar.</li>
+      <li><strong>Fazit für den perfekten Boden:</strong> Die Illustrationen sehen als Kunstwerk fantastisch aus! Aber für den <em>Boden einer Spiel-Battlemap</em> muss die Felsentextur **mindestens 3- bis 4-mal feiner/kleiner geschuppt** und **kontrastärmer** sein (dünne feine Risse statt armdicke schwarze Fugen), damit das Spielfeld ruhig im Hintergrund bleibt.</li>
+    </ul>
+  </div>
+
+  <script>
+    function changeBg(val) {
+      document.getElementById('map').style.backgroundImage = "url('" + val + "')";
+    }
+    function toggleLayer(id, show) {
+      const el = document.getElementById(id);
+      if (id === 'token-layer') {
+        const tokens = document.querySelectorAll('.token');
+        tokens.forEach(t => t.style.display = show ? 'flex' : 'none');
+      } else {
+        el.style.display = show ? 'block' : 'none';
+      }
+    }
+  </script>
+</body>
+</html>
+
